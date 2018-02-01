@@ -1,41 +1,30 @@
 import matplotlib.pyplot as plt
-import csv
 
-epoch1 = []
-transitTime1 = []
-rSky1 = []
-vSky1 = []
-epoch2 = []
-transitTime2 = []
-rSky2 = []
-vSky2 = []
+timesFile = []
+valueArray = []
+transitTime1Float = []
+epoch1Float = []
+count = 0
 
-with open('Times','r') as csvfile:
-    plots = csv.reader(csvfile, delimiter=',')
-    for row in plots:
-		if row[0] == 0:
-			print(test)
-			epoch1.append(long(row[1]))
-			transitTime1.append(long(row[2]))
-			rSky1.append(long(row[3]))
-			vSky1.append(long(row[4]))
-	#~ else:
-		#~ epoch2.append(float(row[1]))
-		#~ transitTime2.append(float(row[2]))
-		#~ rSky2.append(float(row[3]))
-		#~ vSky2.append(float(row[4]))
-		
-f = open('Times')
-yourList = f.readlines()
 
-#print(yourList)
-print(plots)
-		
-			
-#plt.plot(epoch1,transitTime1, label='Mass of exoplanet')
-#plt.xlabel('Planet Radius $R_E$')
-#plt.ylabel('Planet Mass $M_E$')
-#plt.title('Mass-radius relation')
-#plt.legend()
-#plt.show()
+timesFile = open('Times')
+valueArray = timesFile.readlines()
+planet = [k.split(' ')[0] for k in valueArray]
+epoch1 = [k.split(' ')[1] for k in valueArray]
+transitTime1 = [k.split(' ')[2] for k in valueArray]
+
+
+for k in range(len(valueArray)):
+	if planet[k] == '0':
+		epoch1Float.append(float(epoch1[k]))
+		transitTime1Float.append(float(transitTime1[k]))
+		count += 1
+
+
+plt.plot(epoch1Float, transitTime1Float, label='Transit Time')
+plt.xlabel('Epoch')
+plt.ylabel('Transit time')
+plt.title('Transit Timing variations')
+plt.legend()
+plt.show()
 
