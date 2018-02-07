@@ -28,9 +28,9 @@ with open('q1_q17_dr25_koi_CONFIRMED.csv','r') as inputFile: # read in data from
 	name = [k.split(',')[2] for k in data]
 	kepID = [k.split(',')[1] for k in data]
 	period = [k.split(',')[7] for k in data]
-	rPlanet = [k.split(',')[22] for k in data]
-	mStar = [k.split(',')[27] for k in data]
-	numPlanets = [k.split(',')[28] for k in data]
+	rPlanet = [k.split(',')[17] for k in data]
+	mStar = [k.split(',')[24] for k in data]
+	numPlanets = [k.split(',')[20] for k in data]
 
 numPlanets = list(map(int,numPlanets)) 		# convert strings in numPlanets array to integers
 
@@ -44,7 +44,7 @@ for i in range(len(rPlanet)):
 	mPlanet[i] = mPlanet[i]*0.000002988 									#convert planet mass from earth masses to solar masses
 
 	
-pathlib2.Path('./input').mkdir(parents=True, exist_ok=True)
+pathlib2.Path('./input/').mkdir(parents=True, exist_ok=True)
 	
 outputFile = open('input/%s.in' % name[0], 'w')
 outputFile.write(repr(G) + '\n' + mStar[0] + '\n')
