@@ -42,10 +42,11 @@ else:
 	transitTime1Corrected = transitTimesLinFitted - abs(transitCorrection)
 
 
-plt.plot(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, label='Transit Time')
+plt.scatter(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, label='Transit Time')
 plt.xlabel('Time [Days]')
 plt.ylabel('Transit time [Minutes]')
 plt.title('Transit Timing variations')
 plt.legend()
+plt.tight_layout()
 plt.savefig('plots/' + sys.argv[1] + '.png')
 
