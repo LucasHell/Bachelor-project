@@ -8,13 +8,15 @@ transitTime1Float = []
 epoch1Float = []
 count = 0
 period = 1.0917340278625494e+01
+kepMag = []
+transitDur = []
+rStar = []
 
-
-timesFile = open(sys.argv[1])
-valueArray = timesFile.readlines()
-planet = [k.split(' ')[0] for k in valueArray]
-epoch1 = [k.split(' ')[1] for k in valueArray]
-transitTime1 = [k.split(' ')[2] for k in valueArray]
+with open(sys.argv[1],'r') as timesFile:
+	valueArray = timesFile.readlines()
+	planet = [k.split(' ')[0] for k in valueArray]
+	epoch1 = [k.split(' ')[1] for k in valueArray]
+	transitTime1 = [k.split(' ')[2] for k in valueArray]
 
 
 for k in range(len(valueArray)):
@@ -41,12 +43,20 @@ if transitMax < 0:
 else:
 	transitTime1Corrected = transitTimesLinFitted - abs(transitCorrection)
 
+with open('timingErrors.csv','r') as inputFile:
+	data = inputFile.readlines()[0:]
+	errorTiming = float(data[int(sys.argv[2])])
+
 
 plt.scatter(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, label='Transit Time')
+plt.errorbar(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, yerr = errorTiming, linestyle="None")
 plt.xlabel('Time [Days]')
 plt.ylabel('Transit time [Minutes]')
 plt.title('Transit Timing variations')
 plt.legend()
 plt.tight_layout()
+textstr = 'Amplitude=%.2f\nError=%.2f\n'%(transitAmplitude, errorTiming)
+plt.figtext(0.75, 0.5, textstr, fontsize=10)
+plt.subplots_adjust(right=0.7)
 plt.savefig('plots/' + sys.argv[1] + '.png')
 

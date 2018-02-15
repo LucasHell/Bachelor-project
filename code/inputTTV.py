@@ -20,7 +20,11 @@ inclination = 90	# icnlination of planet
 lNode = 0			# long node of planet
 argument = 0		# argument of planet
 meanAnom = []		# mean anomaly of planet
-count = 0			# counter
+count = 0			# counter for number of planets
+kepMag = []			# Kepler magnitude of star
+transitDur = []		# Duration of transit
+rStar = []			
+
 
 
 
@@ -32,8 +36,11 @@ with open('nasaDATA.csv','r') as inputFile: # read in data from csv file to resp
 	rPlanet = [k.split(',')[20] for k in data]
 	mStar = [k.split(',')[32] for k in data]
 	numEpoch = [k.split(',')[8] for k in data]
+	kepMag = [k.split(',')[37] for k in data]
+	transitDur = [k.split(',')[14] for k in data]
+	rStar = [k.split(',')[29] for k in data]
+	
 	#numPlanets = [k.split(',')[20] for k in data]
-
 
 numPlanets = list(map(int,numPlanets)) 		# convert strings in numPlanets array to integers
 
@@ -55,9 +62,9 @@ pathlib2.Path('./input/').mkdir(parents=True, exist_ok=True)
 	
 outputFile = open('input/%s.in' % name[0], 'w')
 outNumP = open('numberPlanets.csv', 'w')
+outErrorFile = open('timingErrors.csv', 'w')
 outputFile.write(repr(G) + '\n' + mStar[0] + '\n')
-periodRef = float(period[0])		# period of first planet in system, used as reference for calculating mean anomaly
-#countLimit = numPlanets[0]
+
 for i in range(len(mPlanet)): 
 	#~ numEpoch[i] = float(numEpoch[i])							# convert strings to float in epoch array
 	#~ period[i] = float
@@ -77,26 +84,43 @@ for i in range(len(mPlanet)):
 	#~ print count, meanAnom[i]
 	count += 1
 	
-	if name[i] == name[-1]:
-		outputFile.close()
-		outNumP.write(repr(count) + '\n')
-	elif kepID[i] != kepID[i+1]:
+	if name[i] == name[-1]: 			# for last element
 		if count == 1:
 			os.remove('input/%s.in' % name[i])
+			outputFile.close()
+			
 		elif count != 1:
 			outNumP.write(repr(count) + '\n')
-		outputFile.close()
-		outputFile = open('input/%s.in' % name[i+1], 'w')
-		outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
-		#~ print "NY FIL"
+			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
+			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
+
+	elif kepID[i] != kepID[i+1]:		# for new system
+		if count == 1:					# if number of planets is zero the file is removed
+			os.remove('input/%s.in' % name[i])
+			outputFile.close()
+			outputFile = open('input/%s.in' % name[i+1], 'w')
+			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
+			
+		elif count != 1:				# if number of planets is not zero the rest of the data is saved and a new file is created
+			outNumP.write(repr(count) + '\n')
+			S = 7.8 * 10**8 * 10**(-0.4*(float(kepMag[i])-12))
+			#print i, rPlanet[i], rStar[i]
+			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
+			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
+			outputFile.close()
+			outputFile = open('input/%s.in' % name[i+1], 'w')
+			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
+		
+		
 		
 		count = 0
-		#~ periodRef = period[i+1]
 
 outNumP.close()
+outErrorFile.close()
+	
 
-#~ for x in range(0,3):
-	#~ print name[x], period[x], rPlanet[x], mPlanet[x],  '\n'
+
+	
 
 
 
