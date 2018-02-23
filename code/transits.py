@@ -36,6 +36,9 @@ transitMin = np.amin(transitTimesLinFitted)
 transitAmplitude = (transitMax - transitMin) / 2
 transitCorrection = (transitMax + transitMin) / 2
 
+outputFile = open('transAmpl.txt', 'w')
+outputFile.write(repr(transitAmplitude))
+
 print "Amplitude:", transitAmplitude, "minutes or", transitAmplitude/60, "hours"
 
 if transitMax < 0:

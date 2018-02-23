@@ -1,0 +1,61 @@
+\documentclass[titlepage]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}  
+\usepackage[utf8]{inputenc}   
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{tabularx,ragged2e,booktabs,caption}
+\newcolumntype{C}[1]{>{\Centering}m{#1}}
+\renewcommand\tabularxcolumn[1]{C{#1}}
+\usepackage[font=small,labelfont=bf]{caption}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=20mm,
+ right=20mm,
+ top=20mm,
+ bottom=20mm,
+ } 
+\usepackage{eso-pic}
+\AddToShipoutPicture{%
+  \AtPageUpperLeft{%
+    \hspace*{20pt}\makebox(200,-20)[lt]{%
+      \footnotesize%
+      \textbf{Lucas Hellström}%
+}}}
+
+
+
+
+\title{Using TTV signals to catalogue multi-planet systems}
+\author{Lucas Hellström - 950905-0655}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+	By measuring Transit Timing Variations, TTVs, it is possible to separate a single-planet system from a multi-planet system. This is done by measuring the time the planet takes to make one complete revolution around its host star. If the time for one revolution differs by a non-negligible amount the system can be further observed to confirm the existents of multiple planets around the star. 
+	
+	This paper will study transit times measured by the Keppler satellite and, by specifying a number of parameters, simulate the data that the upcoming TESS satellite will produce. This data is analysed to get a better understanding of multi-planets systems and to create a catalogue of these systems for further study. 
+\section{Theory}
+	The easiest obtainable information about a star far way is the intensity of the star. By measuring this over some time a light curve can be made which describes the intensity of the star over some time. If there is a decrease in the intensity in regular intervals a planet might be transiting. A transit is a phenomenon where a planet moves between a star and the observer causing the intensity to decrease by blocking some of the light emitted by the star. This can be seen in figure \ref{fig:trans}
+	
+	\begin{figure}[h!]
+		\centering
+		\captionsetup{justification=centering}
+		\includegraphics[width=0.6\textwidth]{Planetary_transit.svg}
+		\caption{Illustration of a transiting planet and the resulting light curve. \\  \small{ Source: \url{https://commons.wikimedia.org/wiki/File:Planetary_transit.svg}}}
+		\label{fig:trans}
+	\end{figure}
+	, TTV, TTVFast, Sullivan, Keppler, TESS
+\section{Method}
+	Coding
+\section{Results}
+	Catalogue
+\section{Discussion}
+	Important?
+\end{document}
+

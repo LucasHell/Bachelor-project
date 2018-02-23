@@ -6,6 +6,7 @@ rm -r ./TTVFast/c_version/input
 rm ./TTVFast/c_version/numberPlanets.csv
 rm ./code/timingErrors.csv
 rm  -r ./code/times/*
+rm ./code/transAmpl.txt
 
 #Run code to generate data in supported format for TTVFast
 cd code
