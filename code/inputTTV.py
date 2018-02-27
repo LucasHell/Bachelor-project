@@ -23,7 +23,7 @@ meanAnom = []		# mean anomaly of planet
 count = 0			# counter for number of planets
 kepMag = []			# Kepler magnitude of star
 transitDur = []		# Duration of transit
-rStar = []			
+rStar = []			# Radius of star
 
 
 

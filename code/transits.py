@@ -37,7 +37,7 @@ transitAmplitude = (transitMax - transitMin) / 2
 transitCorrection = (transitMax + transitMin) / 2
 
 outputFile = open('transAmpl.txt', 'w')
-outputFile.write(repr(transitAmplitude))
+outputFile.write(repr(transitAmplitude) + '\n')
 
 print "Amplitude:", transitAmplitude, "minutes or", transitAmplitude/60, "hours"
 

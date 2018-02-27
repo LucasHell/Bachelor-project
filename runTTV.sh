@@ -7,6 +7,7 @@ rm ./TTVFast/c_version/numberPlanets.csv
 rm ./code/timingErrors.csv
 rm  -r ./code/times/*
 rm ./code/transAmpl.txt
+rm ./code/numberPlanets.csv
 
 #Run code to generate data in supported format for TTVFast
 cd code
@@ -16,7 +17,7 @@ cd ..
 #Move input data to TTVFast directory
 echo "TEST1"
 mv ./code/input ./TTVFast/c_version
-mv ./code/numberPlanets.csv ./TTVFast/c_version
+cp ./code/numberPlanets.csv ./TTVFast/c_version
 
 echo "TEST2"
 
