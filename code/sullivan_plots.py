@@ -29,46 +29,62 @@ rPlanetSul = data['Rp']
 periodRange = 1
 radiusRange = 1
 
-count = 0
 
 with open('nasaDATA.csv','r') as inputFile: # read in data from csv file to respective arrays
 	data = inputFile.readlines()[46:]
 	kepID = [k.split(',')[1] for k in data]
 	periodKep = [k.split(',')[5] for k in data]
 	rPlanetKep = [k.split(',')[20] for k in data]
+	name = [k.split(',')[2] for k in data]
+	mStar = [k.split(',')[32] for k in data]
+	numEpoch = [k.split(',')[8] for k in data]
+	kepMag = [k.split(',')[37] for k in data]
+	transitDur = [k.split(',')[14] for k in data]
+	rStar = [k.split(',')[29] for k in data]
 	
 	
-	
-#~ with open('numberPlanets.csv','r') as inputFile:
-	#~ data = inputFile.readlines()[46:]
-	#~ numP = [k.split(' ')[0] for k in data]
+pTESS = 0
+rTESS = 0
+count1 = 0
+count2 = 0
 
-
-
+outputFile = open('TESSData.csv', 'w')
 for i in range(len(periodSul)):
 	for k in range(len(periodKep)):
 		if rPlanetKep[k]:
 			if periodSul[i] - periodRange <= float(periodKep[k]) <= periodSul[i] + periodRange and rPlanetSul[i] - radiusRange <= float(rPlanetKep[k]) <= rPlanetSul[i] + radiusRange:
 				ratioP = float(periodKep[k]) / periodSul[i]
 				ratioR = float(rPlanetKep[k]) / rPlanetSul[i]
-				#~ print i, k
-				#~ print i, j
-				j = i
-				count = 0
+				#~ j = i
+				j = k
+				count1 = 0
+				count2 = 0
+				
 				while kepID[j] == kepID[j+1]:
-					periodTESS.append(float(periodKep[k+count])*ratioP)
-					rPlanetTESS.append(float(rPlanetKep[k+count])*ratioR)
-					count += 1
-					j += 1
-					print i, k
+					pTESS = float(periodKep[k+count1])*ratioP
+					rTESS = float(rPlanetKep[k+count1])*ratioR
+					if name[k] != '01' and count1 == 0:
+						pNum = int(name[k][-2:])
+						for l in range(1,pNum-1):
+							periodTESS.append(float(periodKep[k-l])*ratioP)
+							rPlanetTESS.append(float(rPlanetKep[k-l])*ratioR)
+							outputFile.write(name[k-l] + ' ' +  kepID[k-l] + ' ' + str(pTESS) + ' ' + str(rTESS) + ' ' + mStar[k-l] + ' ' + numEpoch[k-l] + ' '  + transitDur[k-l] + ' ' + rStar[k-l] + ' ' + kepMag[k-l])
+					
+					periodTESS.append(pTESS)
+					rPlanetTESS.append(rTESS)
+					outputFile.write(name[k+count1] + ' ' +  kepID[k+count1] + ' ' + str(pTESS) + ' ' + str(rTESS) + ' ' + mStar[k+count1] + ' ' + numEpoch[k+count1] + ' '  + transitDur[k+count1] + ' ' + rStar[k+count1] + ' ' + kepMag[k+count1])
+					print name[k+count1], kepID[k+count1], pTESS, rTESS, mStar[k+count1], numEpoch[k+count1], kepMag[k+count1], transitDur[k+count1], rStar[k+count1]
+					count1 += 1
+					j += 1			
 				break
-			
-print len(rPlanetTESS)						
+outputFile.close()
+print len(rPlanetTESS), len(periodSul)					
 periodTESS = np.log(periodTESS)
 rPlanetTESS = np.log(rPlanetTESS)	
-print len(rPlanetTESS)		
 					
-plt.scatter(rPlanetTESS,periodTESS)
+plt.scatter(rPlanetTESS,periodTESS,s=2)
+plt.xlabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
+plt.ylabel('Period [$\log$ days]', fontsize=12)
 plt.show()			
 
 #~ plt.hist(effTemp,bins=50)
