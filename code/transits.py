@@ -36,8 +36,9 @@ transitMin = np.amin(transitTimesLinFitted)
 transitAmplitude = (transitMax - transitMin) / 2
 transitCorrection = (transitMax + transitMin) / 2
 
-outputFile = open('transAmpl.txt', 'w')
+outputFile = open('transAmpl.txt', 'a')
 outputFile.write(repr(transitAmplitude) + '\n')
+outputFile.close()
 
 print "Amplitude:", transitAmplitude, "minutes or", transitAmplitude/60, "hours"
 
@@ -49,6 +50,10 @@ else:
 with open('timingErrors.csv','r') as inputFile:
 	data = inputFile.readlines()[0:]
 	errorTiming = float(data[int(sys.argv[2])])
+	
+outErrorFile = open('ampError.txt', 'a')
+outErrorFile.write(repr(errorTiming) + '\n')
+outErrorFile.close()
 
 
 plt.scatter(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, label='Transit Time')
@@ -62,4 +67,6 @@ textstr = 'Amplitude=%.2f\nError=%.2f\n'%(transitAmplitude, errorTiming)
 plt.figtext(0.75, 0.5, textstr, fontsize=10)
 plt.subplots_adjust(right=0.7)
 plt.savefig('plots/' + sys.argv[1] + '.png')
+plt.clf()
+
 
