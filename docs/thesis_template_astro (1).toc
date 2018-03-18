@@ -1,19 +1,13 @@
 \contentsline {chapter}{\numberline {1}Introduction}{4}
 \contentsline {section}{\numberline {1.1}TESS}{4}
 \contentsline {section}{\numberline {1.2}Transits}{4}
-\contentsline {subsection}{\numberline {1.2.1}Variations}{4}
-\contentsline {section}{\numberline {1.3}Simulation of TESS objects}{4}
-\contentsline {section}{\numberline {1.4}TTVFast}{4}
-\contentsline {section}{\numberline {1.5}Analyzing results from TTVFast}{4}
-\contentsline {chapter}{\numberline {2}Results}{5}
-\contentsline {section}{\numberline {2.1}Code}{5}
-\contentsline {section}{\numberline {2.2}Figures}{6}
-\contentsline {section}{\numberline {2.3}Tables}{6}
-\contentsline {section}{\numberline {2.4}Equations}{7}
-\contentsline {section}{\numberline {2.5}The list environment}{7}
-\contentsline {chapter}{\numberline {3}Conclusions}{9}
-\contentsline {section}{\numberline {3.1}Cross-referencing}{9}
-\contentsline {section}{\numberline {3.2}References}{9}
-\contentsline {section}{\numberline {3.3}Spelling}{10}
-\contentsline {chapter}{\numberline {A}This is an appendix}{12}
-\contentsline {chapter}{\numberline {B}This is another appendix}{13}
+\contentsline {subsection}{\numberline {1.2.1}Variations}{5}
+\contentsline {section}{\numberline {1.3}Simulation of TESS objects}{5}
+\contentsline {section}{\numberline {1.4}TTVFast}{5}
+\contentsline {section}{\numberline {1.5}Analyzing results from TTVFast}{5}
+\contentsline {chapter}{\numberline {2}Results}{6}
+\contentsline {section}{\numberline {2.1}Simulated TESS objects}{6}
+\contentsline {section}{\numberline {2.2}TTV signals from TESS objects}{6}
+\contentsline {chapter}{\numberline {3}Conclusions}{8}
+\contentsline {chapter}{\numberline {A}This is an appendix}{10}
+\contentsline {chapter}{\numberline {B}This is another appendix}{11}

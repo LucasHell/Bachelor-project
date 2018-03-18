@@ -41,7 +41,7 @@ for file1 in `ls input/*.in | sort --version-sort`;
 do
 	readarray -t data < <(cut -f2 $file1)
 	period=$(echo ${data[3]} | awk '{$1=$1/20; print $1;}')
-	echo -e "$file1\n0\n$period\n${maxTime[$number]}\n${numPlanet[$number]}\n0" > setup_file.txt;
+	echo -e "$file1\n0\n$period\n${maxTime[$number]}\n${numPlanet[$number]}\n0" > setup_file.txt;  		#${maxTime[$number]}
 	./run_TTVFast setup_file.txt Times RV_file RV_out;
 	mv Times output;
 	mv ./output/Times output/$file1;

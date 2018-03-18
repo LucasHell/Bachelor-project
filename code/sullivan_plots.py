@@ -75,7 +75,7 @@ for i in range(len(periodSul)):
 								rPlanetTESS.append(float(rPlanetKep[k-l])/ratioR)
 								pTESS = float(periodKep[k-l])*ratioP
 								rTESS = float(rPlanetKep[k-l])*ratioR
-								outputFile.write(name[k-l] + ' ' +  kepID[k-l] + ' ' + str(pTESS) + ' ' + str(rTESS) + ' ' + mStar[k-l] + ' ' + numEpoch[k-l] + ' '  + transitDur[k-l] + ' ' + rStar[k-l] + ' ' + str(RA[i]) + ' ' + str(dec[i]) + ' ' + effTempKep[k] + ' ' + str(effTempSul[i]) + ' ' + str(ICMag[i]) + '\n')
+								outputFile.write(name[k-l] + ',' +  kepID[k-l] + ',' + str(pTESS) + ',' + str(rTESS) + ',' + mStar[k-l] + ',' + numEpoch[k-l] + ','  + transitDur[k-l] + ',' + rStar[k-l] + ',' + str(RA[i]) + ',' + str(dec[i]) + ',' + effTempKep[k] + ',' + str(effTempSul[i]) + ',' + str(ICMag[i]) + '\n')
 								
 								
 						pTESS = float(periodKep[k+count1])*ratioP
@@ -88,7 +88,7 @@ for i in range(len(periodSul)):
 							
 						j += 1		
 						
-						outputFile.write(name[k+count1] + ' ' +  kepID[k+count1] + ' ' + str(pTESS) + ' ' + str(rTESS) + ' ' + mStar[k+count1] + ' ' + numEpoch[k+count1] + ' '  + transitDur[k+count1] + ' ' + rStar[k+count1] + ' ' + str(RA[i]) + ' ' + str(dec[i]) + ' ' + effTempKep[k] + ' ' + str(effTempSul[i]) + ' ' + str(ICMag[i]) + '\n')
+						outputFile.write(name[k+count1] + ',' +  kepID[k+count1] + ',' + str(pTESS) + ',' + str(rTESS) + ',' + mStar[k+count1] + ',' + numEpoch[k+count1] + ','  + transitDur[k+count1] + ',' + rStar[k+count1] + ',' + str(RA[i]) + ',' + str(dec[i]) + ',' + effTempKep[k] + ',' + str(effTempSul[i]) + ',' + str(ICMag[i]) + '\n')
 						count1 += 1
 		
 					break

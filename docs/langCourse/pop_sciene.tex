@@ -1,0 +1,44 @@
+\documentclass[titlepage]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}  
+\usepackage[utf8]{inputenc}   
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{tabularx,ragged2e,booktabs,caption}
+\newcolumntype{C}[1]{>{\Centering}m{#1}}
+\renewcommand\tabularxcolumn[1]{C{#1}}
+\usepackage[font=small,labelfont=bf]{caption}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=20mm,
+ right=20mm,
+ top=20mm,
+ bottom=20mm,
+ } 
+\usepackage{eso-pic}
+\AddToShipoutPicture{%
+  \AtPageUpperLeft{%
+    \hspace*{20pt}\makebox(200,-20)[lt]{%
+      \footnotesize%
+      \textbf{Lucas Hellström}%
+}}}
+\renewcommand{\baselinestretch}{1.5} 
+\begin{document}
+	\begin{center}
+	\section*{Discovering hidden worlds - Transit-Timing Variations}
+	\subsubsection*{Lucas Hellström}
+	\end{center}
+	\textbf{Finding planets around other stars than our Sun, also called exoplanets, is a hard task. The massive distances between solar systems and the relative size between the planets and stars makes planets very difficult to detect. By using telescopes such as the Kepler telescope or The Transiting Exoplanet Survey Satellite, one method of detecting exoplanets is the so-called Transit method. When a planet passes between its host star and the observer it will block out a portion of the light and a small decrease in brightness can be measured. One important part of information given by the transit method is the period of the planet. By looking for variations in the period one may find so-called Transit-Timing Variations, TTVs. These TTVs arise from the existence of another planet in the system with may or may not transit the star but gravitationally affects the transiting planet by accelerating or deceleration it which give rise to variations in the period. By finding a transiting planet showing TTVs it is thus also possible to find non-transiting planets.}\\
+	
+	\vspace{0.5cm}\noindent In order to observe systems for a long time a ground-based telescope is not reasonable due to light pollution, atmospheric interference and the rotation of Earth, because of this, space-based telescopes are preferred when possible. The most famous and important telescope is the Kepler telescope, launched in 2009, which have so far discovered over 1000 confirmed exoplanets  by looking at a small patch of the sky for a long time. The Transiting Exoplanet Survey Satellite, also called TESS, will be launched spring 2018 and will be the first all-sky survey of the sky. By dividing the sky into 26 sectors and observing each sector for 27 days it will monitor over 200 000 stars over the period of 2 years. Both Kepler and TESS uses the transit method to find exoplanet candidates which can then be used in further research.  	
+	
+	\vspace{0.5cm}\noindent When searching for exoplanets through the transit method the brightness of a star is measured over a long time in hope of finding brightness dips which occur at regular intervals. The main problem with this method is that the probability that a planet lines up in the line of sight of the observer and the host star is low. To counteract this many systems are observed simultaneously in the hope of finding transiting systems. When a transiting planet is found the radius and period of it can be determined from the amount of light it blocks. The radius can be combined with the mass of the planet obtained from other methods to obtain the density of the planet and thus give a sense of the structure of the planet. \\
+	
+	\vspace{0.5cm}\noindent Solar systems with more than one planet may show Transit-Timing Variations, TTVs, as the gravitational pull between the planets causes them to accelerate and decelerate. These variations can be used to discover planets which would otherwise not be possible to see as they do not transit their star. By studying a large amount of systems and measuring transit times for transiting planets it is thus possible to find additional non-transiting planets. The search for exoplanets plays a big role in our research about habitable worlds and the search for terrestrial life. By increasing the number of known exoplanets the chances of discovering terrestrial life increases which might lead to us someday finding life on another planet. 
+	
+
+	
+	
+\end{document}

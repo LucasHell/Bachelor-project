@@ -29,8 +29,8 @@ dec = []			# Declination of system
 
 
 
-
-#~ with open('nasaDATA.csv','r') as inputFile: # read in data from csv file to respective arrays
+# read in data from csv file to respective arrays
+#~ with open('nasaDATA.csv','r') as inputFile:
 	#~ data = inputFile.readlines()[46:]
 	#~ name = [k.split(',')[2] for k in data]
 	#~ kepID = [k.split(',')[1] for k in data]
@@ -46,18 +46,18 @@ dec = []			# Declination of system
 # read in data from csv file to respective arrays
 with open('TESSData.csv','r') as inputFile: 
 	data = inputFile.readlines()
-	name = [k.split(' ')[0] for k in data]
-	kepID = [k.split(' ')[1] for k in data]
-	period = [k.split(' ')[2] for k in data]
-	rPlanet = [k.split(' ')[3] for k in data]
-	mStar = [k.split(' ')[4] for k in data]
-	numEpoch = [k.split(' ')[5] for k in data]
-	transitDur = [k.split(' ')[6] for k in data]
-	rStar = [k.split(' ')[7] for k in data]
-	RA = [k.split(' ')[8] for k in data]
-	dec = [k.split(' ')[9] for k in data]
-	effTemp = [k.split(' ')[10] for k in data]
-	kepMag = [k.split(' ')[12] for k in data]
+	name = [k.split(',')[0] for k in data]
+	kepID = [k.split(',')[1] for k in data]
+	period = [k.split(',')[2] for k in data]
+	rPlanet = [k.split(',')[3] for k in data]
+	mStar = [k.split(',')[4] for k in data]
+	numEpoch = [k.split(',')[5] for k in data]
+	transitDur = [k.split(',')[6] for k in data]
+	rStar = [k.split(',')[7] for k in data]
+	RA = [k.split(',')[8] for k in data]
+	dec = [k.split(',')[9] for k in data]
+	effTemp = [k.split(',')[10] for k in data]
+	kepMag = [k.split(',')[12] for k in data]
 	
 
 #Convert planet radius to mass
@@ -112,7 +112,7 @@ for i in range(len(mPlanet)):
 		elif count != 1:
 			outNumP.write(repr(count) + '\n')
 			#~ outEcOm.write(str(np.random.rayleigh(0.03)) + ',' + str(np.random.uniform(0,360))+ '\n')
-			S = 3.96 * 10**13 * 10**(-0.4*(float(kepMag[i])))
+			S = 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
 			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
 			outErrorFile.write(repr(errorTiming*60)) 		# write errors to file in minutes
 			outTESSTime.write(RA[i] + ',' + dec[i])	
@@ -132,7 +132,7 @@ for i in range(len(mPlanet)):
 			outNumP.write(repr(count) + '\n')
 			count = 0
 			#~ outEcOm.write(str(np.random.rayleigh(0.03)) + ',' + str(np.random.uniform(0,360)) + '\n')
-			S = 3.96 * 10**13 * 10**(-0.4*(float(kepMag[i])))
+			S = 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
 			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
 			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
 			outTESSTime.write(RA[i] + ',' + dec[i] + '\n')		
@@ -156,7 +156,7 @@ for i in range(len(mPlanet)):
 			outNumP.write(repr(count) + '\n')
 			count = 0
 			#~ outEcOm.write(str(np.random.rayleigh(0.03)) + ',' + str(np.random.uniform(0,360)) + '\n')
-			S = 3.96 * 10**13 * 10**(-0.4*(float(kepMag[i])))
+			S = 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
 			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
 			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
 			outTESSTime.write(RA[i] + ',' + dec[i] + '\n')

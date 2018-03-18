@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib  import cm
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+from astropy import units as u
+from astropy.coordinates import SkyCoord
+from astropy.coordinates import FK5
 
 
 data = []
@@ -15,6 +18,10 @@ medTime = []		# Med time that TESS observes the object
 avgTime = []		# Average time that TESS observes the object
 ampl = []			# amplitude
 amplCorr = []		# amplitude where >0.1min is sorted out
+errorPlot = []		
+ampPlot = []
+ra_rad = []
+dec_rad = []
 
 
 with open('transAmpl.txt', 'r') as inputFile:
@@ -51,21 +58,52 @@ medTime = map(float, medTime)
 
 colorRange = np.linspace(0, 13, 13)
 
-plt.scatter( RATess, decTess, c = minTime, cmap = cm.jet )
+#~ plt.scatter( RATess, decTess, c = minTime, cmap = cm.jet )
 
 norm = mp.colors.Normalize(
-    vmin=np.min(minTime),
-    vmax=np.max(minTime))
+    vmin=np.min(maxTime),
+    vmax=np.max(maxTime))
     
 c_m = mp.cm.cool
 s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
 s_m.set_array([])
 
+
+
+#~ c = SkyCoord(ra=RATess*u.degree, dec=decTess*u.degree, frame='icrs')
+for i in range(len(RATess)):	
+	c = SkyCoord(ra=RATess[i]*u.degree, dec=decTess[i]*u.degree, frame='icrs')
+	c = c.galactic
+	ra_rad.append(c.l)
+	dec_rad.append(c.b)
+	
+
+
+
+#~ ra_rad = c.ra.wrap_at(180 * u.deg).radian
+#~ dec_rad = c.dec.radian
+#~ ra_rad = c_ecl.lon
+#~ dec_rad = c_ecl.lat
+
+plt.figure(figsize=(8,4.2))
+plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m)
-plt.xlabel('Right Ascension [$^{\circ}$]', fontsize=12)
-plt.ylabel('Declination [$^{\circ}$]', fontsize=12)
-plt.savefig('./plots/RA_Dec_Min.png')
+plt.subplot(111, projection="aitoff")
+plt.grid(True)
+plt.title("Position of observed TESS objects", y=1.08)
+plt.colorbar(s_m)
+plt.scatter(ra_rad, dec_rad, s=7,  c = maxTime, cmap = cm.jet )
+plt.savefig('plots/skymap_TESS_wrap')
 plt.clf()
+
+
+
+
+#~ plt.colorbar(s_m)
+#~ plt.xlabel('Right Ascension [$^{\circ}$]', fontsize=12)
+#~ plt.ylabel('Declination [$^{\circ}$]', fontsize=12)
+#~ plt.savefig('./plots/RA_Dec_Min.png')
+#~ plt.clf()
 
 plt.hist(minTime,bins=50)
 plt.title("Histogram of times that each object are observed by TESS")
@@ -134,13 +172,50 @@ with open('ampError.txt','r') as inputFile:
 	
 with open('transAmpl.txt','r') as inputFile:
 	transitAmplitude = inputFile.readlines()
+	
+for i in range(len(errorTiming)):
+	if transitAmplitude[i] == 'nan\n': 
+		continue
+	if float(transitAmplitude[i][:-2]) > 1 and float(transitAmplitude[i][:-2]) < 50:
+		errorPlot.append(float(errorTiming[i][:-2])) 
+		ampPlot.append(float(transitAmplitude[i][:-2])) 
 
-print errorTiming[0], transitAmplitude[0]
-plt.scatter(float(transitAmplitude), float(errorTiming))
+	
+
+x = np.linspace(1, np.amax(ampPlot))
+y = x
+
+
+plt.scatter(np.log10(ampPlot), np.log10(errorPlot), c='black')
+plt.xlabel('Amplitude [log(min)]')
+plt.ylabel('Timing precision [log(min)]')
+plt.xlimit(2)
+plt.ylimit(2)
+plt.title('Amplitude vs timing precision')
+plt.plot(np.log10(x),np.log10(y))
+plt.savefig('plots/ampErrorLog.png')
+plt.clf()
+
+plt.scatter(ampPlot, errorPlot)
 plt.xlabel('Amplitude [min]')
 plt.ylabel('Timing precision [min]')
 plt.title('Amplitude vs timing precision')
 plt.savefig('plots/ampError.png')
+plt.clf()
+
+data = pd.read_table('sullivan_table.txt', sep=';', names=('KOI_num', 'newDetFlag', 'TTVfre', 'TTV+uncer', 'TTV-uncer', 'TTV_per', 'Delta_chi', 'chi_area', 'chi_single', 'chi_RMS', 'cho_correl', 'TTV_amp', 'TTV_amp+_uncer', 'TTV_amp-_uncer', 'TTV_ref', 'TTV_ref+_uncer', 'TTV_ref-_uncer', 'cofid', 'STD_error', '20', '21', '22', '23', '24'))
+#~ print data
+amp_ofir = data['KOI_num']
+#~ print amp_ofir
+
+#~ plt.hist(amp_ofir,bins=50)
+#~ plt.title("Histogram of TTV amplitude of objects\nfrom the Ofir catalogue")
+#~ plt.xlabel('Amplitude [min]')
+#~ plt.ylabel('#')
+#~ plt.savefig('./plots/histo/ofir_amp.png')
+#~ plt.clf()	
+
+
 
 
 
