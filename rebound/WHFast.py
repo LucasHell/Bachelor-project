@@ -26,9 +26,9 @@ y = np.zeros(Noutputs)
 
 sim.move_to_com()
 
-times = np.linspace(0, math.pi, Noutputs)
-for i,time in enumerate(times):
-    sim.integrate(time, exact_finish_time=0)
+times = np.linspace(0, 10000, Noutputs)
+for i,t in enumerate(times):
+    sim.integrate(t, exact_finish_time=0)
     x[i] = particles[1].x
     y[i] = particles[1].y
 
@@ -38,5 +38,8 @@ ax = plt.subplot(111)
 #~ ax.set_ylim([-1.5,1.5])
 plt.scatter(x, y, marker='.', color='k', s=1.2);
 sim.status()
-#~ print("--- %s seconds ---" % (time.time() - start_time))
 plt.savefig('simResult.png')
+
+execTime = open('execTime.txt', 'w')
+execTime.write("--- %s seconds ---" % (time.time() - start_time) + '\n')
+execTime.close()

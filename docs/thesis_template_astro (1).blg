@@ -3,44 +3,47 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis_template_astro (1).aux
 The style file: aa.bst
 Database file #1: references.bib
-You've used 1 entry,
+Warning--entry type for "kepler_num_planet" isn't style-file defined
+--line 90 of file references.bib
+You've used 3 entries,
             2947 wiz_defined-function locations,
-            654 strings with 5026 characters,
-and the built_in function-call counts, 920 in all, are:
-= -- 67
-> -- 119
-< -- 0
-+ -- 40
-- -- 39
-* -- 88
-:= -- 179
-add.period$ -- 1
-call.type$ -- 1
-change.case$ -- 17
-chr.to.int$ -- 1
-cite$ -- 1
-duplicate$ -- 18
-empty$ -- 26
-format.name$ -- 41
-if$ -- 174
+            665 strings with 5299 characters,
+and the built_in function-call counts, 1688 in all, are:
+= -- 132
+> -- 170
+< -- 1
++ -- 57
+- -- 54
+* -- 148
+:= -- 327
+add.period$ -- 3
+call.type$ -- 3
+change.case$ -- 30
+chr.to.int$ -- 3
+cite$ -- 3
+duplicate$ -- 52
+empty$ -- 72
+format.name$ -- 60
+if$ -- 321
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 7
-num.names$ -- 4
-pop$ -- 16
+missing$ -- 2
+newline$ -- 13
+num.names$ -- 12
+pop$ -- 28
 preamble$ -- 1
-purify$ -- 17
+purify$ -- 30
 quote$ -- 0
-skip$ -- 16
+skip$ -- 44
 stack$ -- 0
-substring$ -- 18
+substring$ -- 50
 swap$ -- 0
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 9
+type$ -- 27
 warning$ -- 0
-while$ -- 4
+while$ -- 11
 width$ -- 0
-write$ -- 13
+write$ -- 32
+(There was 1 warning)

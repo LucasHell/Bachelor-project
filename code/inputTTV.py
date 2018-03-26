@@ -77,6 +77,12 @@ for i in range(len(rPlanet)):
 	
 pathlib2.Path('./input/').mkdir(parents=True, exist_ok=True)				# create directory input if it does not exist
 
+#~ for i in range(len(dec)):
+	#~ if float(dec[i]) > 0:
+		#~ dec[i] = float(dec[i]) * -1
+		#~ dec[i] = str(dec[i])
+		#~ RA[i] = float(RA[i]) * -1
+		#~ RA[i] = str(RA[i])
 
 # open output files to write data for TTVFast
 systemCount = 0	

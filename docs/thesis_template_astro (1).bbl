@@ -1,5 +1,13 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{3}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Deck} {et~al.}(2014){Deck}, {Agol}, {Holman}, \&
+  {Nesvorn{\'y}}}]{2014ApJ...787..132D}
+{Deck}, K.~M., {Agol}, E., {Holman}, M.~J., \& {Nesvorn{\'y}}, D. 2014, \apj,
+  787, 132
+
+\bibitem[{{Johnson}(2018)}]{kepler_num_planet}
+{Johnson}, M. 2018, How many exoplanets has Kepler discovered?
 
 \bibitem[{{Sullivan} {et~al.}(2015){Sullivan}, {Winn}, {Berta-Thompson},
   {Charbonneau}, {Deming}, {Dressing}, {Latham}, {Levine}, {McCullough},

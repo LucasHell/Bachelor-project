@@ -42,8 +42,7 @@
 
 \begin{document}
 
-\title{\huge \bf A LaTeX template for an astronomy/astrophysics
-thesis\footnote{This is just a very basic cover page produced by LaTeX -- when
+\title{\huge \bf Multiplanetary Systems from Simulated TESS TTV Signals\footnote{This is just a very basic cover page produced by LaTeX -- when
 the thesis is done you can get a more formal cover page from Eva Jurlander.}}
 \author{Lucas Hellström}
 
@@ -129,6 +128,22 @@ astronomy/astrophysics thesis in LaTeX. Detailed rules about the {\it contents}
 of the thesis (Bachelor's thesis or Master's thesis) can be found at the course
 websites.
 
+\section{Transits}
+	A planet in orbit around it's host star may sometimes cross the line of sight of an observer. When this happens a slight decrease in the stars brightness can be measured. This is called a transit and is today used as a main method to discover exoplanets. From transits the radius of the planet can be determined but it can also be used to find additional planets around the host star which may not be transiting. This will be discussed in section \ref{sec:trans_vari}. With the radius known from the transit method and the mass obtained from different methods as the radial velocity method the density of the planet can be calculated. The density is important to understand what the planet is made of and the structure of it.
+
+\subsection{Variations}
+\label{sec:trans_vari}
+
+	When measuring the time of one transit one may discover variations in the period which are called Transit-Timing Variations or TTVs. These variations arise from another planet in the system whose gravitational pull accelerates or decelerate the observed planet which results in increased or decreased transit times. An advantage of studying transits in search for TTVs is that planets which does not transit their star can be discovered through TTVs. As most planets does not transit their star this can increase the number of known exoplanets drastically.
+
+\section{Kepler}
+	The Kepler satellite launched in spring 2009 on a mission to study stars in a small patch in the sky to discover Earth-sized exoplanets within the habitable zone, where liquid water can exist on the planetary surface. The brightness of a large amount of stars are measured and then analyzed in order to detect transiting exoplanets.
+	
+	Kepler started by looking at a very small patch of the sky but in July 2012 one of the four wheels used to keep the patch in focus broke. The telescope requires at least three wheels to function which kept the mission alive. In May 2013 a third wheel failed which resulted in the telescope no longer being able to collect data. The satellite was nonfunctional until the so-called "Second Light (K2)" in early 2014. This mission would use the telescopes remaining two wheels to study stars over a much larger area but for shorter periods.
+	
+	According to \cite{kepler_num_planet} Kepler found over 2300 confirmed exoplanets and about 2200 candidates which require further studies before they can be confirmed during the main mission, before the second wheel broke down. Since the start of K2 about 300 exoplanets have been confirmed and close to 500 candidate exoplanets. These numbers makes Kepler the most successful exoplanet hunting mission to this date.
+	
+	
 \section{TESS}
 	The Transiting Exoplanet Survey Satellite, TESS, is a satellite due to launch spring 2018. The satellite is equipped with four cameras which will study the brightness of over 200 000 stars over a two year period. It is the first all-sky transit survey taking place in space.
 	
@@ -141,17 +156,21 @@ websites.
 	\end{figure}
 	%
 
-\section{Transits}
-	A planet in orbit around it's host star may sometimes cross the line of sight of an observer. When this happens a slight decrease in the stars brightness can be measured. This is called a transit and is today used as a main method to discover exoplanets. From transits the radius of the planet can be determined but it can also be used to find additional planets around the host star which may not be transiting. This will be discussed in section \ref{sec:trans_vari}. With the radius known from the transit method and the mass obtained from different methods as the radial velocity method the density of the planet can be calculated. The density is important to understand what the planet is made of and the structure of it.
-
-\subsection{Variations}
-\label{sec:trans_vari}
-
-	When measuring the time of one transit one may discover variations in the period which are called Transit-Timing Variations or TTVs. These variations arise from another planet in the system whose gravitational pull accelerates or decelerate the observed planet which results in increased or decreased transit times. An advantage of studying transits in search for TTVs is that planets which does not transit their star can be discovered through TTVs. As most planets does not transit their star this can increase the number of known exoplanets drastically.
+\chapter{Method}
 
 \section{Simulation of TESS objects}
+	By combining data from Kepler obtained from the NASA Exoplanet Archive and the results from \cite{2015ApJ...809...77S}, which contains one planet for each system, TESS data are simulated. For each planet in the Sullivan catalogue, a similar planet, in radius and period, are found in the NASA archive. The ratio of radius and period are calculated and applied to the Kepler planet to make it identical in radius and period to the Sullivan planet. This ratio is then applied to any other planets in the Kepler system to make an artificial system of planets. Another parameter when finding planets in the NASA archive is the effective temperature of the star in the system. The systems are divided into two groups where one have effective temperatures of over 4000 kelvin and the other are below. This is to ensure that one system with a small, cool star is not combined with a system containing a big, hot star.   (\textbf{picture?})
 
 \section{TTVFast}
+	TTVFast is a program created by \cite{2014ApJ...787..132D} which simulates planetary systems. It uses a number of parameters:
+	\begin{itemize}
+		\item Gravitational constant in $AU^3 \mathrm{day}^{-2}M_{\odot}^{-1}$
+		\iffalse \item Time step which is recommended to be $1/20$ of the shortest period in the system.
+		\item Reference time where the integration should start. $T_0 = 0$ is used in this paper.
+		\item Final time where the integration should stop. This is obtained from the Web TESS Target tool where the right ascension and declination of each system is given and the corresponding times TESS will look at each system is given back.(https://heasarc.gsfc.nasa.gov/cgi-bin/tess/webtess/wtm.py)
+		\item Number of planets where all planets should be included even if they aren't transiting.
+		\item \fi
+	\end{itemize}
 
 \section{Analyzing results from TTVFast}
 
@@ -181,26 +200,28 @@ suggestions. You can name your chapters differently and add more if needed.
 
 \section{Simulated TESS objects}
 
+
+
 \begin{figure}
-	\centering
-	\begin{minipage}{.5\textwidth}
  	 \centering
- 	 \includegraphics[width=8cm]{img/R_P-plot_5.png}
- 	 \caption{Diagram with the radius \\distribution as a function of period for\\ the simulated TESS objects.}
+ 	 \includegraphics[width=9cm]{img/R_P-plot_5.png}
+ 	 \caption{Diagram with the radius \\distribution as a function of period forthe simulated TESS objects.}
  	 \label{fig:RP_plot}
-	\end{minipage}%
-	\begin{minipage}{.5\textwidth}
+\end{figure}
+
+\begin{figure}
  	 \centering
 	  \includegraphics[width=9cm]{img/ampErrorLog.png}
 	  \caption{Diagram with the position of each observed objects color-coded to show the number of times the object is observed.}
 	 \label{fig:pos_num_obs}
-	\end{minipage}
 \end{figure}
 
 	\begin{figure}
 		\centering
 		\includegraphics[width=12cm]{img/skymap_TESS_wrap.png}
-	  	\caption{Diagram with the position of each observed objects color-coded to show the number of times the object is observed.}		\end{figure}
+	  	\caption{Diagram with the position of each observed objects color-coded to show the number of times the object is observed.}	
+	  	\label{fig:skymap_TESS}	
+	  \end{figure}
 
 \section{TTV signals from TESS objects}
 
@@ -220,8 +241,8 @@ Id of star & I &  V & Var.? \\
 \end{tabular}
 \end{table}
 
-   
-
+\chapter{Discussion}
+	Further studies: CHEOPS, James Webb
 \chapter{Conclusions}
 
 
