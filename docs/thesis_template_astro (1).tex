@@ -42,7 +42,7 @@
 
 \begin{document}
 
-\title{\huge \bf Multiplanetary Systems from Simulated TESS TTV Signals\footnote{This is just a very basic cover page produced by LaTeX -- when
+\title{\huge \bf Multiplanetary Systems from Simulated TESS Transit Timing Variations\footnote{This is just a very basic cover page produced by LaTeX -- when
 the thesis is done you can get a more formal cover page from Eva Jurlander.}}
 \author{Lucas Hellström}
 
@@ -129,12 +129,12 @@ of the thesis (Bachelor's thesis or Master's thesis) can be found at the course
 websites.
 
 \section{Transits}
-	A planet in orbit around it's host star may sometimes cross the line of sight of an observer. When this happens a slight decrease in the stars brightness can be measured. This is called a transit and is today used as a main method to discover exoplanets. From transits the radius of the planet can be determined but it can also be used to find additional planets around the host star which may not be transiting. This will be discussed in section \ref{sec:trans_vari}. With the radius known from the transit method and the mass obtained from different methods as the radial velocity method the density of the planet can be calculated. The density is important to understand what the planet is made of and the structure of it.
+	A planet in orbit around it's host star may sometimes cross the line of sight of an observer. When this happens a slight decrease in the stars brightness can be measured. This is called a transit and is today used as a main method to discover exoplanets. From transits the radius of the planet can be determined but it can also be used to find additional planets around the host star which may not be transiting. This will be discussed in section \ref{sec:trans_vari}. With the radius known from the transit method and the mass obtained from different methods such as, for example, the radial velocity method the density of the planet can be calculated. The density is important to understand what the planet is made of and the structure of it.
 
 \subsection{Variations}
 \label{sec:trans_vari}
 
-	When measuring the time of one transit one may discover variations in the period which are called Transit-Timing Variations or TTVs. These variations arise from another planet in the system whose gravitational pull accelerates or decelerate the observed planet which results in increased or decreased transit times. An advantage of studying transits in search for TTVs is that planets which does not transit their star can be discovered through TTVs. As most planets does not transit their star this can increase the number of known exoplanets drastically.
+	When measuring the time of one transit one may discover variations in the period which are called Transit-Timing Variations or TTVs. These variations arise from another planet in the system whose gravitational pull accelerates or decelerate the observed planet which results in increased or decreased transit times. An advantage of studying transits in search for TTVs is that planets which does not transit their star can be discovered through TTVs \citep{0004-637X-777-1-3}. As most planets does not transit their star this can increase the number of known exoplanets drastically.
 
 \section{Kepler}
 	The Kepler satellite launched in spring 2009 on a mission to study stars in a small patch in the sky to discover Earth-sized exoplanets within the habitable zone, where liquid water can exist on the planetary surface. The brightness of a large amount of stars are measured and then analyzed in order to detect transiting exoplanets.
@@ -147,30 +147,51 @@ websites.
 \section{TESS}
 	The Transiting Exoplanet Survey Satellite, TESS, is a satellite due to launch spring 2018. The satellite is equipped with four cameras which will study the brightness of over 200 000 stars over a two year period. It is the first all-sky transit survey taking place in space.
 	
-	TESS will cover the whole sky by splitting it into 26 sectors which are observed for 27 days each. An illustration of this can be seen in figure \ref{fig:tess_time} where the number of times TESS will observe each sector is shown. 
+	TESS will study the whole sky by splitting it into 26 sectors which are observed for 27 days each. An illustration of this can be seen in figure \ref{fig:tess_time} where the number of times TESS will observe each sector is shown. 
 	\begin{figure}[h!]
 	\centering
 		\includegraphics[scale=0.2]{img/tess_observe_time.png}
 		\caption{Illustration of the number of times TESS will observe each sector in the sky.\\ \small{Source: \cite{2015ApJ...809...77S}}}
 		\label{fig:tess_time}
 	\end{figure}
-	%
-
+	
+	
+\section{TTVFast}
+	TTVFast is a program created by \cite{2014ApJ...787..132D} which simulates planetary systems using an n-body integrator. It requires information about the system in the form of:
+	\begin{itemize}
+		\item Gravitational constant in $AU^3 \mathrm{day}^{-2}M_{\odot}^{-1}$
+		\item Mass of the star
+		
+	\end{itemize}
+	And also for each planet in the system:
+	\begin{itemize}
+		\item Period in days
+		\item Eccentricity
+		\item Inclination
+		\item Longitude of ascending node
+		\item Argument of perihelion
+		\item Mean anomaly at the reference time
+	\end{itemize}
+	Where Longitude of ascending node and argument of perihelion are orbital elements.The reference time is the time of the start of the integration, in this paper: $t_ref=0$. The program also requires parameters regarding the integration which are given in a setup file:
+	\begin{itemize}
+		\item Reference time
+		\item Time step which is $1/20$ of the period
+		\item Final time which in this paper is the duration of the integration
+		\item Number of planets
+		\item Input flag which \textbf{determines} in which coordinate system the input parameters are given.
+	\end{itemize}
+	How these parameters are determined and "given" to TTVFast will be discussed in section \ref{simTESS} and \ref{TTVFast_method}.
 \chapter{Method}
 
 \section{Simulation of TESS objects}
+\label{simTESS}
 	By combining data from Kepler obtained from the NASA Exoplanet Archive and the results from \cite{2015ApJ...809...77S}, which contains one planet for each system, TESS data are simulated. For each planet in the Sullivan catalogue, a similar planet, in radius and period, are found in the NASA archive. The ratio of radius and period are calculated and applied to the Kepler planet to make it identical in radius and period to the Sullivan planet. This ratio is then applied to any other planets in the Kepler system to make an artificial system of planets. Another parameter when finding planets in the NASA archive is the effective temperature of the star in the system. The systems are divided into two groups where one have effective temperatures of over 4000 kelvin and the other are below. This is to ensure that one system with a small, cool star is not combined with a system containing a big, hot star.   (\textbf{picture?})
+	
+	Approximations inclination, longnode etc.
 
 \section{TTVFast}
-	TTVFast is a program created by \cite{2014ApJ...787..132D} which simulates planetary systems. It uses a number of parameters:
-	\begin{itemize}
-		\item Gravitational constant in $AU^3 \mathrm{day}^{-2}M_{\odot}^{-1}$
-		\iffalse \item Time step which is recommended to be $1/20$ of the shortest period in the system.
-		\item Reference time where the integration should start. $T_0 = 0$ is used in this paper.
-		\item Final time where the integration should stop. This is obtained from the Web TESS Target tool where the right ascension and declination of each system is given and the corresponding times TESS will look at each system is given back.(https://heasarc.gsfc.nasa.gov/cgi-bin/tess/webtess/wtm.py)
-		\item Number of planets where all planets should be included even if they aren't transiting.
-		\item \fi
-	\end{itemize}
+\label{TTVFast_method}
+	In order to run TTVFast the input parameters need to be in a specific format. These parameters are written to a file for each system as seen in (REF TO ABSTRACT). As the bash script is running it will use each file corresponding to a single system while it writes a new setup file specific to this system as required by the program. TTVFast is then executed which produces a file containing the transit times of the system. This is the repeated for all of the generated systems 
 
 \section{Analyzing results from TTVFast}
 
@@ -205,7 +226,7 @@ suggestions. You can name your chapters differently and add more if needed.
 \begin{figure}
  	 \centering
  	 \includegraphics[width=9cm]{img/R_P-plot_5.png}
- 	 \caption{Diagram with the radius \\distribution as a function of period forthe simulated TESS objects.}
+ 	 \caption{Diagram with the radius \\distribution as a function of period for the simulated TESS objects.}
  	 \label{fig:RP_plot}
 \end{figure}
 

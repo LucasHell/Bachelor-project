@@ -169,30 +169,38 @@ outputFile.close()
 print len(rPlanetTESS), len(periodSul)					
 periodTESS = np.log10(periodTESS)
 rPlanetTESS = np.log10(rPlanetTESS)	
-
+markers = ['.', 'o', '^', 's', 'p', 'h']
 
 
 print np.max(rPlanetTESS)
 
 colorRange = np.linspace(0, 13, 13)
 
-numP = np.array(numP)
+numP = np.array(effTemp)
 
 norm = mp.colors.Normalize(
-    vmin=np.min(numP),
-    vmax=np.max(numP))
+    vmin=np.min(effTemp),
+    vmax=np.max(effTemp))
     
 c_m = mp.cm.cool
-s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
+s_m = mp.cm.ScalarMappable(cmap=cm.hot, norm=norm)
 s_m.set_array([])
 
 			
-plt.scatter(periodTESS,rPlanetTESS,s=2, c = numP, cmap = cm.jet )
-plt.colorbar(s_m)
+plt.scatter(periodTESS,rPlanetTESS,s=2, c = effTemp, cmap = cm.hot )
+plt.colorbar(s_m, label='Effective temperature of host star')
 plt.ylim(-0.3,1.25)
 plt.ylabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
 plt.xlabel('Period [$\log$ days]', fontsize=12)
-plt.savefig('plots/R_P-plot.png')
+plt.savefig('plots/R_P-plot_effTemp1.png')
+plt.clf()
+
+for i in range(len(periodTESS)):
+	plt.scatter(periodTESS[i],rPlanetTESS[i], s=2, marker=markers[numP[i]])
+plt.ylim(-0.3,1.25)
+plt.ylabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
+plt.xlabel('Period [$\log$ days]', fontsize=12)
+plt.savefig('plots/R_P-plot_numP1.png')
 plt.clf()
 
 

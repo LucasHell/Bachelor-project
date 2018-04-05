@@ -213,7 +213,8 @@ plt.plot(np.log10(x),np.log10(y))
 plt.savefig('plots/ampErrorLog.png')
 plt.clf()
 
-plt.scatter(ampPlot, errorPlot)
+
+plt.scatter(ampPlot, errorPlot, marker='d')
 plt.xlabel('Amplitude [min]')
 plt.ylabel('Timing precision [min]')
 plt.title('Amplitude vs timing precision')

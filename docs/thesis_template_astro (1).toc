@@ -3,14 +3,15 @@
 \contentsline {subsection}{\numberline {1.1.1}Variations}{4}
 \contentsline {section}{\numberline {1.2}Kepler}{5}
 \contentsline {section}{\numberline {1.3}TESS}{5}
-\contentsline {chapter}{\numberline {2}Method}{7}
-\contentsline {section}{\numberline {2.1}Simulation of TESS objects}{7}
-\contentsline {section}{\numberline {2.2}TTVFast}{7}
-\contentsline {section}{\numberline {2.3}Analyzing results from TTVFast}{7}
-\contentsline {chapter}{\numberline {3}Results}{8}
-\contentsline {section}{\numberline {3.1}Simulated TESS objects}{8}
-\contentsline {section}{\numberline {3.2}TTV signals from TESS objects}{8}
-\contentsline {chapter}{\numberline {4}Discussion}{11}
-\contentsline {chapter}{\numberline {5}Conclusions}{12}
-\contentsline {chapter}{\numberline {A}This is an appendix}{14}
-\contentsline {chapter}{\numberline {B}This is another appendix}{15}
+\contentsline {section}{\numberline {1.4}TTVFast}{5}
+\contentsline {chapter}{\numberline {2}Method}{8}
+\contentsline {section}{\numberline {2.1}Simulation of TESS objects}{8}
+\contentsline {section}{\numberline {2.2}TTVFast}{8}
+\contentsline {section}{\numberline {2.3}Analyzing results from TTVFast}{9}
+\contentsline {chapter}{\numberline {3}Results}{10}
+\contentsline {section}{\numberline {3.1}Simulated TESS objects}{10}
+\contentsline {section}{\numberline {3.2}TTV signals from TESS objects}{10}
+\contentsline {chapter}{\numberline {4}Discussion}{13}
+\contentsline {chapter}{\numberline {5}Conclusions}{14}
+\contentsline {chapter}{\numberline {A}This is an appendix}{16}
+\contentsline {chapter}{\numberline {B}This is another appendix}{17}
