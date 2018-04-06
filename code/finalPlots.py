@@ -7,6 +7,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 from astropy import units as u
 from astropy.coordinates import SkyCoord
 from astropy.coordinates import FK5
+import matplotlib.lines as mlines
 
 
 data = []

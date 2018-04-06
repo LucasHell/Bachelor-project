@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib as mp
 from matplotlib  import cm
+import matplotlib.lines as mlines
 
 effTemp = []		# effective temperature
 sRad = [] 			# stellar radius
@@ -102,12 +103,11 @@ for i in range(len(periodSul)): 		#
 						
 						outputFile.write(name[k+count1] + ',' +  kepID[k+count1] + ',' + str(pTESS) + ',' + str(rTESS) + ',' + mStar[k+count1] + ',' + numEpoch[k+count1] + ','  + transitDur[k+count1] + ',' + rStar[k+count1] + ',' + str(RA[i]) + ',' + str(dec[i]) + ',' + effTempKep[k] + ',' + str(effTempSul[i]) + ',' + str(ICMag[i]) + '\n')
 						if kepID[j] != kepID[j+1]:
-							pNum = float(count1) + float(countP)
 							for n in range(0,int(count1) + 1 + int(countP)):
 								numP.append(int(count1) + 1 + int(countP))
 						
 						if rTESS > maxR:
-							print rTESS, rPlanetKep[k+count1], pTESS, periodKep[k+count1], kepID[j]
+							#~ print rTESS, rPlanetKep[k+count1], pTESS, periodKep[k+count1], kepID[j]
 							maxR = rTESS
 							
 							
@@ -151,13 +151,12 @@ for i in range(len(periodSul)): 		#
 						
 						outputFile.write(name[k+count1] + ' ' +  kepID[k+count1] + ' ' + str(pTESS) + ' ' + str(rTESS) + ' ' + mStar[k+count1] + ' ' + numEpoch[k+count1] + ' '  + transitDur[k+count1] + ' ' + rStar[k+count1] + ' ' + str(RA[i+count1]) + ' ' + str(dec[i+count1]) + ' ' + effTempKep[k+count1] + ' ' + str(effTempSul[i+count1]) + ' ' + str(ICMag[i+count1]) + '\n')
 						if kepID[j] != kepID[j+1]:
-							pNum = float(count1) + float(countP)
 							for n in range(0,int(count1) + 1 + int(countP)):
 								numP.append(int(count1) + 1 + int(countP))
 								
 								
 						if rTESS > maxR:
-							print rTESS, rPlanetKep[k+count1], pTESS, periodKep[k+count1]
+							#~ print rTESS, rPlanetKep[k+count1], pTESS, periodKep[k+count1]
 							maxR = rTESS
 						count1 += 1
 
@@ -170,34 +169,51 @@ print len(rPlanetTESS), len(periodSul)
 periodTESS = np.log10(periodTESS)
 rPlanetTESS = np.log10(rPlanetTESS)	
 markers = ['.', 'o', '^', 's', 'p', 'h']
+colors = ['k', 'b', 'r', 'g', 'm', 'tab:purple']
 
 
-print np.max(rPlanetTESS)
 
-colorRange = np.linspace(0, 13, 13)
+#~ colorRange = np.linspace(0, 13, 13)
 
-numP = np.array(effTemp)
 
-norm = mp.colors.Normalize(
-    vmin=np.min(effTemp),
-    vmax=np.max(effTemp))
+#~ norm = mp.colors.Normalize(
+    #~ vmin=np.min(effTemp),
+    #~ vmax=np.max(effTemp))
     
-c_m = mp.cm.cool
-s_m = mp.cm.ScalarMappable(cmap=cm.hot, norm=norm)
-s_m.set_array([])
+#~ c_m = mp.cm.cool
+#~ s_m = mp.cm.ScalarMappable(cmap=cm.hot, norm=norm)
+#~ s_m.set_array([])
 
 			
-plt.scatter(periodTESS,rPlanetTESS,s=2, c = effTemp, cmap = cm.hot )
-plt.colorbar(s_m, label='Effective temperature of host star')
-plt.ylim(-0.3,1.25)
-plt.ylabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
-plt.xlabel('Period [$\log$ days]', fontsize=12)
-plt.savefig('plots/R_P-plot_effTemp1.png')
-plt.clf()
+#~ plt.scatter(periodTESS,rPlanetTESS,s=2, c = effTemp, cmap = cm.hot )
+#~ plt.colorbar(s_m, label='Effective temperature of host star')
+#~ plt.ylim(-0.3,1.25)
+#~ plt.ylabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
+#~ plt.xlabel('Period [$\log$ days]', fontsize=12)
+#~ plt.savefig('plots/R_P-plot_effTemp1.png')
+#~ plt.clf()
+
 
 for i in range(len(periodTESS)):
-	plt.scatter(periodTESS[i],rPlanetTESS[i], s=2, marker=markers[numP[i]])
+	markNum = (int(numP[i]) - 1)
+	plt.scatter(periodTESS[i],rPlanetTESS[i], c = colors[markNum], marker=markers[markNum], edgecolor='black', label=numP)
 plt.ylim(-0.3,1.25)
+
+black_dot = mlines.Line2D([], [], color='black', marker='.', linestyle='None',
+                          markersize=10, label='1')
+blue_circle = mlines.Line2D([], [], color='blue', marker='o', linestyle='None',
+                          markersize=10, label='2')
+red_triangle = mlines.Line2D([], [], color='red', marker='^', linestyle='None',
+                          markersize=10, label='3')
+green_square = mlines.Line2D([], [], color='green', marker='s', linestyle='None',
+                          markersize=10, label='4')
+m_pentagon = mlines.Line2D([], [], color='m', marker='p', linestyle='None',
+                          markersize=10, label='5')
+purple_hexagon = mlines.Line2D([], [], color='purple', marker='h', linestyle='None',
+                          markersize=10, label='6')
+                          
+plt.legend(handles=[black_dot, blue_circle, red_triangle, green_square, m_pentagon, purple_hexagon] ,loc='upper center', bbox_to_anchor=(0.5, 1.15),
+          ncol=3, fancybox=True, shadow=True, title="Number of Planets")
 plt.ylabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
 plt.xlabel('Period [$\log$ days]', fontsize=12)
 plt.savefig('plots/R_P-plot_numP1.png')
