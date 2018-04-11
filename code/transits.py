@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
+import os
 
 timesFile = []
 valueArray = []
@@ -19,11 +20,22 @@ with open(sys.argv[1],'r') as timesFile:
 	transitTime1 = [k.split(' ')[2] for k in valueArray]
 
 
+countPlanetZero = 0
+
 for k in range(len(valueArray)):
 	if planet[k] == '0':
 		epoch1Float.append(float(epoch1[k]))
 		transitTime1Float.append(float(transitTime1[k]))
+		countPlanetZero += 1
 
+
+if os.stat(sys.argv[1]).st_size == 0 or countPlanetZero < 2:
+	outputFile = open('transAmpl.txt', 'a')
+	outputFile.write('0' + '\n')
+	outputFile.close()
+	print "Amplitude:", '0', "minutes or", '0', "hours"
+	sys.exit(0)
+	
 epoch1Float = np.array(epoch1Float)
 transitTime1Float = np.array(transitTime1Float)
 

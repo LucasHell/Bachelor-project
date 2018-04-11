@@ -11,14 +11,14 @@ import matplotlib.lines as mlines
 
 
 data = []
-RATess = []			# Right ascension of TESS systems
-decTess = []		# Declination of TESS systems
-maxTime = []		# Max time that TESS observes the object
-minTime = []		# Min time that TESS observes the object
-medTime = []		# Med time that TESS observes the object
-avgTime = []		# Average time that TESS observes the object
-ampl = []			# amplitude
-amplCorr = []		# amplitude where >0.1min is sorted out
+RATess = []					# Right ascension of TESS systems
+decTess = []				# Declination of TESS systems
+maxTime = []				# Max time that TESS observes the object
+minTime = []				# Min time that TESS observes the object
+medTime = []				# Med time that TESS observes the object
+avgTime = []				# Average time that TESS observes the object
+transitAmplitude = []		# amplitude
+amplCorr = []				# amplitude where >0.1min is sorted out
 errorPlot = []		
 ampPlot = []
 ra_rad = []
@@ -27,12 +27,12 @@ ampOfirCorr = []
 
 
 with open('transAmpl.txt', 'r') as inputFile:
-	ampl = inputFile.readlines()
+	transitAmplitude = inputFile.readlines()
 
-ampl = map(float, ampl)
-for m in range(len(ampl)):
-	if ampl[m] > 1 and ampl[m] < 66:
-		amplCorr.append(ampl[m])
+transitAmplitude = map(float, transitAmplitude)
+for m in range(len(transitAmplitude)):
+	if transitAmplitude[m] > 1 and transitAmplitude[m] < 66:
+		amplCorr.append(transitAmplitude[m])
 		
 plt.hist(amplCorr,bins=11, rwidth=0.5)
 plt.title("Histogram of the amplitudes of simulated TESS data")
@@ -62,15 +62,20 @@ decTess = map(float, decTess)
 maxTime = map(float, maxTime)
 minTime = map(float, minTime)
 medTime = map(float, medTime)
+transitAmplitude = map(float, transitAmplitude)
 
 
+colorRange = np.linspace(float(np.min(transitAmplitude)), 100, float(np.max(transitAmplitude)))
+#~ colorRange = np.linspace(0, 13, 13)
 
-colorRange = np.linspace(0, 13, 13)
 
-
+#~ norm = mp.colors.Normalize(
+    #~ vmin=np.min(maxTime),
+    #~ vmax=np.max(maxTime))
+    
 norm = mp.colors.Normalize(
-    vmin=np.min(maxTime),
-    vmax=np.max(maxTime))
+    vmin=np.min(transitAmplitude),
+    vmax=np.max(transitAmplitude))   
     
 c_m = mp.cm.cool
 s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
@@ -80,13 +85,13 @@ s_m.set_array([])
 
 for i in range(len(RATess)):
 	if decTess[i] > 0:
-		RATess[i] = RATess[i] + 65
-		decTess[i] = decTess[i] + 15
+		RATess[i] = RATess[i] + 23
+		decTess[i] = decTess[i] + 23
 		if decTess[i] > 90:
 			decTess[i] = -90 + (decTess[i]-90)
 	else:
-		RATess[i] = RATess[i] - 65
-		decTess[i] = decTess[i] - 15
+		RATess[i] = RATess[i] - 23
+		decTess[i] = decTess[i] - 23
 		if decTess[i] < -90:
 			decTess[i] = 90 - (abs(decTess[i])-90)
 			
@@ -111,7 +116,7 @@ plt.subplot(111, projection="aitoff")
 plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m)
-plt.scatter(ra_rad, dec_rad, s=7, c = maxTime, cmap = cm.jet )
+plt.scatter(ra_rad, dec_rad, s=7, c = transitAmplitude, cmap = cm.jet )
 #~ plt.scatter(ra_rad, dec_rad, s=7)
 plt.savefig('plots/skymap_TESS_wrap')
 plt.clf()
@@ -189,16 +194,14 @@ plt.clf()
 
 with open('ampError.txt','r') as inputFile:
 	errorTiming = inputFile.readlines()
-	
-with open('transAmpl.txt','r') as inputFile:
-	transitAmplitude = inputFile.readlines()
-	
+
+
 for i in range(len(errorTiming)):
-	if transitAmplitude[i] == 'nan\n': 
+	if transitAmplitude[i] == 'nan\n' or transitAmplitude[i] == '0\n': 
 		continue
-	if float(transitAmplitude[i][:-2]) > 1 and float(transitAmplitude[i][:-2]) < 50:
-		errorPlot.append(float(errorTiming[i][:-2])) 
-		ampPlot.append(float(transitAmplitude[i][:-2])) 
+	if float(transitAmplitude[i]) > 1 and float(transitAmplitude[i]) < 50:
+		errorPlot.append(float(errorTiming[i])) 
+		ampPlot.append(float(transitAmplitude[i])) 
 
 	
 

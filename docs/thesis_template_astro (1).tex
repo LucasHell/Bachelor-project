@@ -160,38 +160,66 @@ websites.
 	TTVFast is a program created by \cite{2014ApJ...787..132D} which simulates planetary systems using an n-body integrator. It requires information about the system in the form of:
 	\begin{itemize}
 		\item Gravitational constant in $AU^3 \mathrm{day}^{-2}M_{\odot}^{-1}$
-		\item Mass of the star
+		\item Mass of the star 
 		
 	\end{itemize}
 	And also for each planet in the system:
 	\begin{itemize}
-		\item Period in days
+		\item Period in days 
 		\item Eccentricity
-		\item Inclination
-		\item Longitude of ascending node
-		\item Argument of perihelion
-		\item Mean anomaly at the reference time
+		\item Inclination 
+		\item Longitude of ascending node, long node for short 
+		\item Argument of perihelion, argument for short 
+		\item Mean anomaly at the reference time 
 	\end{itemize}
-	Where Longitude of ascending node and argument of perihelion are orbital elements.The reference time is the time of the start of the integration, in this paper: $t_ref=0$. The program also requires parameters regarding the integration which are given in a setup file:
+	Where Longitude of ascending node and argument of perihelion are orbital elements. The reference time is the time of the start of the integration, in this paper: $t_ref=0$. The program also requires parameters regarding the integration which are given in a setup file:
 	\begin{itemize}
 		\item Reference time
 		\item Time step which is $1/20$ of the period
 		\item Final time which in this paper is the duration of the integration
 		\item Number of planets
-		\item Input flag which \textbf{determines} in which coordinate system the input parameters are given.
+		\item Input flag which specifies in which coordinate system the input parameters are given. This paper uses Jacobi coordinates which relate to a input flag = 0.
 	\end{itemize}
 	How these parameters are determined and "given" to TTVFast will be discussed in section \ref{simTESS} and \ref{TTVFast_method}.
 \chapter{Method}
 
 \section{Simulation of TESS objects}
 \label{simTESS}
-	By combining data from Kepler obtained from the NASA Exoplanet Archive and the results from \cite{2015ApJ...809...77S}, which contains one planet for each system, TESS data are simulated. For each planet in the Sullivan catalogue, a similar planet, in radius and period, are found in the NASA archive. The ratio of radius and period are calculated and applied to the Kepler planet to make it identical in radius and period to the Sullivan planet. This ratio is then applied to any other planets in the Kepler system to make an artificial system of planets. Another parameter when finding planets in the NASA archive is the effective temperature of the star in the system. The systems are divided into two groups where one have effective temperatures of over 4000 kelvin and the other are below. This is to ensure that one system with a small, cool star is not combined with a system containing a big, hot star.   (\textbf{picture?})
+	By combining data from Kepler obtained from the NASA Exoplanet Archive and the results from \cite{2015ApJ...809...77S}, which contains one planet for each system, TESS data are simulated. The planets are separated into two groups based on the effective temperature of their host star. Planets around stars with an effective temperature below 4000 K are put in one group while planets around stars with effective temperature above 4000 K are put into another group. This prevents planets around cold stars to get "matched" with planets around hot stars. 
 	
-	Approximations inclination, longnode etc.
+	For each planet in the Sullivan catalogue, a similar planet, in radius and period, are selected from the NASA archive. The ratio of radius and period between the two planets are calculated and multiplied with the Sullivan planets radius and period. This results in that the two planets are identical in radius and period. These ratios are then applied to the rest of the planets in this selected Kepler system to create an artificial system of planets.  
+	
+	The mass of the planet is required to simulate the system and is approximated using equation \ref{eq:mass_p_low} and \ref{eq:mass_p_high} obtained from \cite{2015ApJ...809...77S}:
+	\begin{equation}
+	\label{eq:mass_p_low}
+	M_p = M_{\oplus} \left[0,440 \left(\frac{R_p}{R_{\oplus}}\right)^3 + 0,614\left(\frac{R_p}{R_{\oplus}}\right)^4\right]
+	\end{equation}
+	for planets with $R_p < 1,5 \; \mathrm{R_{\oplus}}$ where $R_{\oplus}$ is the radius of Earth and $M_{\oplus}$ is the mass of Earth. For planets with $R_p \geq 1,5$ the equation changes to:
+	\begin{equation}
+	\label{eq:mass_p_high}
+	M_p = 2,69\cdot M_{\oplus}\left(\frac{R_p}{R_{\oplus}}\right)^{0,93}
+	\end{equation}
+	The mean anomaly is required for each planet and is acquired from the number of transits and the orbital period of the planet. By using a reference point specified when a planet is directly in front the the host star as seen from an observers point of view. This reference point corresponds to a mean anomaly of 90$^{\circ}$ at some time $T_i$, where $i$ is the number of the planet in the system. For a two planet system this means that $M_1=90^{\circ}$ at some time $T_1$ and $M_2=90^{\circ}$ at some time $T_2$. In order to calculate the mean anomaly at some time a time reference point is defined as $t=0$ and the goal is the calculate the mean anomaly of some planet $i$. This can be done by using the mean anomaly at $t = T_i$ and subtracting the number of degrees, $\mathrm{num_{deg}}$, the planet have traveled since then:
+\begin{equation}
+	M_i(t=0) = M_i(t=T_i) - \mathrm{num_{deg}}
+\end{equation}
+	$M_i(t=T_i) = 90^{\circ}$ and the number of degrees traveled is $360^{\circ}$ multiplied by the number of orbits since $t_0$:
+\begin{equation}
+	M_i(t=0) = 90 - 360\cdot \frac{T_{epoch}}{P_i}
+\end{equation}
+	where $T_{epoch}$ is the transit epoch and $P_i$ is the period of the planet.
+	
+	TTVFast also requires inclination, eccentricity, long node and argument. These cannot be simply obtained and need to be assumed. For simplicity the inclination is assumed to be $90^{\circ}$ for all planets which results in the long node to be 0. The eccentricity is obtained from a Rayleigh distribution with mode $\sigma = 0,03$ in order to not get eccentricities above 0.1 as that leads to unstable systems. The argument is obtained from a uniform distribution where $0 < \omega < 360$. The code to obtain the input parameters can be seen in appendix \ref{ap:input_code}. 
+	
+	How long a system will be observed depends on where in the sky it is located. This time can be obtained from the Web TESS Target tool (https://heasarc.gsfc.nasa.gov/cgi-bin/tess/webtess/wtm.py) if the right ascension, RA, and declination, dec, are known. This tool accepts csv files with RA and dec of the systems and outputs the number of times TESS will observe that system. This is then used in the simulation of the systems.
+	
 
 \section{TTVFast}
 \label{TTVFast_method}
-	In order to run TTVFast the input parameters need to be in a specific format. These parameters are written to a file for each system as seen in (REF TO ABSTRACT). As the bash script is running it will use each file corresponding to a single system while it writes a new setup file specific to this system as required by the program. TTVFast is then executed which produces a file containing the transit times of the system. This is the repeated for all of the generated systems 
+	TTVFast is used to simulate transit times for each artificial system using the output from the previous section. TTVFast 	
+	
+	
+	In order to run TTVFast the input parameters need to be in a specific format. These parameters are written to a file for each system as seen in (REF TO ABSTRACT). As the bash script is running it will use each file corresponding to a single system while it writes a new setup file specific to this system as required by the program. TTVFast is then executed which produces a file containing the transit times of the system. This is then repeated for all of the generated systems 
 
 \section{Analyzing results from TTVFast}
 
@@ -286,7 +314,7 @@ make one yourself.
 \begin{appendix}
 
 \chapter{This is an appendix}
-
+\label{ap:input_code}
 You can put long mathematical derivations or tables in appendices.
 
 \chapter{This is another appendix}

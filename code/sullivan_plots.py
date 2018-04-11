@@ -169,7 +169,7 @@ print len(rPlanetTESS), len(periodSul)
 periodTESS = np.log10(periodTESS)
 rPlanetTESS = np.log10(rPlanetTESS)	
 markers = ['.', 'o', '^', 's', 'p', 'h']
-colors = ['k', 'b', 'r', 'g', 'm', 'tab:purple']
+colors = ['black', 'blue', 'red', 'green', 'm', 'brown']
 
 
 
@@ -209,7 +209,7 @@ green_square = mlines.Line2D([], [], color='green', marker='s', linestyle='None'
                           markersize=10, label='4')
 m_pentagon = mlines.Line2D([], [], color='m', marker='p', linestyle='None',
                           markersize=10, label='5')
-purple_hexagon = mlines.Line2D([], [], color='purple', marker='h', linestyle='None',
+purple_hexagon = mlines.Line2D([], [], color='brown', marker='h', linestyle='None',
                           markersize=10, label='6')
                           
 plt.legend(handles=[black_dot, blue_circle, red_triangle, green_square, m_pentagon, purple_hexagon] ,loc='upper center', bbox_to_anchor=(0.5, 1.15),
