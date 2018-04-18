@@ -157,6 +157,7 @@ websites.
 	
 	
 \section{TTVFast}
+\label{TTVFast_intro}
 	TTVFast is a program created by \cite{2014ApJ...787..132D} which simulates planetary systems using an n-body integrator. It requires information about the system in the form of:
 	\begin{itemize}
 		\item Gravitational constant in $AU^3 \mathrm{day}^{-2}M_{\odot}^{-1}$
@@ -174,6 +175,7 @@ websites.
 	\end{itemize}
 	Where Longitude of ascending node and argument of perihelion are orbital elements. The reference time is the time of the start of the integration, in this paper: $t_ref=0$. The program also requires parameters regarding the integration which are given in a setup file:
 	\begin{itemize}
+		\item Path to file containing info regarding the planets in the system.
 		\item Reference time
 		\item Time step which is $1/20$ of the period
 		\item Final time which in this paper is the duration of the integration
@@ -182,10 +184,11 @@ websites.
 	\end{itemize}
 	How these parameters are determined and "given" to TTVFast will be discussed in section \ref{simTESS} and \ref{TTVFast_method}.
 \chapter{Method}
+	The code used are written in Python and can be seen in abstract (REF ABSTRACT). It is executed by a bash script which runs the necessary components to create artificial planetary systems, run TTVFast on these systems to generate transit times and then analyze these times in order to find TTVs. These systems are simulated over a long time by the use of WHFast in order to determine the stability of them.
 
 \section{Simulation of TESS objects}
 \label{simTESS}
-	By combining data from Kepler obtained from the NASA Exoplanet Archive and the results from \cite{2015ApJ...809...77S}, which contains one planet for each system, TESS data are simulated. The planets are separated into two groups based on the effective temperature of their host star. Planets around stars with an effective temperature below 4000 K are put in one group while planets around stars with effective temperature above 4000 K are put into another group. This prevents planets around cold stars to get "matched" with planets around hot stars. 
+	The bash script starts by running the program to create the artificial systems. By combining data from Kepler obtained from the NASA Exoplanet Archive and the results from \cite{2015ApJ...809...77S}, which contains one planet for each system, TESS data are simulated. The planets are separated into two groups based on the effective temperature of their host star. Planets around stars with an effective temperature below 4000 K are put in one group while planets around stars with effective temperature above 4000 K are put into another group. This prevents planets around cold stars to get "matched" with planets around hot stars. 
 	
 	For each planet in the Sullivan catalogue, a similar planet, in radius and period, are selected from the NASA archive. The ratio of radius and period between the two planets are calculated and multiplied with the Sullivan planets radius and period. This results in that the two planets are identical in radius and period. These ratios are then applied to the rest of the planets in this selected Kepler system to create an artificial system of planets.  
 	
@@ -216,14 +219,14 @@ websites.
 
 \section{TTVFast}
 \label{TTVFast_method}
-	TTVFast is used to simulate transit times for each artificial system using the output from the previous section. TTVFast 	
-	
-	
-	In order to run TTVFast the input parameters need to be in a specific format. These parameters are written to a file for each system as seen in (REF TO ABSTRACT). As the bash script is running it will use each file corresponding to a single system while it writes a new setup file specific to this system as required by the program. TTVFast is then executed which produces a file containing the transit times of the system. This is then repeated for all of the generated systems 
+	The next step is to use the systems generated in the previous section and simulate them in TTVFast. The parameters from section \ref{TTVFast_intro} are given to the program to simulate each system. To run TTVFast the parameters are required to be in a specific format and each system requires a setup file mentioned in section \ref{TTVFast_intro}. The bash script creates a new setup file for each system before running the simulation. 
 
 \section{Analyzing results from TTVFast}
-
-
+	When all systems have been simulated with TTVFast the bash script executes the next part of the program seen in abstract (REF HERE). The transit times need to be corrected as TTVFast outputs the time of a transit. This is done by fitting a linear fit to the times and subtracting this fit. In order to easier see the amplitude of the TTV signals the times are corrected by subtracting the average time from every value which moves the middle of the graph to $y=0$. In order to obtain the amplitude of the TTVs the average of the maximum and minimum transit time are calculated. This is used as the amplitude and the corrected transit times are plotted. \\
+	
+	In order to observe interesting systems further the position of the systems are required which is obtained from the NASA archive. The positions are given in RA and dec and plotted in a sky map. These coordinates are compensated with Earth's obliquity which is about 23$^{\circ}$. These sky maps are colour coded according to the TTV amplitude and the multiplicity, i.e. the number of planets, of the systems.
+\section{WHFast}
+	The artificial systems that are created need to be checked for stability to determine if the assumptions and method of creating them results in realistic stable systems. For this Rebound, more specifically the WHFast integrator \citep{2015MNRAS.452..376R}, is used. WHFast is an Wisdom-Holman integrator used for long duration planetary system simulations. 
 
 \chapter{Results}
 
@@ -247,15 +250,22 @@ suggestions. You can name your chapters differently and add more if needed.
 \end{verbatim}
 \fi
 
+
+
 \section{Simulated TESS objects}
-
-
+	
 
 \begin{figure}
  	 \centering
- 	 \includegraphics[width=9cm]{img/R_P-plot_5.png}
+ 	 \includegraphics[width=9cm]{img/R_P-plot_effTemp_cut-off.png}
  	 \caption{Diagram with the radius \\distribution as a function of period for the simulated TESS objects.}
- 	 \label{fig:RP_plot}
+ 	 \label{fig:RP_plot_temp}
+\end{figure}
+\begin{figure}
+ 	 \centering
+ 	 \includegraphics[width=9cm]{img/R_P-plot_numP1.png}
+ 	 \caption{Diagram with the radius \\distribution as a function of period for the simulated TESS objects where the colour and shape corresponds to the number of planets in the system.}
+ 	 \label{fig:RP_plot_multi}
 \end{figure}
 
 \begin{figure}
@@ -291,7 +301,8 @@ Id of star & I &  V & Var.? \\
 \end{table}
 
 \chapter{Discussion}
-	Further studies: CHEOPS, James Webb
+	Further studies: CHEOPS, James Webb\\
+	TTV amplitude: fit instead of average
 \chapter{Conclusions}
 
 

@@ -6,8 +6,9 @@
 \contentsline {section}{\numberline {1.4}TTVFast}{5}
 \contentsline {chapter}{\numberline {2}Method}{8}
 \contentsline {section}{\numberline {2.1}Simulation of TESS objects}{8}
-\contentsline {section}{\numberline {2.2}TTVFast}{9}
+\contentsline {section}{\numberline {2.2}TTVFast}{10}
 \contentsline {section}{\numberline {2.3}Analyzing results from TTVFast}{10}
+\contentsline {section}{\numberline {2.4}WHFast}{10}
 \contentsline {chapter}{\numberline {3}Results}{11}
 \contentsline {section}{\numberline {3.1}Simulated TESS objects}{11}
 \contentsline {section}{\numberline {3.2}TTV signals from TESS objects}{11}

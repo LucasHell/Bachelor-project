@@ -3,6 +3,7 @@ import csv
 import os
 import matplotlib.pyplot as plt
 import pathlib2
+import pandas as pd
 
 G = 0.000295994511
 inputFile = []
@@ -59,19 +60,10 @@ with open('TESSData.csv','r') as inputFile:
 	effTemp = [k.split(',')[10] for k in data]
 	kepMag = [k.split(',')[12] for k in data]
 	
-#~ with open('ofirData.csv','r') as inputFile:
-	#~ data = inputFile.readlines()
-	#~ name = [k.split(',')[0] for k in data]
-	#~ kepID = [k.split(',')[1] for k in data]
-	#~ period = [k.split(',')[3] for k in data]
-	#~ rPlanet = [k.split(',')[2] for k in data]
-	#~ mStar = [k.split(',')[4] for k in data]
-	#~ numEpoch = [k.split(',')[5] for k in data]
-	#~ kepMag = [k.split(',')[8] for k in data]
-	#~ transitDur = [k.split(',')[6] for k in data]
-	#~ rStar = [k.split(',')[7] for k in data]
+	
 #~ data = pd.read_table('ofir_table.txt', sep=';', skiprows=34, names=('KOI_num', 'newDetFlag', 'TTVfre', 'TTV+uncer', 'TTV-uncer', 'TTV_per', 'Delta_chi', 'chi_area', 'chi_single', 'chi_RMS', 'cho_correl', 'TTV_amp', 'TTV_amp+_uncer', 'TTV_amp-_uncer', 'TTV_ref', 'TTV_ref+_uncer', 'TTV_ref-_uncer', 'cofid', 'STD_error', '20', '21', '22', '23', '24'))
-#~ amp_ofir = data['TTV_amp']
+#~ amp_ofir = data['KOI_num']
+
 
 
 #Convert planet radius to mass
@@ -107,7 +99,13 @@ outTESSTime = open('TESSTime.csv', 'w')
 #~ outEcOm = open('eccenOmeg.csv', 'w')
 outputFile.write(repr(G) + '\n' + mStar[0] + '\n')
 
+
+
+#~ if str(amp_ofir[k]) == str(name[m][-len(str(amp_ofir[k])):]):
 # write to output files in the format required for TTVFast
+
+
+
 for i in range(len(mPlanet)): 
 	meanAnom.append(90 - 360 * (float(numEpoch[i]) / float(period[i])))		# calculate mean anomaly of planet with reference to transit of first planet
 	while meanAnom[i] > 360:
@@ -123,18 +121,20 @@ for i in range(len(mPlanet)):
 	# write data for TTVFast
 	outputFile.write(repr(mPlanet[i]) + '\n' + period[i] + ' ' + str(np.random.rayleigh(0.03)) + ' ' + repr(inclination) + ' ' + repr(lNode) + '  ' + str(np.random.uniform(0,360)) + ' ' + repr(meanAnom[i]) + '\n') 
 	count += 1			# counter for number of planets for each system
-	
+
 	if i == len(mPlanet)-1: 			# for last element
 		if count == 1:
 			os.remove('input/%s.in' % systemCount)
 			outputFile.close()
+			
 			
 		elif count != 1:
 			outNumP.write(repr(count) + '\n')
 			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
 			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
 			outErrorFile.write(repr(errorTiming*60)) 		# write errors to file in minutes
-			#~ outTESSTime.write(RA[i] + ',' + dec[i])	
+			outTESSTime.write(RA[i] + ',' + dec[i])	
+			
 
 	elif kepID[i] != kepID[i+1]:		# if ID is not the same as ID of next planet a new file is created for new system
 		if count == 1:					# if number of planets is one the file is removed
@@ -147,18 +147,22 @@ for i in range(len(mPlanet)):
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
 			count = 0
 			
+			
 		elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
 			outNumP.write(repr(count) + '\n')
 			count = 0
 			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
 			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
 			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
-			#~ outTESSTime.write(RA[i] + ',' + dec[i] + '\n')		
+			outTESSTime.write(RA[i] + ',' + dec[i] + '\n')		
 			outputFile.close()
+			
 			
 			systemCount += 1
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
+			
+
 			
 			
 	elif kepID[i] == kepID[i+1] and int(name[i][-2:]) > int(name[i+1][-2:]):
@@ -170,20 +174,106 @@ for i in range(len(mPlanet)):
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
 			count = 0
 			
+			
 		elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
 			outNumP.write(repr(count) + '\n')
 			count = 0
 			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
 			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
 			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
-			#~ outTESSTime.write(RA[i] + ',' + dec[i] + '\n')
+			outTESSTime.write(RA[i] + ',' + dec[i] + '\n')
 			outputFile.close()
 			
 			systemCount += 1
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
-			
-		
+
+#~ for n in range(len(amp_ofir)):
+	#~ for m in range(len(name)):
+		#~ if str(amp_ofir[n]) == str(name[m][-len(str(amp_ofir[k])):]):
+		#~ outputFile = open('input/%s.in' % systemCount, 'w')
+			#~ for i in range(len(mPlanet)): 
+				#~ meanAnom.append(90 - 360 * (float(numEpoch[i]) / float(period[i])))		# calculate mean anomaly of planet with reference to transit of first planet
+				#~ while meanAnom[i] > 360:
+					#~ meanAnom[i] = meanAnom[i] - 360 									# if angle of mean anomaly is above 360 degrees, subtract 360 until it is in the range 0 to 360 degrees
+					#~ if meanAnom[i] == 360:
+						#~ meanAnom[i] = 0
+							
+				#~ while meanAnom[i] < 0:													# if angle of mean anomaly is below 360 degrees, add 360 until it is in the range 0 to 360
+					#~ meanAnom[i] = meanAnom[i] + 360
+					#~ if meanAnom[i] == 360:
+						#~ meanAnom[i] = 0
+					
+			#~ # write data for TTVFast
+		#~ outputFile.write(repr(mPlanet[i]) + '\n' + period[i] + ' ' + str(np.random.rayleigh(0.03)) + ' ' + repr(inclination) + ' ' + repr(lNode) + '  ' + str(np.random.uniform(0,360)) +  '\n') 
+		#~ count += 1			# counter for number of planets for each system
+
+		#~ if i == len(mPlanet)-1: 			# for last element
+			#~ if count == 1:
+				#~ os.remove('input/%s.in' % systemCount)
+				#~ outputFile.close()
+				
+				
+			#~ elif count != 1:
+				#~ outNumP.write(repr(count) + '\n')
+				#~ S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
+				#~ errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
+				#~ outErrorFile.write(repr(errorTiming*60)) 		# write errors to file in minutes
+				#~ outTESSTime.write(RA[i] + ',' + dec[i])	
+				
+
+		#~ elif kepID[i] != kepID[i+1]:		# if ID is not the same as ID of next planet a new file is created for new system
+			#~ if count == 1:					# if number of planets is one the file is removed
+				#~ os.remove('input/%s.in' % systemCount)
+				#~ outputFile.close()
+				
+				#~ # begin on new file
+				#~ systemCount += 1
+				#~ outputFile = open('input/%s.in' % systemCount, 'w')
+				#~ outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
+				#~ count = 0
+				
+				
+			#~ elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
+				#~ outNumP.write(repr(count) + '\n')
+				#~ count = 0
+				#~ S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
+				#~ errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
+				#~ outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
+				#~ outTESSTime.write(RA[i] + ',' + dec[i] + '\n')		
+				#~ outputFile.close()
+				
+				
+				#~ systemCount += 1
+				#~ outputFile = open('input/%s.in' % systemCount, 'w')
+				#~ outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
+				
+
+				
+				
+		#~ elif kepID[i] == kepID[i+1] and int(name[i][-2:]) > int(name[i+1][-2:]):
+			#~ if count == 1:					# if number of planets is 1 the file is removed
+				#~ os.remove('input/%s.in' % systemCount)
+				#~ outputFile.close()
+				#~ systemCount += 1
+				#~ outputFile = open('input/%s.in' % systemCount, 'w')
+				#~ outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
+				#~ count = 0
+				
+				
+			#~ elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
+				#~ outNumP.write(repr(count) + '\n')
+				#~ count = 0
+				#~ S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
+				#~ errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
+				#~ outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
+				#~ outTESSTime.write(RA[i] + ',' + dec[i] + '\n')
+				#~ outputFile.close()
+				
+				#~ systemCount += 1
+				#~ outputFile = open('input/%s.in' % systemCount, 'w')
+				#~ outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')	
+					
 		
 		
 		
