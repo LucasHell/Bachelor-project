@@ -91,31 +91,31 @@ for i in range(len(RATess)):
 		RATess[i] = RATess[i] + 23
 		decTess[i] = decTess[i] + 23
 		if decTess[i] > 90:
-			decTess[i] = -90 + (decTess[i]-90)
+			decTess[i] = 90 + (90 - abs(decTess[i]))
 	else:
 		RATess[i] = RATess[i] - 23
 		decTess[i] = decTess[i] - 23
 		if decTess[i] < -90:
-			decTess[i] = 90 - (abs(decTess[i])-90)
+			decTess[i] = -90 - (90 - abs(decTess[i]))
 
 
-for k in range(len(RATess)):
-	if 300 <= RATess[k] <= 360 and 0 <= decTess[k] <= 30:
-		print RATess[k]- 23, decTess[k] - 23, transitAmplitude[k] 
-	elif 55 <= RATess[k] <= 70 and -35 <= decTess[k] <= -25:
-		print RATess[k] + 23, decTess[k]+ 23, transitAmplitude[k] 
+#~ for k in range(len(RATess)):
+	#~ if 300 <= RATess[k] <= 360 and 0 <= decTess[k] <= 30:
+		#~ print RATess[k]- 23, decTess[k] - 23, transitAmplitude[k] 
+	#~ elif 55 <= RATess[k] <= 70 and -35 <= decTess[k] <= -25:
+		#~ print RATess[k] + 23, decTess[k]+ 23, transitAmplitude[k] 
 
 c = SkyCoord(ra=RATess*u.degree, dec=decTess*u.degree, frame='icrs')
 ra_rad = c.ra.wrap_at(180 * u.deg).radian
 dec_rad = c.dec.radian
 
-
+#~ print len(ra_rad), len(dec_rad), len(transitAmplitude)
 plt.figure(figsize=(8,4.2))
 plt.subplot(111, projection="aitoff")
 plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m)
-plt.scatter(ra_rad, dec_rad, s=7, c = transitAmplitude, cmap = cm.jet )
+#~ plt.scatter(ra_rad, dec_rad, s=7, c = transitAmplitude, cmap = cm.jet )
 plt.savefig('plots/skymap_TESS_wrap')
 plt.clf()
 
@@ -141,7 +141,7 @@ plt.subplot(111, projection="aitoff")
 plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m2)
-plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet )
+#~ plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet )
 plt.savefig('plots/skymap_TESS_wrap_cutoff')
 plt.clf()
 

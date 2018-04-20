@@ -204,7 +204,7 @@ websites.
 	\end{equation}
 	The mean anomaly is required for each planet and is acquired from the number of transits and the orbital period of the planet. By using a reference point specified when a planet is directly in front the the host star as seen from an observers point of view. This reference point corresponds to a mean anomaly of 90$^{\circ}$ at some time $T_i$, where $i$ is the number of the planet in the system. For a two planet system this means that $M_1=90^{\circ}$ at some time $T_1$ and $M_2=90^{\circ}$ at some time $T_2$. In order to calculate the mean anomaly at some time a time reference point is defined as $t=0$ and the goal is the calculate the mean anomaly of some planet $i$. This can be done by using the mean anomaly at $t = T_i$ and subtracting the number of degrees, $\mathrm{num_{deg}}$, the planet have traveled since then:
 \begin{equation}
-	M_i(t=0) = M_i(t=T_i) - \mathrm{num_{deg}}
+	M_i(t=0) = M_i(t=T_i) - \mathrm{\#_{deg}}
 \end{equation}
 	$M_i(t=T_i) = 90^{\circ}$ and the number of degrees traveled is $360^{\circ}$ multiplied by the number of orbits since $t_0$:
 \begin{equation}
@@ -214,7 +214,7 @@ websites.
 	
 	TTVFast also requires inclination, eccentricity, long node and argument. These cannot be simply obtained and need to be assumed. For simplicity the inclination is assumed to be $90^{\circ}$ for all planets which results in the long node to be 0. The eccentricity is obtained from a Rayleigh distribution with mode $\sigma = 0,03$ in order to not get eccentricities above 0.1 as that leads to unstable systems. The argument is obtained from a uniform distribution where $0 < \omega < 360$. The code to obtain the input parameters can be seen in appendix \ref{ap:input_code}. 
 	
-	How long a system will be observed depends on where in the sky it is located. This time can be obtained from the Web TESS Target tool (https://heasarc.gsfc.nasa.gov/cgi-bin/tess/webtess/wtm.py) if the right ascension, RA, and declination, dec, are known. This tool accepts csv files with RA and dec of the systems and outputs the number of times TESS will observe that system. This is then used in the simulation of the systems.
+	How long a system will be observed depends on where in the sky it is located. This time can be obtained from the Web TESS Target tool \footnote{\url{https://heasarc.gsfc.nasa.gov/cgi-bin/tess/webtess/wtm.py}} if the right ascension, RA, and declination, dec, are known. This tool accepts csv files with RA and dec of the systems and outputs the number of times TESS will observe that system. This is then used in the simulation of the systems.
 	
 
 \section{TTVFast}

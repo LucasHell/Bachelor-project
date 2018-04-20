@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.5)  17 APR 2018 14:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.5)  18 APR 2018 10:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -714,17 +714,13 @@ Chapter 2.
 [8
 
 ]
-Overfull \hbox (16.80298pt too wide) in paragraph at lines 217--218
-\T1/cmr/m/n/12 time can be ob-tained from the Web TESS Tar-get tool (https://he
-asarc.gsfc.nasa.gov/cgi-
- []
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 217.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 217.
 
-
-Overfull \hbox (2.05504pt too wide) in paragraph at lines 217--218
-\T1/cmr/m/n/12 bin/tess/webtess/wtm.py) if the right as-cen-sion, RA, and dec-l
-i-na-tion, dec, are known.
- []
-
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -744,7 +740,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [10]
 Chapter 3.
-<img/R_P-plot_effTemp_cut-off.png, id=74, 462.528pt x 346.896pt>
+<img/R_P-plot_effTemp_cut-off.png, id=76, 462.528pt x 346.896pt>
 File: img/R_P-plot_effTemp_cut-off.png Graphic file (type png)
 
 <use img/R_P-plot_effTemp_cut-off.png>
@@ -752,20 +748,20 @@ Package pdftex.def Info: img/R_P-plot_effTemp_cut-off.png used on input line 26
 0.
 (pdftex.def)             Requested size: 256.0748pt x 192.06375pt.
 
-<img/R_P-plot_numP1.png, id=75, 462.528pt x 346.896pt>
+<img/R_P-plot_numP1.png, id=77, 462.528pt x 346.896pt>
 File: img/R_P-plot_numP1.png Graphic file (type png)
 
 <use img/R_P-plot_numP1.png>
 Package pdftex.def Info: img/R_P-plot_numP1.png used on input line 266.
 (pdftex.def)             Requested size: 256.0748pt x 192.06375pt.
 
-<img/ampErrorLog.png, id=76, 578.16pt x 303.534pt>
+<img/ampErrorLog.png, id=78, 578.16pt x 303.534pt>
 File: img/ampErrorLog.png Graphic file (type png)
  <use img/ampErrorLog.png>
 Package pdftex.def Info: img/ampErrorLog.png used on input line 273.
 (pdftex.def)             Requested size: 256.0748pt x 134.43536pt.
 
-<img/skymap_TESS_wrap.png, id=77, 578.16pt x 303.534pt>
+<img/skymap_TESS_wrap.png, id=79, 578.16pt x 303.534pt>
 File: img/skymap_TESS_wrap.png Graphic file (type png)
 
 <use img/skymap_TESS_wrap.png>
@@ -809,11 +805,11 @@ AED: lastpage setting LastPage
 
 ] (./thesis_template_astro (1).aux) ) 
 Here is how much of TeX's memory you used:
- 5585 strings out of 493029
- 80468 string characters out of 6136235
+ 5609 strings out of 493029
+ 81124 string characters out of 6136235
  160043 words of memory out of 5000000
- 9003 multiletter control sequences out of 15000+600000
- 20931 words of font info for 51 fonts, out of 8000000 for 9000
+ 9021 multiletter control sequences out of 15000+600000
+ 22775 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,11n,43p,870b,379s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super
@@ -827,15 +823,17 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/
 public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx
 1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share
 /texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/p
-ublic/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1
-095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/
-texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/pu
-blic/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsl12
-00.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on "thesis_template_astro (1).pdf" (24 pages, 583141 bytes).
+ublic/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0
+800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/
+texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/pu
+blic/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm20
+74.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsl1200.pfb></usr/share/t
+exmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/pub
+lic/cm-super/sftt1000.pfb>
+Output written on "thesis_template_astro (1).pdf" (24 pages, 612027 bytes).
 PDF statistics:
- 166 PDF objects out of 1000 (max. 8388607)
- 110 compressed objects within 2 object streams
+ 174 PDF objects out of 1000 (max. 8388607)
+ 116 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
