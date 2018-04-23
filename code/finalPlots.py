@@ -34,7 +34,7 @@ with open('transAmpl.txt', 'r') as inputFile:
 
 transitAmplitude = map(float, transitAmplitude)
 for m in range(len(transitAmplitude)):
-	if transitAmplitude[m] > 1 and transitAmplitude[m] < 66:
+	if transitAmplitude[m] > 0.1 and transitAmplitude[m] < 66:
 		amplCorr.append(transitAmplitude[m])
 		
 plt.hist(amplCorr,bins=11, rwidth=0.5)
@@ -120,7 +120,7 @@ plt.savefig('plots/skymap_TESS_wrap')
 plt.clf()
 
 for i in range(len(transitAmplitude)):
-	if float(transitAmplitude[i]) < 100:
+	if float(transitAmplitude[i]) < 66:
 		ra_cut.append(ra_rad[i])
 		dec_cut.append(dec_rad[i])
 		amp_cut.append(transitAmplitude[i])
@@ -255,7 +255,7 @@ amp_ofir = data['TTV_amp']
 
 #~ print amp_ofir
 for i in range(len(amp_ofir)):
-	if amp_ofir[i] > 5 and amp_ofir[i] < 66:
+	if amp_ofir[i] > 1 and amp_ofir[i] < 66:
 		ampOfirCorr.append(amp_ofir[i])
 
 plt.hist(ampOfirCorr,bins=11, rwidth=0.5)
@@ -264,6 +264,9 @@ plt.xlabel('Amplitude [min]')
 plt.ylabel('#')
 plt.savefig('./plots/histo/ofir_amp.png')
 plt.clf()	
+
+
+
 
 
 
