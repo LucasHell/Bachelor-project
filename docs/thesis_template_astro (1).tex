@@ -86,7 +86,7 @@ a page, best written at the end, after most of the thesis is written.
 	
 	Genom att jämföra tiden mellan varje transit för en planet kan ibland variationer ses. Detta beror på att det finns fler planeter runt stjärnan som med hjälp av gravitationskraften accelererar eller decelerera planeten som bevakas. Detta resulterar i att det är möjligt att hitta planeter som i andra metoder är osynliga. 
 	
-	Keplerteleskopet är ett rymdbaserat teleskop som använder transitmetoden för att hitta exoplaneter. Det har sedan 2009 hittat över 1000 bekräftade exoplaneter vilket gör den till det hittils mest framgångsfulla upgradet i jakten på exoplaneter. TESS, vilket står för Transiting-Exoplanet Survet Satellite, är ett teleskop som ska skjutas upp under våren 2018 och använda transitmetoden för att hitta exoplaneter. TESS kommer bli den första rymdbaserade teleskopet att studera hela himlen och kommer observera över 200 000 stjärnor under uppdragets upsrungliga längd på två år.
+	Keplerteleskopet är ett rymdbaserat teleskop som använder transitmetoden för att hitta exoplaneter. Det har sedan 2009 hittat över 1000 bekräftade exoplaneter vilket gör den till det hittils mest framgångsfulla upgradet i jakten på exoplaneter. TESS, vilket står för Transiting-Exoplanet Survet Satellite, är ett teleskop som sköts upp den 18de april 2018 och använder transitmetoden för att hitta exoplaneter. TESS kommer bli det första rymdbaserade teleskopet att studera hela himlen och kommer observera över 200 000 stjärnor under uppdragets urspungliga längd på två år.
 	
 	Detta projekt kommer använda data från Keplerteleskopet och simulera data från TESS för att sedan använda den datan för att leta efter TTV. Detta ska ge en uppfattning om hur många system har fler än en planet och resultatet kommer kunna ses som en katalog över multi-planet system vilket kan underlätta framtida forskning där en katalog av detta slag kan vara till användning.
 	
@@ -145,12 +145,12 @@ websites.
 	
 	
 \section{TESS}
-	The Transiting Exoplanet Survey Satellite, TESS, is a satellite due to launch spring 2018. The satellite is equipped with four cameras which will study the brightness of over 200 000 stars over a two year period. It is the first all-sky transit survey taking place in space.
+	The Transiting Exoplanet Survey Satellite, TESS, is a satellite which were launched on the 18th of April 2018. The satellite is equipped with four cameras which will study the brightness of over 200 000 stars over a two year period. It is the first all-sky transit survey taking place in space.
 	
-	TESS will study the whole sky by splitting it into 26 sectors which are observed for 27 days each. An illustration of this can be seen in figure \ref{fig:tess_time} where the number of times TESS will observe each sector is shown. 
+	TESS will study the whole sky by splitting it into 26 sectors, 13 in the southern hemisphere and 13 in the northern hemisphere, which are observed for 27 days each. An illustration of this can be seen in figure \ref{fig:tess_time} where the number of times TESS will observe each sector is shown. TESS will observe the southern hemisphere during the mission's first year, it will then rotate and observe the norther hemisphere for another year.
 	\begin{figure}[h!]
 	\centering
-		\includegraphics[scale=0.2]{img/tess_observe_time.png}
+		\includegraphics[width=\textwidth]{img/tess_observe_time.png}
 		\caption{Illustration of the number of times TESS will observe each sector in the sky.\\ \small{Source: \cite{2015ApJ...809...77S}}}
 		\label{fig:tess_time}
 	\end{figure}
@@ -224,9 +224,11 @@ websites.
 \section{Analyzing results from TTVFast}
 	When all systems have been simulated with TTVFast the bash script executes the next part of the program seen in abstract (REF HERE). The transit times need to be corrected as TTVFast outputs the time of a transit. This is done by fitting a linear fit to the times and subtracting this fit. In order to easier see the amplitude of the TTV signals the times are corrected by subtracting the average time from every value which moves the middle of the graph to $y=0$. In order to obtain the amplitude of the TTVs the average of the maximum and minimum transit time are calculated. This is used as the amplitude and the corrected transit times are plotted. \\
 	
-	In order to observe interesting systems further the position of the systems are required which is obtained from the NASA archive. The positions are given in RA and dec and plotted in a sky map. These coordinates are compensated with Earth's obliquity which is about 23$^{\circ}$. These sky maps are colour coded according to the TTV amplitude and the multiplicity, i.e. the number of planets, of the systems.
+	In order to further observe interesting systems the position of these systems are required which is obtained from the NASA archive. The positions are given in RA and dec and plotted in a sky map. These coordinates are compensated with Earth's obliquity which is about 23$^{\circ}$. These sky maps are colour coded according to the TTV amplitude and the multiplicity, i.e. the number of planets, of the systems.
 \section{WHFast}
-	The artificial systems that are created need to be checked for stability to determine if the assumptions and method of creating them results in realistic stable systems. For this Rebound, more specifically the WHFast integrator \citep{2015MNRAS.452..376R}, is used. WHFast is an Wisdom-Holman integrator used for long duration planetary system simulations. 
+	The artificial systems that are created need to be checked for stability to determine if the assumptions and method of creating them results in realistic and stable systems. For this Rebound \citep{2012A&A...537A.128R}, more specifically the WHFast integrator \citep{2015MNRAS.452..376R}, is used. WHFast is a Wisdom-Holman integrator used for long duration planetary system simulations. For some systems close-encounters occur, WHFast is not a good integrator for these and therefore if such a system is found it will instead be simulated with IAS15 \citep{2015MNRAS.446.1424R}. IAS15 is another integrator for gravitational dynamics and although slower than WHFast it handles close-encounters better.
+	
+	Semimajor axis calculation, Selection, Hill radius
 
 \chapter{Results}
 
@@ -248,42 +250,84 @@ suggestions. You can name your chapters differently and add more if needed.
        mag(1)=-2.5*LOG(flux(1))
 
 \end{verbatim}
+
 \fi
 
 
 
-\section{Simulated TESS objects}
-	
 
-\begin{figure}
+\section{Simulated TESS objects}
+	The planetary radius of the artificial systems are plotted against the orbital periods in figure \ref{fig:RP_plot_temp} and \ref{fig:RP_plot_multi}. In \ref{fig:RP_plot_temp} the effective temperature of the host star is represented with a colour map and in figure \ref{fig:RP_plot_multi} the multiplicity of the system are represented with colour and shape. As can be seen in figure \ref{fig:RP_plot_temp} most of the measured planets orbit a hot star above 5000 K. Figure \ref{fig:RP_plot_multi} shows that most systems consists of two or three planets. Systems containing five or six planets are few. Both figure \ref{fig:RP_plot_temp} and \ref{fig:RP_plot_multi} shows that most of the planets are smaller than earth and have a far shorter period. Short period planets are far easier to discover when using the transit method as it allows for more opportunities to measure the transit.
+
+\begin{figure}[h!]
  	 \centering
- 	 \includegraphics[width=9cm]{img/R_P-plot_effTemp_cut-off.png}
- 	 \caption{Diagram with the radius \\distribution as a function of period for the simulated TESS objects.}
+ 	 \includegraphics[width=\textwidth]{img/R_P-plot_effTemp_cut-off.png}
+ 	 \caption{Radius distribution as a function of period for the simulated TESS objects where the colour corresponds to the effective temperature of the host star.}
  	 \label{fig:RP_plot_temp}
 \end{figure}
 \begin{figure}
  	 \centering
- 	 \includegraphics[width=9cm]{img/R_P-plot_numP1.png}
- 	 \caption{Diagram with the radius \\distribution as a function of period for the simulated TESS objects where the colour and shape corresponds to the number of planets in the system.}
+ 	 \includegraphics[width=\textwidth]{img/R_P-plot_numP1.png}
+ 	 \caption{Radius distribution as a function of period for the simulated TESS objects where the colour and shape corresponds to the multiplicity of the system.}
  	 \label{fig:RP_plot_multi}
 \end{figure}
+	\newpage Figure \ref{fig:skymap_TESS} shows a sky map of the simulated TESS objects and the number of times they are observed. \textit{more comments on this picture when the final version of the picture is done}
 
-\begin{figure}
- 	 \centering
-	  \includegraphics[width=9cm]{img/ampErrorLog.png}
-	  \caption{Diagram with the position of each observed objects color-coded to show the number of times the object is observed.}
-	 \label{fig:pos_num_obs}
-\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{img/skymap_TESS_wrap.png}
+	  \caption{Position of each observed objects colour-coded to show the number of times the object is observed.}	
+	  \label{fig:skymap_TESS}	
+\end{figure}\newpage
+	  
 
-	\begin{figure}
-		\centering
-		\includegraphics[width=12cm]{img/skymap_TESS_wrap.png}
-	  	\caption{Diagram with the position of each observed objects color-coded to show the number of times the object is observed.}	
-	  	\label{fig:skymap_TESS}	
-	  \end{figure}
 
 \section{TTV signals from TESS objects}
+	Figure \ref{fig:TTV1} shows an example of a TTV signal where the variation is clearly visible. The zero level corresponds to the average transit time in order to see the variations more clearly. The distribution of TTV amplitudes are found in figure \ref{fig:ampl_histo} where amplitudes below 1 minute are filtered out as otherwise they dominate the histogram. It is easy to see that low or no TTV signals dominate but there are some planets showing substantial TTV signals. The location in the sky of these objects are shown in figure \ref{fig:skymap_amp}.
+\begin{figure}[h]
+ 	 \centering
+	  \includegraphics[width=\textwidth]{img/215_1.png}
+	  \caption{TTVs as a function of time. The zero level corresponds to average transit time.}
+	 \label{fig:TTV1}
+\end{figure}
+\begin{figure}[h!]
+ 	 \centering
+	  \includegraphics[width=\textwidth]{img/ampl_histo2.png}
+	  \caption{Distribution of TTV amplitudes from the simulated TESS objects.}
+	 \label{fig:ampl_histo}
+\end{figure}
+\begin{figure}[h!]
+ 	 \centering
+	  \includegraphics[width=\textwidth]{img/skymap_TESS_wrap_cutoff.png}
+	  \caption{Distribution of TTV amplitudes from the simulated TESS objects.}
+	 \label{fig:skymap_amp}
+\end{figure}
+\section{Stability simulations}
+	Figures \ref{fig:stab1} and \ref{fig:stab2} shows two examples of the results from the stability simulations. For all stability tested systems most of the have not shown any instability. A few systems did eject a planet which most probably was the results of a close encounter. These systems were then re-simulated using IAS15 which showed that they were in fact stable and the ejection was a result from WHFast not being able to handle the close encounters. It can be noted that all of the planets are very close to the host star. This is a result from how the semi-major axis is calculated, as most, if not all, planets in this paper have a short period the semi-major axis is thus small which results in very closely packed systems.
 
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/180.png}
+  \captionof{figure}{Orbit of the planets in a three planet system}
+  \label{fig:stab1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/320.png}
+  \captionof{figure}{Orbit of the planets in a five planet system}
+  \label{fig:stab2}
+\end{minipage}
+\end{figure}
+
+\iffalse
+\begin{figure}
+ 	 \centering
+	  \includegraphics[width=\textwidth]{img/ampErrorLog.png}
+	  \caption{Amplitude of the TTV signal as a function of the timing precision.}
+	 \label{fig:amp_precision}
+\end{figure}
 
 \begin{table}[!h]
 \caption{Example table from template}\smallskip
@@ -299,17 +343,20 @@ Id of star & I &  V & Var.? \\
 \hline
 \end{tabular}
 \end{table}
+\fi
 
 \chapter{Discussion}
+	
 	Further studies: CHEOPS, James Webb\\
-	TTV amplitude: fit instead of average
+	TTV amplitude: fit instead of average\\
+	Stability sim
 \chapter{Conclusions}
 
 
 \section*{Acknowledgements}
 
-There is no acknowledgements section in the regular LaTeX, but you can easily
-make one yourself.
+Simulations in this paper made use of the REBOUND code which can be downloaded freely at \url{http://github.com/hannorein/rebound}.\vspace{0.5cm}\\
+This research made use of Astropy, a community-developed core Python package for Astronomy (Astropy Collaboration, 2013).
 
 %\bibliographystyle{natbib}
 %\begin{thebibliography}{99}

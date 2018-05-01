@@ -8,6 +8,7 @@ from astropy import units as u
 from astropy.coordinates import SkyCoord
 from astropy.coordinates import FK5
 import matplotlib.lines as mlines
+import math
 
 
 data = []
@@ -27,6 +28,9 @@ ampOfirCorr = []
 ra_cut = []
 dec_cut = []
 amp_cut = []
+beta = []
+lamb = []
+lamb2 = []
 
 
 with open('transAmpl.txt', 'r') as inputFile:
@@ -34,7 +38,7 @@ with open('transAmpl.txt', 'r') as inputFile:
 
 transitAmplitude = map(float, transitAmplitude)
 for m in range(len(transitAmplitude)):
-	if transitAmplitude[m] > 0.1 and transitAmplitude[m] < 66:
+	if transitAmplitude[m] > 1 and transitAmplitude[m] < 66:
 		amplCorr.append(transitAmplitude[m])
 		
 plt.hist(amplCorr,bins=11, rwidth=0.5)
@@ -86,28 +90,32 @@ s_m.set_array([])
 
 
 
+#~ for i in range(len(RATess)):
+	#~ if decTess[i] > 0:
+		#~ RATess[i] = RATess[i] + 23
+		#~ decTess[i] = decTess[i] + 23
+		#~ if decTess[i] > 90:
+			#~ decTess[i] = 90 + (90 - abs(decTess[i]))
+	#~ else:
+		#~ RATess[i] = RATess[i] - 23
+		#~ decTess[i] = decTess[i] - 23
+		#~ if decTess[i] < -90:
+			#~ decTess[i] = -90 - (90 - abs(decTess[i]))
+
+tilt = math.radians(23.439281)
 for i in range(len(RATess)):
-	if decTess[i] > 0:
-		RATess[i] = RATess[i] + 23
-		decTess[i] = decTess[i] + 23
-		if decTess[i] > 90:
-			decTess[i] = 90 + (90 - abs(decTess[i]))
-	else:
-		RATess[i] = RATess[i] - 23
-		decTess[i] = decTess[i] - 23
-		if decTess[i] < -90:
-			decTess[i] = -90 - (90 - abs(decTess[i]))
+	RATess[i] = math.radians(RATess[i])
+	decTess[i] = math.radians(decTess[i])
 
+	beta.append(math.asin(math.cos(tilt)*math.sin(decTess[i]) - math.sin(RATess[i])*math.cos(decTess[i])*math.sin(tilt)))
+	lamb.append(math.degrees(math.asin((math.sin(tilt)*math.sin(decTess[i]) + math.sin(RATess[i])*math.cos(decTess[i])*math.cos(tilt))/math.cos(beta[i]))))
+	lamb2.append(math.acos((math.cos(RATess[i])*math.cos(decTess[i]))/math.cos(beta[i])))
+	#~ beta[i] = math.degrees(beta[i])
 
-#~ for k in range(len(RATess)):
-	#~ if 300 <= RATess[k] <= 360 and 0 <= decTess[k] <= 30:
-		#~ print RATess[k]- 23, decTess[k] - 23, transitAmplitude[k] 
-	#~ elif 55 <= RATess[k] <= 70 and -35 <= decTess[k] <= -25:
-		#~ print RATess[k] + 23, decTess[k]+ 23, transitAmplitude[k] 
+c = SkyCoord(ra=lamb2*u.rad, dec=beta*u.rad, frame='icrs')
+ra_rad = c.ra.wrap_at(math.pi * u.rad).deg
+dec_rad = c.dec.deg
 
-c = SkyCoord(ra=RATess*u.degree, dec=decTess*u.degree, frame='icrs')
-ra_rad = c.ra.wrap_at(180 * u.deg).radian
-dec_rad = c.dec.radian
 
 #~ print len(ra_rad), len(dec_rad), len(transitAmplitude)
 plt.figure(figsize=(8,4.2))
@@ -119,11 +127,14 @@ plt.colorbar(s_m)
 plt.savefig('plots/skymap_TESS_wrap')
 plt.clf()
 
-for i in range(len(transitAmplitude)):
-	if float(transitAmplitude[i]) < 66:
+print len(ra_rad), len(dec_rad), len(transitAmplitude)
+for i in range(len(ra_rad)):
+	if float(transitAmplitude[i]) < 120:
 		ra_cut.append(ra_rad[i])
 		dec_cut.append(dec_rad[i])
 		amp_cut.append(transitAmplitude[i])
+		if float(transitAmplitude[i]) > 100:
+			print ra_rad[i], dec_rad[i]
 
 
 
@@ -131,7 +142,7 @@ norm = mp.colors.Normalize(
     vmin=np.min(amp_cut),
     vmax=np.max(amp_cut))   
     
-
+print len(ra_cut)
 c_m2 = mp.cm.cool
 s_m2 = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
 s_m2.set_array([])
@@ -141,7 +152,7 @@ plt.subplot(111, projection="aitoff")
 plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m2)
-#~ plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet )
+plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.7)
 plt.savefig('plots/skymap_TESS_wrap_cutoff')
 plt.clf()
 

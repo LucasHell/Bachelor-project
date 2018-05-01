@@ -105,7 +105,7 @@ for i in range(len(periodSul)): 		#
 						if kepID[j] != kepID[j+1]:
 							for n in range(0,int(count1) + 1 + int(countP)):
 								numP.append(int(count1) + 1 + int(countP))
-						
+
 						if rTESS > maxR:
 							#~ print rTESS, rPlanetKep[k+count1], pTESS, periodKep[k+count1], kepID[j]
 							maxR = rTESS
@@ -153,6 +153,7 @@ for i in range(len(periodSul)): 		#
 						if kepID[j] != kepID[j+1]:
 							for n in range(0,int(count1) + 1 + int(countP)):
 								numP.append(int(count1) + 1 + int(countP))
+
 								
 								
 						if rTESS > maxR:
@@ -173,34 +174,34 @@ colors = ['black', 'blue', 'red', 'green', 'm', 'brown']
 
 
 
-#~ colorRange = np.linspace(0, 13, 13)
+colorRange = np.linspace(0, 13, 13)
 
 
-#~ norm = mp.colors.Normalize(
-    #~ vmin=np.min(effTemp),
-    #~ vmax=np.max(effTemp))
+norm = mp.colors.Normalize(
+    vmin=np.min(effTemp),
+    vmax=np.max(effTemp))
     
-#~ c_m = mp.cm.cool
-#~ s_m = mp.cm.ScalarMappable(cmap=cm.hot, norm=norm)
-#~ s_m.set_array([])
+c_m = mp.cm.cool
+s_m = mp.cm.ScalarMappable(cmap=cm.plasma, norm=norm)
+s_m.set_array([])
 
 			
-#~ plt.scatter(periodTESS,rPlanetTESS,s=2, c = effTemp, cmap = cm.hot )
-#~ plt.colorbar(s_m, label='Effective temperature of host star')
-#~ plt.ylim(-0.3,1.25)
-#~ plt.ylabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
-#~ plt.xlabel('Period [$\log$ days]', fontsize=12)
-#~ plt.savefig('plots/R_P-plot_effTemp1.png')
-#~ plt.clf()
+plt.scatter(periodTESS,rPlanetTESS,s=2, c = effTemp, cmap = cm.plasma )
+plt.colorbar(s_m, label='Effective temperature of host star')
+plt.ylim(-0.3,1.25)
+plt.ylabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
+plt.xlabel('Period [$\log$ days]', fontsize=12)
+plt.savefig('plots/R_P-plot_effTemp1.png')
+plt.clf()
 
 
 for i in range(len(periodTESS)):
-	markNum = (int(numP[i]) - 1)
-	plt.scatter(periodTESS[i],rPlanetTESS[i], c = colors[markNum], marker=markers[markNum], edgecolor='black', label=numP)
+	if numP[i] != 1:
+		markNum = (int(numP[i]) - 1)
+		plt.scatter(periodTESS[i],rPlanetTESS[i], c = colors[markNum], marker=markers[markNum], edgecolor='black', label=numP, alpha=0.6)
 plt.ylim(-0.3,1.25)
 
-black_dot = mlines.Line2D([], [], color='black', marker='.', linestyle='None',
-                          markersize=10, label='1')
+
 blue_circle = mlines.Line2D([], [], color='blue', marker='o', linestyle='None',
                           markersize=10, label='2')
 red_triangle = mlines.Line2D([], [], color='red', marker='^', linestyle='None',
@@ -212,7 +213,7 @@ m_pentagon = mlines.Line2D([], [], color='m', marker='p', linestyle='None',
 purple_hexagon = mlines.Line2D([], [], color='brown', marker='h', linestyle='None',
                           markersize=10, label='6')
                           
-plt.legend(handles=[black_dot, blue_circle, red_triangle, green_square, m_pentagon, purple_hexagon] ,loc='upper center', bbox_to_anchor=(0.5, 1.15),
+plt.legend(handles=[blue_circle, red_triangle, green_square, m_pentagon, purple_hexagon] ,loc='upper center', bbox_to_anchor=(0.5, 1.15),
           ncol=3, fancybox=True, shadow=True, title="Number of Planets")
 plt.ylabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
 plt.xlabel('Period [$\log$ days]', fontsize=12)

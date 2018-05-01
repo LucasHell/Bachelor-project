@@ -91,24 +91,49 @@ with open('TESSData.csv','r') as inputFile:
 	
 #~ data = pd.read_table('ofir_table.txt', sep=';', skiprows=34, names=('KOI_num', 'newDetFlag', 'TTVfre', 'TTV+uncer', 'TTV-uncer', 'TTV_per', 'Delta_chi', 'chi_area', 'chi_single', 'chi_RMS', 'cho_correl', 'TTV_amp', 'TTV_amp+_uncer', 'TTV_amp-_uncer', 'TTV_ref', 'TTV_ref+_uncer', 'TTV_ref-_uncer', 'cofid', 'STD_error', '20', '21', '22', '23', '24'))
 #~ name_ofir = data['KOI_num']
+#~ print name_ofir[8], name_ofir[9]
+#~ noCount = 0
 
 #~ for n in range(len(name_ofir)):
 	#~ for m in range(len(name)):
 		#~ if str(name_ofir[n]) == str(name[m][-len(str(name_ofir[n])):]):
-			#~ ofirName.append(name[m])
-			#~ ofirID.append(kepID[m])
-			#~ ofirPeriod.append(period[m])
-			#~ ofirRPlanet.append(rPlanet[m])
-			#~ ofirMStar.append(mStar[m])
-			#~ ofirEpoch.append(numEpoch[m])
-			#~ ofirDur.append(transitDur[m])
-			#~ ofirRStar.append(rStar[m])
-			#~ ofirRA.append(RA[m])
-			#~ ofirDec.append(dec[m])
-			#~ ofirEffTemp.append(effTemp[m])
-			#~ ofirKepMag.append(kepMag[m])
-			#~ break
+			#~ if str(name[m][-2:]) != '01' and kepID[m] != kepID[m-1]:
+				#~ for l in range(0,int(name[m][-2:])):
+					#~ ofirName.append(name[m-l])
+					#~ ofirID.append(kepID[m-l])
+					#~ ofirPeriod.append(period[m-l])
+					#~ ofirRPlanet.append(rPlanet[m-l])
+					#~ ofirMStar.append(mStar[m-l])
+					#~ ofirEpoch.append(numEpoch[m-l])
+					#~ ofirDur.append(transitDur[m-l])
+					#~ ofirRStar.append(rStar[m-l])
+					#~ ofirRA.append(RA[m-l])
+					#~ ofirDec.append(dec[m-l])
+					#~ ofirEffTemp.append(effTemp[m-l])
+					#~ ofirKepMag.append(kepMag[m-l])
+				#~ break
+					
+			#~ else:
 
+				#~ ofirName.append(name[m])
+				#~ ofirID.append(kepID[m])
+				#~ ofirPeriod.append(period[m])
+				#~ ofirRPlanet.append(rPlanet[m])
+				#~ ofirMStar.append(mStar[m])
+				#~ ofirEpoch.append(numEpoch[m])
+				#~ ofirDur.append(transitDur[m])
+				#~ ofirRStar.append(rStar[m])
+				#~ ofirRA.append(RA[m])
+				#~ ofirDec.append(dec[m])
+				#~ ofirEffTemp.append(effTemp[m])
+				#~ ofirKepMag.append(kepMag[m])
+				#~ break
+		#~ if m == len(name)-1:
+			#~ print "no match: ", name_ofir[n]
+			#~ noCount += 1
+
+
+#~ print len(name), len(ofirName), len(name_ofir), noCount
 
 #~ name = ofirName
 #~ kepID = ofirID
@@ -122,6 +147,8 @@ with open('TESSData.csv','r') as inputFile:
 #~ dec = ofirDec
 #~ effTemp = ofirEffTemp
 #~ kepMag = ofirKepMag
+
+
 
 
 
@@ -186,12 +213,13 @@ for i in range(len(mPlanet)):
 	# write data for TTVFast
 	outputFile.write(repr(mPlanet[i]) + '\n' + period[i] + ' ' + str(np.random.rayleigh(0.03)) + ' ' + repr(inclination) + ' ' + repr(lNode) + '  ' + str(np.random.uniform(0,360)) + ' ' + repr(meanAnom[i]) + '\n') 
 	count += 1			# counter for number of planets for each system
-	print "test"
+	
 
 	if i == len(mPlanet)-1: 			# for last element
 		if count == 1:
 			os.remove('input/%s.in' % systemCount)
-			outputFile.close()			
+			outputFile.close()	
+	
 			
 			
 		elif count != 1:
@@ -213,13 +241,15 @@ for i in range(len(mPlanet)):
 			dif.append(semiMajorNe/rHill)
 			outStabSim.write(str(rHill) + ',' + str(systemCount) +  '\n')
 			totalPlanets += count	
+			outputFile.close()
+
 			
 
-	elif kepID[i] != kepID[i+1]:		# if ID is not the same as ID of next planet a new file is created for new system
+	elif kepID[i] != kepID[i+1]:		# if ID is not the same as ID of next planet a new file is created for new system	
 		if count == 1:					# if number of planets is one the file is removed
 			os.remove('input/%s.in' % systemCount)
 			outputFile.close()
-			
+
 			# begin on new file
 			systemCount += 1
 			outputFile = open('input/%s.in' % systemCount, 'w')
@@ -251,6 +281,12 @@ for i in range(len(mPlanet)):
 			sumMass = 0
 			semiMajor = 0
 			rHill = 0
+			systemCount += 1
+			semiMajorList = []
+			
+			outputFile.close()
+			outputFile = open('input/%s.in' % systemCount, 'w')
+			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')	
 
 			
 			
@@ -262,6 +298,7 @@ for i in range(len(mPlanet)):
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
 			count = 0
+
 			
 			
 		elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
@@ -288,20 +325,25 @@ for i in range(len(mPlanet)):
 			sumMass = 0
 			semiMajor = 0
 			rHill = 0
+			systemCount += 1
+			semiMajorList = []
+			
+			outputFile.close()
+			outputFile = open('input/%s.in' % systemCount, 'w')
+			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')	
 			
 					
-		
-#~ outDif = open('dif_table.csv', 'w')
-#~ for l in range(len(dif)):
-	#~ outDif.write(str(dif[l]) + ',' + str(l) + ',' + '\n')
+outDif = open('dif_table.csv', 'w')
+for l in range(len(dif)):
+	outDif.write(str(dif[l]) + ',' + str(l) + ',' + '\n')
 	
-#~ outDif.close()	
+outDif.close()	
 		
-#~ dif = sorted(dif, key=float, reverse=True)
+dif = sorted(dif, key=float, reverse=True)
 
-#~ outDif = open('dif_table_sort.csv', 'w')
-#~ for l in range(len(dif)):
-	#~ outDif.write(str(dif[l]) + ',' + str(l) + ',' + '\n')
+outDif = open('dif_table_sort.csv', 'w')
+for l in range(len(dif)):
+	outDif.write(str(dif[l]) + ',' + str(l) + ',' + '\n')
 	
 #~ outDif.close()
 outNumP.close()

@@ -1,4 +1,4 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{7}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Deck} {et~al.}(2014){Deck}, {Agol}, {Holman}, \&
@@ -13,6 +13,12 @@
   \& Buchhave}]{0004-637X-777-1-3}
 Nesvorný, D., Kipping, D., Terrell, D., {et~al.} 2013, The Astrophysical
   Journal, 777, 3
+
+\bibitem[{{Rein} \& {Liu}(2012)}]{2012A&A...537A.128R}
+{Rein}, H. \& {Liu}, S.-F. 2012, \aap, 537, A128
+
+\bibitem[{{Rein} \& {Spiegel}(2015)}]{2015MNRAS.446.1424R}
+{Rein}, H. \& {Spiegel}, D.~S. 2015, \mnras, 446, 1424
 
 \bibitem[{{Rein} \& {Tamayo}(2015)}]{2015MNRAS.452..376R}
 {Rein}, H. \& {Tamayo}, D. 2015, \mnras, 452, 376

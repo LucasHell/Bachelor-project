@@ -90,8 +90,13 @@ for i in range(0, int(max(planet))+1):
 	outErrorFile.write(repr(errorTiming) + '\n')
 	outErrorFile.close()
 	
+	
+	y_line = np.linspace(0, 0 , len(epoch1Float))
+	print len(epoch1Float), len(transitTime1Corrected)
 	plt.scatter(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, label='Transit Time')
 	plt.errorbar(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, yerr = errorTiming, linestyle="None")
+	plt.axhline(y = 0, xmin = 0, xmax = np.amax(epoch1Float*fitTimes[0]/1440), c = 'black')
+	#~ plt.plot(epoch1Float*fitTimes[0]/1440, y_line, c = 'black')
 	plt.xlabel('Time [Days]')
 	plt.ylabel('Transit time [Minutes]')
 	plt.title('Transit Timing variations')
