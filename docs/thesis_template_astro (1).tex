@@ -31,6 +31,7 @@
 %\lfoot{}
 
 \newcommand{\apj}{ApJ}
+\newcommand{\apjs}{ApJS}
 \newcommand{\apjl}{ApJ}
 \newcommand{\mnras}{MNRAS}
 \newcommand{\aap}{A\&A}
@@ -129,7 +130,7 @@ of the thesis (Bachelor's thesis or Master's thesis) can be found at the course
 websites.
 
 \section{Transits}
-	A planet in orbit around it's host star may sometimes cross the line of sight of an observer. When this happens a slight decrease in the stars brightness can be measured. This is called a transit and is today used as a main method to discover exoplanets. From transits the radius of the planet can be determined but it can also be used to find additional planets around the host star which may not be transiting. This will be discussed in section \ref{sec:trans_vari}. With the radius known from the transit method and the mass obtained from different methods such as, for example, the radial velocity method the density of the planet can be calculated. The density is important to understand what the planet is made of and the structure of it.
+	A planet in orbit around it's host star may sometimes cross the line of sight of an observer. When this happens a slight decrease in the stars brightness can be measured. This is called a transit and is today used as a main method to discover exoplanets. From transits the radius of the planet can be determined but it can also be used to find additional planets around the host star which may not be transiting. This will be discussed in section \ref{sec:trans_vari}. With the radius known from the transit method and the mass obtained from different methods such as, for example the radial velocity method, the density of the planet can be calculated. The density is important to understand what the planet is made of and the structure of it.
 
 \subsection{Variations}
 \label{sec:trans_vari}
@@ -183,12 +184,13 @@ websites.
 		\item Input flag which specifies in which coordinate system the input parameters are given. This paper uses Jacobi coordinates which relate to a input flag = 0.
 	\end{itemize}
 	How these parameters are determined and "given" to TTVFast will be discussed in section \ref{simTESS} and \ref{TTVFast_method}.
+	
 \chapter{Method}
 	The code used are written in Python and can be seen in abstract (REF ABSTRACT). It is executed by a bash script which runs the necessary components to create artificial planetary systems, run TTVFast on these systems to generate transit times and then analyze these times in order to find TTVs. These systems are simulated over a long time by the use of WHFast in order to determine the stability of them.
 
 \section{Simulation of TESS objects}
 \label{simTESS}
-	The bash script starts by running the program to create the artificial systems. By combining data from Kepler obtained from the NASA Exoplanet Archive and the results from \cite{2015ApJ...809...77S}, which contains one planet for each system, TESS data are simulated. The planets are separated into two groups based on the effective temperature of their host star. Planets around stars with an effective temperature below 4000 K are put in one group while planets around stars with effective temperature above 4000 K are put into another group. This prevents planets around cold stars to get "matched" with planets around hot stars. 
+	The bash script starts by running the program to create the artificial systems. By combining data from Kepler obtained from the NASA Exoplanet Archive\footnote{\url{https://exoplanetarchive.ipac.caltech.edu/index.html}} and the results from \cite{2015ApJ...809...77S}, which contains one planet for each system, TESS data are simulated. The planets are separated into two groups based on the effective temperature of their host star. Planets around stars with an effective temperature below 4000 K are put in one group while planets around stars with effective temperature above 4000 K are put into another group. This prevents planets around cold stars to get "matched" with planets around hot stars. 
 	
 	For each planet in the Sullivan catalogue, a similar planet, in radius and period, are selected from the NASA archive. The ratio of radius and period between the two planets are calculated and multiplied with the Sullivan planets radius and period. This results in that the two planets are identical in radius and period. These ratios are then applied to the rest of the planets in this selected Kepler system to create an artificial system of planets.  
 	
@@ -226,9 +228,27 @@ websites.
 	
 	In order to further observe interesting systems the position of these systems are required which is obtained from the NASA archive. The positions are given in RA and dec and plotted in a sky map. These coordinates are compensated with Earth's obliquity which is about 23$^{\circ}$. These sky maps are colour coded according to the TTV amplitude and the multiplicity, i.e. the number of planets, of the systems.
 \section{WHFast}
-	The artificial systems that are created need to be checked for stability to determine if the assumptions and method of creating them results in realistic and stable systems. For this Rebound \citep{2012A&A...537A.128R}, more specifically the WHFast integrator \citep{2015MNRAS.452..376R}, is used. WHFast is a Wisdom-Holman integrator used for long duration planetary system simulations. For some systems close-encounters occur, WHFast is not a good integrator for these and therefore if such a system is found it will instead be simulated with IAS15 \citep{2015MNRAS.446.1424R}. IAS15 is another integrator for gravitational dynamics and although slower than WHFast it handles close-encounters better.
+	The artificial systems that are created need to be checked for stability to determine if the assumptions and method of creating them results in realistic and stable systems. For this Rebound \citep{2012A&A...537A.128R}, more specifically the WHFast integrator \citep{2015MNRAS.452..376R}, is used. WHFast is a Wisdom-Holman integrator used for long duration planetary system simulations. For some systems close-encounters occur, WHFast is not a good integrator for these and therefore if such a system is found it will instead be simulated with IAS15 \citep{2015MNRAS.446.1424R}. IAS15 is another integrator for gravitational dynamics and although slower than WHFast it handles close-encounters better.\\
 	
-	Semimajor axis calculation, Selection, Hill radius
+	WHFast requires the semi-major axis of each planet in each system. This is obtained from Kepler's law of periods:
+	\begin{equation}
+		a^3 = T^2 \Rightarrow a = T^{2/3}
+	\end{equation}
+		where $a$ is the semi-major axis in AU and T is the period in years. 
+		
+	As the stability simulations take a long time not all systems can be checked for stability. The first systems are selected by their multiplicity in order to see that at least one system of each multiplicity is stable. Then the Hill radius is calculated for each system:
+	\begin{equation}
+		r_{Hill} = \frac{a_1 + a_2}{2}\left(\frac{M_1 + M_2}{3M_{\star}}\right)^{1/3}
+	\end{equation}
+	where $a_{1,2}$ is the semi-major axis of the two inner most planets, $M_{1,2}$ is the mass of the two planets and $M_{\star}$ is the mass of the host star. This radius is then used to calculate the separation:
+	\begin{equation}
+		\Delta = \frac{a_2 - a_1}{r_{Hill}}
+	\end{equation}
+	The systems with lowest separation is the systems most probable to be unstable and thus they are simulated for stability.
+	
+\section{Simulation of Ofir objects}
+	A paper written by \cite{2018ApJS..234....9O} simulated objects for TTV signals. In order to determine the precision of the methods used in the paper the systems simulated by Ofir et al. are simulated by the same methods as in this paper. The resulting amplitudes of the TTV signals are compared to those of the Ofir systems The Ofir catalogue gives the Kepler ID of the planets, these are then used to obtain the other planetary parameters from the Nasa Exoplanet Archive. These systems are then simulated with the methods from the previous sections.
+	
 
 \chapter{Results}
 
@@ -257,19 +277,23 @@ suggestions. You can name your chapters differently and add more if needed.
 
 
 \section{Simulated TESS objects}
-	The planetary radius of the artificial systems are plotted against the orbital periods in figure \ref{fig:RP_plot_temp} and \ref{fig:RP_plot_multi}. In \ref{fig:RP_plot_temp} the effective temperature of the host star is represented with a colour map and in figure \ref{fig:RP_plot_multi} the multiplicity of the system are represented with colour and shape. As can be seen in figure \ref{fig:RP_plot_temp} most of the measured planets orbit a hot star above 5000 K. Figure \ref{fig:RP_plot_multi} shows that most systems consists of two or three planets. Systems containing five or six planets are few. Both figure \ref{fig:RP_plot_temp} and \ref{fig:RP_plot_multi} shows that most of the planets are smaller than earth and have a far shorter period. Short period planets are far easier to discover when using the transit method as it allows for more opportunities to measure the transit.
+	The planetary radius of the artificial systems are plotted against the orbital periods in figure \ref{fig:RP_plot_temp_multi}. In the left panel the effective temperature of the host star is represented with a colour map and in the right panel the multiplicity of the system are represented with colour and shape. As can be seen in the left panel most of the measured planets orbit a hot star above 5000 K. The right panel shows that most systems consists of two or three planets. Systems containing five or six planets are few. Both panels show that most of the planets are smaller than earth and have a far shorter period. Short period planets are far easier to discover when using the transit method as it allows for more opportunities to measure the transit.
 
 \begin{figure}[h!]
  	 \centering
- 	 \includegraphics[width=\textwidth]{img/R_P-plot_effTemp_cut-off.png}
- 	 \caption{Radius distribution as a function of period for the simulated TESS objects where the colour corresponds to the effective temperature of the host star.}
- 	 \label{fig:RP_plot_temp}
-\end{figure}
-\begin{figure}
+ 	 \begin{minipage}{.5\textwidth}
+ 	 \includegraphics[width=1\linewidth]{img/R_P-plot_effTemp_cut-off.png}
+
+
+ 	 \end{minipage}%
+	\begin{minipage}{.5\textwidth}
  	 \centering
- 	 \includegraphics[width=\textwidth]{img/R_P-plot_numP1.png}
- 	 \caption{Radius distribution as a function of period for the simulated TESS objects where the colour and shape corresponds to the multiplicity of the system.}
- 	 \label{fig:RP_plot_multi}
+ 	 \includegraphics[width=1\linewidth]{img/R_P-plot_numP1.png}
+ 	 
+
+ 	 \end{minipage}
+ 	  	 \caption{Radius distribution as a function of period for the simulated TESS objects where the colour corresponds to the effective temperature of the host star (left panel) and the colour and shape corresponds to the multiplicity of the system (right panel).}
+ 	  	 \label{fig:RP_plot_temp_multi}
 \end{figure}
 	\newpage Figure \ref{fig:skymap_TESS} shows a sky map of the simulated TESS objects and the number of times they are observed. \textit{more comments on this picture when the final version of the picture is done}
 
@@ -303,22 +327,33 @@ suggestions. You can name your chapters differently and add more if needed.
 	 \label{fig:skymap_amp}
 \end{figure}
 \section{Stability simulations}
-	Figures \ref{fig:stab1} and \ref{fig:stab2} shows two examples of the results from the stability simulations. For all stability tested systems most of the have not shown any instability. A few systems did eject a planet which most probably was the results of a close encounter. These systems were then re-simulated using IAS15 which showed that they were in fact stable and the ejection was a result from WHFast not being able to handle the close encounters. It can be noted that all of the planets are very close to the host star. This is a result from how the semi-major axis is calculated, as most, if not all, planets in this paper have a short period the semi-major axis is thus small which results in very closely packed systems.
+	Figure \ref{fig:stability_sim} shows two examples of the results from the stability simulations. For all stability tested systems most of the have not shown any instability. A few systems did eject a planet which  probably is the result of a close encounter. These systems were then re-simulated using IAS15 which showed that they were in fact stable and the ejection was a result from WHFast not being able to handle the close encounters. It can be noted that all of the planets are very close to the host star. This is a result from how the semi-major axis is calculated, as most planets in this paper have a short period the semi-major axis is small which results in very closely packed systems.
 
 \begin{figure}
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=1\linewidth]{img/180.png}
-  \captionof{figure}{Orbit of the planets in a three planet system}
-  \label{fig:stab1}
+ 
+
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=1\linewidth]{img/320.png}
-  \captionof{figure}{Orbit of the planets in a five planet system}
-  \label{fig:stab2}
+  
+
 \end{minipage}
+\caption{Orbits of the planets in a three planet system (left panel) and a five planet system (right panel)}
+\label{fig:stability_sim}
+\end{figure}
+
+\section{Simulations of Ofir systems}
+	Figure \ref{fig:ampl_ofir} shows the distribution of TTV amplitudes from the objects from the Ofir catalogue. In this histogram all systems with amplitude below 1 minute are filtered out as they are not of interest in this paper. It is clear that many systems show a small TTV signal but there are a significant portion of systems which show a higher amplitude. The number of systems decreases for higher amplitudes but at amplitudes around 30 minutes the number increases and then decreases for higher amplitude.
+\begin{figure}
+ 	 \centering
+	  \includegraphics[width=\textwidth]{img/ampl_ofir2.png}
+	  \caption{TTV amplitudes of the simulated objects from the Ofir catalogue.}
+	 \label{fig:ampl_ofir}
 \end{figure}
 
 \iffalse
@@ -346,10 +381,15 @@ Id of star & I &  V & Var.? \\
 \fi
 
 \chapter{Discussion}
+	These results may be used to select systems for further studies. The systems can be observed in more detail by the Characterising Exoplanets Satellite, CHEOPS, or the James Webb telescope. The main difference between these are where in the sky they are able to look at. CHEOPS are not able to measure stars at the poles and are limited to the sky around the plane of Earth's orbit. As TESS will have coverage of the poles for the whole year many of the discovered systems will be at the poles. The James Webb telescope on the other hand will be able to look at the poles. This makes James Webb a very good option for further studies of the TESS objects. 
 	
-	Further studies: CHEOPS, James Webb\\
-	TTV amplitude: fit instead of average\\
-	Stability sim
+	The artificial systems created in this paper contain some planets which show strong TTV signals, mainly positioned in the ecliptic poles as the systems positioned here are observed for a whole year which gives many more opportunities to detect TTVs. The shape of the histogram in figure \ref{fig:ampl_ofir} are the same as in the Ofir paper. This shows that the methods of simulating systems used in this paper are viable and give reasonable results. (\textbf{reason for increase at 30min?})
+	
+	The way of determining the amplitude of the TTVs are very simplistic. It is simply an average of the highest and lowest value. This can be improved by some kind of fit as the TTV signals are often in the shape of a sine curve but due to time constraints this paper does not include this way of determining the amplitude.
+	
+	Using WHFast, most systems tested for stability show no sign of instability. The few that do are simulated using IAS15 where they are shown to be stable and the instability from WHFast can be considered an affect of WHFast's inability to handle close encounters.
+	
+	(\textit{something about the errors, not included as the error bars are currently not correct})
 \chapter{Conclusions}
 
 

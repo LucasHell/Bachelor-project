@@ -9,10 +9,12 @@
 \contentsline {section}{\numberline {2.2}TTVFast}{10}
 \contentsline {section}{\numberline {2.3}Analyzing results from TTVFast}{10}
 \contentsline {section}{\numberline {2.4}WHFast}{10}
+\contentsline {section}{\numberline {2.5}Simulation of Ofir objects}{11}
 \contentsline {chapter}{\numberline {3}Results}{12}
 \contentsline {section}{\numberline {3.1}Simulated TESS objects}{12}
-\contentsline {section}{\numberline {3.2}TTV signals from TESS objects}{15}
-\contentsline {section}{\numberline {3.3}Stability simulations}{15}
+\contentsline {section}{\numberline {3.2}TTV signals from TESS objects}{14}
+\contentsline {section}{\numberline {3.3}Stability simulations}{14}
+\contentsline {section}{\numberline {3.4}Simulations of Ofir systems}{15}
 \contentsline {chapter}{\numberline {4}Discussion}{19}
 \contentsline {chapter}{\numberline {5}Conclusions}{20}
 \contentsline {chapter}{\numberline {A}This is an appendix}{22}

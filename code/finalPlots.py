@@ -42,7 +42,7 @@ for m in range(len(transitAmplitude)):
 		amplCorr.append(transitAmplitude[m])
 		
 plt.hist(amplCorr,bins=11, rwidth=0.5)
-plt.title("Histogram of the amplitudes of simulated TESS data")
+plt.title("Histogram of the amplitudes of simulated Ofir data")
 plt.xlabel('Amplitude [min]')
 plt.ylabel('#')
 #~ plt.show()
@@ -89,32 +89,20 @@ s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
 s_m.set_array([])
 
 
-
-#~ for i in range(len(RATess)):
-	#~ if decTess[i] > 0:
-		#~ RATess[i] = RATess[i] + 23
-		#~ decTess[i] = decTess[i] + 23
-		#~ if decTess[i] > 90:
-			#~ decTess[i] = 90 + (90 - abs(decTess[i]))
-	#~ else:
-		#~ RATess[i] = RATess[i] - 23
-		#~ decTess[i] = decTess[i] - 23
-		#~ if decTess[i] < -90:
-			#~ decTess[i] = -90 - (90 - abs(decTess[i]))
-
 tilt = math.radians(23.439281)
 for i in range(len(RATess)):
 	RATess[i] = math.radians(RATess[i])
 	decTess[i] = math.radians(decTess[i])
 
+
 	beta.append(math.asin(math.cos(tilt)*math.sin(decTess[i]) - math.sin(RATess[i])*math.cos(decTess[i])*math.sin(tilt)))
 	lamb.append(math.degrees(math.asin((math.sin(tilt)*math.sin(decTess[i]) + math.sin(RATess[i])*math.cos(decTess[i])*math.cos(tilt))/math.cos(beta[i]))))
-	lamb2.append(math.acos((math.cos(RATess[i])*math.cos(decTess[i]))/math.cos(beta[i])))
-	#~ beta[i] = math.degrees(beta[i])
+	lamb2.append(math.degrees(math.acos((math.cos(RATess[i])*math.cos(decTess[i]))/math.cos(beta[i]))))
+	beta[i] = math.degrees(beta[i])
 
-c = SkyCoord(ra=lamb2*u.rad, dec=beta*u.rad, frame='icrs')
-ra_rad = c.ra.wrap_at(math.pi * u.rad).deg
-dec_rad = c.dec.deg
+c = SkyCoord(lon=lamb2*u.deg, lat=beta*u.deg, frame='heliocentrictrueecliptic')
+ra_rad = c.lon.wrap_at(180 * u.deg).rad			
+dec_rad = c.lat.rad
 
 
 #~ print len(ra_rad), len(dec_rad), len(transitAmplitude)
@@ -129,12 +117,12 @@ plt.clf()
 
 print len(ra_rad), len(dec_rad), len(transitAmplitude)
 for i in range(len(ra_rad)):
-	if float(transitAmplitude[i]) < 120:
+	if float(transitAmplitude[i]) < 100:
 		ra_cut.append(ra_rad[i])
 		dec_cut.append(dec_rad[i])
 		amp_cut.append(transitAmplitude[i])
-		if float(transitAmplitude[i]) > 100:
-			print ra_rad[i], dec_rad[i]
+		#~ if float(transitAmplitude[i]) > 100:
+			#~ print ra_rad[i], dec_rad[i]
 
 
 
@@ -152,7 +140,7 @@ plt.subplot(111, projection="aitoff")
 plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m2)
-plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.7)
+plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
 plt.savefig('plots/skymap_TESS_wrap_cutoff')
 plt.clf()
 

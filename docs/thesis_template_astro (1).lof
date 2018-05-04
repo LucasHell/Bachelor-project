@@ -2,14 +2,13 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Illustration of the number of times TESS will observe each sector in the sky. \relax \fontsize {10.95}{13.6}\selectfont \abovedisplayskip 11\p@ plus3\p@ minus6\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ {\leftmargin \leftmargini \topsep 9\p@ plus3\p@ minus5\p@ \parsep 4.5\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {Source: \cite {2015ApJ...809...77S}}\relax }}{6}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Radius distribution as a function of period for the simulated TESS objects where the colour corresponds to the effective temperature of the host star.\relax }}{13}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Radius distribution as a function of period for the simulated TESS objects where the colour and shape corresponds to the multiplicity of the system.\relax }}{14}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Position of each observed objects colour-coded to show the number of times the object is observed.\relax }}{15}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces TTVs as a function of time. The zero level corresponds to average transit time.\relax }}{16}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Radius distribution as a function of period for the simulated TESS objects where the colour corresponds to the effective temperature of the host star (left panel) and the colour and shape corresponds to the multiplicity of the system (right panel).\relax }}{13}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Position of each observed objects colour-coded to show the number of times the object is observed.\relax }}{14}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces TTVs as a function of time. The zero level corresponds to average transit time.\relax }}{15}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Distribution of TTV amplitudes from the simulated TESS objects.\relax }}{16}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Distribution of TTV amplitudes from the simulated TESS objects.\relax }}{17}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Distribution of TTV amplitudes from the simulated TESS objects.\relax }}{18}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Orbit of the planets in a three planet system\relax }}{18}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Orbit of the planets in a five planet system\relax }}{18}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Orbits of the planets in a three planet system (left panel) and a five planet system (right panel)\relax }}{17}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces TTV amplitudes of the simulated objects from the Ofir catalogue.\relax }}{18}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

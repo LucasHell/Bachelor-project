@@ -92,7 +92,7 @@ for i in range(0, int(max(planet))+1):
 	
 	
 	y_line = np.linspace(0, 0 , len(epoch1Float))
-	print len(epoch1Float), len(transitTime1Corrected)
+	#~ print len(epoch1Float), len(transitTime1Corrected)
 	plt.scatter(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, label='Transit Time')
 	plt.errorbar(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, yerr = errorTiming, linestyle="None")
 	plt.axhline(y = 0, xmin = 0, xmax = np.amax(epoch1Float*fitTimes[0]/1440), c = 'black')
