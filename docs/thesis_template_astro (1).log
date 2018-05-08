@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.5)  4 MAY 2018 14:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.5)  7 MAY 2018 10:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -732,7 +732,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 227--228
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 231--232
+Underfull \hbox (badness 10000) in paragraph at lines 236--237
 
  []
 
@@ -750,32 +750,39 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [11]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12]
 Chapter 3.
-<img/R_P-plot_effTemp_cut-off.png, id=79, 462.528pt x 346.896pt>
+<img/R_P-plot_effTemp_cut-off.png, id=82, 462.528pt x 346.896pt>
 File: img/R_P-plot_effTemp_cut-off.png Graphic file (type png)
 
 <use img/R_P-plot_effTemp_cut-off.png>
-Package pdftex.def Info: img/R_P-plot_effTemp_cut-off.png used on input line 28
-5.
+Package pdftex.def Info: img/R_P-plot_effTemp_cut-off.png used on input line 29
+0.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
-<img/R_P-plot_numP1.png, id=80, 462.528pt x 346.896pt>
+<img/R_P-plot_numP1.png, id=83, 462.528pt x 346.896pt>
 File: img/R_P-plot_numP1.png Graphic file (type png)
 
 <use img/R_P-plot_numP1.png>
-Package pdftex.def Info: img/R_P-plot_numP1.png used on input line 291.
+Package pdftex.def Info: img/R_P-plot_numP1.png used on input line 296.
 (pdftex.def)             Requested size: 215.0023pt x 161.25203pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[12
+[13
 
-] <img/skymap_TESS_wrap.png, id=84, 578.16pt x 303.534pt>
+] <img/skymap_TESS_wrap.png, id=88, 578.16pt x 303.534pt>
 File: img/skymap_TESS_wrap.png Graphic file (type png)
 
 <use img/skymap_TESS_wrap.png>
-Package pdftex.def Info: img/skymap_TESS_wrap.png used on input line 302.
+Package pdftex.def Info: img/skymap_TESS_wrap.png used on input line 307.
 (pdftex.def)             Requested size: 430.00462pt x 225.75099pt.
 
 
@@ -787,24 +794,24 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[13 <./img/R_P-plot_effTemp_cut-off.png> <./img/R_P-plot_numP1.png>]
-<img/215_1.png, id=91, 462.528pt x 346.896pt>
+[14 <./img/R_P-plot_effTemp_cut-off.png> <./img/R_P-plot_numP1.png>]
+<img/215_1.png, id=94, 462.528pt x 346.896pt>
 File: img/215_1.png Graphic file (type png)
  <use img/215_1.png>
-Package pdftex.def Info: img/215_1.png used on input line 313.
+Package pdftex.def Info: img/215_1.png used on input line 318.
 (pdftex.def)             Requested size: 430.00462pt x 322.51994pt.
 
-<img/ampl_histo2.png, id=92, 462.528pt x 346.896pt>
+<img/ampl_histo2.png, id=95, 462.528pt x 346.896pt>
 File: img/ampl_histo2.png Graphic file (type png)
  <use img/ampl_histo2.png>
-Package pdftex.def Info: img/ampl_histo2.png used on input line 319.
+Package pdftex.def Info: img/ampl_histo2.png used on input line 324.
 (pdftex.def)             Requested size: 430.00462pt x 322.51994pt.
 
-<img/skymap_TESS_wrap_cutoff.png, id=93, 578.16pt x 303.534pt>
+<img/skymap_TESS_wrap_cutoff.png, id=96, 578.16pt x 303.534pt>
 File: img/skymap_TESS_wrap_cutoff.png Graphic file (type png)
 
 <use img/skymap_TESS_wrap_cutoff.png>
-Package pdftex.def Info: img/skymap_TESS_wrap_cutoff.png used on input line 325
+Package pdftex.def Info: img/skymap_TESS_wrap_cutoff.png used on input line 330
 .
 (pdftex.def)             Requested size: 430.00462pt x 225.75099pt.
 
@@ -823,22 +830,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[14 <./img/skymap_TESS_wrap.png>] <img/180.png, id=98, 361.35pt x 361.35pt>
-File: img/180.png Graphic file (type png)
+[15 <./img/skymap_TESS_wrap.png>] <img/180.jpg, id=101, 393.47pt x 365.0pt>
+File: img/180.jpg Graphic file (type jpg)
 
-<use img/180.png>
-Package pdftex.def Info: img/180.png used on input line 336.
-(pdftex.def)             Requested size: 215.0023pt x 215.00316pt.
- <img/320.png, id=99, 361.35pt x 361.35pt>
-File: img/320.png Graphic file (type png)
- <use img/320.png>
-Package pdftex.def Info: img/320.png used on input line 342.
-(pdftex.def)             Requested size: 215.0023pt x 215.00316pt.
+<use img/180.jpg>
+Package pdftex.def Info: img/180.jpg used on input line 341.
+(pdftex.def)             Requested size: 215.0023pt x 199.4418pt.
+ <img/320.jpg, id=102, 379.6pt x 365.0pt>
+File: img/320.jpg Graphic file (type jpg)
+ <use img/320.jpg>
+Package pdftex.def Info: img/320.jpg used on input line 347.
+(pdftex.def)             Requested size: 215.0023pt x 206.73221pt.
 
-<img/ampl_ofir2.png, id=100, 462.528pt x 346.896pt>
+<img/ampl_ofir2.png, id=103, 462.528pt x 346.896pt>
 File: img/ampl_ofir2.png Graphic file (type png)
  <use img/ampl_ofir2.png>
-Package pdftex.def Info: img/ampl_ofir2.png used on input line 354.
+Package pdftex.def Info: img/ampl_ofir2.png used on input line 359.
 (pdftex.def)             Requested size: 430.00462pt x 322.51994pt.
 
 
@@ -847,53 +854,53 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[15 <./img/215_1.png>]
+[16 <./img/215_1.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[16 <./img/ampl_histo2.png>]
+[17 <./img/ampl_histo2.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[17 <./img/skymap_TESS_wrap_cutoff.png> <./img/180.png> <./img/320.png>]
+[18 <./img/skymap_TESS_wrap_cutoff.png> <./img/180.jpg> <./img/320.jpg>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[18 <./img/ampl_ofir2.png>]
+[19 <./img/ampl_ofir2.png>]
 Chapter 4.
-[19
+[20
 
 ]
 Chapter 5.
-(./thesis_template_astro (1).bbl [20
+(./thesis_template_astro (1).bbl [21
 
-]) [21
+]) [22
 
 ]
 Appendix A.
-[22
+[23
 
 ]
 Appendix B.
 
 AED: lastpage setting LastPage
-[23
+[24
 
 ] (./thesis_template_astro (1).aux) ) 
 Here is how much of TeX's memory you used:
- 5647 strings out of 493029
- 81908 string characters out of 6136235
- 160220 words of memory out of 5000000
- 9053 multiletter control sequences out of 15000+600000
+ 5651 strings out of 493029
+ 81993 string characters out of 6136235
+ 160258 words of memory out of 5000000
+ 9056 multiletter control sequences out of 15000+600000
  23088 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,11n,43p,870b,379s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -916,10 +923,10 @@ blic/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm20
 exmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/pub
 lic/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt120
 0.pfb>
-Output written on "thesis_template_astro (1).pdf" (29 pages, 877354 bytes).
+Output written on "thesis_template_astro (1).pdf" (30 pages, 1028143 bytes).
 PDF statistics:
- 204 PDF objects out of 1000 (max. 8388607)
- 130 compressed objects within 2 object streams
+ 205 PDF objects out of 1000 (max. 8388607)
+ 132 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

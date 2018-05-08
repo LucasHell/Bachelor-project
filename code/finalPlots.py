@@ -28,9 +28,10 @@ ampOfirCorr = []
 ra_cut = []
 dec_cut = []
 amp_cut = []
+timeCut = []
 beta = []
 lamb = []
-lamb2 = []
+
 
 
 with open('transAmpl.txt', 'r') as inputFile:
@@ -72,65 +73,86 @@ medTime = map(float, medTime)
 transitAmplitude = map(float, transitAmplitude)
 
 
-colorRange = np.linspace(float(np.min(transitAmplitude)), 100, float(np.max(transitAmplitude)))
-#~ colorRange = np.linspace(0, 13, 13)
 
 
-#~ norm = mp.colors.Normalize(
-    #~ vmin=np.min(maxTime),
-    #~ vmax=np.max(maxTime))
-    
-norm = mp.colors.Normalize(
-    vmin=np.min(transitAmplitude),
-    vmax=np.max(transitAmplitude))   
-    
-c_m = mp.cm.cool
-s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
-s_m.set_array([])
 
 
 tilt = math.radians(23.439281)
+lamb1 = 0
+lamb2 = 0
 for i in range(len(RATess)):
 	RATess[i] = math.radians(RATess[i])
 	decTess[i] = math.radians(decTess[i])
 
 
 	beta.append(math.asin(math.cos(tilt)*math.sin(decTess[i]) - math.sin(RATess[i])*math.cos(decTess[i])*math.sin(tilt)))
-	lamb.append(math.degrees(math.asin((math.sin(tilt)*math.sin(decTess[i]) + math.sin(RATess[i])*math.cos(decTess[i])*math.cos(tilt))/math.cos(beta[i]))))
-	lamb2.append(math.degrees(math.acos((math.cos(RATess[i])*math.cos(decTess[i]))/math.cos(beta[i]))))
+	lamb1 = (math.sin(tilt)*math.sin(decTess[i]) + math.sin(RATess[i])*math.cos(decTess[i])*math.cos(tilt))/math.cos(beta[i])
+	lamb2 = (math.cos(RATess[i])*math.cos(decTess[i]))/math.cos(beta[i])
+	lamb.append(math.degrees(math.atan2(lamb2, lamb1)))
 	beta[i] = math.degrees(beta[i])
 
-c = SkyCoord(lon=lamb2*u.deg, lat=beta*u.deg, frame='heliocentrictrueecliptic')
+c = SkyCoord(lon=lamb*u.deg, lat=beta*u.deg, frame='heliocentrictrueecliptic')
 ra_rad = c.lon.wrap_at(180 * u.deg).rad			
 dec_rad = c.lat.rad
 
+#~ colorRange = np.linspace(float(np.min(transitAmplitude)), 100, float(np.max(transitAmplitude)))
+colorRange = np.linspace(0, 13, 13)
+
+
+#~ norm = mp.colors.Normalize(
+    #~ vmin=np.min(maxTime),
+    #~ vmax=np.max(maxTime))
+    
+#~ norm = mp.colors.Normalize(
+    #~ vmin=np.min(transitAmplitude),
+    #~ vmax=np.max(transitAmplitude)) 
+
+#~ c_m = mp.cm.cool
+#~ s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
+#~ s_m.set_array([])
 
 #~ print len(ra_rad), len(dec_rad), len(transitAmplitude)
 plt.figure(figsize=(8,4.2))
 plt.subplot(111, projection="aitoff")
 plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
-plt.colorbar(s_m)
+#~ plt.colorbar(s_m)
 #~ plt.scatter(ra_rad, dec_rad, s=7, c = transitAmplitude, cmap = cm.jet )
 plt.savefig('plots/skymap_TESS_wrap')
 plt.clf()
 
-print len(ra_rad), len(dec_rad), len(transitAmplitude)
+#~ print len(ra_rad), len(dec_rad), len(transitAmplitude)
 for i in range(len(ra_rad)):
 	if float(transitAmplitude[i]) < 100:
 		ra_cut.append(ra_rad[i])
 		dec_cut.append(dec_rad[i])
 		amp_cut.append(transitAmplitude[i])
+		timeCut.append(maxTime[i])
 		#~ if float(transitAmplitude[i]) > 100:
 			#~ print ra_rad[i], dec_rad[i]
 
 
 
+
+for l in range(len(amp_cut)):
+	if amp_cut[l] < 0.0001:
+		amp_cut[l] = 0.0001
+	else:
+		amp_cut[l] = np.log10(amp_cut[l])
+    
+#~ norm = mp.colors.Normalize(
+    #~ vmin=np.min(timeCut),
+    #~ vmax=np.max(timeCut))   
+
+print np.min(amp_cut)
+print np.max(amp_cut)
 norm = mp.colors.Normalize(
     vmin=np.min(amp_cut),
-    vmax=np.max(amp_cut))   
+    vmax=np.max(amp_cut))  
     
-print len(ra_cut)
+   
+
+
 c_m2 = mp.cm.cool
 s_m2 = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
 s_m2.set_array([])
@@ -141,7 +163,7 @@ plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m2)
 plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
-plt.savefig('plots/skymap_TESS_wrap_cutoff')
+plt.savefig('plots/skymap_TESS_wrap_cutoff_amp.png')
 plt.clf()
 
 
@@ -223,19 +245,19 @@ with open('ampError.txt','r') as inputFile:
 for i in range(len(errorTiming)):
 	if transitAmplitude[i] == 'nan\n' or transitAmplitude[i] == '0\n': 
 		continue
-	if float(transitAmplitude[i]) > 1 and float(transitAmplitude[i]) < 50:
+	if float(transitAmplitude[i]) > 0.001 and float(transitAmplitude[i]) < 200:
 		errorPlot.append(float(errorTiming[i])) 
 		ampPlot.append(float(transitAmplitude[i])) 
 
 	
 
-x = np.linspace(1, np.amax(ampPlot))
+x = np.linspace(np.amin(ampPlot), np.amax(ampPlot))
 y = x
 
 plt.figure(figsize=(13, 13))
 plt.scatter(np.log10(ampPlot), np.log10(errorPlot), s=20, c='black')
-plt.xlabel('Amplitude [log(min)]', fontsize = 16)
-plt.ylabel('Timing precision [log(min)]', fontsize = 16)
+plt.xlabel('Amplitude [log(min)]', fontsize = 18)
+plt.ylabel('Timing precision [log(min)]', fontsize = 18)
 plt.title('Amplitude vs timing precision', fontsize = 18)
 plt.plot(np.log10(x),np.log10(y))
 plt.savefig('plots/ampErrorLog.png')
@@ -252,7 +274,6 @@ plt.clf()
 data = pd.read_table('ofir_table.txt', sep=';', skiprows=34, names=('KOI_num', 'newDetFlag', 'TTVfre', 'TTV+uncer', 'TTV-uncer', 'TTV_per', 'Delta_chi', 'chi_area', 'chi_single', 'chi_RMS', 'cho_correl', 'TTV_amp', 'TTV_amp+_uncer', 'TTV_amp-_uncer', 'TTV_ref', 'TTV_ref+_uncer', 'TTV_ref-_uncer', 'cofid', 'STD_error', '20', '21', '22', '23', '24'))
 amp_ofir = data['TTV_amp']
 
-#~ print amp_ofir
 for i in range(len(amp_ofir)):
 	if amp_ofir[i] > 1 and amp_ofir[i] < 66:
 		ampOfirCorr.append(amp_ofir[i])

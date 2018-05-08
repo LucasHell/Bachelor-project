@@ -193,9 +193,11 @@ sumMass = 0
 semiMajorList = []
 semiMajorNe = 0
 dif = []
+#~ print kepMag[3], transitDur[3], rPlanet[3], rStar[3]
+#~ print 5**(-3/2), 5**(-1/2)
 
 #~ # write to output files in the format required for TTVFast
-for i in range(len(mPlanet)): 
+for i in range(len(mPlanet)): 		
 	meanAnom.append(90 - 360 * (float(numEpoch[i]) / float(period[i])))		# calculate mean anomaly of planet with reference to transit of first planet
 	while meanAnom[i] > 360:
 		meanAnom[i] = meanAnom[i] - 360 									# if angle of mean anomaly is above 360 degrees, subtract 360 until it is in the range 0 to 360 degrees
@@ -225,7 +227,9 @@ for i in range(len(mPlanet)):
 		elif count != 1:
 			outNumP.write(repr(count) + '\n')
 			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
-			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
+			print S, i
+			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# timing precision in hours
+			print errorTiming
 			outErrorFile.write(repr(errorTiming*60)) 		# write errors to file in minutes
 			
 			for n in range(0,count):
@@ -260,7 +264,9 @@ for i in range(len(mPlanet)):
 		elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
 			outNumP.write(repr(count) + '\n')
 			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
-			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
+			print S, i
+			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# timing precision in hours
+			print errorTiming
 			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
 			
 			for n in range(0,count):
@@ -304,7 +310,9 @@ for i in range(len(mPlanet)):
 		elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
 			outNumP.write(repr(count) + '\n')
 			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
-			errorTiming = ((S * float(transitDur[i]))**(-1/2) * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**(-3/2) * float(transitDur[i]))		# timing precision in hours
+			print S, i
+			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# timing precision in hours
+			print errorTiming
 			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
 			
 			for n in range(0,count):

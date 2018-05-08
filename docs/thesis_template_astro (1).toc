@@ -8,14 +8,15 @@
 \contentsline {section}{\numberline {2.1}Simulation of TESS objects}{8}
 \contentsline {section}{\numberline {2.2}TTVFast}{10}
 \contentsline {section}{\numberline {2.3}Analyzing results from TTVFast}{10}
-\contentsline {section}{\numberline {2.4}WHFast}{10}
-\contentsline {section}{\numberline {2.5}Simulation of Ofir objects}{11}
-\contentsline {chapter}{\numberline {3}Results}{12}
-\contentsline {section}{\numberline {3.1}Simulated TESS objects}{12}
-\contentsline {section}{\numberline {3.2}TTV signals from TESS objects}{14}
-\contentsline {section}{\numberline {3.3}Stability simulations}{14}
-\contentsline {section}{\numberline {3.4}Simulations of Ofir systems}{15}
-\contentsline {chapter}{\numberline {4}Discussion}{19}
-\contentsline {chapter}{\numberline {5}Conclusions}{20}
-\contentsline {chapter}{\numberline {A}This is an appendix}{22}
-\contentsline {chapter}{\numberline {B}This is another appendix}{23}
+\contentsline {section}{\numberline {2.4}Error estimation}{10}
+\contentsline {section}{\numberline {2.5}WHFast}{11}
+\contentsline {section}{\numberline {2.6}Simulation of Ofir objects}{11}
+\contentsline {chapter}{\numberline {3}Results}{13}
+\contentsline {section}{\numberline {3.1}Simulated TESS objects}{13}
+\contentsline {section}{\numberline {3.2}TTV signals from TESS objects}{15}
+\contentsline {section}{\numberline {3.3}Stability simulations}{15}
+\contentsline {section}{\numberline {3.4}Simulations of Ofir systems}{16}
+\contentsline {chapter}{\numberline {4}Discussion}{20}
+\contentsline {chapter}{\numberline {5}Conclusions}{21}
+\contentsline {chapter}{\numberline {A}This is an appendix}{23}
+\contentsline {chapter}{\numberline {B}This is another appendix}{24}

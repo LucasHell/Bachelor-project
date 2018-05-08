@@ -43,13 +43,12 @@ if os.stat(sys.argv[1]).st_size == 0:
 transitCount = 0
 
 for i in range(0, int(max(planet))+1):
-	#~ print i
 	for l in range(len(planet)):
 		if planet[l] == str(i):
 			epoch1Float.append(int(epoch1[l]))
 			transitTime1Float.append(float(transitTime1[l]))
 			transitCount += 1
-			#~ print "count ", transitCount
+
 	if transitCount < 2:
 		outputFile = open('transAmpl.txt', 'a')
 		outputFile.write('0' + '\n')
@@ -58,7 +57,6 @@ for i in range(0, int(max(planet))+1):
 		transitCount = 0
 		continue
 		
-	#~ print "i = ", i
 	epoch1Float = np.array(epoch1Float)
 	transitTime1Float = np.array(transitTime1Float)
 
@@ -92,11 +90,9 @@ for i in range(0, int(max(planet))+1):
 	
 	
 	y_line = np.linspace(0, 0 , len(epoch1Float))
-	#~ print len(epoch1Float), len(transitTime1Corrected)
 	plt.scatter(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, label='Transit Time')
 	plt.errorbar(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, yerr = errorTiming, linestyle="None")
 	plt.axhline(y = 0, xmin = 0, xmax = np.amax(epoch1Float*fitTimes[0]/1440), c = 'black')
-	#~ plt.plot(epoch1Float*fitTimes[0]/1440, y_line, c = 'black')
 	plt.xlabel('Time [Days]')
 	plt.ylabel('Transit time [Minutes]')
 	plt.title('Transit Timing variations')

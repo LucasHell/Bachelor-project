@@ -227,6 +227,11 @@ websites.
 	When all systems have been simulated with TTVFast the bash script executes the next part of the program seen in abstract (REF HERE). The transit times need to be corrected as TTVFast outputs the time of a transit. This is done by fitting a linear fit to the times and subtracting this fit. In order to easier see the amplitude of the TTV signals the times are corrected by subtracting the average time from every value which moves the middle of the graph to $y=0$. In order to obtain the amplitude of the TTVs the average of the maximum and minimum transit time are calculated. This is used as the amplitude and the corrected transit times are plotted. \\
 	
 	In order to further observe interesting systems the position of these systems are required which is obtained from the NASA archive. The positions are given in RA and dec and plotted in a sky map. These coordinates are compensated with Earth's obliquity which is about 23$^{\circ}$. These sky maps are colour coded according to the TTV amplitude and the multiplicity, i.e. the number of planets, of the systems.
+\section{Error estimation}
+\cite{2005Sci...307.1288H}
+	\begin{equation}
+		\sigma_t \approx \left[\left(S * t_T\right)^{-1/2} \cdot \left(\frac{R_p}{R_{\star}}\right)^{-3/2}\right] t_T
+	\end{equation}
 \section{WHFast}
 	The artificial systems that are created need to be checked for stability to determine if the assumptions and method of creating them results in realistic and stable systems. For this Rebound \citep{2012A&A...537A.128R}, more specifically the WHFast integrator \citep{2015MNRAS.452..376R}, is used. WHFast is a Wisdom-Holman integrator used for long duration planetary system simulations. For some systems close-encounters occur, WHFast is not a good integrator for these and therefore if such a system is found it will instead be simulated with IAS15 \citep{2015MNRAS.446.1424R}. IAS15 is another integrator for gravitational dynamics and although slower than WHFast it handles close-encounters better.\\
 	
@@ -333,13 +338,13 @@ suggestions. You can name your chapters differently and add more if needed.
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=1\linewidth]{img/180.png}
+  \includegraphics[width=1\linewidth]{img/180.jpg}
  
 
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=1\linewidth]{img/320.png}
+  \includegraphics[width=1\linewidth]{img/320.jpg}
   
 
 \end{minipage}

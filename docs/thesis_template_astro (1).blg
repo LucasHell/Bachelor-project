@@ -5,45 +5,45 @@ The style file: aa.bst
 Database file #1: references.bib
 Warning--entry type for "kepler_num_planet" isn't style-file defined
 --line 90 of file references.bib
-You've used 8 entries,
+You've used 9 entries,
             2947 wiz_defined-function locations,
-            699 strings with 6308 characters,
-and the built_in function-call counts, 4001 in all, are:
-= -- 330
-> -- 341
-< -- 4
-+ -- 113
-- -- 105
-* -- 338
-:= -- 753
-add.period$ -- 8
-call.type$ -- 8
-change.case$ -- 67
-chr.to.int$ -- 8
-cite$ -- 8
-duplicate$ -- 146
-empty$ -- 200
-format.name$ -- 131
-if$ -- 778
+            707 strings with 6477 characters,
+and the built_in function-call counts, 4418 in all, are:
+= -- 368
+> -- 363
+< -- 5
++ -- 120
+- -- 111
+* -- 369
+:= -- 827
+add.period$ -- 9
+call.type$ -- 9
+change.case$ -- 73
+chr.to.int$ -- 9
+cite$ -- 9
+duplicate$ -- 165
+empty$ -- 227
+format.name$ -- 142
+if$ -- 863
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 7
-newline$ -- 28
-num.names$ -- 32
-pop$ -- 66
+missing$ -- 8
+newline$ -- 31
+num.names$ -- 36
+pop$ -- 73
 preamble$ -- 1
-purify$ -- 67
+purify$ -- 73
 quote$ -- 0
-skip$ -- 126
+skip$ -- 144
 stack$ -- 0
-substring$ -- 149
+substring$ -- 173
 swap$ -- 0
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 72
+type$ -- 81
 warning$ -- 0
-while$ -- 31
+while$ -- 35
 width$ -- 0
-write$ -- 82
+write$ -- 92
 (There was 1 warning)
