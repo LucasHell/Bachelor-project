@@ -230,9 +230,7 @@ for i in range(len(mPlanet)): 				#len(mPlanet)
 	sysMeanAnom.append(meanAnom[i])
 	count += 1			# counter for number of planets for each system
 	
-	print systemCount
 	if i == len(mPlanet)-1: 			# for last element
-		print i
 		if count == 1:
 			os.remove('input/%s.in' % systemCount)
 			outputFile.close()	
@@ -244,7 +242,7 @@ for i in range(len(mPlanet)): 				#len(mPlanet)
 			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
 			
 			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# error in hours
-			outErrorFile.write(repr(errorTiming*60)) 		# write errors to file in minutes
+			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
 			
 			for n in range(0,count):
 				outNumP.write(repr(count) + '\n')
@@ -266,7 +264,9 @@ for i in range(len(mPlanet)): 				#len(mPlanet)
 				dif.append((semiMajorList[1] - semiMajorList[0])/rHill)
 				outStabSim.write(str(rHill) + ',' + str(systemCount) +  '\n')
 				
+				totalPlanets += count	
 				outputFile.close()
+				break
 
 			
 
@@ -381,7 +381,7 @@ for i in range(len(mPlanet)): 				#len(mPlanet)
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')	
 			
-					
+print totalPlanets			
 outDif = open('dif_table.csv', 'w')
 for l in range(len(dif)):
 	outDif.write(str(dif[l]) + ',' + str(l) + ',' + '\n')

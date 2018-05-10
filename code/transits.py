@@ -33,7 +33,7 @@ for n in range(len(planetCount)):
 
 if os.stat(sys.argv[1]).st_size == 0:
 	for i in range(0,planetCount[int(sys.argv[2])]+1):
-		outputFile = open('transAmpl.txt', 'a')
+		outputFile = open('transAmpl.csv', 'a')
 		outputFile.write('0' + '\n')
 		outputFile.close()
 		print "No value"
@@ -50,7 +50,7 @@ for i in range(0, int(max(planet))+1):
 			transitCount += 1
 
 	if transitCount < 2:
-		outputFile = open('transAmpl.txt', 'a')
+		outputFile = open('transAmpl.csv', 'a')
 		outputFile.write('0' + '\n')
 		outputFile.close()
 		print "Amplitude:", '0', "minutes or", '0', "hours"
@@ -69,7 +69,7 @@ for i in range(0, int(max(planet))+1):
 	transitAmplitude = (transitMax - transitMin) / 2
 	transitCorrection = (transitMax + transitMin) / 2
 
-	outputFile = open('transAmpl.txt', 'a')
+	outputFile = open('transAmpl.csv', 'a')
 	outputFile.write(repr(transitAmplitude) + '\n')
 	outputFile.close()
 

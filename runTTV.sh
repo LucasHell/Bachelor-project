@@ -6,7 +6,7 @@ rm -r ./TTVFast/c_version/input
 rm ./TTVFast/c_version/numberPlanets.csv
 rm ./code/timingErrors.csv
 rm  -r ./code/times/*
-rm ./code/transAmpl.txt
+rm ./code/transAmpl.csv
 rm ./code/numberPlanets.csv
 rm ./code/ampError.txt
 

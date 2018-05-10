@@ -34,7 +34,7 @@ lamb = []
 
 
 
-with open('transAmpl.txt', 'r') as inputFile:
+with open('transAmpl.csv', 'r') as inputFile:
 	transitAmplitude = inputFile.readlines()
 
 transitAmplitude = map(float, transitAmplitude)
@@ -121,8 +121,8 @@ plt.title("Position of observed TESS objects", y=1.08)
 plt.savefig('plots/skymap_TESS_wrap')
 plt.clf()
 
-#~ print len(ra_rad), len(dec_rad), len(transitAmplitude)
-for i in range(len(ra_rad)):
+print len(ra_rad), len(dec_rad), len(transitAmplitude)
+for i in range(len(transitAmplitude)):
 	if float(transitAmplitude[i]) < 100:
 		ra_cut.append(ra_rad[i])
 		dec_cut.append(dec_rad[i])
