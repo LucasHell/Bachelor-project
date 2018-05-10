@@ -254,12 +254,13 @@ for i in range(len(errorTiming)):
 x = np.linspace(np.amin(ampPlot), np.amax(ampPlot))
 y = x
 
+plt.rcParams.update({'font.size': 16})
 plt.figure(figsize=(13, 13))
-plt.scatter(np.log10(ampPlot), np.log10(errorPlot), s=20, c='black')
-plt.xlabel('Amplitude [log(min)]', fontsize = 18)
-plt.ylabel('Timing precision [log(min)]', fontsize = 18)
-plt.title('Amplitude vs timing precision', fontsize = 18)
-plt.plot(np.log10(x),np.log10(y))
+plt.scatter(np.log10(ampPlot), np.log10(errorPlot), s=20)
+plt.xlabel('log$_{10}$[Amplitude (min)]', fontsize = 18)
+plt.ylabel('log$_{10}$[Error (min)]', fontsize = 18)
+#~ plt.title('Amplitude vs Error', fontsize = 18)
+plt.plot(np.log10(x),np.log10(y), c='black')
 plt.savefig('plots/ampErrorLog.png')
 plt.clf()
 
