@@ -39,18 +39,28 @@ with open('transAmpl.csv', 'r') as inputFile:
 
 transitAmplitude = map(float, transitAmplitude)
 for m in range(len(transitAmplitude)):
-	if transitAmplitude[m] > 1 and transitAmplitude[m] < 66:
+	if transitAmplitude[m] > 5 and transitAmplitude[m] < 400:
 		amplCorr.append(transitAmplitude[m])
 		
-plt.hist(amplCorr,bins=11, rwidth=0.5)
-plt.title("Histogram of the amplitudes of simulated Ofir data")
+		
+
+y,binEdges = np.histogram(amplCorr,bins=20)
+bincenters = 0.5*(binEdges[1:]+binEdges[:-1])
+menStd     = np.sqrt(y)
+width = 10
+plt.bar(bincenters, y, width=width, yerr=menStd, error_kw=dict(ecolor='black', lw=1, capsize=4, capthick=1))
+#~ plt.title("Histogram of the amplitudes of simulated Ofir data")
 plt.xlabel('Amplitude [min]')
-plt.ylabel('#')
+plt.ylabel('Number of planets')
 #~ plt.show()
 plt.savefig('./plots/histo/ampl.png')
 plt.clf()
 		
-
+transSort = sorted(transitAmplitude, key=float, reverse=False)
+outTransFile = open('transAmpSort.csv', 'w')
+for i in range(len(transSort)):
+	outTransFile.write(str(transSort[i]) + '\n')
+outTransFile.close()
 with open('wtm-TESSTime.csv', 'r') as inputFile:
 	data = inputFile.readlines()[1:]
 	#~ RATess = [k.split(',')[0] for k in data]
@@ -95,36 +105,36 @@ c = SkyCoord(lon=lamb*u.deg, lat=beta*u.deg, frame='heliocentrictrueecliptic')
 ra_rad = c.lon.wrap_at(180 * u.deg).rad			
 dec_rad = c.lat.rad
 
-#~ colorRange = np.linspace(float(np.min(transitAmplitude)), 100, float(np.max(transitAmplitude)))
-colorRange = np.linspace(0, 13, 13)
 
 
-#~ norm = mp.colors.Normalize(
-    #~ vmin=np.min(maxTime),
-    #~ vmax=np.max(maxTime))
+norm = mp.colors.Normalize(
+    vmin=np.min(maxTime),
+    vmax=np.max(maxTime))
     
-#~ norm = mp.colors.Normalize(
-    #~ vmin=np.min(transitAmplitude),
-    #~ vmax=np.max(transitAmplitude)) 
+norm = mp.colors.Normalize(
+    vmin=np.min(transitAmplitude),
+    vmax=np.max(transitAmplitude)) 
 
-#~ c_m = mp.cm.cool
-#~ s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
-#~ s_m.set_array([])
+c_m = mp.cm.cool
+s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
+s_m.set_array([])
 
 #~ print len(ra_rad), len(dec_rad), len(transitAmplitude)
 plt.figure(figsize=(8,4.2))
 plt.subplot(111, projection="aitoff")
 plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
-#~ plt.colorbar(s_m)
+plt.colorbar(s_m)
 #~ plt.scatter(ra_rad, dec_rad, s=7, c = transitAmplitude, cmap = cm.jet )
 plt.savefig('plots/skymap_TESS_wrap')
 plt.clf()
 
+#~ print transitAmplitude.index(np.amax(transitAmplitude))
+#~ print math.degrees(RATess[462]), math.degrees(decTess[462])
 print len(ra_rad), len(dec_rad), len(transitAmplitude)
-for i in range(len(transitAmplitude)):
-	if float(transitAmplitude[i]) < 100:
-		ra_cut.append(ra_rad[i])
+for i in range(len(ra_rad)):
+	if float(transitAmplitude[i]) < 3000:
+		ra_cut.append(ra_rad[i] * -1)
 		dec_cut.append(dec_rad[i])
 		amp_cut.append(transitAmplitude[i])
 		timeCut.append(maxTime[i])
@@ -140,15 +150,15 @@ for l in range(len(amp_cut)):
 	else:
 		amp_cut[l] = np.log10(amp_cut[l])
     
-#~ norm = mp.colors.Normalize(
-    #~ vmin=np.min(timeCut),
-    #~ vmax=np.max(timeCut))   
-
-print np.min(amp_cut)
-print np.max(amp_cut)
 norm = mp.colors.Normalize(
-    vmin=np.min(amp_cut),
-    vmax=np.max(amp_cut))  
+    vmin=np.min(timeCut),
+    vmax=np.max(timeCut))   
+
+#~ print np.min(amp_cut)
+#~ print np.max(amp_cut)
+#~ norm = mp.colors.Normalize(
+    #~ vmin=np.min(amp_cut),
+    #~ vmax=np.max(amp_cut))  
     
    
 
@@ -160,13 +170,14 @@ s_m2.set_array([])
 plt.figure(figsize=(8,4.2))
 plt.subplot(111, projection="aitoff")
 plt.grid(True)
-plt.title("Position of observed TESS objects", y=1.08)
+#~ plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m2)
-plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
-plt.savefig('plots/skymap_TESS_wrap_cutoff_amp.png')
+plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
+plt.scatter(ra_cut, dec_cut, s=7, c = timeCut, cmap = cm.jet, alpha = 0.5)
+textstr = 'Number of observations'
+plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
+plt.savefig('plots/skymap_TESS_multi.png')
 plt.clf()
-
-
 
 
 
@@ -268,7 +279,7 @@ plt.clf()
 plt.scatter(ampPlot, errorPlot, marker='d')
 plt.xlabel('Amplitude [min]')
 plt.ylabel('Timing precision [min]')
-plt.title('Amplitude vs timing precision')
+#~ plt.title('Amplitude vs timing precision')
 plt.savefig('plots/ampError.png')
 plt.clf()
 
@@ -280,7 +291,7 @@ for i in range(len(amp_ofir)):
 		ampOfirCorr.append(amp_ofir[i])
 
 plt.hist(ampOfirCorr,bins=11, rwidth=0.5)
-plt.title("Histogram of TTV amplitude of objects\nfrom the Ofir catalogue")
+#~ plt.title("Histogram of TTV amplitude of objects\nfrom the Ofir catalogue")
 plt.xlabel('Amplitude [min]')
 plt.ylabel('#')
 plt.savefig('./plots/histo/ofir_amp.png')

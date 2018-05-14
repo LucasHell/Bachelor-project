@@ -1,5 +1,13 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{11}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Borucki}(2017)}]{2017PAPhS.161...38B}
+{Borucki}, W.~J. 2017, Proceedings of the American Philosophical Society, 161,
+  38
+
+\bibitem[{{Chambers} {et~al.}(1996){Chambers}, {Wetherill}, \&
+  {Boss}}]{1996Icar..119..261C}
+{Chambers}, J.~E., {Wetherill}, G.~W., \& {Boss}, A.~P. 1996, \icarus, 119, 261
 
 \bibitem[{{Deck} {et~al.}(2014){Deck}, {Agol}, {Holman}, \&
   {Nesvorn{\'y}}}]{2014ApJ...787..132D}
@@ -8,9 +16,6 @@
 
 \bibitem[{{Holman} \& {Murray}(2005)}]{2005Sci...307.1288H}
 {Holman}, M.~J. \& {Murray}, N.~W. 2005, Science, 307, 1288
-
-\bibitem[{{Johnson}(2018)}]{kepler_num_planet}
-{Johnson}, M. 2018, How many exoplanets has Kepler discovered?
 
 \bibitem[{Nesvorný {et~al.}(2013)Nesvorný, Kipping, Terrell, Hartman, Bakos,
   \& Buchhave}]{0004-637X-777-1-3}
@@ -30,6 +35,20 @@ Nesvorný, D., Kipping, D., Terrell, D., {et~al.} 2013, The Astrophysical
 
 \bibitem[{{Rein} \& {Tamayo}(2015)}]{2015MNRAS.452..376R}
 {Rein}, H. \& {Tamayo}, D. 2015, \mnras, 452, 376
+
+\bibitem[{{Ricker} {et~al.}(2014){Ricker}, {Winn}, {Vanderspek}, {Latham},
+  {Bakos}, {Bean}, {Berta-Thompson}, {Brown}, {Buchhave}, {Butler}, {Butler},
+  {Chaplin}, {Charbonneau}, {Christensen-Dalsgaard}, {Clampin}, {Deming},
+  {Doty}, {De Lee}, {Dressing}, {Dunham}, {Endl}, {Fressin}, {Ge}, {Henning},
+  {Holman}, {Howard}, {Ida}, {Jenkins}, {Jernigan}, {Johnson}, {Kaltenegger},
+  {Kawai}, {Kjeldsen}, {Laughlin}, {Levine}, {Lin}, {Lissauer}, {MacQueen},
+  {Marcy}, {McCullough}, {Morton}, {Narita}, {Paegert}, {Palle}, {Pepe},
+  {Pepper}, {Quirrenbach}, {Rinehart}, {Sasselov}, {Sato}, {Seager},
+  {Sozzetti}, {Stassun}, {Sullivan}, {Szentgyorgyi}, {Torres}, {Udry}, \&
+  {Villasenor}}]{2014SPIE.9143E..20R}
+{Ricker}, G.~R., {Winn}, J.~N., {Vanderspek}, R., {et~al.} 2014, in \procspie,
+  Vol. 9143, Space Telescopes and Instrumentation 2014: Optical, Infrared, and
+  Millimeter Wave, 914320
 
 \bibitem[{{Sullivan} {et~al.}(2015){Sullivan}, {Winn}, {Berta-Thompson},
   {Charbonneau}, {Deming}, {Dressing}, {Latham}, {Levine}, {McCullough},
