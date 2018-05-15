@@ -9,6 +9,8 @@ rm  -r ./code/times/*
 rm ./code/transAmpl.csv
 rm ./code/numberPlanets.csv
 rm ./code/ampError.txt
+rm ./code/RA_dec_sys.csv
+rm ./code/RA_dec_p.csv
 
 
 

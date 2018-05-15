@@ -192,7 +192,9 @@ outNumP = open('numberPlanets.csv', 'w')
 outErrorFile = open('timingErrors.csv', 'w')
 outTESSTime = open('TESSTime.csv', 'w')
 outStabSim = open('stabSim.csv', 'w')
+outRAdec = open('RA_dec_sys.csv', 'w')
 outputFile.write(repr(G) + '\n' + mStar[0] + '\n')
+
 
 totalPlanets = 0
 semiMajor = 0
@@ -266,6 +268,7 @@ for i in range(len(mPlanet)): 				#len(mPlanet)
 				
 				totalPlanets += count	
 				outputFile.close()
+				outRAdec.write(RA[i] + ',' + dec[i] + '\n')
 				break
 
 			
@@ -328,7 +331,7 @@ for i in range(len(mPlanet)): 				#len(mPlanet)
 			outputFile.close()
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')	
-
+			outRAdec.write(RA[i] + ',' + dec[i] + '\n')
 			
 			
 	elif kepID[i] == kepID[i+1] and int(str(name[i])[-2:]) > int(str(name[i+1])[-2:]):
@@ -380,6 +383,7 @@ for i in range(len(mPlanet)): 				#len(mPlanet)
 			outputFile.close()
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')	
+			outRAdec.write(RA[i] + ',' + dec[i] + '\n')
 			
 print totalPlanets			
 outDif = open('dif_table.csv', 'w')

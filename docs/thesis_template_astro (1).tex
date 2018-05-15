@@ -67,11 +67,13 @@ the thesis is done you can get a more formal cover page from Eva Jurlander.}}
 \begin{center}
   {\bf Abstract}
 \end{center}
-The abstract is a short summary describing the content of the main text. This
-should give enough information about the contents to decide for the intended
-audience whether further reading will be useful. The size should be about half
-a page, best written at the end, after most of the thesis is written.
-
+	A transit is a phenomenon where a planet passes between its host star and an observer blocking out part of the light from the star. This decrease can be measured and used to gain information of the planet. The Kepler and TESS telescopes are examples of space telescopes using the transit method to detect exoplanets. For systems with more than one planet around the same star variations between the time a planet takes to transit might occur. These variations, called Transit Timing Variations, or TTVs, can be used to gain information about additional planets in the system.
+	
+	This paper uses data from \cite{2015ApJ...809...77S} and Kepler data from the NASA Exoplanet Archive to create artificial systems like those that TESS might observe. These systems are simulated using TTVFast \citep{2014ApJ...787..132D} to obtain TTV signals which are then used to create a sky map to show the fraction of systems showing TTV signals in a given sample.
+	
+	TESS have coverage of the ecliptic poles for a whole year which results in that many systems showing considerable TTV signals are located at the poles although there are systems located outside the poles still showing TTV signals. In the range of declination from about $-40^{\circ}$ to $40^{\circ}$ CHEOPS will be able to further study the objects. From the results of this paper it is expected that CHEOPS can find a TTV signal from about every fourth transiting planet. 
+	
+	
 \newpage
 
 \thispagestyle{empty}
@@ -94,16 +96,6 @@ a page, best written at the end, after most of the thesis is written.
 	
 	
 
-
-%This is meant to be popular {\it introduction to} and {\it description of} your
-%thesis, preferably written in Swedish. The name is unfortunately misleading. It
-%is not a summary but mainly an introduction to what you have done. A good idea
-%is to write this when you are about one third through the time allotted for the
-%thesis work.
-%\\ \\
-%Especially important here are the context of your project and why this is an
-%interesting project to do. This should be about half a page as well.
-% Swedish letters: \"a, \"o, \aa
 
 \newpage
 
@@ -128,7 +120,7 @@ When observing stars in the search for exoplanets a few different methods can be
 
 In a system with multiple planets around the same star, the plants will affect each other through their gravitational pull. This results in the planets accelerating or decelerating depending on the relative positions of the planets. As this is happening the time of one orbit may differ and by studying these variations planets which may not be possible to detect through the transit method can be detected.
 
-This paper will simulate data from the TESS telescope in the search for these transit timing variations in order to determine the approximate fraction of multi-planetary systems in a given sample.
+This paper will simulate data from the TESS telescope to search for these transit timing variations in order to determine the approximate fraction of multi-planetary systems in a given sample.
 
 \section{Transits}
 	A planet in orbit around its host star may sometimes cross the line of sight of an observer. When this happens a slight decrease in the star's brightness can be measured. This is called a transit and is today used as a main method to discover exoplanets. From transits the radius of the planet can be determined but it can also be used to find additional planets around the host star which may not be transiting. This will be discussed in section \ref{sec:trans_vari}. With the radius known from the transit method and the mass obtained from different methods such as, for example the radial velocity method, the density of the planet can be calculated. The density is important to understand what the planet is made of and the structure of it.
@@ -136,7 +128,7 @@ This paper will simulate data from the TESS telescope in the search for these tr
 \subsection{Variations}
 \label{sec:trans_vari}
 
-	For a system with a single planet around a star the period of the planet is more or less perfectly periodic with no visible variations but, when measuring the time of one transit one may discover variations in the period which are called Transit-Timing Variations or TTVs. These variations arise from another planet in the system whose gravitational pull accelerates or decelerates the observed planet which results in increased or decreased transit times. An advantage of studying transits in search for TTVs is that planets which does not transit their star can be discovered through TTVs \citep{0004-637X-777-1-3}. As most planets does not transit their star this can increase the number of known exoplanets drastically.
+	For a system with a single planet around a star the period of the planet is more or less perfectly periodic with no visible variations but, when measuring the time of between a planet's transits one may discover variations in the period which are called Transit-Timing Variations or TTVs. These variations arise from another planet in the system whose gravitational pull accelerates or decelerates the observed planet which results in increased or decreased transit times. An advantage of studying transits in search for TTVs is that planets which does not transit their star can be discovered through TTVs \citep{0004-637X-777-1-3}. As most planets does not transit their star this can increase the number of known exoplanets drastically.
 
 \section{Kepler}
 	The Kepler satellite launched in spring 2009 on a mission to study stars in a small patch in the sky to discover Earth-sized exoplanets within the habitable zone, where liquid water can exist on the planetary surface. The brightness of a large amount of stars are measured and then analyzed in order to detect transiting exoplanets. 
@@ -172,7 +164,7 @@ This paper will simulate data from the TESS telescope in the search for these tr
 
 \section{Simulation of TESS objects}
 \label{simTESS}
-	\cite{2015ApJ...809...77S} provides one planet per system, by combining data from Kepler obtained from the NASA Exoplanet Archive\footnote{\url{https://exoplanetarchive.ipac.caltech.edu/index.html}} and the results from Sullivan et al., TESS data are simulated. The planets are separated into two groups based on the effective temperature of their host star to prevent planets around cold stars to get "matched" with planets around hot stars. Planets around stars with an effective temperature below 4000 K are put in one group while planets around stars with effective temperature above 4000 K are put into another group.
+	\cite{2015ApJ...809...77S} provides one planet per system, by combining data from Kepler obtained from the NASA Exoplanet Archive\footnote{\url{https://exoplanetarchive.ipac.caltech.edu/index.html}} and the results from Sullivan et al., TESS data are simulated. The planets are separated into two groups based on the effective temperature of their host star to prevent planets around cold stars to get "matched" with planets around hot stars. Planets around stars with an effective temperature below 4000 K are put into one group while planets around stars with effective temperature above 4000 K are put into another group.
 	
 	For each planet in the Sullivan et al. catalogue, a similar planet, in radius and period, are selected from the NASA archive. The ratio of radius and period between the two planets are calculated and multiplied with the Sullivan planets radius and period. This results in that the two planets are identical in radius and period. These ratios are then applied to the rest of the planets in this selected Kepler system to create an artificial system of planets.  
 	
@@ -187,7 +179,7 @@ This paper will simulate data from the TESS telescope in the search for these tr
 	M_p = 2.69 M_{\oplus}\left(\frac{R_p}{R_{\oplus}}\right)^{0,93}
 	\end{equation}
 	
-	When setting up the system the mean anomaly is required. This specifies the positions of all planet in a given system at a snapshot in time and is used as a starting point for the simulation. It is acquired from the number of transits and the orbital period of the planet by using a reference point specified when a planet is directly in front the the host star as seen from an observers point of view. This reference point corresponds to a mean anomaly of 90$^{\circ}$ at some time $T_i$, where $i$ is the number of the planet in the system. For a two planet system this means that $M_1=90^{\circ}$ at some time $T_1$ and $M_2=90^{\circ}$ at some time $T_2$. In order to calculate the mean anomaly at some time a time reference point is defined as $t=0$ and the goal is the calculate the mean anomaly of some planet $i$. This can be done by using the mean anomaly at $t = T_i$ and subtracting the number of degrees, $\xi$, the planet have traveled since then:
+	When setting up the system the mean anomaly is required. This specifies the positions of all planet in a given system at a snapshot in time and is used as a starting point for the simulation. It is acquired from the number of transits and the orbital period of the planet by using a reference point specified when a planet is directly in front of the host star as seen from an observers point of view. This reference point corresponds to a mean anomaly of 90$^{\circ}$ at some time $T_i$, where $i$ is the number of the planet in the system. For a two planet system this means that $M_1=90^{\circ}$ at some time $T_1$ and $M_2=90^{\circ}$ at some time $T_2$. In order to calculate the mean anomaly at some time a time reference point is defined as $t=0$ and the goal is the calculate the mean anomaly of some planet $i$. This can be done by using the mean anomaly at $t = T_i$ and subtracting the number of degrees, $\xi$, the planet have traveled since then:
 \begin{equation}
 	M_i(t=0) = M_i(t=T_i) - \xi
 \end{equation}
@@ -197,9 +189,9 @@ This paper will simulate data from the TESS telescope in the search for these tr
 \end{equation}
 	where $T_{epoch}$ is the transit epoch and $P_i$ is the period of the planet.
 	
-	TTVFast also requires inclination, eccentricity, longitude of the ascending node and argument of periapsis. These cannot be simply obtained and need to be assumed. For simplicity the inclination is assumed to be $90^{\circ}$ for all planets which results in the longitude of the ascending node to be 0. The eccentricity is obtained from a Rayleigh distribution with mode $\sigma = 0,03$ in order to not get eccentricities above 0.1 as that leads to unstable systems. The argument of periapsis is obtained from a uniform distribution where $0 < \omega < 360$. The code to obtain the input parameters can be seen in appendix \ref{ap:input_code}. 
+	TTVFast also requires inclination, eccentricity, longitude of the ascending node and argument of periapsis. These cannot be simply obtained and need to be assumed. For simplicity the inclination is assumed to be $90^{\circ}$ for all planets which results in the longitude of the ascending node to be 0. The eccentricity is obtained from a Rayleigh distribution with mode $\sigma = 0,03$ in order to not get eccentricities above 0.1 as that leads to unstable systems. The argument of periapsis is obtained from a uniform distribution where $0 < \omega < 360$. 
 	
-	How long a system will be observed depends on where in the sky it is located. This time can be obtained from the Web TESS Target tool \footnote{\url{https://heasarc.gsfc.nasa.gov/cgi-bin/tess/webtess/wtm.py}} if the right ascension, RA, and declination, dec, are known. This tool accepts csv files with RA and dec of the systems and outputs the number of times TESS will observe that system. This is then used in the simulation of the systems.
+	How long a system will be observed depends on where in the sky it is located. This time can be obtained from the Web TESS Target tool \footnote{\url{https://heasarc.gsfc.nasa.gov/cgi-bin/tess/webtess/wtm.py}} if the right ascension, RA, and declination, dec, are known. This tool accepts csv files with RA and dec of the systems and outputs the number of times TESS will observe that system. Currently it only works with systems in the southern hemisphere i.e with dec below 0. Because of this our systems in the northern hemisphere have their dec flipped and are such placed in the souther hemisphere when the data is uploaded to the TESS tool. The dec is then flipped back before the data is used. 
 	
 
 \section{TTVFast}
@@ -218,7 +210,7 @@ This paper will simulate data from the TESS telescope in the search for these tr
 		\item Argument of periapsis 
 		\item Mean anomaly at the reference time 
 	\end{itemize}
-	Where longitude of ascending node and argument of periapsis are orbital elements. The reference time is the time of the start of the integration, in this paper: $t_ref=0$. The program also requires parameters regarding the integration which are given in a setup file:
+	Where longitude of ascending node and argument of periapsis are orbital elements. The reference time is the time of the start of the integration, in this paper: $t_{ref}=0$. The program also requires parameters regarding the integration which are given in a setup file:
 	\begin{itemize}
 		\item Path to file containing info regarding the planets in the system.
 		\item Reference time
@@ -229,19 +221,25 @@ This paper will simulate data from the TESS telescope in the search for these tr
 	\end{itemize}
 	With all these known the system can be simulated and the output are given as a number of times when a transit occurred and the number of the transiting planet.
 \section{Simulation of Ofir objects}
-	A paper written by \cite{2018ApJS..234....9O} used observed objects to obtain TTV signals. In order to determine the precision of the methods used in this paper, the systems observed by Ofir et al. are simulated by the same methods as in this paper. The resulting amplitudes of the TTV signals are compared to those of the Ofir systems.
+	A paper written by \cite{2018ApJS..234....9O} used observed objects to obtain TTV signals. In order to determine the precision of the methods used in this paper, the systems observed by Ofir et al. are simulated by the same methods as in this paper for 4 years. The resulting amplitudes of the TTV signals are compared to those of the Ofir systems.
 \section{Analyzing results from TTVFast}
-	When all systems have been simulated with TTVFast the bash script executes the next part of the program seen in appendix (REF HERE). The transit times need to be corrected as TTVFast outputs the time of a transit. This is done by fitting a linear fit to the times and subtracting this fit. In order to easier see the amplitude of the TTV signals the times are corrected by subtracting the average time from every value which moves the middle of the graph to $y=0$. In order to obtain the amplitude of the TTVs the average of the maximum and minimum transit time are calculated. This is used as the amplitude and the corrected transit times are plotted. \\
+	When all systems have been simulated with TTVFast the data need to be analyzed to find the TTV signals. The transit times need to be corrected as TTVFast outputs the time that a transit occurs. This is done by fitting a linear fit to the times and subtracting this fit. In order to easier see the amplitude of the TTV signals the times are corrected by subtracting the average time from every value which moves the middle of the graph to $y=0$. In order to obtain the amplitude of the TTVs the average of the maximum and minimum transit time are calculated. This is used as the amplitude and the corrected transit times are plotted.
 	
-	The position in the sky of the objects are of interest and are obtained from the Sullivan et al. catalogue. The positions are given in RA and dec and plotted in a sky map. These coordinates are given in the equatorial frame and converted to the ecliptic frame. When plotted this produces sky maps which are colour coded according to the TTV amplitude and the multiplicity, i.e. the number of planets, of the systems.
+	The position in the sky of the objects are of interest and are obtained from the Sullivan et al. catalogue. The positions are given in RA and dec and plotted in a sky map. These coordinates are given in the equatorial frame and converted to the ecliptic frame. When plotted, this produces sky maps which are colour coded according to the TTV amplitude and the multiplicity, i.e. the number of planets, of the systems.
 	
 
 \section{Error estimation}
-\cite{2005Sci...307.1288H}
+	The error estimation used in this paper comes from equation 3 in \cite{2005Sci...307.1288H}:
 	\begin{equation}
-		\sigma_t \approx \left[\left(S t_T\right)^{-1/2}  \left(\frac{R_p}{R_{\star}}\right)^{-3/2}\right] t_T
+		\sigma_t \approx \left[\left(\Gamma t_T\right)^{-1/2}  \left(\frac{R_p}{R_{\star}}\right)^{-3/2}\right] t_T
 	\end{equation}
-	where S is the photon count rate of the observed star, $t_T$ is the transit duration, $R_p$ and $R_{\star}$ is the radius of the planet and star in solar radii.
+	where $\Gamma$ is the photon count rate of the observed star, $t_T$ is the transit duration, $R_p$ and $R_{\star}$ is the radius of the planet and star in solar radii. For Kepler the photon count is $\Gamma = 7.8 \times 10^8\; 10^{-4(V-14)} \; \mathrm{hr^{-1}}$ where $V$ is the apparent magnitude of the star. From \cite{2015ApJ...809...77S} the photon flux for TESS at magnitude $I_c=0$ is $\Phi \approx 1.4 \times 10^6 \; \mathrm{s^{-1} cm^{-2}}$ and $\Phi \approx 1.4 \times 10^6 \; 10^{-0.4I_c} \; \mathrm{s^{-1} cm^{-2}}$ when $I_c \neq 0$. The diameter of a camera on TESS is 100 mm which gives an area of $A_{camera} = \pi (50 \; \mathrm{mm})^2 = 7859.98 \; \mathrm{mm}^2 = 78.54 \; \mathrm{cm}^2$. The photon count is the photon flux multiplied with the area of the camera:
+	\begin{equation}
+		\Gamma = \Phi A_{camera} = 1.4 \times 10^6\; 10^{-0.4I_c} \; \mathrm{s^{-1} cm^{-2}} \times 78.54 \; \mathrm{cm}^2 = 
+	\end{equation}
+	\begin{equation}
+	1.10 \times 10^{10}\; 10^{-0.4I_c} \; \mathrm{s}^{-1} = 3.96 \times 10^{13} 10^{-0.4I_c}
+	\end{equation}
 \section{Stability simulations}
 	The artificial systems that are created need to be checked for stability to determine if the assumptions and method of creating them results in realistic and stable systems. For this Rebound \citep{2012A&A...537A.128R}, more specifically the WHFast integrator \citep{2015MNRAS.452..376R}, is used. WHFast is a Wisdom-Holman integrator used for long duration planetary system simulations. For some systems close-encounters occur, WHFast is not a good integrator for these and therefore if such a system is found it will instead be simulated with IAS15 \citep{2015MNRAS.446.1424R}. IAS15 is another integrator for gravitational dynamics and although slower than WHFast it handles close-encounters better.
 	
@@ -290,7 +288,7 @@ This paper will simulate data from the TESS telescope in the search for these tr
 
 
 \section{Simulated TESS objects}
-	The planetary radius of the artificial systems are plotted against the orbital periods in figure \ref{fig:RP_plot_temp_multi}. In the left panel the effective temperature of the host star is represented with a colour map and in the right panel the multiplicity of the system are represented with colour and shape. As can be seen in the left panel most of the measured planets orbit a hot star above 5000 K. The right panel shows that most systems consists of two or three planets. Systems containing five or six planets are few. Both panels show that most of the planets are smaller than earth and have a far shorter period. Short period planets are far easier to discover when using the transit method as it allows for more opportunities to measure the transit.
+	The planetary radius of the artificial systems are plotted against the orbital periods in figure \ref{fig:RP_plot_temp_multi} where the multiplicity of the system are represented with colour and shape. Most systems consists of two or three planets and systems containing five or six planets are few. Almost all planets are larger than earth and have a far shorter period. Larger planets are easier to discover as they block out more of the light from the star and short period planets allows for more opportunities to observe the transit which results in that most discovered planets are large with short periods.
 
 \begin{figure}[h!]
  	 \centering
@@ -298,23 +296,30 @@ This paper will simulate data from the TESS telescope in the search for these tr
  	  	 \caption{Radius distribution as a function of period for the simulated TESS objects where the colour and shape corresponds to the multiplicity of the system.}
  	  	 \label{fig:RP_plot_temp_multi}
 \end{figure}
-	\newpage Figure \ref{fig:skymap_TESS} shows a sky map of the simulated TESS objects and the number of times they are observed. \textit{more comments on this picture when the final version of the picture is done}
+	\newpage Figure \ref{fig:skymap_TESS} shows a sky map in the ecliptic frame of the simulated TESS objects and the number of times they are observed. The green area shows the approximate range where CHEOPS are able to observe the objects.  As expected, the systems in the ecliptic poles are observed the most times and most objects in the CHEOPS range are only observed once or not at all.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{img/skymap_TESS_multi.png}
-	  \caption{Position of each observed objects colour-coded to show the number of times the object is observed.}	
+	  \caption{Position of each observed objects in the ecliptic frame, colour-coded to show the number of times the object is observed.}	
 	  \label{fig:skymap_TESS}	
 \end{figure}\newpage
-	  
+\section{Simulations of Ofir systems}
+	Figure \ref{fig:ampl_ofir} shows the distribution of TTV amplitudes from the objects from the Ofir catalogue. In this histogram, all systems with amplitude below 1 minute are filtered out as they are not of interest in this paper. It is clear that many systems show a small TTV signal but there are a significant portion of systems which show a higher amplitude. The error bars for each bin are approximated to be $\epsilon = \sqrt{N}$ where $N$ is the number of planets in the bin.
+\begin{figure}
+ 	 \centering
+	  \includegraphics[width=\textwidth]{img/ampl_ofir_66.png}
+	  \caption{TTV amplitudes of the simulated objects from the Ofir catalogue.}
+	 \label{fig:ampl_ofir}
+\end{figure}  
 
 
 \section{TTV signals from TESS objects}
-	Figure \ref{fig:TTV1} shows an example of a TTV signal where the variation is clearly visible. The zero level corresponds to the average transit time in order to see the variations more clearly. The distribution of TTV amplitudes are found in figure \ref{fig:ampl_histo} where amplitudes below 1 minute are filtered out as otherwise they dominate the histogram. It is easy to see that low or no TTV signals dominate but there are some planets showing substantial TTV signals. The location in the sky of these objects are shown in figure \ref{fig:skymap_amp}.
+	Figure \ref{fig:TTV1} shows an example of a TTV signal for a system at one of the ecliptic poles where the variation is clearly visible. The zero level corresponds to the average transit time in order to see the variations more clearly. The distribution of TTV amplitudes are found in figure \ref{fig:ampl_histo} where amplitudes below 1 minute are filtered out as otherwise they dominate the histogram. It is easy to see that low or no TTV signals dominate but there are some planets showing substantial TTV signals. The location in the sky of these objects are shown in figure \ref{fig:skymap_amp}. Many planets at the ecliptic poles show some form of TTV signal while many planets not in the poles show TTV signals they are generally weaker with a few exceptions. In the range that CHEOPS are able to observe about 1/4 of systems have a planet showing a detectable TTV signal.
 \begin{figure}[h]
  	 \centering
 	  \includegraphics[width=\textwidth]{img/232_1.png}
-	  \caption{TTVs as a function of time. The zero level corresponds to average transit time.}
+	  \caption{Observed-Calculated transit time as a function of time. The zero level corresponds to average transit time.}
 	 \label{fig:TTV1}
 \end{figure}
 \begin{figure}[h!]
@@ -326,11 +331,19 @@ This paper will simulate data from the TESS telescope in the search for these tr
 \begin{figure}[h!]
  	 \centering
 	  \includegraphics[width=\textwidth]{img/skymap_TESS_amp.png}
-	  \caption{Distribution of TTV amplitudes from the simulated TESS objects.}
+	  \caption{Position in the sky in the ecliptic frame and the TTV amplitude.}
 	 \label{fig:skymap_amp}
 \end{figure}
+\section{Error analysis}
+		Figure \ref{fig:amp_error} shows the amplitude of the systems as a function of the error of the amplitude. Also shown is a line where y=x where the amplitude is equal to the error. The systems with an amplitude lower than the error cannot be considered as the signal can be due to noise.
+\begin{figure}
+ 	 \centering
+	  \includegraphics[width=\textwidth]{img/ampErrorLog.png}
+	  \caption{Amplitude of the TTV signal as a function of the error where y=x is marked with a black line.}
+	 \label{fig:amp_error}
+\end{figure}
 \section{Stability simulations}
-	Figure \ref{fig:stability_sim} shows two examples of the results from the stability simulations. For all stability tested systems most of the have not shown any instability. A few systems did eject a planet which  probably is the result of a close encounter. These systems were then re-simulated using IAS15 which showed that they were in fact stable and the ejection was a result from WHFast not being able to handle the close encounters. It can be noted that all of the planets are very close to the host star. This is a result from how the semi-major axis is calculated, as most planets in this paper have a short period the semi-major axis is small which results in very closely packed systems.
+	Figure \ref{fig:stability_sim} shows two examples of the results from the stability simulations. For all stability tested systems most  have not shown any instability within $10^5 / 10^6$ years. A few systems did eject a planet which  probably is the result of an close encounter. These systems were then re-simulated using IAS15 which showed that they were in fact stable and the ejection was a result from WHFast not being able to handle the close encounters. It can be noted that all of the planets are very close to the host star. This is a result from how the semi-major axis is calculated, as most planets in this paper have a short period the semi-major axis is small which results in very closely packed systems.
 
 \begin{figure}
 \centering
@@ -350,23 +363,11 @@ This paper will simulate data from the TESS telescope in the search for these tr
 \label{fig:stability_sim}
 \end{figure}
 
-\section{Simulations of Ofir systems}
-	Figure \ref{fig:ampl_ofir} shows the distribution of TTV amplitudes from the objects from the Ofir catalogue. In this histogram all systems with amplitude below 1 minute are filtered out as they are not of interest in this paper. It is clear that many systems show a small TTV signal but there are a significant portion of systems which show a higher amplitude. The number of systems decreases for higher amplitudes but at amplitudes around 30 minutes the number increases and then decreases for higher amplitude.
-\begin{figure}
- 	 \centering
-	  \includegraphics[width=\textwidth]{img/ampl_ofir_66.png}
-	  \caption{TTV amplitudes of the simulated objects from the Ofir catalogue.}
-	 \label{fig:ampl_ofir}
-\end{figure}
+
+
+
 
 \iffalse
-\begin{figure}
- 	 \centering
-	  \includegraphics[width=\textwidth]{img/ampErrorLog.png}
-	  \caption{Amplitude of the TTV signal as a function of the timing precision.}
-	 \label{fig:amp_precision}
-\end{figure}
-
 \begin{table}[!h]
 \caption{Example table from template}\smallskip
 \label{table:1}
@@ -384,17 +385,23 @@ Id of star & I &  V & Var.? \\
 \fi
 
 \chapter{Discussion}
-	These results may be used to select systems for further studies. The systems can be observed in more detail by the Characterising Exoplanets Satellite, CHEOPS, or the James Webb telescope. The main difference between these are where in the sky they are able to look at. CHEOPS are not able to measure stars at the poles and are limited to the sky around the plane of Earth's orbit. As TESS will have coverage of the poles for the whole year many of the discovered systems will be at the poles. The James Webb telescope on the other hand will be able to look at the poles. This makes James Webb a very good option for further studies of the TESS objects. 
+	These results may be used to give an approximation of how many systems in a given sample will show TTV signals. The systems can be observed in more detail by the Characterising Exoplanets Satellite, CHEOPS, or the James Webb Space telescope, JWST. CHEOPS are not able to measure stars at the poles and are limited to the sky around the plane of Earth's orbit which are marked as a green area in figure \ref{fig:skymap_TESS} and \ref{fig:skymap_amp}. As TESS will have coverage of the poles for the whole year many of the systems showing TTV signals will be located at the poles. The JWST on the other hand will be able to look at the poles. This makes James Webb a very good option for further studies of the TESS objects. 
 	
-	The artificial systems created in this paper contain some planets which show strong TTV signals, mainly positioned in the ecliptic poles as the systems positioned here are observed for a whole year which gives many more opportunities to detect TTVs. The shape of the histogram in figure \ref{fig:ampl_ofir} are the same as in the Ofir paper. This shows that the methods of simulating systems used in this paper are viable and give reasonable results. (\textbf{reason for increase at 30min?})
+	The artificial systems created in this paper contain some planets which show strong TTV signals, mainly positioned in the ecliptic poles as the systems positioned here are observed for a whole year which gives many more opportunities to detect TTVs. The shape of the histogram in figure \ref{fig:ampl_ofir} are the same as in the Ofir paper. This shows that the methods of simulating systems used in this paper are viable and give reasonable results.
 	
 	The way of determining the amplitude of the TTVs are very simplistic. It is simply an average of the highest and lowest value. This can be improved by some kind of fit as the TTV signals are often in the shape of a sine curve but due to time constraints this paper does not include this way of determining the amplitude.
 	
-	Using WHFast, most systems tested for stability show no sign of instability. The few that do are simulated using IAS15 where they are shown to be stable and the instability from WHFast can be considered an affect of WHFast's inability to handle close encounters.
+	Even though these results show that CHEOPS might be able to find a planet showing TTV signals in every fourth system the real number is probably lower. An approximation used in this paper is that the inclination is $90^{\circ}$ for all planets. This creates systems where all planets are transiting which is not the case for real systems. There are many cases where none of the planets around a star are transiting and the planet that might transit might not show any TTV signal while other planets around the star might do.
 	
-	(\textit{something about the errors, not included as the error bars are currently not correct})
+	Using WHFast, most systems tested for stability show no sign of instability within $10^5 / 10^6$ years. The few that do are simulated using IAS15 where they are shown to be stable and the instability from WHFast can be considered an affect of WHFast's inability to handle close encounters.
+	
+	The error calculations seem to give reasonable results. As seen in figure \ref{fig:amp_error} many systems shows a TTV amplitude higher than the error but many systems shows a TTV amplitude lower than the error, for these systems no conclusion can be made as the signal could be true but it might as well be noise.
 \chapter{Conclusions}
-
+	This paper simulated TESS objects using data from the NASA exoplanet archive and results from the paper by \cite{2015ApJ...809...77S} on a search to find TTV signals caused by multiple planets in the systems. The results can be seen below:
+	\begin{itemize}
+		\item Most of the systems showing TTV signals are positioned at the ecliptic poles. This comes from the fact that TESS have continuous coverage of the poles during the year which increases the chance to see TTVs.
+		\item In the range where CHEOPS are able to observe about 1/4 of every system will have a planet showing a detectable TTV signal.
+	\end{itemize}
 
 \section*{Acknowledgements}
 

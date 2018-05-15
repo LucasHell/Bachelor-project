@@ -23,7 +23,10 @@ epoch1 = map(int, epoch1)
 transitTime1 = map(float, transitTime1)
 countPlanetZero = 0
 
-	
+with open('RA_dec_sys.csv','r') as inputFile: 
+	data = inputFile.readlines()
+	RATess = [k.split(',')[0] for k in data]
+	decTess = [k.split(',')[1] for k in data]	
 
 with open('numberPlanets.csv') as inputFile:
 	planetCount = [k.split(' ')[0] for k in inputFile]
@@ -34,8 +37,11 @@ for n in range(len(planetCount)):
 if os.stat(sys.argv[1]).st_size == 0:
 	for i in range(0,planetCount[int(sys.argv[2])]+1):
 		outputFile = open('transAmpl.csv', 'a')
-		outputFile.write('0' + '\n')
+		outputFile.write('0' + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
 		outputFile.close()
+		outRAdec = open('RA_dec_p.csv', 'a')
+		outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+		outRAdec.close()
 		print "No value"
 	sys.exit(0)
 		
@@ -51,8 +57,11 @@ for i in range(0, int(max(planet))+1):
 
 	if transitCount < 2:
 		outputFile = open('transAmpl.csv', 'a')
-		outputFile.write('0' + '\n')
+		outputFile.write('0' + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
 		outputFile.close()
+		outRAdec = open('RA_dec_p.csv', 'a')
+		outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+		outRAdec.close()
 		print "Amplitude:", '0', "minutes or", '0', "hours"
 		transitCount = 0
 		continue
@@ -70,7 +79,7 @@ for i in range(0, int(max(planet))+1):
 	transitCorrection = (transitMax + transitMin) / 2
 
 	outputFile = open('transAmpl.csv', 'a')
-	outputFile.write(repr(transitAmplitude) + '\n')
+	outputFile.write(repr(transitAmplitude) + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
 	outputFile.close()
 
 	print "Amplitude:", transitAmplitude, "minutes or", transitAmplitude/60, "hours"
@@ -88,6 +97,9 @@ for i in range(0, int(max(planet))+1):
 	outErrorFile.write(repr(errorTiming) + '\n')
 	outErrorFile.close()
 	
+	outRAdec = open('RA_dec_p.csv', 'a')
+	outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+	outRAdec.close()
 	
 	y_line = np.linspace(0, 0 , len(epoch1Float))
 	plt.scatter(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, label='Transit Time')

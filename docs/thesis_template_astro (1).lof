@@ -3,12 +3,13 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Radius distribution as a function of period for the simulated TESS objects where the colour and shape corresponds to the multiplicity of the system.\relax }}{14}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Position of each observed objects colour-coded to show the number of times the object is observed.\relax }}{15}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces TTVs as a function of time. The zero level corresponds to average transit time.\relax }}{16}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Distribution of TTV amplitudes from the simulated TESS objects.\relax }}{17}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Position of each observed objects in the ecliptic frame, colour-coded to show the number of times the object is observed.\relax }}{15}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces TTV amplitudes of the simulated objects from the Ofir catalogue.\relax }}{16}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Observed-Calculated transit time as a function of time. The zero level corresponds to average transit time.\relax }}{17}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Distribution of TTV amplitudes from the simulated TESS objects.\relax }}{18}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Orbits of the planets in a three planet system (left panel) and a five planet system (right panel)\relax }}{18}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces TTV amplitudes of the simulated objects from the Ofir catalogue.\relax }}{19}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Position in the sky in the ecliptic frame and the TTV amplitude.\relax }}{19}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Amplitude of the TTV signal as a function of the error where y=x is marked with a black line.\relax }}{20}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Orbits of the planets in a three planet system (left panel) and a five planet system (right panel)\relax }}{21}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

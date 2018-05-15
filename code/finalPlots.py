@@ -35,7 +35,10 @@ lamb = []
 
 
 with open('transAmpl.csv', 'r') as inputFile:
-	transitAmplitude = inputFile.readlines()
+	data = inputFile.readlines()
+	transitAmplitude = [k.split(',')[0] for k in data]
+	RATess = [k.split(',')[1] for k in data]
+	decTess = [k.split(',')[2] for k in data]
 
 transitAmplitude = map(float, transitAmplitude)
 for m in range(len(transitAmplitude)):
@@ -70,10 +73,10 @@ with open('wtm-TESSTime.csv', 'r') as inputFile:
 	medTime = [k.split(',')[4] for k in data]
 	avgTime = [k.split(',')[5] for k in data]
 	
-with open('TESSTime.csv','r') as inputFile: 
-	data = inputFile.readlines()
-	RATess = [k.split(',')[0] for k in data]
-	decTess = [k.split(',')[1] for k in data]
+#~ with open('RA_dec_p.csv','r') as inputFile: 
+	#~ data = inputFile.readlines()
+	#~ RATess = [k.split(',')[0] for k in data]
+	#~ decTess = [k.split(',')[1] for k in data]
 	
 RATess = map(float, RATess)
 decTess = map(float, decTess)
@@ -128,21 +131,23 @@ plt.colorbar(s_m)
 #~ plt.scatter(ra_rad, dec_rad, s=7, c = transitAmplitude, cmap = cm.jet )
 plt.savefig('plots/skymap_TESS_wrap')
 plt.clf()
-
+countAmp = 0
+print transitAmplitude.index(np.amax(transitAmplitude))
 #~ print transitAmplitude.index(np.amax(transitAmplitude))
 #~ print math.degrees(RATess[462]), math.degrees(decTess[462])
 print len(ra_rad), len(dec_rad), len(transitAmplitude)
-for i in range(len(ra_rad)):
+for i in range(len(transitAmplitude)):
 	if float(transitAmplitude[i]) < 3000:
 		ra_cut.append(ra_rad[i] * -1)
 		dec_cut.append(dec_rad[i])
 		amp_cut.append(transitAmplitude[i])
 		timeCut.append(maxTime[i])
-		#~ if float(transitAmplitude[i]) > 100:
-			#~ print ra_rad[i], dec_rad[i]
+		if -40 < dec_rad[i] < 40 and float(transitAmplitude[i]) > 20 and dec_rad[i] != dec_rad[i-1]:
+			countAmp += 1
+			print math.degrees(ra_rad[i]), math.degrees(dec_rad[i]), np.log10(float(transitAmplitude[i]))
 
 
-
+print countAmp
 
 for l in range(len(amp_cut)):
 	if amp_cut[l] < 0.0001:
@@ -150,15 +155,14 @@ for l in range(len(amp_cut)):
 	else:
 		amp_cut[l] = np.log10(amp_cut[l])
     
-norm = mp.colors.Normalize(
-    vmin=np.min(timeCut),
-    vmax=np.max(timeCut))   
-
-#~ print np.min(amp_cut)
-#~ print np.max(amp_cut)
 #~ norm = mp.colors.Normalize(
-    #~ vmin=np.min(amp_cut),
-    #~ vmax=np.max(amp_cut))  
+    #~ vmin=np.min(timeCut),
+    #~ vmax=np.max(timeCut))   
+
+
+norm = mp.colors.Normalize(
+    vmin=np.min(amp_cut),
+    vmax=np.max(amp_cut))  
     
    
 
@@ -173,10 +177,10 @@ plt.grid(True)
 #~ plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m2)
 plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
-plt.scatter(ra_cut, dec_cut, s=7, c = timeCut, cmap = cm.jet, alpha = 0.5)
+plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
 textstr = 'Number of observations'
 plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
-plt.savefig('plots/skymap_TESS_multi.png')
+plt.savefig('plots/skymap_TESS_amp.png')
 plt.clf()
 
 
