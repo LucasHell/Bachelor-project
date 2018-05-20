@@ -189,9 +189,9 @@ s_m.set_array([])
 plt.scatter(periodTESS,rPlanetTESS,s=2, c = effTemp, cmap = cm.plasma )
 plt.colorbar(s_m, label='Effective temperature of host star')
 plt.ylim(-0.3,1.25)
-plt.ylabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
-plt.xlabel('Period [$\log$ days]', fontsize=12)
-plt.savefig('plots/R_P-plot_effTemp1.png')
+plt.ylabel('log$_{10}$[Planet radius (R$_{\oplus}$)]', fontsize=12)
+plt.xlabel('log$_{10}$[Period (days)', fontsize=12)
+plt.savefig('plots/R_P-plot_effTemp1.pdf')
 plt.clf()
 
 
@@ -215,9 +215,9 @@ purple_hexagon = mlines.Line2D([], [], color='brown', marker='h', linestyle='Non
                           
 plt.legend(handles=[blue_circle, red_triangle, green_square, m_pentagon, purple_hexagon] ,loc='upper center', bbox_to_anchor=(0.5, 1.15),
           ncol=3, fancybox=True, shadow=True, title="Number of Planets")
-plt.ylabel('Planet radius [$\log(R_{\oplus})$]', fontsize=12)
-plt.xlabel('Period [$\log$ days]', fontsize=12)
-plt.savefig('plots/R_P-plot_numP1.png')
+plt.ylabel('log$_{10}$[Planet radius (R$_{\oplus}$)]', fontsize=12)
+plt.xlabel('log$_{10}$[Period (days)]', fontsize=12)
+plt.savefig('plots/R_P-plot_numP1.pdf')
 plt.clf()
 
 

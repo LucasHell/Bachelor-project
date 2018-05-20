@@ -31,8 +31,8 @@ with open('RA_dec_sys.csv','r') as inputFile:
 with open('numberPlanets.csv') as inputFile:
 	planetCount = [k.split(' ')[0] for k in inputFile]
 
-for n in range(len(planetCount)):
-	planetCount[n] = int(planetCount[n][:1])
+#~ for n in range(len(planetCount)):
+	#~ planetCount[n] = int(planetCount[n][:1])
 
 if os.stat(sys.argv[1]).st_size == 0:
 	for i in range(0,planetCount[int(sys.argv[2])]+1):
@@ -111,7 +111,7 @@ for i in range(0, int(max(planet))+1):
 	textstr = 'Amplitude=%.2f min\nError=%.2f min\n'%(transitAmplitude, errorTiming)
 	plt.figtext(0.76, 0.5, textstr, fontsize=10)
 	plt.subplots_adjust(right=0.75)
-	plt.savefig('plots/' + sys.argv[1] + '_' + str(i) + '.png')
+	plt.savefig('plots/' + sys.argv[1] + '_' + str(i) + '.pdf')
 	plt.clf()
 	epoch1Float = []
 	transitTime1Float = []

@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{12}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Borucki}(2017)}]{2017PAPhS.161...38B}
@@ -16,6 +16,11 @@
 
 \bibitem[{{Holman} \& {Murray}(2005)}]{2005Sci...307.1288H}
 {Holman}, M.~J. \& {Murray}, N.~W. 2005, Science, 307, 1288
+
+\bibitem[{{Nesvorn{\'y}} {et~al.}(2012){Nesvorn{\'y}}, {Kipping}, {Buchhave},
+  {Bakos}, {Hartman}, \& {Schmitt}}]{2012Sci...336.1133N}
+{Nesvorn{\'y}}, D., {Kipping}, D.~M., {Buchhave}, L.~A., {et~al.} 2012,
+  Science, 336, 1133
 
 \bibitem[{Nesvorný {et~al.}(2013)Nesvorný, Kipping, Terrell, Hartman, Bakos,
   \& Buchhave}]{0004-637X-777-1-3}

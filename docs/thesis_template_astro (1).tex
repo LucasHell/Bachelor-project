@@ -21,6 +21,8 @@
 \usepackage{lastpage}
 \usepackage{pdfpages}
 \usepackage{url}
+\usepackage{listings}
+\usepackage{color}
 
 \pagestyle{fancy}
 %\rhead{}
@@ -41,6 +43,30 @@
 \newcommand{\araa}{ARA\&A}
 \newcommand{\icarus}{Icarus}
 \newcommand{\procspie}{Proceedings of the SPIE}
+
+
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 \begin{document}
 
@@ -67,11 +93,11 @@ the thesis is done you can get a more formal cover page from Eva Jurlander.}}
 \begin{center}
   {\bf Abstract}
 \end{center}
-	A transit is a phenomenon where a planet passes between its host star and an observer blocking out part of the light from the star. This decrease can be measured and used to gain information of the planet. The Kepler and TESS telescopes are examples of space telescopes using the transit method to detect exoplanets. For systems with more than one planet around the same star variations between the time a planet takes to transit might occur. These variations, called Transit Timing Variations, or TTVs, can be used to gain information about additional planets in the system.
+	A transit is a phenomenon where a planet passes between its host star and an observer blocking out part of the light from the star. This decrease can be measured and used to gain information about the planet. The Kepler and TESS telescopes are examples of space telescopes using the transit method to detect exoplanets. For systems with more than one planet around the same star variations between the time a planet takes to transit might occur. These variations, called Transit Timing Variations, or TTVs, can be used to gain information about additional planets in the system.
 	
-	This paper uses data from \cite{2015ApJ...809...77S} and Kepler data from the NASA Exoplanet Archive to create artificial systems like those that TESS might observe. These systems are simulated using TTVFast \citep{2014ApJ...787..132D} to obtain TTV signals which are then used to create a sky map to show the fraction of systems showing TTV signals in a given sample.
+	TESS were recently launched and this paper uses data from \cite{2015ApJ...809...77S} and Kepler data from Q1-Q17 DR25 from the NASA Exoplanet Archive (Thompson et al. 2018) to create artificial systems like those that TESS might observe to predict what kind of results it might find. These systems are simulated using TTVFast \citep{2014ApJ...787..132D} to obtain TTV signals which are then used to create a sky map to show the fraction of systems showing TTV signals in a given sample.
 	
-	TESS have coverage of the ecliptic poles for a whole year which results in that many systems showing considerable TTV signals are located at the poles although there are systems located outside the poles still showing TTV signals. In the range of declination from about $-40^{\circ}$ to $40^{\circ}$ CHEOPS will be able to further study the objects. From the results of this paper it is expected that CHEOPS can find a TTV signal from about every fourth transiting planet. 
+	TESS have coverage of the ecliptic poles for a whole year which results in that many systems showing considerable TTV signals being located at the poles although there are systems located outside the poles still showing TTV signals. In the range of declination from about $-40^{\circ}$ to $40^{\circ}$ CHEOPS will be able to further study the objects. From the results of this paper it is expected that CHEOPS can find a TTV signal from about every fourth transiting planet. 
 	
 	
 \newpage
@@ -116,14 +142,14 @@ the thesis is done you can get a more formal cover page from Eva Jurlander.}}
 \newpage
 
 \chapter{Introduction}
-When observing stars in the search for exoplanets a few different methods can be used. The most successful method so far is the transit method which measures the brightness of a star for a long period. If a planet passes between the star and the observer it will block out part of the light and the brightness will decrease. If these decreases occur at regular intervals the conclusion that the reason for this is an exoplanet can be drawn. By studying the amount of light the planet blocks out the radius of the planet can be found, combined with the mass of the planet obtained from different methods the approximate density of the planet can be calculated. This gives information about the structure and material of the planet.
+When observing stars in the search for exoplanets a few different methods can be used. The most successful method so far is the transit method which measures the brightness of a star for a long period. If a planet passes between the star and the observer it will block out part of the light and the brightness will decrease. If these decreases occur at regular intervals the conclusion that the reason for this is an exoplanet can be drawn. By studying the amount of light the planet blocks out the radius of the planet can be found; combined with the mass of the planet obtained from different methods the approximate density of the planet can be calculated. This gives information about the structure and composition of the planet.
 
-In a system with multiple planets around the same star, the plants will affect each other through their gravitational pull. This results in the planets accelerating or decelerating depending on the relative positions of the planets. As this is happening the time of one orbit may differ and by studying these variations planets which may not be possible to detect through the transit method can be detected.
+In a system with multiple planets around the same star, the plants will affect each other through their gravitational pull. This results in the planets accelerating or decelerating depending on the relative positions of the planets. As this is happening the time of one orbit may differ and by studying these variations, planets which may not be possible to detect through the transit method can be detected \citep{2012Sci...336.1133N}. TTVs can also be used to calculate the mass of the transiting planet and is commonly used to confirm exoplanet candidates as real planets.
 
 This paper will simulate data from the TESS telescope to search for these transit timing variations in order to determine the approximate fraction of multi-planetary systems in a given sample.
 
 \section{Transits}
-	A planet in orbit around its host star may sometimes cross the line of sight of an observer. When this happens a slight decrease in the star's brightness can be measured. This is called a transit and is today used as a main method to discover exoplanets. From transits the radius of the planet can be determined but it can also be used to find additional planets around the host star which may not be transiting. This will be discussed in section \ref{sec:trans_vari}. With the radius known from the transit method and the mass obtained from different methods such as, for example the radial velocity method, the density of the planet can be calculated. The density is important to understand what the planet is made of and the structure of it.
+	A planet in orbit around its host star may sometimes cross the line of sight of an observer. When this happens a slight decrease in the star's brightness can be measured. This is called a transit and is today used as a main method to discover exoplanets. From transits the radius of the planet can be determined but it can also be used to find additional planets around the host star which may not be transiting. This will be discussed in section \ref{sec:trans_vari}. With the radius known from the transit method and the mass obtained from for example the TTV signal or different methods such as, for example the radial velocity method, the density of the planet can be calculated. The density is important to understand what the planet is made of and the structure of it.
 
 \subsection{Variations}
 \label{sec:trans_vari}
@@ -145,12 +171,12 @@ This paper will simulate data from the TESS telescope to search for these transi
 	\begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.8\textwidth]{img/tess_observe_time.png}
-		\caption{Illustration of the number of times TESS will observe each sector in the sky.\\ \small{Source: \cite{2015ApJ...809...77S}}}
+		\caption{Illustration of the number of times TESS will observe each sector in the sky.\\ \small{Source: \cite{2015ApJ...809...77S}, figure 1}}
 		\label{fig:tess_time}
 	\end{figure}	
 	
 \chapter{Method}
-	This paper uses results from \cite{2015ApJ...809...77S} where potential system which TESS might find are simulated. The Sullivan et al. paper contains only one planet per system and therefore these results are matched together with Kepler data to obtain artificial systems. These systems are then simulated to obtain TTVs. The steps taken are listed below:
+	This paper uses results from \cite{2015ApJ...809...77S} where potential system which TESS might find are simulated. The Sullivan et al. paper only gives the parameters for one planet in each system and therefore these results are matched together with Kepler data to obtain artificial systems. These systems are then simulated to obtain TTVs. The steps taken are listed below:
 	
 \begin{enumerate}
 	\item For each planet in the Sullivan et al. catalogue a similar planet within 10\% in radius and period are found in the Kepler dataset.
@@ -164,7 +190,7 @@ This paper will simulate data from the TESS telescope to search for these transi
 
 \section{Simulation of TESS objects}
 \label{simTESS}
-	\cite{2015ApJ...809...77S} provides one planet per system, by combining data from Kepler obtained from the NASA Exoplanet Archive\footnote{\url{https://exoplanetarchive.ipac.caltech.edu/index.html}} and the results from Sullivan et al., TESS data are simulated. The planets are separated into two groups based on the effective temperature of their host star to prevent planets around cold stars to get "matched" with planets around hot stars. Planets around stars with an effective temperature below 4000 K are put into one group while planets around stars with effective temperature above 4000 K are put into another group.
+	\cite{2015ApJ...809...77S} provides one planet per system, by combining data from Kepler obtained from the Kepler dataset \footnote{\url{https://exoplanetarchive.ipac.caltech.edu/index.html}} and the results from Sullivan et al., TESS data are simulated. The planets are separated into two groups based on the effective temperature of their host star this is because Sullivan et al. uses different planet occurrence rates for stars below 4000 K than for stars above 4000 K. Planets around stars with an effective temperature below 4000 K are therefore put into one group while planets around stars with effective temperature above 4000 K are put into another group.
 	
 	For each planet in the Sullivan et al. catalogue, a similar planet, in radius and period, are selected from the NASA archive. The ratio of radius and period between the two planets are calculated and multiplied with the Sullivan planets radius and period. This results in that the two planets are identical in radius and period. These ratios are then applied to the rest of the planets in this selected Kepler system to create an artificial system of planets.  
 	
@@ -173,25 +199,25 @@ This paper will simulate data from the TESS telescope to search for these transi
 	\label{eq:mass_p_low}
 	M_p = M_{\oplus} \left[0.440 \left(\frac{R_p}{R_{\oplus}}\right)^3 + 0.614\left(\frac{R_p}{R_{\oplus}}\right)^4\right]
 	\end{equation}
-	for planets with $R_p < 1,5 \; \mathrm{R_{\oplus}}$ where $R_{\oplus}$ is the radius of Earth and $M_{\oplus}$ is the mass of Earth. For planets with $R_p \geq 1,5$ the equation changes to:
+	for planets with $R_p < 1.5 \; \mathrm{R_{\oplus}}$ where $R_{\oplus}$ is the radius of Earth and $M_{\oplus}$ is the mass of Earth. For planets with $R_p \geq 1.5$ the equation changes to:
 	\begin{equation}
 	\label{eq:mass_p_high}
 	M_p = 2.69 M_{\oplus}\left(\frac{R_p}{R_{\oplus}}\right)^{0,93}
 	\end{equation}
 	
-	When setting up the system the mean anomaly is required. This specifies the positions of all planet in a given system at a snapshot in time and is used as a starting point for the simulation. It is acquired from the number of transits and the orbital period of the planet by using a reference point specified when a planet is directly in front of the host star as seen from an observers point of view. This reference point corresponds to a mean anomaly of 90$^{\circ}$ at some time $T_i$, where $i$ is the number of the planet in the system. For a two planet system this means that $M_1=90^{\circ}$ at some time $T_1$ and $M_2=90^{\circ}$ at some time $T_2$. In order to calculate the mean anomaly at some time a time reference point is defined as $t=0$ and the goal is the calculate the mean anomaly of some planet $i$. This can be done by using the mean anomaly at $t = T_i$ and subtracting the number of degrees, $\xi$, the planet have traveled since then:
+	When setting up the system the mean anomaly is required. This specifies the positions of all planet in a given system at a snapshot in time and is used as a starting point for the simulation. It is acquired from the number of transits and the orbital period of the planet by using a reference point specified when a planet is directly in front of the host star as seen from an observers point of view. This reference point corresponds to a mean anomaly of 90$^{\circ} - \omega$, where $\omega$ is the argument of periapsis, at some time $T_i$, where $i$ is the number of the planet in the system. For a two planet system this means that $M_1=90^{\circ} - \omega$ at some time $T_1$ and $M_2=90^{\circ} - \omega$ at some time $T_2$. In order to calculate the mean anomaly at some time a time reference point is defined as $t=0$ and the goal is the calculate the mean anomaly of some planet $i$. This can be done by using the mean anomaly at $t = T_i$ and subtracting the number of degrees, $\xi$, the planet have traveled since then:
 \begin{equation}
 	M_i(t=0) = M_i(t=T_i) - \xi
 \end{equation}
-	$M_i(t=T_i) = 90^{\circ}$ and the number of degrees traveled is $360^{\circ}$ multiplied by the number of orbits since $t_0$:
+	$M_i(t=T_i) = 90^{\circ} - \omega$ and the number of degrees traveled is $360^{\circ}$ multiplied by the number of orbits since $t_0$:
 \begin{equation}
-	M_i(t=0) = 90 - 360 \frac{T_{epoch}}{P_i}
+	M_i(t=0) = 90 - 360 \frac{T_{epoch}}{P_i} - \omega
 \end{equation}
-	where $T_{epoch}$ is the transit epoch and $P_i$ is the period of the planet.
+	where $T_{epoch}$ is the transit epoch and $P_i$ is the period of the planet. The argument of periapsis is obtained from a uniform distribution where $0 < \omega < 360$. 
 	
-	TTVFast also requires inclination, eccentricity, longitude of the ascending node and argument of periapsis. These cannot be simply obtained and need to be assumed. For simplicity the inclination is assumed to be $90^{\circ}$ for all planets which results in the longitude of the ascending node to be 0. The eccentricity is obtained from a Rayleigh distribution with mode $\sigma = 0,03$ in order to not get eccentricities above 0.1 as that leads to unstable systems. The argument of periapsis is obtained from a uniform distribution where $0 < \omega < 360$. 
+	TTVFast also requires inclination, eccentricity and longitude of the ascending node These cannot be simply obtained and need to be assumed. For simplicity the inclination is assumed to be $90^{\circ}$ for all planets which results in the longitude of the ascending node to be 0. The eccentricity is obtained from a Rayleigh distribution with mode $\sigma = 0.03$ in order to not get eccentricities above 0.1 as that leads to unstable systems.  
 	
-	How long a system will be observed depends on where in the sky it is located. This time can be obtained from the Web TESS Target tool \footnote{\url{https://heasarc.gsfc.nasa.gov/cgi-bin/tess/webtess/wtm.py}} if the right ascension, RA, and declination, dec, are known. This tool accepts csv files with RA and dec of the systems and outputs the number of times TESS will observe that system. Currently it only works with systems in the southern hemisphere i.e with dec below 0. Because of this our systems in the northern hemisphere have their dec flipped and are such placed in the souther hemisphere when the data is uploaded to the TESS tool. The dec is then flipped back before the data is used. 
+	How long a system will be observed depends on where in the sky it is located. This time can be obtained from the Web TESS Target tool \footnote{\url{https://heasarc.gsfc.nasa.gov/cgi-bin/tess/webtess/wtm.py}} if the right ascension, RA, and declination, dec, are known. This tool accepts csv files with RA and dec of the systems and outputs the number of times TESS will observe that system. Currently it only works with systems in the southern hemisphere i.e with ecliptic latitude below 0. Because of this our systems in the northern hemisphere have their latitude flipped and are such placed in the souther hemisphere when the data is uploaded to the TESS tool. The latitude is then flipped back before the data is used. 
 	
 
 \section{TTVFast}
@@ -221,7 +247,7 @@ This paper will simulate data from the TESS telescope to search for these transi
 	\end{itemize}
 	With all these known the system can be simulated and the output are given as a number of times when a transit occurred and the number of the transiting planet.
 \section{Simulation of Ofir objects}
-	A paper written by \cite{2018ApJS..234....9O} used observed objects to obtain TTV signals. In order to determine the precision of the methods used in this paper, the systems observed by Ofir et al. are simulated by the same methods as in this paper for 4 years. The resulting amplitudes of the TTV signals are compared to those of the Ofir systems.
+	A paper written by \cite{2018ApJS..234....9O} used observed objects from the Kepler dataset to obtain TTV signals. In order to determine the precision of the methods used in this paper, the systems observed by Ofir et al. are simulated by the same methods as in this paper for 4 years. The resulting amplitudes of the TTV signals are compared to those of the Ofir systems.
 \section{Analyzing results from TTVFast}
 	When all systems have been simulated with TTVFast the data need to be analyzed to find the TTV signals. The transit times need to be corrected as TTVFast outputs the time that a transit occurs. This is done by fitting a linear fit to the times and subtracting this fit. In order to easier see the amplitude of the TTV signals the times are corrected by subtracting the average time from every value which moves the middle of the graph to $y=0$. In order to obtain the amplitude of the TTVs the average of the maximum and minimum transit time are calculated. This is used as the amplitude and the corrected transit times are plotted.
 	
@@ -233,7 +259,7 @@ This paper will simulate data from the TESS telescope to search for these transi
 	\begin{equation}
 		\sigma_t \approx \left[\left(\Gamma t_T\right)^{-1/2}  \left(\frac{R_p}{R_{\star}}\right)^{-3/2}\right] t_T
 	\end{equation}
-	where $\Gamma$ is the photon count rate of the observed star, $t_T$ is the transit duration, $R_p$ and $R_{\star}$ is the radius of the planet and star in solar radii. For Kepler the photon count is $\Gamma = 7.8 \times 10^8\; 10^{-4(V-14)} \; \mathrm{hr^{-1}}$ where $V$ is the apparent magnitude of the star. From \cite{2015ApJ...809...77S} the photon flux for TESS at magnitude $I_c=0$ is $\Phi \approx 1.4 \times 10^6 \; \mathrm{s^{-1} cm^{-2}}$ and $\Phi \approx 1.4 \times 10^6 \; 10^{-0.4I_c} \; \mathrm{s^{-1} cm^{-2}}$ when $I_c \neq 0$. The diameter of a camera on TESS is 100 mm which gives an area of $A_{camera} = \pi (50 \; \mathrm{mm})^2 = 7859.98 \; \mathrm{mm}^2 = 78.54 \; \mathrm{cm}^2$. The photon count is the photon flux multiplied with the area of the camera:
+	where $\Gamma$ is the photon count rate of the observed star, $t_T$ is the transit duration, $R_p$ and $R_{\star}$ is the radius of the planet and star in solar radii. For Kepler the photon count is $\Gamma = 7.8 \times 10^8\; 10^{-0.4(V-14)} \; \mathrm{hr^{-1}}$ where $V$ is the apparent magnitude of the star. From \cite{2015ApJ...809...77S} the photon flux for TESS at magnitude $I_c=0$ is $\Phi \approx 1.4 \times 10^6 \; \mathrm{s^{-1} cm^{-2}}$ and $\Phi \approx 1.4 \times 10^6 \; 10^{-0.4I_c} \; \mathrm{s^{-1} cm^{-2}}$ when $I_c \neq 0$. The diameter of a camera on TESS is 100 mm which gives an area of $A_{camera} = \pi (50 \; \mathrm{mm})^2 = 7859.98 \; \mathrm{mm}^2 = 78.54 \; \mathrm{cm}^2$. The photon count is the photon flux multiplied with the area of the camera:
 	\begin{equation}
 		\Gamma = \Phi A_{camera} = 1.4 \times 10^6\; 10^{-0.4I_c} \; \mathrm{s^{-1} cm^{-2}} \times 78.54 \; \mathrm{cm}^2 = 
 	\end{equation}
@@ -264,26 +290,6 @@ This paper will simulate data from the TESS telescope to search for these transi
 
 \chapter{Results}
 
-\iffalse 
-
-\begin{verbatim}
-
-       PROGRAM myfortran
-
-       IMPLICIT NONE
-
-       REAL*8 mag(20)
-       REAL flux(20)
-       INTEGER nstar
-
-       WRITE(*,*) "This program calculates a magnitude"
-       READ(*,*) flux(1)
-       mag(1)=-2.5*LOG(flux(1))
-
-\end{verbatim}
-
-\fi
-
 
 
 
@@ -292,7 +298,7 @@ This paper will simulate data from the TESS telescope to search for these transi
 
 \begin{figure}[h!]
  	 \centering
- 	 \includegraphics[width=\textwidth]{img/R_P-plot_numP1.png}
+ 	 \includegraphics[width=\textwidth]{img/R_P-plot_numP1.pdf}
  	  	 \caption{Radius distribution as a function of period for the simulated TESS objects where the colour and shape corresponds to the multiplicity of the system.}
  	  	 \label{fig:RP_plot_temp_multi}
 \end{figure}
@@ -301,7 +307,7 @@ This paper will simulate data from the TESS telescope to search for these transi
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{img/skymap_TESS_multi.png}
-	  \caption{Position of each observed objects in the ecliptic frame, colour-coded to show the number of times the object is observed.}	
+	  \caption{Position of each observed objects in the ecliptic frame, colour-coded to show the number of times the object is observed by TESS. The green region corresponds to the part of the sky that CHEOPS will be able to observe.}	
 	  \label{fig:skymap_TESS}	
 \end{figure}\newpage
 \section{Simulations of Ofir systems}
@@ -315,7 +321,7 @@ This paper will simulate data from the TESS telescope to search for these transi
 
 
 \section{TTV signals from TESS objects}
-	Figure \ref{fig:TTV1} shows an example of a TTV signal for a system at one of the ecliptic poles where the variation is clearly visible. The zero level corresponds to the average transit time in order to see the variations more clearly. The distribution of TTV amplitudes are found in figure \ref{fig:ampl_histo} where amplitudes below 1 minute are filtered out as otherwise they dominate the histogram. It is easy to see that low or no TTV signals dominate but there are some planets showing substantial TTV signals. The location in the sky of these objects are shown in figure \ref{fig:skymap_amp}. Many planets at the ecliptic poles show some form of TTV signal while many planets not in the poles show TTV signals they are generally weaker with a few exceptions. In the range that CHEOPS are able to observe about 1/4 of systems have a planet showing a detectable TTV signal.
+	Figure \ref{fig:TTV1} shows an example of a TTV signal for a system at one of the ecliptic poles where the variation is clearly visible. The zero level corresponds to the average transit time in order to see the variations more clearly. The distribution of TTV amplitudes are found in figure \ref{fig:ampl_histo} where amplitudes below 1 minute are filtered out as otherwise they dominate the histogram. It is easy to see that low or no TTV signals dominate but there are some planets showing substantial TTV signals. The location in the sky of these objects are shown in figure \ref{fig:skymap_amp}. Many planets at the ecliptic poles show some form of TTV signal while many planets not in the poles show TTV signals they are generally weaker with a few exceptions. In the range that CHEOPS are able to observe about 1/4 of systems have a planet showing a detectable TTV signal where the amplitude is higher than the error estimation.
 \begin{figure}[h]
  	 \centering
 	  \includegraphics[width=\textwidth]{img/232_1.png}
@@ -339,11 +345,11 @@ This paper will simulate data from the TESS telescope to search for these transi
 \begin{figure}
  	 \centering
 	  \includegraphics[width=\textwidth]{img/ampErrorLog.png}
-	  \caption{Amplitude of the TTV signal as a function of the error where y=x is marked with a black line.}
+	  \caption{Amplitude of the TTV signal plotted against the error where y=x is marked with a black line.}
 	 \label{fig:amp_error}
 \end{figure}
 \section{Stability simulations}
-	Figure \ref{fig:stability_sim} shows two examples of the results from the stability simulations. For all stability tested systems most  have not shown any instability within $10^5 / 10^6$ years. A few systems did eject a planet which  probably is the result of an close encounter. These systems were then re-simulated using IAS15 which showed that they were in fact stable and the ejection was a result from WHFast not being able to handle the close encounters. It can be noted that all of the planets are very close to the host star. This is a result from how the semi-major axis is calculated, as most planets in this paper have a short period the semi-major axis is small which results in very closely packed systems.
+	Figure \ref{fig:stability_sim} shows two examples of the results from the stability simulations. For all stability tested systems most  have not shown any instability within $10^5 / 10^6$ years. The systems were chosen from the separation obtained from the Hill radius where a lower separation means a higher chance of instability. Each system is simulated for 10 million orbits of the planet with the highest period. This creates a situation where most systems are simulated for $10^5$ to $10^6$ years. A few systems did eject a planet which  probably is the result of an close encounter. These systems were then re-simulated using IAS15 which showed that they were in fact stable and the ejection was a result from WHFast not being able to handle the close encounters. It can be noted that all of the planets are very close to the host star. This is a result from how the semi-major axis is calculated, as most planets in this paper have a short period the semi-major axis is small which results in very closely packed systems.
 
 \begin{figure}
 \centering
@@ -393,20 +399,22 @@ Id of star & I &  V & Var.? \\
 	
 	Even though these results show that CHEOPS might be able to find a planet showing TTV signals in every fourth system the real number is probably lower. An approximation used in this paper is that the inclination is $90^{\circ}$ for all planets. This creates systems where all planets are transiting which is not the case for real systems. There are many cases where none of the planets around a star are transiting and the planet that might transit might not show any TTV signal while other planets around the star might do.
 	
-	Using WHFast, most systems tested for stability show no sign of instability within $10^5 / 10^6$ years. The few that do are simulated using IAS15 where they are shown to be stable and the instability from WHFast can be considered an affect of WHFast's inability to handle close encounters.
+	Using WHFast, most systems tested for stability show no sign of instability within $10^5 / 10^6$ years. The few that do are simulated using IAS15 where they are shown to be stable and the instability from WHFast can be considered an effect of WHFast's inability to handle close encounters.
 	
 	The error calculations seem to give reasonable results. As seen in figure \ref{fig:amp_error} many systems shows a TTV amplitude higher than the error but many systems shows a TTV amplitude lower than the error, for these systems no conclusion can be made as the signal could be true but it might as well be noise.
 \chapter{Conclusions}
-	This paper simulated TESS objects using data from the NASA exoplanet archive and results from the paper by \cite{2015ApJ...809...77S} on a search to find TTV signals caused by multiple planets in the systems. The results can be seen below:
+	This paper simulated TESS objects using data from the Kepler dataset and results from the paper by \cite{2015ApJ...809...77S} on a search to find TTV signals caused by multiple planets in the systems. The results can be seen below:
 	\begin{itemize}
-		\item Most of the systems showing TTV signals are positioned at the ecliptic poles. This comes from the fact that TESS have continuous coverage of the poles during the year which increases the chance to see TTVs.
-		\item In the range where CHEOPS are able to observe about 1/4 of every system will have a planet showing a detectable TTV signal.
+		\item Most of the systems showing TTV signals are positioned at the ecliptic poles. This comes from the fact that TESS has continuous coverage of the poles during the year which increases the chance to see TTVs.
+		\item In the range where CHEOPS is able to observe about 1/4 of every system will have a planet showing a detectable TTV signal.
 	\end{itemize}
 
 \section*{Acknowledgements}
+This research has made use of the Kepler dataset, which is operated by the California Institute of Technology, under contract with the National Aeronautics and Space Administration under the Exoplanet Exploration Program. \vspace{0.5cm}\\
+This research made use of Astropy, a community-developed core Python package for Astronomy (Astropy Collaboration, 2013).\vspace{0.5cm}\\
+Simulations in this paper made use of the REBOUND code which can be downloaded freely at \url{http://github.com/hannorein/rebound}.
 
-Simulations in this paper made use of the REBOUND code which can be downloaded freely at \url{http://github.com/hannorein/rebound}.\vspace{0.5cm}\\
-This research made use of Astropy, a community-developed core Python package for Astronomy (Astropy Collaboration, 2013).
+
 
 %\bibliographystyle{natbib}
 %\begin{thebibliography}{99}
@@ -421,12 +429,998 @@ This research made use of Astropy, a community-developed core Python package for
 
 \begin{appendix}
 
-\chapter{This is an appendix}
-\label{ap:input_code}
-You can put long mathematical derivations or tables in appendices.
+\chapter{Bash script to run the components}
+\begin{lstlisting}[language=Bash]
+#!/bin/bash
+#Bash script to generate files in the correct format for TTVFast, run TTVFast and plot the results
 
-\chapter{This is another appendix}
+#Remove input and output files from when program ran last time
+rm -r ./TTVFast/c_version/input
+rm ./TTVFast/c_version/numberPlanets.csv
+rm ./code/timingErrors.csv
+rm  -r ./code/times/*
+rm ./code/transAmpl.csv
+rm ./code/numberPlanets.csv
+rm ./code/ampError.txt
+rm ./code/RA_dec_sys.csv
+rm ./code/RA_dec_p.csv
 
+
+
+#Run code to generate data in supported format for TTVFast
+cd code
+python inputTTV.py
+cd ..
+
+#Move input data to TTVFast directory
+mv ./code/input ./TTVFast/c_version
+cp ./code/numberPlanets.csv ./TTVFast/c_version
+cp ./code/wtm-TESSTime.csv ./TTVFast/c_version
+cp ./code/eccenOmeg.csv ./TTVFast/c_version
+
+cd TTVFast/c_version
+
+#Run TTVFast by creating a setup file for every system and rename the output file to the number of the system
+readarray -t numPlanet < <(cut -d, -f2 numberPlanets.csv)
+awk -F "\"*,\"*" '{$3=$3*27; if(NR>1)print $3}' wtm-TESSTime.csv > maxTime.csv
+awk -F "\"*,\"*" '{$3=$3*27;if(NR>1)print $4}' wtm-TESSTime.csv > minTime.csv
+awk -F "\"*,\"*" '{$3=$3*27;if(NR>1)print $5}' wtm-TESSTime.csv > avgTime.csv
+readarray -t maxTime < <(cut -d, -f2 maxTime.csv)
+readarray -t minTime < <(cut -d, -f2 minTime.csv)
+readarray -t avgTime < <(cut -d, -f2 avgTime.csv)
+
+
+
+number=0
+for file1 in `ls input/*.in | sort --version-sort`;
+do
+	readarray -t data < <(cut -f2 $file1)
+	period=$(echo ${data[3]} | awk '{$1=$1/20; print $1;}')
+	echo -e "$file1\n0\n$period\n${maxTime[$number]}\n${numPlanet[$number]}\n0" > setup_file.txt;  		#${maxTime[$number]}
+	./run_TTVFast setup_file.txt Times RV_file RV_out;
+	mv Times output;
+	mv ./output/Times output/$file1;
+	number=$((number+1));
+	#~ read -p "Press key to continue.. " -n1 -s
+done
+
+#Move output data from TTVFast to code directory for plotting
+cd ../..
+mv TTVFast/c_version/output/input/*.in code/times/
+
+#~ #Run python script to read data generated by TTVFast and plot it
+cd code
+count=0
+for file2 in `ls times/*.in | sort --version-sort`;
+do
+	echo $file2
+	python transits.py $file2 $count
+	count=$((count+1))
+done
+
+python finalPlots.py
+\end{lstlisting}
+\chapter{Python script to create the artificial systems}
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import matplotlib as mp
+from matplotlib  import cm
+import matplotlib.lines as mlines
+
+effTemp = []		# effective temperature
+sRad = [] 			# stellar radius
+vMag = []			# V-band magnitude (all magnitudes are apparent magnitude)
+ICMag = []			# I_C magnitude
+jMag = []			# J-band magnitude
+KSMag = []			# K_S magnitude
+periodSul = []		# period from Sullivan catalogue
+rPlanetSul = []		# planet radius from Sullivan catalogue
+periodTESS = []		# period calculated from Kepler and Sullivan data
+rPlanetTESS = []	# planet radius calculated from Kepler and Sullivan data
+kepID = []			# Kepler ID of planets
+RA = []				# Right ascension
+dec = []			# Declination
+eRay = []			# Eccentricity (Rayleigh distribution)
+omegaUni = []		# Omega (uniform distribution)
+numP = []			# Number of planets
+pNum = 0			# Planetary number
+maxR = 0
+
+
+#Read in data from Sullivan et al. paper
+data = pd.read_table('sullivan_table.txt', delim_whitespace=True, names=('RA', 'Dec', 'Rp', 'P', 'P insu', 'Rad v', 'Rs', 'Teff', 'Vmag', 'ICmag', 'Jmag', 'KSmag', 'Dmod', 'Dil p', 'devi flux', 'Sig-noi', 'NumPl'))
+
+effTempSul = data['Teff']
+sRad = data['Rs']
+vMag = data['Vmag']
+ICMag = data['ICmag']
+jMag = data['Jmag']
+KSMag = data['KSmag']
+periodSul = data['P']
+rPlanetSul = data['Rp']
+RA = data['RA']
+dec = data['Dec']
+
+#Set range for limits when matching planets
+periodRange = 0.05		# ratio of period range
+radiusRange = 0.05		# ratio of radius range
+
+#Read in data for Kepler dataset
+with open('nasaDATA.csv','r') as inputFile: # read in data from csv file to respective arrays
+	data = inputFile.readlines()[46:]
+	kepID = [k.split(',')[1] for k in data]
+	periodKep = [k.split(',')[5] for k in data]
+	rPlanetKep = [k.split(',')[20] for k in data]
+	name = [k.split(',')[2] for k in data]
+	mStar = [k.split(',')[32] for k in data]
+	numEpoch = [k.split(',')[8] for k in data]
+	kepMag = [k.split(',')[37] for k in data]
+	transitDur = [k.split(',')[14] for k in data]
+	rStar = [k.split(',')[29] for k in data]
+	effTempKep = [k.split(',')[26] for k in data]
+	
+	
+pTESS = 0
+rTESS = 0
+count1 = 0
+count2 = 0
+
+#Create file to write data for artificial systems
+outputFile = open('TESSData.csv', 'w')
+for i in range(len(periodSul)): 		
+	for k in range(len(periodKep)):
+		if rPlanetKep[k]:
+		#The program will search through the Kepler data until it finds a planet within the period and radius limits and in the correct effective temperature group.
+			if effTempKep[k] > 4000:		
+				if periodSul[i] - periodRange*periodSul[i] <= float(periodKep[k]) <= periodSul[i] + periodRange*periodSul[i] and rPlanetSul[i] - radiusRange*rPlanetSul[i] <= float(rPlanetKep[k]) <= rPlanetSul[i] + radiusRange*rPlanetSul[i] and effTempSul[i] > 4000:
+					#As a match is found the ratio of the period and radius  are calculated
+					ratioP = float(periodKep[k]) / periodSul[i]	
+					ratioR = float(rPlanetKep[k]) / rPlanetSul[i]
+					j = k
+					count1 = 0
+					count2 = 0
+					countP = 0
+
+					while kepID[j] == kepID[j+1]:
+					#The program will continue to add planets to this system as long as the Kepler ID is the same as the next ID in the list.
+						if name[k][-2:] != '01' and count1 == 0:
+						#If the number of the planet is not 1 but it is the first planet in the system then the Sullivan data did not include the first planets. These are included here.
+							pNum = int(name[k][-2:])
+							for l in range(1,pNum):
+								#The period and radius of the Kepler planets are multiplied with the ratio of period and radius to create the artificial systems.
+								pTESS = float(periodKep[k-l])*ratioP
+								rTESS = float(rPlanetKep[k-l])*ratioR
+								periodTESS.append(float(periodKep[k-l])/ratioP)
+								rPlanetTESS.append(float(rPlanetKep[k-l])/ratioR)
+								effTemp.append(float(effTempKep[k-l]))
+								outputFile.write(name[k-l] + ',' +  kepID[k-l] + ',' + str(pTESS) + ',' + str(rTESS) + ',' + mStar[k-l] + ',' + numEpoch[k-l] + ','  + transitDur[k-l] + ',' + rStar[k-l] + ',' + str(RA[i]) + ',' + str(dec[i]) + ',' + effTempKep[k] + ',' + str(effTempSul[i]) + ',' + str(ICMag[i]) + '\n')
+								countP = l
+								
+						#The period and radius of the Kepler planets are multiplied with the ratio of period and radius to create the artificial systems.
+						pTESS = float(periodKep[k+count1])*ratioP
+						rTESS = float(rPlanetKep[k+count1])*ratioR
+						periodTESS.append(pTESS)
+						rPlanetTESS.append(rTESS)
+						effTemp.append(float(effTempKep[k]))
+							
+						if i + count1  >= len(RA):
+							break
+							
+						j += 1		
+						
+						outputFile.write(name[k+count1] + ',' +  kepID[k+count1] + ',' + str(pTESS) + ',' + str(rTESS) + ',' + mStar[k+count1] + ',' + numEpoch[k+count1] + ','  + transitDur[k+count1] + ',' + rStar[k+count1] + ',' + str(RA[i]) + ',' + str(dec[i]) + ',' + effTempKep[k] + ',' + str(effTempSul[i]) + ',' + str(ICMag[i]) + '\n')
+						if kepID[j] != kepID[j+1]:
+							for n in range(0,int(count1) + 1 + int(countP)):
+								numP.append(int(count1) + 1 + int(countP))
+
+							maxR = rTESS
+							
+							
+						count1 += 1
+						
+						
+							
+					#As a match is found the program breaks and starts with the next planet in the Sullivan list.
+					break
+			elif effTempKep[k] <= 4000:
+				#This is the same as above but for starts below 4000 K.
+				if periodSul[i] - periodRange*periodSul[i] <= float(periodKep[k]) <= periodSul[i] + periodRange*periodSul[i] and rPlanetSul[i] - radiusRange*rPlanetSul[i] <= float(rPlanetKep[k]) <= rPlanetSul[i] + radiusRange*rPlanetSul[i] and effTempSul[i] < 4000:
+					ratioP = float(periodKep[k]) / periodSul[i]	
+					ratioR = float(rPlanetKep[k]) / rPlanetSul[i]
+					j = k
+					count1 = 0
+					count2 = 0
+					countP = 0
+					
+					while kepID[j] == kepID[j+1]:
+						if name[k][-2:] != '01' and count1 == 0:
+							pNum = int(name[k][-2:])
+							for l in range(1,pNum):
+								pTESS = float(periodKep[k-l])*ratioP
+								rTESS = float(rPlanetKep[k-l])*ratioR	
+								periodTESS.append(float(periodKep[k-l])/ratioP)
+								rPlanetTESS.append(float(rPlanetKep[k-l])/ratioR)
+								effTemp.append(float(effTempKep[k]))
+								outputFile.write(name[k-l] + ' ' +  kepID[k-l] + ' ' + str(pTESS) + ' ' + str(rTESS) + ' ' + mStar[k-l] + ' ' + numEpoch[k-l] + ' '  + transitDur[k-l] + ' ' + rStar[k-l] + ' ' + str(RA[i+count1]) + ' ' + str(dec[i+count1]) + ' ' + effTempKep[k+count1] + ' ' + str(effTempSul[i+count1]) + ' ' + str(ICMag[i+count1]) + '\n')
+								countP = l
+								
+						pTESS = float(periodKep[k+count1])*ratioP
+						rTESS = float(rPlanetKep[k+count1])*ratioR
+						periodTESS.append(pTESS)
+						rPlanetTESS.append(rTESS)
+						effTemp.append(float(effTempKep[k]))
+							
+						if i + count1  >= len(RA):
+							break
+							
+						j += 1		
+						
+						outputFile.write(name[k+count1] + ' ' +  kepID[k+count1] + ' ' + str(pTESS) + ' ' + str(rTESS) + ' ' + mStar[k+count1] + ' ' + numEpoch[k+count1] + ' '  + transitDur[k+count1] + ' ' + rStar[k+count1] + ' ' + str(RA[i+count1]) + ' ' + str(dec[i+count1]) + ' ' + effTempKep[k+count1] + ' ' + str(effTempSul[i+count1]) + ' ' + str(ICMag[i+count1]) + '\n')
+						if kepID[j] != kepID[j+1]:
+							for n in range(0,int(count1) + 1 + int(countP)):
+								numP.append(int(count1) + 1 + int(countP))
+
+								
+								
+
+							maxR = rTESS
+						count1 += 1
+
+						
+						
+		
+					break
+outputFile.close()
+
+#Setup for plots					
+periodTESS = np.log10(periodTESS)
+rPlanetTESS = np.log10(rPlanetTESS)	
+markers = ['.', 'o', '^', 's', 'p', 'h']
+colors = ['black', 'blue', 'red', 'green', 'm', 'brown']
+
+#Plot the Radius-Period plot with marker shape and colour corresponding to the multiplicity of the system.
+for i in range(len(periodTESS)):
+	if numP[i] != 1:
+		markNum = (int(numP[i]) - 1)
+		plt.scatter(periodTESS[i],rPlanetTESS[i], c = colors[markNum], marker=markers[markNum], edgecolor='black', label=numP, alpha=0.6)
+plt.ylim(-0.3,1.25)
+
+
+blue_circle = mlines.Line2D([], [], color='blue', marker='o', linestyle='None',
+                          markersize=10, label='2')
+red_triangle = mlines.Line2D([], [], color='red', marker='^', linestyle='None',
+                          markersize=10, label='3')
+green_square = mlines.Line2D([], [], color='green', marker='s', linestyle='None',
+                          markersize=10, label='4')
+m_pentagon = mlines.Line2D([], [], color='m', marker='p', linestyle='None',
+                          markersize=10, label='5')
+purple_hexagon = mlines.Line2D([], [], color='brown', marker='h', linestyle='None',
+                          markersize=10, label='6')
+                          
+plt.legend(handles=[blue_circle, red_triangle, green_square, m_pentagon, purple_hexagon] ,loc='upper center', bbox_to_anchor=(0.5, 1.15),
+          ncol=3, fancybox=True, shadow=True, title="Number of Planets")
+plt.ylabel('log$_{10}$[Planet radius (R$_{\oplus}$)]', fontsize=12)
+plt.xlabel('log$_{10}$[Period (days)]', fontsize=12)
+plt.savefig('plots/R_P-plot_numP1.pdf')
+plt.clf()
+\end{lstlisting}
+\chapter{Python script to split the systems into separate files}
+\begin{lstlisting}[language=Python]
+import numpy as np
+import csv
+import os
+import matplotlib.pyplot as plt
+import pathlib2
+import pandas as pd
+from fractions import Fraction  
+import math
+
+G = 0.000295994511
+inputFile = []
+data = []
+name = [] 		# KOI name of planet
+kepID = [] 		# kepler ID of planet
+mStar = [] 		# mass of host star
+mPlanet = [] 	# mass of planet
+period = []		# period of planet
+rPlanet = []	# radius of planet
+numEpoch = []	# number of epochs
+eccentricity = 0	# eccentricity of planet
+inclination = 90	# icnlination of planet
+lNode = 0			# long node of planet
+argument = 0		# argument of planet
+meanAnom = []		# mean anomaly of planet
+count = 0			# counter for number of planets
+kepMag = []			# Kepler magnitude of star
+transitDur = []		# Duration of transit
+rStar = []			# Radius of star
+RA = []				# Right ascension of system
+dec = []			# Declination of system
+ofirName = []		# Kepler name of planet from Ofir data
+ofirID = []			# Kepler ID of planet from Ofir data
+ofirPeriod = []		# Period of planet from Ofir data
+ofirRPlanet = []	# Radius of planet from Ofir data
+ofirMStar = []		# Stellar mass from Ofir data
+ofirEpoch = []		# Epoch of planet from Ofir data
+ofirDur = []		# Transit Duration of planet from Ofir data
+ofirRStar = []		# Stellar radii from Ofir data
+ofirRA = []			# Right ascension of system from Ofir data
+ofirDec = []		# Declination of system from Ofir data
+ofirEffTemp = []	# Stellar effective temperature from Ofir data
+ofirKepMag = []		# Magnitude of star from Ofir data
+sumMass = []		# Sum of mass of the planets in a system
+sysmPlanet = []		# Mass of planets in a system
+sysPeriod = []		# Periods of planets in a system
+sysEccentricty = []	# Eccentricity of planets in a system
+sysInclination = []	# Inclination of planets in a system
+syslNode = []		# Longitude of the ascending node planets in a system
+sysArg = []			# Argument of periapsis in a system
+sysMeanAnom = []	# Mean anomaly of planets in a system
+
+
+
+##Either the TessData.csv or the nasa_ofir.csv and ofir_table.txt is used. They are not used together	
+	
+#Read in data from created systems
+with open('TESSData.csv','r') as inputFile: 
+	data = inputFile.readlines()
+	name = [k.split(',')[0] for k in data]
+	kepID = [k.split(',')[1] for k in data]
+	period = [k.split(',')[2] for k in data]
+	rPlanet = [k.split(',')[3] for k in data]
+	mStar = [k.split(',')[4] for k in data]
+	numEpoch = [k.split(',')[5] for k in data]
+	transitDur = [k.split(',')[6] for k in data]
+	rStar = [k.split(',')[7] for k in data]
+	RA = [k.split(',')[8] for k in data]
+	dec = [k.split(',')[9] for k in data]
+	effTemp = [k.split(',')[10] for k in data]
+	kepMag = [k.split(',')[12] for k in data]
+	
+# Read in data from Kepler dataset
+#~ with open('nasa_ofir.csv','r') as inputFile: 
+	#~ data = inputFile.readlines()[46	:]
+	#~ name = [k.split(',')[2] for k in data]
+	#~ kepID = [k.split(',')[1] for k in data]
+	#~ period = [k.split(',')[5] for k in data]
+	#~ rPlanet = [k.split(',')[20] for k in data]
+	#~ mStar = [k.split(',')[32] for k in data]
+	#~ numEpoch = [k.split(',')[8] for k in data]
+	#~ transitDur = [k.split(',')[15] for k in data]
+	#~ rStar = [k.split(',')[29] for k in data]
+	#~ RA = [k.split(',')[35] for k in data]
+	#~ dec = [k.split(',')[36] for k in data]
+	#~ effTemp = [k.split(',')[24] for k in data]
+	#~ kepMag = [k.split(',')[37] for k in data]
+	
+# Read in data from Ofir dataset
+#~ data = pd.read_table('ofir_table.txt', sep=';', skiprows=34, names=('KOI_num', 'newDetFlag', 'TTVfre', 'TTV+uncer', 'TTV-uncer', 'TTV_per', 'Delta_chi', 'chi_area', 'chi_single', 'chi_RMS', 'cho_correl', 'TTV_amp', 'TTV_amp+_uncer', 'TTV_amp-_uncer', 'TTV_ref', 'TTV_ref+_uncer', 'TTV_ref-_uncer', 'cofid', 'STD_error', '20', '21', '22', '23', '24'))
+#~ name_ofir = data['KOI_num']
+#~ print name_ofir[8], name_ofir[9]
+#~ noCount = 0
+
+# Match Ofir and Kepler datasets to pick out the systems Ofir et al. used in their simulations.
+#~ for n in range(len(name_ofir)):
+	#~ for m in range(len(name)):
+		#~ if str(name_ofir[n]) == str(name[m][-len(str(name_ofir[n])):]):
+			#~ if str(name[m][-2:]) != '01' and kepID[m] != kepID[m-1]:
+				#~ for l in range(0,int(name[m][-2:])):
+					#~ ofirName.append(name[m-l])
+					#~ ofirID.append(kepID[m-l])
+					#~ ofirPeriod.append(period[m-l])
+					#~ ofirRPlanet.append(rPlanet[m-l])
+					#~ ofirMStar.append(mStar[m-l])
+					#~ ofirEpoch.append(numEpoch[m-l])
+					#~ ofirDur.append(transitDur[m-l])
+					#~ ofirRStar.append(rStar[m-l])
+					#~ ofirRA.append(RA[m-l])
+					#~ ofirDec.append(dec[m-l])
+					#~ ofirEffTemp.append(effTemp[m-l])
+					#~ ofirKepMag.append(kepMag[m-l])
+				#~ break
+					
+			#~ else:
+
+				#~ ofirName.append(name[m])
+				#~ ofirID.append(kepID[m])
+				#~ ofirPeriod.append(period[m])
+				#~ ofirRPlanet.append(rPlanet[m])
+				#~ ofirMStar.append(mStar[m])
+				#~ ofirEpoch.append(numEpoch[m])
+				#~ ofirDur.append(transitDur[m])
+				#~ ofirRStar.append(rStar[m])
+				#~ ofirRA.append(RA[m])
+				#~ ofirDec.append(dec[m])
+				#~ ofirEffTemp.append(effTemp[m])
+				#~ ofirKepMag.append(kepMag[m])
+				#~ break
+		#~ if m == len(name)-1:
+			#~ print "no match: ", name_ofir[n]
+			#~ noCount += 1
+
+
+
+#~ name = ofirName
+#~ kepID = ofirID
+#~ period = ofirPeriod
+#~ rPlanet = ofirRPlanet
+#~ mStar = ofirMStar
+#~ numEpoch = ofirEpoch
+#~ transitDur = ofirDur
+#~ rStar = ofirRStar
+#~ RA = ofirRA
+#~ dec = ofirDec
+#~ effTemp = ofirEffTemp
+#~ kepMag = ofirKepMag
+
+
+
+
+
+# Convert planet radius to mass
+for i in range(len(rPlanet)):
+	if not rPlanet[i]:
+		rPlanet[i] = 0
+	else:
+		rPlanet[i] = float(rPlanet[i]) 	
+											
+	#Calculate mass of planet for planets with mass below 1.5 earth masses
+	if rPlanet[i] < 1.5: 													
+		mPlanet.append(0.440*(rPlanet[i]**3) + 0.614*(rPlanet[i]**4))
+		
+	# Calculate mass of planet for planets with mass below 1.5 earth masses
+	else:																	
+		mPlanet.append(2.69*(rPlanet[i]**0.93))
+
+	mPlanet[i] = mPlanet[i]*0.000002988 									
+
+# Create directory 'input' if it does not exist
+pathlib2.Path('./input/').mkdir(parents=True, exist_ok=True)				
+
+# Flip northern hemisphere objects to souther hemisphere.
+#~ for i in range(len(dec)):
+	#~ if float(dec[i]) > 0:
+		#~ dec[i] = float(dec[i]) * -1
+		#~ dec[i] = str(dec[i])
+		#~ RA[i] = float(RA[i]) * -1
+		#~ RA[i] = str(RA[i])
+
+# open output files to write data for TTVFast
+systemCount = 0	
+outputFile = open('input/%s.in' % systemCount, 'w')
+outNumP = open('numberPlanets.csv', 'w')
+outErrorFile = open('timingErrors.csv', 'w')
+outTESSTime = open('TESSTime.csv', 'w')
+outStabSim = open('stabSim.csv', 'w')
+outRAdec = open('RA_dec_sys.csv', 'w')
+outputFile.write(repr(G) + '\n' + mStar[0] + '\n')
+
+
+totalPlanets = 0
+semiMajor = 0
+rHill = 0
+sumMass = []
+semiMajorList = []
+semiMajorNe = 0
+dif = []
+posMin = 0
+
+# Write to output files in the format required for TTVFast
+for i in range(len(mPlanet)): 			
+	argument = np.random.uniform(0,360)
+	meanAnom.append(90 - 360 * (float(numEpoch[i]) / float(period[i])) - argument)		# calculate mean anomaly of planet with reference to transit of first planet
+	while meanAnom[i] > 360:
+		meanAnom[i] = meanAnom[i] - 360 									# if angle of mean anomaly is above 360 degrees, subtract 360 until it is in the range 0 to 360 degrees
+		if meanAnom[i] == 360:
+			meanAnom[i] = 0
+				
+	while meanAnom[i] < 0:													# if angle of mean anomaly is below 360 degrees, add 360 until it is in the range 0 to 360
+		meanAnom[i] = meanAnom[i] + 360
+		if meanAnom[i] == 360:
+			meanAnom[i] = 0
+			
+	if not rPlanet[i]:
+		continue
+
+	# write data for TTVFast
+	#~ outputFile.write(repr(mPlanet[i]) + '\n' + period[i] + ' ' + str(np.random.rayleigh(0.03)) + ' ' + repr(inclination) + ' ' + repr(lNode) + '  ' + str(np.random.uniform(0,360)) + ' ' + repr(meanAnom[i]) + '\n') 
+	sysmPlanet.append(mPlanet[i])
+	sysPeriod.append(float(period[i]))
+	sysEccentricty.append(np.random.rayleigh(0.03))
+	sysInclination.append(inclination)
+	syslNode.append(lNode)
+	sysArg.append(argument)
+	sysMeanAnom.append(meanAnom[i])
+	count += 1			# counter for number of planets for each system
+	
+	if i == len(mPlanet)-1: 	# for last element
+		if count == 1:			# if number of planets is one the file is removed
+			os.remove('input/%s.in' % systemCount)
+			outputFile.close()	
+	
+		elif count != 1: 		# if number of planets is not 1 the rest of the data is saved and a new file is created
+			outNumP.write(repr(count) + '\n')
+			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			
+			
+			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		
+			outErrorFile.write(repr(errorTiming*60) + '\n') 		
+			
+			for n in range(0,count):
+				outNumP.write(repr(count) + '\n')
+				S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			
+				errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		
+				outErrorFile.write(repr(errorTiming*60) + '\n') 		
+				
+				# Write information about each planet in the system
+				for n in range(0,count):
+					outTESSTime.write(RA[i] + ',' + dec[i] + '\n')
+					semiMajor = ((float(period[i-n])**2 * G * float(mStar[i]))/(4 * math.pi**2))**Fraction('1/3')
+					semiMajorList.append(semiMajor)
+					sumMass.append(mPlanet[i-n])
+					posMin = sysPeriod.index(np.amin(sysPeriod))
+					outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
+					sysPeriod[posMin] = 1000000
+				semiMajorList = sorted(semiMajorList, key=float, reverse=False)
+				
+				rHill = (semiMajorList[0] + semiMajorList[1])/2 * ((sumMass[0] + sumMass[1])/(3*float(mStar[i]))**Fraction('1/3'))
+				dif.append((semiMajorList[1] - semiMajorList[0])/rHill)
+				outStabSim.write(str(rHill) + ',' + str(systemCount) +  '\n')
+				
+				totalPlanets += count	
+				outputFile.close()
+				outRAdec.write(RA[i] + ',' + dec[i] + '\n')
+				break
+
+			
+
+	elif kepID[i] != kepID[i+1]:		# if ID is not the same as ID of next planet a new file is created for new system
+		if count == 1:					# if number of planets is one the file is removed
+			os.remove('input/%s.in' % systemCount)
+			outputFile.close()
+
+			# begin on new file
+			systemCount += 1
+			outputFile = open('input/%s.in' % systemCount, 'w')
+			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
+			count = 0
+			semiMajorList = []
+			sysmPlanet = []
+			sysPeriod = []
+			sysEccentricty = []
+			sysInclination = []
+			syslNode = []
+			sysArg = []
+			sysMeanAnom = []
+			
+			
+			
+		elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
+			outNumP.write(repr(count) + '\n')
+			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			
+			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# timing precision in hours
+			outErrorFile.write(repr(errorTiming*60) + '\n') 	
+			for n in range(0,count):
+				outTESSTime.write(RA[i] + ',' + dec[i] + '\n')
+				semiMajor = ((float(period[i-n])**2 * G * float(mStar[i]))/(4 * math.pi**2))**Fraction('1/3')
+				semiMajorList.append(semiMajor)
+				sumMass.append(mPlanet[i-n])	
+				posMin = sysPeriod.index(np.amin(sysPeriod))
+				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
+				sysPeriod[posMin] = 1000000
+			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
+			
+			rHill = (semiMajorList[0] + semiMajorList[1])/2 * ((sumMass[0] + sumMass[1])/(3*float(mStar[i]))**Fraction('1/3'))
+			dif.append((semiMajorList[1] - semiMajorList[0])/rHill)
+			outStabSim.write(str(rHill) + ',' + str(systemCount) +  '\n')
+			
+			totalPlanets += count	
+			count = 0
+			sumMass = []
+			semiMajor = 0
+			rHill = 0
+			systemCount += 1
+			semiMajorList = []
+			sysmPlanet = []
+			sysPeriod = []
+			sysEccentricty = []
+			sysInclination = []
+			syslNode = []
+			sysArg = []
+			sysMeanAnom = []
+			
+			outputFile.close()
+			outputFile = open('input/%s.in' % systemCount, 'w')
+			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')	
+			outRAdec.write(RA[i] + ',' + dec[i] + '\n')
+			
+			
+	elif kepID[i] == kepID[i+1] and int(str(name[i])[-2:]) > int(str(name[i+1])[-2:]):
+		if count == 1:					# if number of planets is 1 the file is removed
+			os.remove('input/%s.in' % systemCount)
+			outputFile.close()
+			systemCount += 1
+			outputFile = open('input/%s.in' % systemCount, 'w')
+			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
+			count = 0
+
+			
+			
+		elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
+			outNumP.write(repr(count) + '\n')
+			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			
+			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		
+			outErrorFile.write(repr(errorTiming*60) + '\n') 		
+			
+			for n in range(0,count):
+				outTESSTime.write(RA[i] + ',' + dec[i] + '\n')
+				semiMajor = ((float(period[i-n])**2 * G * float(mStar[i]))/(4 * math.pi**2))**Fraction('1/3')
+				semiMajorList.append(semiMajor)
+				sumMass.append(mPlanet[i-n])
+				posMin = sysPeriod.index(np.amin(sysPeriod))
+				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
+				sysPeriod[posMin] = 1000000
+			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
+			
+			rHill = (semiMajorList[0] + semiMajorList[1])/2 * ((sumMass[0] + sumMass[1])/(3*float(mStar[i]))**Fraction('1/3'))
+			dif.append((semiMajorList[1] - semiMajorList[0])/rHill)
+			outStabSim.write(str(rHill) + ',' + str(systemCount) +  '\n')
+			
+			totalPlanets += count	
+			count = 0
+			sumMass = []
+			semiMajor = 0
+			rHill = 0
+			systemCount += 1
+			semiMajorList = []
+			sysmPlanet = []
+			sysPeriod = []
+			sysEccentricty = []
+			sysInclination = []
+			syslNode = []
+			sysArg = []
+			sysMeanAnom = []
+			
+			outputFile.close()
+			outputFile = open('input/%s.in' % systemCount, 'w')
+			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')	
+			outRAdec.write(RA[i] + ',' + dec[i] + '\n')
+			
+print totalPlanets			
+outDif = open('dif_table.csv', 'w')
+for l in range(len(dif)):
+	outDif.write(str(dif[l]) + ',' + str(l) + ',' + '\n')
+	
+outDif.close()	
+		
+dif = sorted(dif, key=float, reverse=True)
+
+outDif = open('dif_table_sort.csv', 'w')
+for l in range(len(dif)):
+	outDif.write(str(dif[l]) + ',' + str(l) + ',' + '\n')
+	
+outNumP.close()
+outErrorFile.close()
+outTESSTime.close()
+outStabSim.close()
+\end{lstlisting}
+\chapter{Python script to Analyze data from TTVFast}
+\begin{lstlisting}[language=Python]
+import matplotlib.pyplot as plt
+import numpy as np
+import sys
+import os
+
+timesFile = []			
+valueArray = []			 
+transitTime1Float = []	# Transit time for planet
+epoch1Float = []		# Epoch of planet
+count = 0				# Counter
+kepMag = []				# Magnitude of star
+transitDur = []			# Transit duration
+rStar = []				# Stellar radius
+
+# Read in data from TTVFast file
+with open(sys.argv[1],'r') as timesFile:
+	valueArray = timesFile.readlines()
+	planet = [k.split(' ')[0] for k in valueArray]
+	epoch1 = [k.split(' ')[1] for k in valueArray]
+	transitTime1 = [k.split(' ')[2] for k in valueArray]
+
+epoch1 = map(int, epoch1)
+transitTime1 = map(float, transitTime1)
+countPlanetZero = 0
+
+# Read in RA and dec
+with open('RA_dec_sys.csv','r') as inputFile: 
+	data = inputFile.readlines()
+	RATess = [k.split(',')[0] for k in data]
+	decTess = [k.split(',')[1] for k in data]	
+
+# Read in number of planets in this system
+with open('numberPlanets.csv') as inputFile:
+	planetCount = [k.split(' ')[0] for k in inputFile]
+
+# If file is empty (TTVFast did not return anything)
+if os.stat(sys.argv[1]).st_size == 0:
+	for i in range(0,planetCount[int(sys.argv[2])]+1):
+		# Write amplitude = 0 for each planet in the system and the corresponding RA and dec and exit the script
+		outputFile = open('transAmpl.csv', 'a')
+		outputFile.write('0' + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+		outputFile.close()
+		outRAdec = open('RA_dec_p.csv', 'a')
+		outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+		outRAdec.close()
+		print "No value"
+	sys.exit(0)
+		
+
+transitCount = 0
+
+# This part is run for each planet, the first time the values corresponding to the first planet is saved, next time the second and so on.
+for i in range(0, int(max(planet))+1):
+	for l in range(len(planet)):
+		if planet[l] == str(i):
+			epoch1Float.append(int(epoch1[l]))
+			transitTime1Float.append(float(transitTime1[l]))
+			transitCount += 1
+	
+	# If transit count is 0 or 1, no TTV can be found and the amplitude is set to 0
+	if transitCount < 2:
+		outputFile = open('transAmpl.csv', 'a')
+		outputFile.write('0' + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+		outputFile.close()
+		outRAdec = open('RA_dec_p.csv', 'a')
+		outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+		outRAdec.close()
+		print "Amplitude:", '0', "minutes or", '0', "hours"
+		transitCount = 0
+		continue
+		
+	epoch1Float = np.array(epoch1Float)
+	transitTime1Float = np.array(transitTime1Float)
+	
+	# Transit time is converted to minutes and fitted with a linear fit
+	transitTime1Min = transitTime1Float * 1440
+	fitTimes = np.polyfit(epoch1Float, transitTime1Min, 1)
+	
+	# Transit times are modified with the fit which is multiplied with the epoch.
+	transitTimesLinFitted = transitTime1Min-fitTimes[0]*epoch1Float
+	transitMax = np.amax(transitTimesLinFitted)
+	transitMin = np.amin(transitTimesLinFitted)
+	# Amplitude is calculated through the maximum and minimum transit time and "correction" is to move the plot to around 0 level.
+	transitAmplitude = (transitMax - transitMin) / 2
+	transitCorrection = (transitMax + transitMin) / 2
+
+	# Write amplitude and coordinates to file for use later
+	outputFile = open('transAmpl.csv', 'a')
+	outputFile.write(repr(transitAmplitude) + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+	outputFile.close()
+
+	print "Amplitude:", transitAmplitude, "minutes or", transitAmplitude/60, "hours"
+	
+	# Move plot to around 0 level
+	if transitMax < 0:
+		transitTime1Corrected = transitTimesLinFitted + abs(transitCorrection)
+	else:
+		transitTime1Corrected = transitTimesLinFitted - abs(transitCorrection)
+
+	with open('timingErrors.csv','r') as inputFile:
+		data = inputFile.readlines()[0:]
+		errorTiming = float(data[int(sys.argv[2])])
+	
+	# Read in error calculated earlier
+	outErrorFile = open('ampError.txt', 'a')
+	outErrorFile.write(repr(errorTiming) + '\n')
+	outErrorFile.close()
+	
+	
+	outRAdec = open('RA_dec_p.csv', 'a')
+	outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+	outRAdec.close()
+	
+	# Plot the potential TTVs
+	plt.scatter(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, label='Transit Time')
+	plt.errorbar(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, yerr = errorTiming, linestyle="None")
+	plt.axhline(y = 0, xmin = 0, xmax = np.amax(epoch1Float*fitTimes[0]/1440), c = 'black')
+	plt.xlabel('Time [Days]')
+	plt.ylabel('O-C [Minutes]')
+	plt.tight_layout()
+	textstr = 'Amplitude=%.2f min\nError=%.2f min\n'%(transitAmplitude, errorTiming)
+	plt.figtext(0.76, 0.5, textstr, fontsize=10)
+	plt.subplots_adjust(right=0.75)
+	plt.savefig('plots/' + sys.argv[1] + '_' + str(i) + '.pdf')
+	plt.clf()
+	epoch1Float = []
+	transitTime1Float = []
+	transitCount = 0
+
+\end{lstlisting}
+\chapter{Python script for final analysis and plots}
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib as mp
+import matplotlib.pyplot as plt
+import pandas as pd
+from matplotlib  import cm
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from astropy import units as u
+from astropy.coordinates import SkyCoord
+from astropy.coordinates import FK5
+import matplotlib.lines as mlines
+import math
+
+
+data = []
+RATess = []					# Right ascension of TESS systems
+decTess = []				# Declination of TESS systems
+maxTime = []				# Max time that TESS observes the object
+minTime = []				# Min time that TESS observes the object
+medTime = []				# Med time that TESS observes the object
+avgTime = []				# Average time that TESS observes the object
+transitAmplitude = []		# amplitude
+amplCorr = []				# amplitude where ampl<1 min is sorted out
+errorPlot = []				# Error of signal
+ampPlot = []				# Amplitude of signal
+ra_rad = []					# Right ascension of system in radians
+dec_rad = []				# Declination of system in radians
+ampOfirCorr = []			# Amplitude of Ofir system
+timeCut = []				# Right ascension of system in radians
+beta = []					# Ecliptic latitude of system
+lamb = []					# Ecliptic longitude of system
+
+
+# Read in amplitude of TTV, RA and dec
+with open('transAmpl.csv', 'r') as inputFile:
+	data = inputFile.readlines()
+	transitAmplitude = [k.split(',')[0] for k in data]
+	RATess = [k.split(',')[1] for k in data]
+	decTess = [k.split(',')[2] for k in data]
+
+# Filter out all systems with less than 1 min TTV amplitude
+transitAmplitude = map(float, transitAmplitude)
+for m in range(len(transitAmplitude)):
+	if transitAmplitude[m] > 1:
+		amplCorr.append(transitAmplitude[m])
+		
+		
+# Plot histogram of amplitudes with errorbars
+y,binEdges = np.histogram(amplCorr,bins=20)
+bincenters = 0.5*(binEdges[1:]+binEdges[:-1])
+menStd     = np.sqrt(y)
+width = 10
+plt.bar(bincenters, y, width=width, yerr=menStd, error_kw=dict(ecolor='black', lw=1, capsize=4, capthick=1))
+plt.xlabel('Amplitude [min]')
+plt.ylabel('Number of planets')
+plt.savefig('./plots/histo/ampl.pdf')
+plt.clf()
+		
+transSort = sorted(transitAmplitude, key=float, reverse=False)
+outTransFile = open('transAmpSort.csv', 'w')
+for i in range(len(transSort)):
+	outTransFile.write(str(transSort[i]) + '\n')
+outTransFile.close()
+
+with open('wtm-TESSTime.csv', 'r') as inputFile:
+	data = inputFile.readlines()[1:]
+	maxTime = [k.split(',')[2] for k in data]
+	minTime = [k.split(',')[3] for k in data]
+	medTime = [k.split(',')[4] for k in data]
+	avgTime = [k.split(',')[5] for k in data]
+	
+
+	
+RATess = map(float, RATess)
+decTess = map(float, decTess)
+maxTime = map(float, maxTime)
+minTime = map(float, minTime)
+medTime = map(float, medTime)
+transitAmplitude = map(float, transitAmplitude)
+
+
+
+
+
+# Setup to convert from equatorial to ecliptic coordinate system
+tilt = math.radians(23.439281)
+lamb1 = 0
+lamb2 = 0
+for i in range(len(RATess)):
+	RATess[i] = math.radians(RATess[i])
+	decTess[i] = math.radians(decTess[i])
+
+	# Calculate latitude and longitude from the RA and dec of the system
+	beta.append(math.asin(math.cos(tilt)*math.sin(decTess[i]) - math.sin(RATess[i])*math.cos(decTess[i])*math.sin(tilt)))
+	lamb1 = (math.sin(tilt)*math.sin(decTess[i]) + math.sin(RATess[i])*math.cos(decTess[i])*math.cos(tilt))/math.cos(beta[i])
+	lamb2 = (math.cos(RATess[i])*math.cos(decTess[i]))/math.cos(beta[i])
+	lamb.append(math.degrees(math.atan2(lamb2, lamb1)))
+	beta[i] = math.degrees(beta[i])
+
+c = SkyCoord(lon=lamb*u.deg, lat=beta*u.deg, frame='heliocentrictrueecliptic')
+ra_rad = c.lon.wrap_at(180 * u.deg).rad			
+dec_rad = c.lat.rad
+
+
+##Only one of these used at a time depending on if amplitude or number of observations are of interest
+#norm = mp.colors.Normalize(
+#    vmin=np.min(maxTime),
+#    vmax=np.max(maxTime))
+    
+norm = mp.colors.Normalize(
+    vmin=np.min(transitAmplitude),
+    vmax=np.max(transitAmplitude)) 
+##
+
+c_m = mp.cm.cool
+s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
+s_m.set_array([])
+
+
+
+plt.figure(figsize=(8,4.2))
+plt.subplot(111, projection="aitoff")
+plt.grid(True)
+#~ plt.title("Position of observed TESS objects", y=1.08)
+plt.colorbar(s_m2)
+plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
+plt.scatter(ra_cut, dec_cut, s=7, c = np.log10(amp_cut), cmap = cm.jet, alpha = 0.5)
+textstr = 'Number of observations'
+plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
+plt.savefig('plots/skymap_TESS_amp.pdf')
+plt.clf()
+
+
+plt.hist(minTime,bins=50)
+plt.title("Histogram of times that each object are observed by TESS")
+plt.xlabel('# of times observed')
+plt.ylabel('#')
+plt.savefig('./plots/histo/obsNumberMin.pdf')
+plt.clf()
+
+	
+
+with open('ampError.txt','r') as inputFile:
+	errorTiming = inputFile.readlines()
+
+# Filter out empty values and very low amplitudes as otherwise they dominate
+for i in range(len(errorTiming)):
+	if transitAmplitude[i] == 'nan\n' or transitAmplitude[i] == '0\n': 
+		continue
+	if float(transitAmplitude[i]) > 0.001:
+		errorPlot.append(float(errorTiming[i])) 
+		ampPlot.append(float(transitAmplitude[i])) 
+
+	
+
+x = np.linspace(np.amin(ampPlot), np.amax(ampPlot))
+y = x
+
+plt.rcParams.update({'font.size': 16})
+plt.figure(figsize=(13, 13))
+plt.scatter(np.log10(ampPlot), np.log10(errorPlot), s=20)
+plt.xlabel('log$_{10}$[Amplitude (min)]', fontsize = 18)
+plt.ylabel('log$_{10}$[Error (min)]', fontsize = 18)
+#~ plt.title('Amplitude vs Error', fontsize = 18)
+plt.plot(np.log10(x),np.log10(y), c='black')
+plt.savefig('plots/ampErrorLog.pdf')
+plt.clf()
+
+# Read in data from Ofir dataset
+data = pd.read_table('ofir_table.txt', sep=';', skiprows=34, names=('KOI_num', 'newDetFlag', 'TTVfre', 'TTV+uncer', 'TTV-uncer', 'TTV_per', 'Delta_chi', 'chi_area', 'chi_single', 'chi_RMS', 'cho_correl', 'TTV_amp', 'TTV_amp+_uncer', 'TTV_amp-_uncer', 'TTV_ref', 'TTV_ref+_uncer', 'TTV_ref-_uncer', 'cofid', 'STD_error', '20', '21', '22', '23', '24'))
+amp_ofir = data['TTV_amp']
+
+# Filter out planets with amplitude below 1 min
+for i in range(len(amp_ofir)):
+	if amp_ofir[i] > 1:
+		ampOfirCorr.append(amp_ofir[i])
+
+plt.hist(ampOfirCorr,bins=11, rwidth=0.5)
+plt.xlabel('Amplitude [min]')
+plt.ylabel('#')
+plt.savefig('./plots/histo/ofir_amp.pdf')
+plt.clf()	
+\end{lstlisting}
 \end{appendix}
 
 \end{document}

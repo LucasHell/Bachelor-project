@@ -206,8 +206,9 @@ dif = []
 posMin = 0
 
 #~ # write to output files in the format required for TTVFast
-for i in range(len(mPlanet)): 				#len(mPlanet)
-	meanAnom.append(90 - 360 * (float(numEpoch[i]) / float(period[i])))		# calculate mean anomaly of planet with reference to transit of first planet
+for i in range(len(mPlanet)): 			
+	argument = np.random.uniform(0,360)
+	meanAnom.append(90 - 360 * (float(numEpoch[i]) / float(period[i])) - argument)		# calculate mean anomaly of planet with reference to transit of first planet
 	while meanAnom[i] > 360:
 		meanAnom[i] = meanAnom[i] - 360 									# if angle of mean anomaly is above 360 degrees, subtract 360 until it is in the range 0 to 360 degrees
 		if meanAnom[i] == 360:
@@ -228,7 +229,7 @@ for i in range(len(mPlanet)): 				#len(mPlanet)
 	sysEccentricty.append(np.random.rayleigh(0.03))
 	sysInclination.append(inclination)
 	syslNode.append(lNode)
-	sysArg.append(np.random.uniform(0,360))
+	sysArg.append(argument)
 	sysMeanAnom.append(meanAnom[i])
 	count += 1			# counter for number of planets for each system
 	

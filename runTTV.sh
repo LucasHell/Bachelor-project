@@ -1,5 +1,5 @@
 #!/bin/bash
-#Bash script to generate files in the correct format for TTVFast, run TTVFast and plot results
+#Bash script to generate files in the correct format for TTVFast, run TTVFast and plot the results
 
 #Remove input and output files from when program ran last time
 rm -r ./TTVFast/c_version/input
@@ -37,7 +37,7 @@ readarray -t minTime < <(cut -d, -f2 minTime.csv)
 readarray -t avgTime < <(cut -d, -f2 avgTime.csv)
 
 
-#~ read -p "Press key to continue.. " -n1 -s
+
 number=0
 for file1 in `ls input/*.in | sort --version-sort`;
 do
@@ -63,7 +63,6 @@ do
 	echo $file2
 	python transits.py $file2 $count
 	count=$((count+1))
-	#~ read -p "Press key to continue.. " -n1 -s
 done
 
 python finalPlots.py

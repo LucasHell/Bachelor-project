@@ -56,7 +56,7 @@ plt.bar(bincenters, y, width=width, yerr=menStd, error_kw=dict(ecolor='black', l
 plt.xlabel('Amplitude [min]')
 plt.ylabel('Number of planets')
 #~ plt.show()
-plt.savefig('./plots/histo/ampl.png')
+plt.savefig('./plots/histo/ampl.pdf')
 plt.clf()
 		
 transSort = sorted(transitAmplitude, key=float, reverse=False)
@@ -180,7 +180,7 @@ plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
 plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
 textstr = 'Number of observations'
 plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
-plt.savefig('plots/skymap_TESS_amp.png')
+plt.savefig('plots/skymap_TESS_amp.pdf')
 plt.clf()
 
 
@@ -195,7 +195,7 @@ plt.hist(minTime,bins=50)
 plt.title("Histogram of times that each object are observed by TESS")
 plt.xlabel('# of times observed')
 plt.ylabel('#')
-plt.savefig('./plots/histo/obsNumberMin.png')
+plt.savefig('./plots/histo/obsNumberMin.pdf')
 plt.clf()
 
 	
@@ -276,7 +276,7 @@ plt.xlabel('log$_{10}$[Amplitude (min)]', fontsize = 18)
 plt.ylabel('log$_{10}$[Error (min)]', fontsize = 18)
 #~ plt.title('Amplitude vs Error', fontsize = 18)
 plt.plot(np.log10(x),np.log10(y), c='black')
-plt.savefig('plots/ampErrorLog.png')
+plt.savefig('plots/ampErrorLog.pdf')
 plt.clf()
 
 
@@ -284,7 +284,7 @@ plt.scatter(ampPlot, errorPlot, marker='d')
 plt.xlabel('Amplitude [min]')
 plt.ylabel('Timing precision [min]')
 #~ plt.title('Amplitude vs timing precision')
-plt.savefig('plots/ampError.png')
+plt.savefig('plots/ampError.pdf')
 plt.clf()
 
 data = pd.read_table('ofir_table.txt', sep=';', skiprows=34, names=('KOI_num', 'newDetFlag', 'TTVfre', 'TTV+uncer', 'TTV-uncer', 'TTV_per', 'Delta_chi', 'chi_area', 'chi_single', 'chi_RMS', 'cho_correl', 'TTV_amp', 'TTV_amp+_uncer', 'TTV_amp-_uncer', 'TTV_ref', 'TTV_ref+_uncer', 'TTV_ref-_uncer', 'cofid', 'STD_error', '20', '21', '22', '23', '24'))
@@ -298,7 +298,7 @@ plt.hist(ampOfirCorr,bins=11, rwidth=0.5)
 #~ plt.title("Histogram of TTV amplitude of objects\nfrom the Ofir catalogue")
 plt.xlabel('Amplitude [min]')
 plt.ylabel('#')
-plt.savefig('./plots/histo/ofir_amp.png')
+plt.savefig('./plots/histo/ofir_amp.pdf')
 plt.clf()	
 
 
