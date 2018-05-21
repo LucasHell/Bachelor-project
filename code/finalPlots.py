@@ -42,15 +42,15 @@ with open('transAmpl.csv', 'r') as inputFile:
 
 transitAmplitude = map(float, transitAmplitude)
 for m in range(len(transitAmplitude)):
-	if transitAmplitude[m] > 5 and transitAmplitude[m] < 400:
+	if transitAmplitude[m] > 5 and transitAmplitude[m] < 300:
 		amplCorr.append(transitAmplitude[m])
 		
 		
 
-y,binEdges = np.histogram(amplCorr,bins=20)
+y,binEdges = np.histogram(amplCorr,bins=11)
 bincenters = 0.5*(binEdges[1:]+binEdges[:-1])
 menStd     = np.sqrt(y)
-width = 10
+width = 5
 plt.bar(bincenters, y, width=width, yerr=menStd, error_kw=dict(ecolor='black', lw=1, capsize=4, capthick=1))
 #~ plt.title("Histogram of the amplitudes of simulated Ofir data")
 plt.xlabel('Amplitude [min]')
@@ -256,16 +256,20 @@ plt.clf()
 with open('ampError.txt','r') as inputFile:
 	errorTiming = inputFile.readlines()
 
-
+countSys = 0
+print len(errorTiming), len(transitAmplitude)
 for i in range(len(errorTiming)):
 	if transitAmplitude[i] == 'nan\n' or transitAmplitude[i] == '0\n': 
 		continue
-	if float(transitAmplitude[i]) > 0.001 and float(transitAmplitude[i]) < 200:
+	elif float(transitAmplitude[i]) > 0.001 and float(transitAmplitude[i]) < 200:
 		errorPlot.append(float(errorTiming[i])) 
 		ampPlot.append(float(transitAmplitude[i])) 
+		
+	if float(transitAmplitude[i]) > float(errorTiming[i]):
+		countSys += 1
 
 	
-
+print countSys
 x = np.linspace(np.amin(ampPlot), np.amax(ampPlot))
 y = x
 

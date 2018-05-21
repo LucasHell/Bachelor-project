@@ -137,7 +137,7 @@ the thesis is done you can get a more formal cover page from Eva Jurlander.}}
 \newpage
 
 \listoffigures 
-\listoftables
+%\listoftables
 
 \newpage
 
@@ -154,7 +154,7 @@ This paper will simulate data from the TESS telescope to search for these transi
 \subsection{Variations}
 \label{sec:trans_vari}
 
-	For a system with a single planet around a star the period of the planet is more or less perfectly periodic with no visible variations but, when measuring the time of between a planet's transits one may discover variations in the period which are called Transit-Timing Variations or TTVs. These variations arise from another planet in the system whose gravitational pull accelerates or decelerates the observed planet which results in increased or decreased transit times. An advantage of studying transits in search for TTVs is that planets which does not transit their star can be discovered through TTVs \citep{0004-637X-777-1-3}. As most planets does not transit their star this can increase the number of known exoplanets drastically.
+	For a system with a single planet around a star the period of the planet is more or less perfectly periodic with no visible variations but, when measuring the time of between a planet's transits one may discover variations in the period which are called Transit-Timing Variations or TTVs. These variations arise from another planet in the system whose gravitational pull accelerates or decelerates the observed planet which results in increased or decreased transit times. The amplitude of the TTV signal is dependent on the mass of the planets and the ratio of the periods between them, some rations give rise to a resonance which increases the amplitude of the TTV \citep{0004-637X-688-1-636}. An advantage of studying transits in search for TTVs is that planets which does not transit their star can be discovered through TTVs \citep{0004-637X-777-1-3}. As most planets does not transit their star this can increase the number of known exoplanets drastically.
 
 \section{Kepler}
 	The Kepler satellite launched in spring 2009 on a mission to study stars in a small patch in the sky to discover Earth-sized exoplanets within the habitable zone, where liquid water can exist on the planetary surface. The brightness of a large amount of stars are measured and then analyzed in order to detect transiting exoplanets. 
@@ -311,7 +311,7 @@ This paper will simulate data from the TESS telescope to search for these transi
 	  \label{fig:skymap_TESS}	
 \end{figure}\newpage
 \section{Simulations of Ofir systems}
-	Figure \ref{fig:ampl_ofir} shows the distribution of TTV amplitudes from the objects from the Ofir catalogue. In this histogram, all systems with amplitude below 1 minute are filtered out as they are not of interest in this paper. It is clear that many systems show a small TTV signal but there are a significant portion of systems which show a higher amplitude. The error bars for each bin are approximated to be $\epsilon = \sqrt{N}$ where $N$ is the number of planets in the bin.
+	Figure \ref{fig:ampl_ofir} shows the distribution of TTV amplitudes of the objects from the Ofir catalogue. In this histogram, all systems with amplitude below 1 minute are filtered out as they are not of interest in this paper. It is clear that many systems show a small TTV signal but there are a significant portion of systems which show a higher amplitude. The error bars for each bin are approximated to be $\epsilon = \sqrt{N}$ where $N$ is the number of planets in the bin.
 \begin{figure}
  	 \centering
 	  \includegraphics[width=\textwidth]{img/ampl_ofir_66.png}
@@ -321,12 +321,24 @@ This paper will simulate data from the TESS telescope to search for these transi
 
 
 \section{TTV signals from TESS objects}
-	Figure \ref{fig:TTV1} shows an example of a TTV signal for a system at one of the ecliptic poles where the variation is clearly visible. The zero level corresponds to the average transit time in order to see the variations more clearly. The distribution of TTV amplitudes are found in figure \ref{fig:ampl_histo} where amplitudes below 1 minute are filtered out as otherwise they dominate the histogram. It is easy to see that low or no TTV signals dominate but there are some planets showing substantial TTV signals. The location in the sky of these objects are shown in figure \ref{fig:skymap_amp}. Many planets at the ecliptic poles show some form of TTV signal while many planets not in the poles show TTV signals they are generally weaker with a few exceptions. In the range that CHEOPS are able to observe about 1/4 of systems have a planet showing a detectable TTV signal where the amplitude is higher than the error estimation.
-\begin{figure}[h]
- 	 \centering
-	  \includegraphics[width=\textwidth]{img/232_1.png}
-	  \caption{Observed-Calculated transit time as a function of time. The zero level corresponds to average transit time.}
-	 \label{fig:TTV1}
+	Figure \ref{fig:TTV1} shows an example of a system observed over a short duration. This system may show a TTV signal if observed for a longer time. The same figure shows a TTV signal for a system at one of the ecliptic poles where the variation is clearly visible. The zero level corresponds to the average transit time in order to see the variations more clearly. The distribution of TTV amplitudes are found in figure \ref{fig:ampl_histo} where amplitudes below 1 minute are filtered out as otherwise they dominate the histogram. It is easy to see that low or no TTV signals dominate but there are some planets showing substantial TTV signals. The location in the sky of these objects are shown in figure \ref{fig:skymap_amp}. Many planets at the ecliptic poles show some form of TTV signal while many planets not in the poles show TTV signals they are generally weaker with a few exceptions. In the range that CHEOPS are able to observe about 1/4 of systems have a planet showing a detectable TTV signal where the amplitude is higher than the error estimation. For all systems 366 out of 567 planets show a TTV amplitude higher than the error.
+	
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/6_2.pdf}
+ 
+
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/237_0.pdf}
+  
+
+\end{minipage}
+\caption{Observed-Calculated transit time as a function of time. The zero level corresponds to average transit time. The left panel shows a system which is observed for a short time which may show a TTV signal if observed over a longer time. The right panel shows a system located at the poles where the TTV signal are clearly seen.}
+\label{fig:TTV1}
 \end{figure}
 \begin{figure}[h!]
  	 \centering
@@ -391,19 +403,18 @@ Id of star & I &  V & Var.? \\
 \fi
 
 \chapter{Discussion}
-	These results may be used to give an approximation of how many systems in a given sample will show TTV signals. The systems can be observed in more detail by the Characterising Exoplanets Satellite, CHEOPS, or the James Webb Space telescope, JWST. CHEOPS are not able to measure stars at the poles and are limited to the sky around the plane of Earth's orbit which are marked as a green area in figure \ref{fig:skymap_TESS} and \ref{fig:skymap_amp}. As TESS will have coverage of the poles for the whole year many of the systems showing TTV signals will be located at the poles. The JWST on the other hand will be able to look at the poles. This makes James Webb a very good option for further studies of the TESS objects. 
-	
-	The artificial systems created in this paper contain some planets which show strong TTV signals, mainly positioned in the ecliptic poles as the systems positioned here are observed for a whole year which gives many more opportunities to detect TTVs. The shape of the histogram in figure \ref{fig:ampl_ofir} are the same as in the Ofir paper. This shows that the methods of simulating systems used in this paper are viable and give reasonable results.
+	These results may be used to give an approximated upper limit of how many systems in a given sample will show TTV signals. The systems can be observed in more detail by, for example, the CHaracterising ExOPlanets Satellite, CHEOPS, or the James Webb Space Telescope, JWST. CHEOPS are not able to measure stars at the poles and are limited to the sky around the plane of Earth's orbit which are marked as a green area in figure \ref{fig:skymap_TESS} and \ref{fig:skymap_amp}. As TESS will have coverage of the poles for the whole year many of the systems showing TTV signals will be located at the poles. The JWST on the other hand will be able to look at the poles. CHEOPS will be used to further study already found systems in order to more accurately measure the radii of the exoplanets. It can be used to obtain more transits and thus give more opportunities to measure TTVs. JWST will study the spectrum of a star and compare it to the spectrum of the same star when an exoplanet is transiting. With high enough precision this will make it possible to approximate the composition of an potential atmosphere around the exoplanet. To determine the atmosphere the surface gravity of the planet needs to be known which comes from the mass and radius of the planet. The radius can be obtained from the transit method while the mass may be obtained from a TTV signal or the radial velocity method.
 	
 	The way of determining the amplitude of the TTVs are very simplistic. It is simply an average of the highest and lowest value. This can be improved by some kind of fit as the TTV signals are often in the shape of a sine curve but due to time constraints this paper does not include this way of determining the amplitude.
 	
 	Even though these results show that CHEOPS might be able to find a planet showing TTV signals in every fourth system the real number is probably lower. An approximation used in this paper is that the inclination is $90^{\circ}$ for all planets. This creates systems where all planets are transiting which is not the case for real systems. There are many cases where none of the planets around a star are transiting and the planet that might transit might not show any TTV signal while other planets around the star might do.
 	
-	Using WHFast, most systems tested for stability show no sign of instability within $10^5 / 10^6$ years. The few that do are simulated using IAS15 where they are shown to be stable and the instability from WHFast can be considered an effect of WHFast's inability to handle close encounters.
+	The systems are checked for stability and ensure that they are realistic with WHFast, IAS15 and by comparing the distribution of amplitudes from the TESS objects with the objects from the Ofir et al. paper. Using WHFast, most systems tested for stability show no sign of instability within $10^5 / 10^6$ years. The few that do are simulated using IAS15 where they are shown to be stable and the instability from WHFast can be considered an effect of WHFast's inability to handle close encounters. The artificial systems created in this paper contain some planets which show strong TTV signals, mainly positioned in the ecliptic poles as the systems positioned here are observed for a whole year which gives many more opportunities to detect TTVs. The shape of the histogram in figure \ref{fig:ampl_ofir} are the same as in the Ofir paper. This shows that the methods of simulating systems used in this paper are viable and give reasonable results.
 	
-	The error calculations seem to give reasonable results. As seen in figure \ref{fig:amp_error} many systems shows a TTV amplitude higher than the error but many systems shows a TTV amplitude lower than the error, for these systems no conclusion can be made as the signal could be true but it might as well be noise.
+	The error calculations seem to give reasonable results \citep{2015ApJ...812L..18B}. As seen in figure \ref{fig:amp_error} many systems shows a TTV amplitude higher than the error but many systems shows a TTV amplitude lower than the error, for these systems no conclusion can be made as the signal could be true but it might as well be noise. The error is solely based on photon statistics and does not take things like cadence into consideration which would otherwise increase the errors. 
+	
 \chapter{Conclusions}
-	This paper simulated TESS objects using data from the Kepler dataset and results from the paper by \cite{2015ApJ...809...77S} on a search to find TTV signals caused by multiple planets in the systems. The results can be seen below:
+	This paper simulated TESS objects using data from the Kepler dataset and results from the paper by \cite{2015ApJ...809...77S} on a search to predict TTV signals caused by multiple planets in the systems. The results can be seen below:
 	\begin{itemize}
 		\item Most of the systems showing TTV signals are positioned at the ecliptic poles. This comes from the fact that TESS has continuous coverage of the poles during the year which increases the chance to see TTVs.
 		\item In the range where CHEOPS is able to observe about 1/4 of every system will have a planet showing a detectable TTV signal.
@@ -426,7 +437,7 @@ Simulations in this paper made use of the REBOUND code which can be downloaded f
 
 \bibliographystyle{aa}
 \bibliography{references}
-
+\iffalse
 \begin{appendix}
 
 \chapter{Bash script to run the components}
@@ -476,19 +487,18 @@ for file1 in `ls input/*.in | sort --version-sort`;
 do
 	readarray -t data < <(cut -f2 $file1)
 	period=$(echo ${data[3]} | awk '{$1=$1/20; print $1;}')
-	echo -e "$file1\n0\n$period\n${maxTime[$number]}\n${numPlanet[$number]}\n0" > setup_file.txt;  		#${maxTime[$number]}
+	echo -e "$file1\n0\n$period\n${maxTime[$number]}\n${numPlanet[$number]}\n0" > setup_file.txt;  		
 	./run_TTVFast setup_file.txt Times RV_file RV_out;
 	mv Times output;
 	mv ./output/Times output/$file1;
 	number=$((number+1));
-	#~ read -p "Press key to continue.. " -n1 -s
 done
 
-#Move output data from TTVFast to code directory for plotting
+# Move output data from TTVFast to code directory for plotting
 cd ../..
 mv TTVFast/c_version/output/input/*.in code/times/
 
-#~ #Run python script to read data generated by TTVFast and plot it
+# Run python script to read data generated by TTVFast and plot it
 cd code
 count=0
 for file2 in `ls times/*.in | sort --version-sort`;
@@ -1421,6 +1431,190 @@ plt.ylabel('#')
 plt.savefig('./plots/histo/ofir_amp.pdf')
 plt.clf()	
 \end{lstlisting}
+\chapter{Python script to run WHFast}
+\begin{lstlisting}[language=Python]
+import rebound
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import time
+import math
+
+# Set start time of integration, used to calculate time to integrate
+start_time = time.time()
+
+sim = rebound.Simulation()
+
+# Add the bodies to the system with their respective parameters
+sim.add(m=0.8840)
+
+sim.add(m=2.50797-05, a=0.0782, e=0.0185989277497)
+
+sim.add(m=2.9741-05, a=0.103, e=0.0611877265829)
+
+sim.add(m=0.000264, a=0.13725, e=0.0441692836378)
+
+
+
+
+# Set WHFast as integrator and specify time-step
+sim.integrator = "whfast"
+sim.dt = 1e-3
+particles = sim.particles
+
+# Set number of outputs and fill vectors with zeros according to the number of outputs. The number of x and y depends on the number of planets in the system
+torb = 2.*np.pi
+Noutputs = 10000
+x1 = np.zeros(Noutputs)
+y1 = np.zeros(Noutputs)
+x2 = np.zeros(Noutputs)
+y2 = np.zeros(Noutputs)
+x3 = np.zeros(Noutputs)
+y3 = np.zeros(Noutputs)
+#~ x4 = np.zeros(Noutputs)
+#~ y4 = np.zeros(Noutputs)
+#~ x5 = np.zeros(Noutputs)
+#~ y5 = np.zeros(Noutputs)
+
+sim.move_to_com()
+
+# Set time of integration to 10^7 orbits and integrate over that time
+times = np.linspace(0, 1000000.*torb, Noutputs)
+for i,t in enumerate(times):
+    sim.integrate(t, exact_finish_time=0)
+    x1[i] = particles[1].x
+    y1[i] = particles[1].y
+    x2[i] = particles[2].x
+    y2[i] = particles[2].y
+    x3[i] = particles[3].x
+    y3[i] = particles[3].y
+    #~ x4[i] = particles[4].x
+    #~ y4[i] = particles[4].y
+    #~ x5[i] = particles[5].x
+    #~ y5[i] = particles[5].y
+
+# Plot the orbital motion
+fig = plt.figure(figsize=(5,5))
+ax = plt.subplot(111)
+plt.scatter(x1, y1, marker='.', color='blue', s=1.2);
+plt.scatter(x2, y2, marker='+', color='red', s=1.2);
+plt.scatter(x3, y3, marker='.', color='black', s=1.2);
+#~ plt.scatter(x4, y4, marker='+', color='green', s=1.2);
+#~ plt.scatter(x5, y5, marker='+', color='purple', s=1.2);
+plt.scatter(0,0, marker='o', color='black', s=10);
+plt.savefig('simResult.png')
+
+# Write the execution time to a separate file
+execTime = open('execTime.txt', 'w')
+execTime.write("--- %s seconds ---" % (time.time() - start_time) + '\n')
+execTime.close()
+
+\end{lstlisting}
+\chapter{Python script to run IAS15}
+\begin{lstlisting}[language=Python]
+import rebound
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from itertools import combinations
+import time as time2
+import math
+
+# Set start time used lated to calculate execution time
+start_time = time2.time()
+
+# Setup simulation parameters and add bodies
+def setupSimulation():
+	sim = rebound.Simulation()
+	sim.integrator = "ias15" # IAS15 is the default integrator, so we don't need this line
+	sim.add(m=0.8840)
+	sim.add(m=2.9741e-05, a=0.103, e=0.0611877265829)
+	sim.add(m=2.50797e-05, a=0.0782, e=0.0185989277497)
+	sim.add(m=0.000264, a=0.13725, e=0.0441692836378)
+	sim.move_to_com()
+	return sim
+    
+# Setup function if two bodies collide
+def mergeParticles(sim):
+    # Find two closest particles
+    min_d2 = 1e9 # large number
+    ps = sim.particles
+    for i1, i2 in combinations(range(sim.N),2): # get all pairs of indices
+        dp = ps[i1] - ps[i2]   # Calculates the coponentwise difference between particles
+        d2 = dp.x*dp.x+dp.y*dp.y+dp.z*dp.z
+        if d2<min_d2:
+            min_d2 = d2
+            col_i1 = i1
+            col_i2 = i2
+
+    cp1 = ps[col_i1]
+    cp2 = ps[col_i2]
+    # Merge two closest particles
+
+    sum_mass = cp1.m + cp2.m
+    mergedPlanet = (cp1*cp1.m + cp2*cp2.m)/sum_mass
+    mergedPlanet.m  = sum_mass
+    sim.remove(index=col_i2)
+    sim.remove(index=col_i1)
+    sim.add(mergedPlanet, assignHash=True)
+
+
+sim = setupSimulation() # Resets everything
+sim.exit_min_distance = 0.005
+Noutputs = 10000
+times = np.linspace(0,100.*2.*np.pi,Noutputs)
+distances = np.zeros(Noutputs)
+x1 = np.zeros(Noutputs)
+y1 = np.zeros(Noutputs)
+x2 = np.zeros(Noutputs)
+y2 = np.zeros(Noutputs)
+x3 = np.zeros(Noutputs)
+y3 = np.zeros(Noutputs)
+ps = sim.particles # ps is now an array of pointers. It will update as the simulation runs.
+try:
+    for i,time in enumerate(times):
+		sim.integrate(time)
+		dp = ps[1] - ps[2]   # Calculates the coponentwise difference between particles
+		distances[i] = np.sqrt(dp.x*dp.x+dp.y*dp.y+dp.z*dp.z)
+		x1[i] = ps[1].x
+		y1[i] = ps[1].y
+		x2[i] = ps[2].x
+		y2[i] = ps[2].y
+		x3[i] = ps[3].x
+		y3[i] = ps[3].y
+except rebound.Encounter as error:
+    print(error)
+    
+    
+print("Number of particles at the beginning of the simulation: %d."%sim.N)
+for i,time in enumerate(times):
+    try:
+        sim.integrate(time)
+    except rebound.Encounter as error:
+        print(error)
+        mergeParticles(sim)
+print("Number of particles at the end of the simulation: %d."%sim.N)
+
+# Plot the orbital motion of the planets
+fig = plt.figure(figsize=(5,5))
+ax = plt.subplot(111)
+#~ ax.set_xlim([-1.5,1.5])
+#~ ax.set_ylim([-1.5,1.5])
+plt.scatter(x1, y1, marker='.', color='blue', s=1.2);
+plt.scatter(x2, y2, marker='+', color='red', s=1.2);
+plt.scatter(x3, y3, marker='.', color='black', s=1.2);
+#~ plt.scatter(x4, y4, marker='+', color='green', s=1.2);
+#~ plt.scatter(x5, y5, marker='+', color='purple', s=1.2);
+plt.scatter(0,0, marker='o', color='black', s=10);
+plt.savefig('simResult.png')
+
+execTime = open('execTime.txt', 'w')
+execTime.write("--- %s seconds ---" % (time2.time() - start_time) + '\n')
+execTime.close()
+\end{lstlisting}
 \end{appendix}
+\fi
 
 \end{document}

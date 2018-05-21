@@ -31,8 +31,8 @@ with open('RA_dec_sys.csv','r') as inputFile:
 with open('numberPlanets.csv') as inputFile:
 	planetCount = [k.split(' ')[0] for k in inputFile]
 
-#~ for n in range(len(planetCount)):
-	#~ planetCount[n] = int(planetCount[n][:1])
+for n in range(len(planetCount)):
+	planetCount[n] = int(planetCount[n][:1])
 
 if os.stat(sys.argv[1]).st_size == 0:
 	for i in range(0,planetCount[int(sys.argv[2])]+1):

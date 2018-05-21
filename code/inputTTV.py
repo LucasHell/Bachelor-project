@@ -223,7 +223,7 @@ for i in range(len(mPlanet)):
 		continue
 
 	# write data for TTVFast
-	#~ outputFile.write(repr(mPlanet[i]) + '\n' + period[i] + ' ' + str(np.random.rayleigh(0.03)) + ' ' + repr(inclination) + ' ' + repr(lNode) + '  ' + str(np.random.uniform(0,360)) + ' ' + repr(meanAnom[i]) + '\n') 
+	outputFile.write(repr(mPlanet[i]) + '\n' + period[i] + ' ' + str(np.random.rayleigh(0.03)) + ' ' + repr(inclination) + ' ' + repr(lNode) + '  ' + str(np.random.uniform(0,360)) + ' ' + repr(meanAnom[i]) + '\n') 
 	sysmPlanet.append(mPlanet[i])
 	sysPeriod.append(float(period[i]))
 	sysEccentricty.append(np.random.rayleigh(0.03))
@@ -259,7 +259,7 @@ for i in range(len(mPlanet)):
 					semiMajorList.append(semiMajor)
 					sumMass.append(mPlanet[i-n])
 					posMin = sysPeriod.index(np.amin(sysPeriod))
-					outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
+					#~ outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
 					sysPeriod[posMin] = 1000000
 				semiMajorList = sorted(semiMajorList, key=float, reverse=False)
 				
@@ -306,7 +306,7 @@ for i in range(len(mPlanet)):
 				semiMajorList.append(semiMajor)
 				sumMass.append(mPlanet[i-n])	
 				posMin = sysPeriod.index(np.amin(sysPeriod))
-				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
+				#~ outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
 				sysPeriod[posMin] = 1000000
 			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
 			
@@ -358,7 +358,7 @@ for i in range(len(mPlanet)):
 				semiMajorList.append(semiMajor)
 				sumMass.append(mPlanet[i-n])
 				posMin = sysPeriod.index(np.amin(sysPeriod))
-				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
+				#~ outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
 				sysPeriod[posMin] = 1000000
 			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
 			

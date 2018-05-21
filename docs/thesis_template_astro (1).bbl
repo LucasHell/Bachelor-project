@@ -1,5 +1,10 @@
-\begin{thebibliography}{12}
+\begin{thebibliography}{14}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Becker} {et~al.}(2015){Becker}, {Vanderburg}, {Adams}, {Rappaport},
+  \& {Schwengeler}}]{2015ApJ...812L..18B}
+{Becker}, J.~C., {Vanderburg}, A., {Adams}, F.~C., {Rappaport}, S.~A., \&
+  {Schwengeler}, H.~M. 2015, \apjl, 812, L18
 
 \bibitem[{{Borucki}(2017)}]{2017PAPhS.161...38B}
 {Borucki}, W.~J. 2017, Proceedings of the American Philosophical Society, 161,
@@ -26,6 +31,9 @@
   \& Buchhave}]{0004-637X-777-1-3}
 Nesvorný, D., Kipping, D., Terrell, D., {et~al.} 2013, The Astrophysical
   Journal, 777, 3
+
+\bibitem[{Nesvorný \& Morbidelli(2008)}]{0004-637X-688-1-636}
+Nesvorný, D. \& Morbidelli, A. 2008, The Astrophysical Journal, 688, 636
 
 \bibitem[{{Ofir} {et~al.}(2018){Ofir}, {Xie}, {Jiang}, {Sari}, \&
   {Aharonson}}]{2018ApJS..234....9O}

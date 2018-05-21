@@ -58,15 +58,12 @@ for i,t in enumerate(times):
 
 fig = plt.figure(figsize=(5,5))
 ax = plt.subplot(111)
-#~ ax.set_xlim([-1.5,1.5])
-#~ ax.set_ylim([-1.5,1.5])
 plt.scatter(x1, y1, marker='.', color='blue', s=1.2);
 plt.scatter(x2, y2, marker='+', color='red', s=1.2);
 plt.scatter(x3, y3, marker='.', color='black', s=1.2);
 #~ plt.scatter(x4, y4, marker='+', color='green', s=1.2);
 #~ plt.scatter(x5, y5, marker='+', color='purple', s=1.2);
 plt.scatter(0,0, marker='o', color='black', s=10);
-#~ sim.status()
 plt.savefig('simResult.png')
 
 execTime = open('execTime.txt', 'w')
