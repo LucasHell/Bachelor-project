@@ -31,6 +31,8 @@ amp_cut = []
 timeCut = []
 beta = []
 lamb = []
+#~ ampl = []
+#~ periodFrac = []
 
 
 
@@ -133,21 +135,21 @@ plt.savefig('plots/skymap_TESS_wrap')
 plt.clf()
 countAmp = 0
 print transitAmplitude.index(np.amax(transitAmplitude))
-#~ print transitAmplitude.index(np.amax(transitAmplitude))
-#~ print math.degrees(RATess[462]), math.degrees(decTess[462])
-print len(ra_rad), len(dec_rad), len(transitAmplitude)
+
+
+print len(ra_rad), len(dec_rad), len(transitAmplitude), len(maxTime)
 for i in range(len(transitAmplitude)):
 	if float(transitAmplitude[i]) < 3000:
 		ra_cut.append(ra_rad[i] * -1)
 		dec_cut.append(dec_rad[i])
 		amp_cut.append(transitAmplitude[i])
 		timeCut.append(maxTime[i])
-		if -40 < dec_rad[i] < 40 and float(transitAmplitude[i]) > 20 and dec_rad[i] != dec_rad[i-1]:
-			countAmp += 1
-			print math.degrees(ra_rad[i]), math.degrees(dec_rad[i]), np.log10(float(transitAmplitude[i]))
+		#~ if -40 < dec_rad[i] < 40 and float(transitAmplitude[i]) > 20 and dec_rad[i] != dec_rad[i-1]:
+			#~ countAmp += 1
+			#~ print math.degrees(ra_rad[i]), math.degrees(dec_rad[i]), np.log10(float(transitAmplitude[i]))
 
 
-print countAmp
+#~ print countAmp
 
 for l in range(len(amp_cut)):
 	if amp_cut[l] < 0.0001:
@@ -304,6 +306,19 @@ plt.xlabel('Amplitude [min]')
 plt.ylabel('#')
 plt.savefig('./plots/histo/ofir_amp.pdf')
 plt.clf()	
+
+with open('AmplPeriod.csv','r') as inputFile: 
+	data = inputFile.readlines()
+	periodFrac = [k.split(',')[0] for k in data]
+	ampl = [k.split(',')[1] for k in data]
+	
+periodFrac = map(float, periodFrac)
+ampl = map(float, ampl)
+plt.scatter(periodFrac, ampl)
+plt.xlabel('P$_{ratio}$')
+plt.ylabel('Amplitude [min]')
+plt.savefig('./plots/ampPrat.pdf')
+print len(periodFrac), len(ampl)
 
 
 

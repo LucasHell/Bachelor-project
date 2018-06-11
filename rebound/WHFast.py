@@ -12,11 +12,11 @@ sim = rebound.Simulation()
 
 sim.add(m=0.8840)
 
-sim.add(m=2.50797-05, a=0.0782, e=0.0185989277497)
+sim.add(m=1.39918056104e-05, a=0.03011287, e=0.01080964399229022)
 
-sim.add(m=2.9741-05, a=0.103, e=0.0611877265829)
+sim.add(m=1.44425608404e-05, a=0.043392, e=0.01709651384935329)
 
-sim.add(m=0.000264, a=0.13725, e=0.0441692836378)
+sim.add(m=1.62353704347e-05, a=0.057657, e=0.03430694486301676)
 
 
 
@@ -41,7 +41,7 @@ y3 = np.zeros(Noutputs)
 
 sim.move_to_com()
 
-times = np.linspace(0, 1000000.*torb, Noutputs)
+times = np.linspace(0, 9000000.*torb, Noutputs)
 for i,t in enumerate(times):
     sim.integrate(t, exact_finish_time=0)
     x1[i] = particles[1].x
@@ -56,7 +56,7 @@ for i,t in enumerate(times):
     #~ y5[i] = particles[5].y
 
 
-fig = plt.figure(figsize=(5,5))
+fig = plt.figure(figsize=(6,6))
 ax = plt.subplot(111)
 plt.scatter(x1, y1, marker='.', color='blue', s=1.2);
 plt.scatter(x2, y2, marker='+', color='red', s=1.2);
@@ -64,7 +64,9 @@ plt.scatter(x3, y3, marker='.', color='black', s=1.2);
 #~ plt.scatter(x4, y4, marker='+', color='green', s=1.2);
 #~ plt.scatter(x5, y5, marker='+', color='purple', s=1.2);
 plt.scatter(0,0, marker='o', color='black', s=10);
-plt.savefig('simResult.png')
+plt.xlabel('Distance [AU]')
+plt.ylabel('Distance [AU]')
+plt.savefig('simResult.pdf')
 
 execTime = open('execTime.txt', 'w')
 execTime.write("--- %s seconds ---" % (time.time() - start_time) + '\n')

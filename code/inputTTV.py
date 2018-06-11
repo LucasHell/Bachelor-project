@@ -196,6 +196,7 @@ outRAdec = open('RA_dec_sys.csv', 'w')
 outputFile.write(repr(G) + '\n' + mStar[0] + '\n')
 
 
+
 totalPlanets = 0
 semiMajor = 0
 rHill = 0
@@ -247,37 +248,38 @@ for i in range(len(mPlanet)):
 			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# error in hours
 			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
 			
+		
+			outNumP.write(repr(count) + '\n')
+			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
+			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# timing precision in hours
+			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
+			
 			for n in range(0,count):
-				outNumP.write(repr(count) + '\n')
-				S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
-				errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# timing precision in hours
-				outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
-				
-				for n in range(0,count):
-					outTESSTime.write(RA[i] + ',' + dec[i] + '\n')
-					semiMajor = ((float(period[i-n])**2 * G * float(mStar[i]))/(4 * math.pi**2))**Fraction('1/3')
-					semiMajorList.append(semiMajor)
-					sumMass.append(mPlanet[i-n])
-					posMin = sysPeriod.index(np.amin(sysPeriod))
-					outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
-					sysPeriod[posMin] = 1000000
-				semiMajorList = sorted(semiMajorList, key=float, reverse=False)
-				
-				rHill = (semiMajorList[0] + semiMajorList[1])/2 * ((sumMass[0] + sumMass[1])/(3*float(mStar[i]))**Fraction('1/3'))
-				dif.append((semiMajorList[1] - semiMajorList[0])/rHill)
-				outStabSim.write(str(rHill) + ',' + str(systemCount) +  '\n')
-				
-				totalPlanets += count	
-				outputFile.close()
-				outRAdec.write(RA[i] + ',' + dec[i] + '\n')
-				break
+				outTESSTime.write(RA[i] + ',' + dec[i] + '\n')
+				semiMajor = ((float(period[i-n])**2 * G * float(mStar[i]))/(4 * math.pi**2))**Fraction('1/3')
+				semiMajorList.append(semiMajor)
+				sumMass.append(mPlanet[i-n])
+				posMin = sysPeriod.index(np.amin(sysPeriod))
+				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
+				sysPeriod[posMin] = 1000000
+			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
+			
+			rHill = (semiMajorList[0] + semiMajorList[1])/2 * ((sumMass[0] + sumMass[1])/(3*float(mStar[i]))**Fraction('1/3'))
+			dif.append((semiMajorList[1] - semiMajorList[0])/rHill)
+			outStabSim.write(str(rHill) + ',' + str(systemCount) +  '\n')
+			
+			totalPlanets += count	
+			outputFile.close()
+			outRAdec.write(RA[i] + ',' + dec[i] + '\n')
+			break
 
 			
 
 	elif kepID[i] != kepID[i+1]:		# if ID is not the same as ID of next planet a new file is created for new system
 		if count == 1:					# if number of planets is one the file is removed
 			os.remove('input/%s.in' % systemCount)
-			outputFile.close()
+			outputFile.close()	
+
 
 			# begin on new file
 			systemCount += 1
@@ -338,7 +340,7 @@ for i in range(len(mPlanet)):
 	elif kepID[i] == kepID[i+1] and int(str(name[i])[-2:]) > int(str(name[i+1])[-2:]):
 		if count == 1:					# if number of planets is 1 the file is removed
 			os.remove('input/%s.in' % systemCount)
-			outputFile.close()
+			outputFile.close()	
 			systemCount += 1
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
