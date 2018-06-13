@@ -66,7 +66,7 @@ outTransFile = open('transAmpSort.csv', 'w')
 for i in range(len(transSort)):
 	outTransFile.write(str(transSort[i]) + '\n')
 outTransFile.close()
-with open('wtm-TESSTime.csv', 'r') as inputFile:
+with open('wtm-RA_dec_p.csv', 'r') as inputFile:
 	data = inputFile.readlines()[1:]
 	#~ RATess = [k.split(',')[0] for k in data]
 	#~ decTess = [k.split(',')[1] for k in data]
@@ -116,22 +116,25 @@ norm = mp.colors.Normalize(
     vmin=np.min(maxTime),
     vmax=np.max(maxTime))
     
-norm = mp.colors.Normalize(
-    vmin=np.min(transitAmplitude),
-    vmax=np.max(transitAmplitude)) 
+#~ norm = mp.colors.Normalize(
+    #~ vmin=np.min(transitAmplitude),
+    #~ vmax=np.max(transitAmplitude)) 
 
 c_m = mp.cm.cool
 s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
 s_m.set_array([])
 
-#~ print len(ra_rad), len(dec_rad), len(transitAmplitude)
+print len(ra_rad), len(dec_rad), len(maxTime)
 plt.figure(figsize=(8,4.2))
 plt.subplot(111, projection="aitoff")
 plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m)
-#~ plt.scatter(ra_rad, dec_rad, s=7, c = transitAmplitude, cmap = cm.jet )
-plt.savefig('plots/skymap_TESS_wrap')
+plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
+plt.scatter(ra_rad, dec_rad, s=7, c = maxTime, cmap = cm.jet )
+textstr = 'Number of observations'
+plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
+plt.savefig('plots/skymap_TESS_numObs.pdf')
 plt.clf()
 countAmp = 0
 print transitAmplitude.index(np.amax(transitAmplitude))
@@ -180,7 +183,7 @@ plt.grid(True)
 plt.colorbar(s_m2)
 plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
 plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
-textstr = 'Number of observations'
+textstr = 'TTV amplitude [min]'
 plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
 plt.savefig('plots/skymap_TESS_amp.pdf')
 plt.clf()

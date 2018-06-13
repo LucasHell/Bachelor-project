@@ -23,6 +23,8 @@ omegaUni = []		# Omega (uniform distribution)
 numP = []			# Number of planets
 pNum = 0			# Planetary number
 maxR = 0
+signalNoise = []	# Signal to noice ratio
+SNRTH = 7.3
 
 
 
@@ -38,6 +40,7 @@ periodSul = data['P']
 rPlanetSul = data['Rp']
 RA = data['RA']
 dec = data['Dec']
+
 
 periodRange = 0.05		# ratio of period range
 radiusRange = 0.05		# ratio of radius range
@@ -55,8 +58,9 @@ with open('nasaDATA.csv','r') as inputFile: # read in data from csv file to resp
 	transitDur = [k.split(',')[14] for k in data]
 	rStar = [k.split(',')[29] for k in data]
 	effTempKep = [k.split(',')[26] for k in data]
-	
-	
+	signalNoise = [k.split(',')[23] for k in data]
+
+
 pTESS = 0
 rTESS = 0
 count1 = 0
@@ -67,14 +71,16 @@ for i in range(len(periodSul)): 		#
 	for k in range(len(periodKep)):
 		if rPlanetKep[k]:
 			if effTempKep[k] > 4000:
-				if periodSul[i] - periodRange*periodSul[i] <= float(periodKep[k]) <= periodSul[i] + periodRange*periodSul[i] and rPlanetSul[i] - radiusRange*rPlanetSul[i] <= float(rPlanetKep[k]) <= rPlanetSul[i] + radiusRange*rPlanetSul[i] and effTempSul[i] > 4000:
+				if periodSul[i] - periodRange*periodSul[i] <= float(periodKep[k]) <= periodSul[i] + periodRange*periodSul[i] and rPlanetSul[i] - radiusRange*rPlanetSul[i] <= float(rPlanetKep[k]) <= rPlanetSul[i] + radiusRange*rPlanetSul[i] and effTempSul[i] > 4000 and float(signalNoise[i]) > SNRTH:
+					#~ while kepID[j] == kepID[j+1]:
+						#~ if 
 					ratioP = float(periodKep[k]) / periodSul[i]	
 					ratioR = float(rPlanetKep[k]) / rPlanetSul[i]
 					j = k
 					count1 = 0
 					count2 = 0
 					countP = 0
-
+					
 						
 					
 					while kepID[j] == kepID[j+1]:
@@ -118,7 +124,7 @@ for i in range(len(periodSul)): 		#
 		
 					break
 			elif effTempKep[k] <= 4000:
-				if periodSul[i] - periodRange*periodSul[i] <= float(periodKep[k]) <= periodSul[i] + periodRange*periodSul[i] and rPlanetSul[i] - radiusRange*rPlanetSul[i] <= float(rPlanetKep[k]) <= rPlanetSul[i] + radiusRange*rPlanetSul[i] and effTempSul[i] < 4000:
+				if periodSul[i] - periodRange*periodSul[i] <= float(periodKep[k]) <= periodSul[i] + periodRange*periodSul[i] and rPlanetSul[i] - radiusRange*rPlanetSul[i] <= float(rPlanetKep[k]) <= rPlanetSul[i] + radiusRange*rPlanetSul[i] and effTempSul[i] < 4000 and signalNoise[i] > SNRTH:
 					ratioP = float(periodKep[k]) / periodSul[i]	
 					ratioR = float(rPlanetKep[k]) / rPlanetSul[i]
 					j = k
@@ -194,7 +200,7 @@ plt.xlabel('log$_{10}$[Period (days)', fontsize=12)
 plt.savefig('plots/R_P-plot_effTemp1.pdf')
 plt.clf()
 
-
+print np.amax(periodTESS)
 for i in range(len(periodTESS)):
 	if numP[i] != 1:
 		markNum = (int(numP[i]) - 1)

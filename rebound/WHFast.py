@@ -27,7 +27,7 @@ sim.dt = 1e-3
 particles = sim.particles
 
 torb = 2.*np.pi
-Noutputs = 10000
+Noutputs = 1000000
 x1 = np.zeros(Noutputs)
 y1 = np.zeros(Noutputs)
 x2 = np.zeros(Noutputs)

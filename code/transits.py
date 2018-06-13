@@ -114,7 +114,7 @@ for i in range(0, int(max(planet))+1):
 
 	
 	outputFile = open('transAmpl.csv', 'a')
-	outputFile.write(repr(transitAmplitude) + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+	outputFile.write(repr(transitAmplitude) + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])][:-1]) + ',' + sys.argv[1] + '\n')
 	outputFile.close()
 
 	print "Amplitude:", transitAmplitude, "minutes or", transitAmplitude/60, "hours"
@@ -131,9 +131,12 @@ for i in range(0, int(max(planet))+1):
 	outErrorFile = open('ampError.txt', 'a')
 	outErrorFile.write(repr(errorTiming) + '\n')
 	outErrorFile.close()
-	
+	#~ print RATess[int(sys.argv[2])]*-1
 	outRAdec = open('RA_dec_p.csv', 'a')
-	outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+	if float(decTess[int(sys.argv[2])]) > 0:
+		outRAdec.write(str(float(RATess[int(sys.argv[2])])*-1) + ',' + str(float(decTess[int(sys.argv[2])][:-1])*-1) + '\n')
+	else:
+		outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
 	outRAdec.close()
 	
 	epochAmp = np.array(epochAmp)
