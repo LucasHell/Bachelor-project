@@ -8,7 +8,6 @@ valueArray = []
 transitTime1Float = []
 epoch1Float = []
 count = 0
-period = 1.0917340278625494e+01
 kepMag = []
 transitDur = []
 rStar = []
@@ -19,6 +18,9 @@ transAmplProg = []
 transTimeProg = []
 epochAmp = []
 transitTimesLinFittedProg = []
+planetPeriodDouble = []
+planetAmpDouble = []
+rPlanet = []
 
 with open(sys.argv[1],'r') as timesFile:
 	valueArray = timesFile.readlines()
@@ -39,9 +41,10 @@ with open('RA_dec_sys.csv','r') as inputFile:
 	RATess = [k.split(',')[0] for k in data]
 	decTess = [k.split(',')[1] for k in data]	
 	
-with open('TESSData.csv','r') as inputFile: 
+with open('rPlanet.csv','r') as inputFile: 
 	data = inputFile.readlines()
-	period = [k.split(',')[2] for k in data]
+	rPlanet = [k.split(',')[0] for k in data]
+	
 
 with open('numberPlanets.csv') as inputFile:
 	planetCount = [k.split(' ')[0] for k in inputFile]
@@ -50,9 +53,9 @@ for n in range(len(planetCount)):
 	planetCount[n] = int(planetCount[n][:1])
 
 if os.stat(sys.argv[1]).st_size == 0:
-	for i in range(0,planetCount[int(sys.argv[2])]+1):
+	for i in range(0,planetCount[int(sys.argv[2])]):
 		outputFile = open('transAmpl.csv', 'a')
-		outputFile.write('0' + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+		outputFile.write(str(0) + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])][:-1]) + ',' + sys.argv[1][6:-3] + ',' + rPlanet[int(sys.argv[2])+i])
 		outputFile.close()
 		outRAdec = open('RA_dec_p.csv', 'a')
 		outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
@@ -62,7 +65,6 @@ if os.stat(sys.argv[1]).st_size == 0:
 		
 transitCount = 0
 
-#~ print RATess[int(sys.argv[2])], decTess[int(sys.argv[2])], sys.argv[2]
 
 for i in range(0, int(max(planet))+1): 
 	for l in range(len(planet)):
@@ -73,7 +75,7 @@ for i in range(0, int(max(planet))+1):
 	
 	if transitCount < 2:
 		outputFile = open('transAmpl.csv', 'a')
-		outputFile.write('0' + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
+		outputFile.write(str(0) + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])][:-1]) + ',' + sys.argv[1][6:-3] + ',' + rPlanet[int(sys.argv[2])+i])
 		outputFile.close()
 		outRAdec = open('RA_dec_p.csv', 'a')
 		outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
@@ -112,9 +114,8 @@ for i in range(0, int(max(planet))+1):
 	transitCorrection = (transitMax + transitMin) / 2
 
 
-	
 	outputFile = open('transAmpl.csv', 'a')
-	outputFile.write(repr(transitAmplitude) + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])][:-1]) + ',' + sys.argv[1] + '\n')
+	outputFile.write(repr(transitAmplitude) + ',' + str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])][:-1]) + ',' + sys.argv[1][6:-3] + ',' + rPlanet[int(sys.argv[2])+i])
 	outputFile.close()
 
 	print "Amplitude:", transitAmplitude, "minutes or", transitAmplitude/60, "hours"
@@ -141,7 +142,6 @@ for i in range(0, int(max(planet))+1):
 	
 	epochAmp = np.array(epochAmp)
 
-	#~ print epochAmp, transitTime1Corrected
 	y_line = np.linspace(0, 0 , len(epoch1Float))
 	plt.scatter(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, label='Transit Time')
 	plt.errorbar(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, yerr = errorTiming, linestyle="None")
@@ -155,8 +155,6 @@ for i in range(0, int(max(planet))+1):
 	plt.savefig('plots/' + sys.argv[1] + '_' + str(i) + '.pdf')
 	plt.clf()
 	
-	#~ print len(epochAmp[1:]), len(transAmplProg)
-	#~ print epochAmp[1:], transAmplProg
 	plt.scatter(epochAmp[1:]*fitTimes[0]/1440, transAmplProg, label='Transit Time')
 	plt.xlabel('Time [days]')
 	plt.ylabel('Amplitude [min]')
@@ -164,8 +162,13 @@ for i in range(0, int(max(planet))+1):
 	plt.savefig('plots/ampPlots/' + sys.argv[1] + '_' + str(i) + '.pdf')
 	plt.clf()
 
-	planetPeriod.append(float(periodData[3 + 2*i][:12]))
+	
+	planetPeriod.append(float(periodData[3 + 2*i][:9]))
 	planetAmp.append(transitAmplitude)
+	
+	if int(max(planet))+1 == 2:
+		planetPeriodDouble.append(float(periodData[3 + 2*i][:9]))
+		planetAmpDouble.append(transitAmplitude)
 	
 	epoch1Float = []
 	transitTime1Float = []
@@ -174,17 +177,26 @@ for i in range(0, int(max(planet))+1):
 	epochAmp = []
 	transitTimesLinFittedProg = []
 	transitCount = 0
+
 	
 	
 outPeriodAmp = open('AmplPeriod.csv', 'a')
 periodFrac = 0
-for l in range(len(planetPeriod)):
-	if str(planetPeriod[l]) != str(planetPeriod[-1]):
-		periodFrac = planetPeriod[l]/planetPeriod[l+1]
-	if planetAmp[l] < 200:
-		outPeriodAmp.write(str(periodFrac) + ',' + repr(planetAmp[l]) + '\n')
+#~ for l in range(len(planetPeriod)):
+	#~ if str(planetPeriod[l]) != str(planetPeriod[1]):
+		#~ periodFrac = planetPeriod[l]/planetPeriod[l-1]
+	#~ if planetAmp[l] < 200:
+		#~ outPeriodAmp.write(str(periodFrac) + ',' + repr(planetAmp[l]) + ',' + str(planetCount[l]) + '\n')
+#~ outPeriodAmp.close()
 
-
+outPeriodAmp = open('AmplPeriodDouble.csv', 'a')
+periodFrac = 0
+if len(planetPeriodDouble) > 1:
+	for l in range(len(planetPeriodDouble)):
+		periodFrac = planetPeriodDouble[1]/planetPeriodDouble[0]
+		if planetAmpDouble[l] < 200:
+			outPeriodAmp.write(str(periodFrac) + ',' + repr(planetAmpDouble[l]) + ',' + str(planetCount[l]) + '\n')
+outPeriodAmp.close()
 
 
 

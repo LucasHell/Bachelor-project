@@ -13,6 +13,7 @@ rm ./code/ampError.txt
 rm ./code/RA_dec_sys.csv
 rm ./code/RA_dec_p.csv
 rm ./code/AmplPeriod.csv
+rm ./code/rPlanet.csv
 
 mkdir ./TTVFast/c_version/input
 

@@ -48,6 +48,8 @@ sysInclination = []
 syslNode = []
 sysArg = []
 sysMeanAnom = []
+sysRPlanet = []
+sysCountList = []
 
 
 
@@ -162,6 +164,8 @@ with open('TESSData.csv','r') as inputFile:
 
 
 #Convert planet radius to mass
+
+
 for i in range(len(rPlanet)):
 	if not rPlanet[i]:
 		rPlanet[i] = 0
@@ -173,17 +177,16 @@ for i in range(len(rPlanet)):
 	else:																	# calculate mass of planet for planets with mass below 1.5 earth masses
 		mPlanet.append(2.69*(rPlanet[i]**0.93))
 
-	mPlanet[i] = mPlanet[i]*0.000002988 									#convert planet mass from earth masses to solar masses
-
-	
+	mPlanet[i] = mPlanet[i]*0.000002988 		#convert planet mass from earth masses to solar masses
+#~ print np.amax(rPlanet)	
 pathlib2.Path('./input/').mkdir(parents=True, exist_ok=True)				# create directory input if it does not exist
 
-#~ for i in range(len(dec)):
-	#~ if float(dec[i]) > 0:
-		#~ dec[i] = float(dec[i]) * -1
-		#~ dec[i] = str(dec[i])
-		#~ RA[i] = float(RA[i]) * -1
-		#~ RA[i] = str(RA[i])
+for i in range(len(dec)):
+	if float(dec[i]) > 0:
+		dec[i] = float(dec[i]) * -1
+		dec[i] = str(dec[i])
+		RA[i] = float(RA[i]) * -1
+		RA[i] = str(RA[i])
 
 # open output files to write data for TTVFast
 systemCount = 0	
@@ -193,7 +196,9 @@ outErrorFile = open('timingErrors.csv', 'w')
 outTESSTime = open('TESSTime.csv', 'w')
 outStabSim = open('stabSim.csv', 'w')
 outRAdec = open('RA_dec_sys.csv', 'w')
+outRPlanet = open('rPlanet.csv', 'w')
 outputFile.write(repr(G) + '\n' + mStar[0] + '\n')
+
 
 
 
@@ -232,7 +237,9 @@ for i in range(len(mPlanet)):
 	syslNode.append(lNode)
 	sysArg.append(argument)
 	sysMeanAnom.append(meanAnom[i])
+	sysRPlanet.append(rPlanet[i])
 	count += 1			# counter for number of planets for each system
+	
 	
 	if i == len(mPlanet)-1: 			# for last element
 		if count == 1:
@@ -243,17 +250,12 @@ for i in range(len(mPlanet)):
 			
 		elif count != 1:
 			outNumP.write(repr(count) + '\n')
-			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
+			S = 3.958 * 10**11 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
 			
 			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# error in hours
 			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
 			
-		
-			outNumP.write(repr(count) + '\n')
-			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
-			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# timing precision in hours
-			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
-			
+
 			for n in range(0,count):
 				outTESSTime.write(RA[i] + ',' + dec[i] + '\n')
 				semiMajor = ((float(period[i-n])**2 * G * float(mStar[i]))/(4 * math.pi**2))**Fraction('1/3')
@@ -262,10 +264,12 @@ for i in range(len(mPlanet)):
 				posMin = sysPeriod.index(np.amin(sysPeriod))
 				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
 				sysPeriod[posMin] = 1000000
+				outRPlanet.write(str(sysRPlanet[posMin]) + '\n')
 			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
 			
 			rHill = (semiMajorList[0] + semiMajorList[1])/2 * ((sumMass[0] + sumMass[1])/(3*float(mStar[i]))**Fraction('1/3'))
 			dif.append((semiMajorList[1] - semiMajorList[0])/rHill)
+			sysCountList.append(systemCount)
 			outStabSim.write(str(rHill) + ',' + str(systemCount) +  '\n')
 			
 			totalPlanets += count	
@@ -294,12 +298,12 @@ for i in range(len(mPlanet)):
 			syslNode = []
 			sysArg = []
 			sysMeanAnom = []
-			
+			sysRPlanet = []
 			
 			
 		elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
 			outNumP.write(repr(count) + '\n')
-			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
+			S = 3.958 * 10**11 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
 			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# timing precision in hours
 			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
 			for n in range(0,count):
@@ -310,10 +314,13 @@ for i in range(len(mPlanet)):
 				posMin = sysPeriod.index(np.amin(sysPeriod))
 				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
 				sysPeriod[posMin] = 1000000
+				outRPlanet.write(str(sysRPlanet[posMin]) + '\n')
 			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
 			
+
 			rHill = (semiMajorList[0] + semiMajorList[1])/2 * ((sumMass[0] + sumMass[1])/(3*float(mStar[i]))**Fraction('1/3'))
 			dif.append((semiMajorList[1] - semiMajorList[0])/rHill)
+			sysCountList.append(systemCount)
 			outStabSim.write(str(rHill) + ',' + str(systemCount) +  '\n')
 			
 			totalPlanets += count	
@@ -330,6 +337,7 @@ for i in range(len(mPlanet)):
 			syslNode = []
 			sysArg = []
 			sysMeanAnom = []
+			sysRPlanet = []
 			
 			outputFile.close()
 			outputFile = open('input/%s.in' % systemCount, 'w')
@@ -350,7 +358,7 @@ for i in range(len(mPlanet)):
 			
 		elif count != 1:				# if number of planets is not 1 the rest of the data is saved and a new file is created
 			outNumP.write(repr(count) + '\n')
-			S = 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
+			S = 3.958 * 10**11 * 10**(-0.4*float(kepMag[i]))			# Kep: 7.8 * 10**8 *10**(-0.4*float(kepMag[i]))		TESS: 3.96 * 10**13 * 10**(-0.4*float(kepMag[i]))
 			errorTiming = ((S * float(transitDur[i]))**Fraction('-1/2') * ((float(rPlanet[i])*0.009158)/float(rStar[i]))**Fraction('-3/2') * float(transitDur[i]))		# timing precision in hours
 			outErrorFile.write(repr(errorTiming*60) + '\n') 		# write errors to file in minutes
 			
@@ -362,10 +370,12 @@ for i in range(len(mPlanet)):
 				posMin = sysPeriod.index(np.amin(sysPeriod))
 				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
 				sysPeriod[posMin] = 1000000
+				outRPlanet.write(str(sysRPlanet[posMin]) + '\n')
 			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
-			
+
 			rHill = (semiMajorList[0] + semiMajorList[1])/2 * ((sumMass[0] + sumMass[1])/(3*float(mStar[i]))**Fraction('1/3'))
 			dif.append((semiMajorList[1] - semiMajorList[0])/rHill)
+			sysCountList.append(systemCount)
 			outStabSim.write(str(rHill) + ',' + str(systemCount) +  '\n')
 			
 			totalPlanets += count	
@@ -382,6 +392,7 @@ for i in range(len(mPlanet)):
 			syslNode = []
 			sysArg = []
 			sysMeanAnom = []
+			sysRPlanet = []
 			
 			outputFile.close()
 			outputFile = open('input/%s.in' % systemCount, 'w')
@@ -391,7 +402,7 @@ for i in range(len(mPlanet)):
 print totalPlanets			
 outDif = open('dif_table.csv', 'w')
 for l in range(len(dif)):
-	outDif.write(str(dif[l]) + ',' + str(l) + ',' + '\n')
+	outDif.write(str(dif[l]) + ',' + str(sysCountList[l]) + ',' + '\n')
 	
 outDif.close()	
 		
@@ -399,7 +410,7 @@ dif = sorted(dif, key=float, reverse=True)
 
 outDif = open('dif_table_sort.csv', 'w')
 for l in range(len(dif)):
-	outDif.write(str(dif[l]) + ',' + str(l) + ',' + '\n')
+	outDif.write(str(dif[l]) + ',' + str(sysCountList[l]) + ',' + '\n')
 	
 outNumP.close()
 outErrorFile.close()

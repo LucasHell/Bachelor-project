@@ -259,12 +259,12 @@ This paper will simulate data from the TESS telescope to search for these transi
 	\begin{equation}
 		\sigma_t \approx \left[\left(\Gamma t_T\right)^{-1/2}  \left(\frac{R_p}{R_{\star}}\right)^{-3/2}\right] t_T
 	\end{equation}
-	where $\Gamma$ is the photon count rate of the observed star, $t_T$ is the transit duration, $R_p$ and $R_{\star}$ is the radius of the planet and star in solar radii. For Kepler the photon count is $\Gamma = 7.8 \times 10^8\; 10^{-0.4(V-14)} \; \mathrm{hr^{-1}}$ where $V$ is the apparent magnitude of the star. From \cite{2015ApJ...809...77S} the photon flux for TESS at magnitude $I_c=0$ is $\Phi \approx 1.4 \times 10^6 \; \mathrm{s^{-1} cm^{-2}}$ and $\Phi \approx 1.4 \times 10^6 \; 10^{-0.4I_c} \; \mathrm{s^{-1} cm^{-2}}$ when $I_c \neq 0$. The diameter of a camera on TESS is 100 mm which gives an area of $A_{camera} = \pi (50 \; \mathrm{mm})^2 = 7859.98 \; \mathrm{mm}^2 = 78.54 \; \mathrm{cm}^2$. The photon count is the photon flux multiplied with the area of the camera:
+	where $\Gamma$ is the photon count rate of the observed star, $t_T$ is the transit duration, $R_p$ and $R_{\star}$ is the radius of the planet and star in solar radii. For Kepler the photon count is $\Gamma = 7.8 \times 10^8\; 10^{-0.4(V-12)} \; \mathrm{hr^{-1}}$ where $V$ is the apparent magnitude of the star. From \cite{2015ApJ...809...77S} the photon flux for TESS at magnitude $I_c=0$ is $\Phi \approx 1.4 \times 10^6 \; \mathrm{s^{-1} cm^{-2}}$ and $\Phi \approx 1.4 \times 10^6 \; 10^{-0.4I_c} \; \mathrm{s^{-1} cm^{-2}}$ when $I_c \neq 0$. The diameter of a camera on TESS is 100 mm which gives an area of $A_{camera} = \pi (50 \; \mathrm{mm})^2 = 7853.98 \; \mathrm{mm}^2 = 78.54 \; \mathrm{cm}^2$. The photon count is the photon flux multiplied with the area of the camera:
 	\begin{equation}
 		\Gamma = \Phi A_{camera} = 1.4 \times 10^6\; 10^{-0.4I_c} \; \mathrm{s^{-1} cm^{-2}} \times 78.54 \; \mathrm{cm}^2 = 
 	\end{equation}
 	\begin{equation}
-	1.10 \times 10^{10}\; 10^{-0.4I_c} \; \mathrm{s}^{-1} = 3.96 \times 10^{13} 10^{-0.4I_c}
+	1.10 \times 10^{8}\; 10^{-0.4I_c} \; \mathrm{s}^{-1} = 3.96 \times 10^{11} \; 10^{-0.4I_c} \; \mathrm{hr}^{-1}
 	\end{equation}
 \section{Stability simulations}
 	The artificial systems that are created need to be checked for stability to determine if the assumptions and method of creating them results in realistic and stable systems. For this Rebound \citep{2012A&A...537A.128R}, more specifically the WHFast integrator \citep{2015MNRAS.452..376R}, is used. WHFast is a Wisdom-Holman integrator used for long duration planetary system simulations. For some systems close-encounters occur, WHFast is not a good integrator for these and therefore if such a system is found it will instead be simulated with IAS15 \citep{2015MNRAS.446.1424R}. IAS15 is another integrator for gravitational dynamics and although slower than WHFast it handles close-encounters better.
@@ -412,6 +412,8 @@ Id of star & I &  V & Var.? \\
 	The systems are checked for stability and ensure that they are realistic with WHFast, IAS15 and by comparing the distribution of amplitudes from the TESS objects with the objects from the Ofir et al. paper. Using WHFast, most systems tested for stability show no sign of instability within $10^5 / 10^6$ years. The few that do are simulated using IAS15 where they are shown to be stable and the instability from WHFast can be considered an effect of WHFast's inability to handle close encounters. The artificial systems created in this paper contain some planets which show strong TTV signals, mainly positioned in the ecliptic poles as the systems positioned here are observed for a whole year which gives many more opportunities to detect TTVs. The shape of the histogram in figure \ref{fig:ampl_ofir} are the same as in the Ofir paper. This shows that the methods of simulating systems used in this paper are viable and give reasonable results.
 	
 	The error calculations seem to give reasonable results \citep{2015ApJ...812L..18B}. As seen in figure \ref{fig:amp_error} many systems shows a TTV amplitude higher than the error but many systems shows a TTV amplitude lower than the error, for these systems no conclusion can be made as the signal could be true but it might as well be noise. The error is solely based on photon statistics and does not take things like cadence into consideration which would otherwise increase the errors. 
+	
+	SNR Sullivan brighter due to more errors considered
 	
 \chapter{Conclusions}
 	This paper simulated TESS objects using data from the Kepler dataset and results from the paper by \cite{2015ApJ...809...77S} on a search to predict TTV signals caused by multiple planets in the systems. The results can be seen below:

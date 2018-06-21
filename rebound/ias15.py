@@ -13,9 +13,9 @@ def setupSimulation():
 	sim = rebound.Simulation()
 	sim.integrator = "ias15" # IAS15 is the default integrator, so we don't need this line
 	sim.add(m=0.8840)
-	sim.add(m=2.9741e-05, a=0.103, e=0.0611877265829)
-	sim.add(m=2.50797e-05, a=0.0782, e=0.0185989277497)
-	sim.add(m=0.000264, a=0.13725, e=0.0441692836378)
+	sim.add(m=2.62455875179e-05, a=0.07172, e=0.08396949617333166)
+	sim.add(m=3.11234103187e-05, a=0.09457, e=0.060163769998131694)
+	sim.add(m=0.00027666363116, a=0.12614, e=0.039712833152958316)
 	sim.move_to_com()
 	return sim
     
@@ -46,7 +46,7 @@ def mergeParticles(sim):
 sim = setupSimulation() # Resets everything
 sim.exit_min_distance = 0.005
 Noutputs = 10000
-times = np.linspace(0,100.*2.*np.pi,Noutputs)
+times = np.linspace(0,9000000.*2.*np.pi,Noutputs) #9000000
 distances = np.zeros(Noutputs)
 x1 = np.zeros(Noutputs)
 y1 = np.zeros(Noutputs)

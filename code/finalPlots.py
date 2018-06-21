@@ -19,7 +19,7 @@ minTime = []				# Min time that TESS observes the object
 medTime = []				# Med time that TESS observes the object
 avgTime = []				# Average time that TESS observes the object
 transitAmplitude = []		# amplitude
-amplCorr = []				# amplitude where >0.1min is sorted out
+amplCorr = []				# amplitude where <0.1min is sorted out
 errorPlot = []		
 ampPlot = []
 ra_rad = []
@@ -31,8 +31,16 @@ amp_cut = []
 timeCut = []
 beta = []
 lamb = []
-#~ ampl = []
-#~ periodFrac = []
+numP = []
+sysName = []
+ampl = []
+periodFrac = []
+amplFil = []
+periodFracFil = []
+amplDouble = []
+periodFracDouble = []
+amplFilDouble = []
+periodFracFilDouble = []
 
 
 
@@ -41,6 +49,9 @@ with open('transAmpl.csv', 'r') as inputFile:
 	transitAmplitude = [k.split(',')[0] for k in data]
 	RATess = [k.split(',')[1] for k in data]
 	decTess = [k.split(',')[2] for k in data]
+	rPlanet = [k.split(',')[4] for k in data]
+	#~ sysName = [k.split(',')[3] for k in data]
+
 
 transitAmplitude = map(float, transitAmplitude)
 for m in range(len(transitAmplitude)):
@@ -66,7 +77,8 @@ outTransFile = open('transAmpSort.csv', 'w')
 for i in range(len(transSort)):
 	outTransFile.write(str(transSort[i]) + '\n')
 outTransFile.close()
-with open('wtm-RA_dec_p.csv', 'r') as inputFile:
+
+with open('wtm-TESSTime.csv', 'r') as inputFile:
 	data = inputFile.readlines()[1:]
 	#~ RATess = [k.split(',')[0] for k in data]
 	#~ decTess = [k.split(',')[1] for k in data]
@@ -91,7 +103,8 @@ transitAmplitude = map(float, transitAmplitude)
 
 
 
-
+coordsEcl = open('coordsEcl.csv', 'w')
+coordsEcl.write('RA' + ',' + 'dec' + ',' + 'long' + ',' + 'lat' + ',' + 'Name' + '\n')
 tilt = math.radians(23.439281)
 lamb1 = 0
 lamb2 = 0
@@ -105,6 +118,7 @@ for i in range(len(RATess)):
 	lamb2 = (math.cos(RATess[i])*math.cos(decTess[i]))/math.cos(beta[i])
 	lamb.append(math.degrees(math.atan2(lamb2, lamb1)))
 	beta[i] = math.degrees(beta[i])
+	coordsEcl.write(repr(math.degrees(RATess[i])) + ',' + repr(math.degrees(decTess[i])) + ',' + repr(lamb[i]) + ',' + repr(beta[i]) + '\n')  
 
 c = SkyCoord(lon=lamb*u.deg, lat=beta*u.deg, frame='heliocentrictrueecliptic')
 ra_rad = c.lon.wrap_at(180 * u.deg).rad			
@@ -314,19 +328,71 @@ with open('AmplPeriod.csv','r') as inputFile:
 	data = inputFile.readlines()
 	periodFrac = [k.split(',')[0] for k in data]
 	ampl = [k.split(',')[1] for k in data]
+	#~ numP = [k.split(',')[2] for k in data]
 	
 periodFrac = map(float, periodFrac)
 ampl = map(float, ampl)
-plt.scatter(periodFrac, ampl)
-plt.xlabel('P$_{ratio}$')
+#~ numP = map(float, numP)
+
+for i in range(len(ampl)):
+	if ampl[i] > 0.0001:
+		amplFil.append(ampl[i])
+		periodFracFil.append(periodFrac[i])
+		
+plt.scatter(periodFracFil, np.log10(amplFil))
+plt.xlabel('Period ratio')
 plt.ylabel('Amplitude [min]')
 plt.savefig('./plots/ampPrat.pdf')
-print len(periodFrac), len(ampl)
+plt.clf()
+
+#~ plt.scatter(periodFrac, numP)
+#~ plt.xlabel('Period ratio')
+#~ plt.ylabel('Multiplicity')
+#~ plt.savefig('./plots/multiPrat.pdf')
+#~ plt.clf()
+
+plt.hist(periodFrac, bins=20)
+plt.xlabel('Period ratio')
+plt.ylabel('Number of planets')
+plt.savefig('./plots/PratHisto.pdf')
+plt.clf()
+
+with open('AmplPeriodDouble.csv','r') as inputFile: 
+	data = inputFile.readlines()
+	periodFracDouble = [k.split(',')[0] for k in data]
+	amplDouble = [k.split(',')[1] for k in data]
 
 
+periodFracDouble = map(float, periodFracDouble)
+amplDouble = map(float, amplDouble)
 
+for i in range(len(amplDouble)):
+	if amplDouble[i] > 0.0001:
+		amplFilDouble.append(amplDouble[i])
+		periodFracFilDouble.append(periodFracDouble[i])
+		
+plt.scatter(periodFracFilDouble, np.log10(amplFilDouble))
+plt.xlabel('Period ratio')
+plt.ylabel('Amplitude [min]')
+plt.savefig('./plots/ampPratDouble.pdf')
+plt.clf()
 
+rPlanet = map(float, rPlanet)
+transitAmplitude = map(float, transitAmplitude)
+rPlanet2 = []
+transAmp2 = []
+for i in range(len(rPlanet)):
+	if 0.0001 < transitAmplitude[i] < 1000:
+		rPlanet2.append(rPlanet[i])
+		transAmp2.append(transitAmplitude[i])
+#~ transitAmplitude = [i for i in transitAmplitude if i < 1000]
 
+print np.amax(rPlanet2), np.amax(transAmp2)
+plt.scatter(np.log10(rPlanet2), np.log10(transAmp2))
+plt.xlabel('log$_{10}$[Radius (R$_{\oplus}$)]')
+plt.ylabel('log$_{10}$[Amplitude (min)]')
+plt.savefig('./plots/ampRadius.pdf')
+plt.clf()
 
 
 
