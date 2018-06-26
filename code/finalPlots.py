@@ -47,8 +47,8 @@ periodFracFilDouble = []
 with open('transAmpl.csv', 'r') as inputFile:
 	data = inputFile.readlines()
 	transitAmplitude = [k.split(',')[0] for k in data]
-	RATess = [k.split(',')[1] for k in data]
-	decTess = [k.split(',')[2] for k in data]
+	#~ RATess = [k.split(',')[1] for k in data]
+	#~ decTess = [k.split(',')[2] for k in data]
 	rPlanet = [k.split(',')[4] for k in data]
 	#~ sysName = [k.split(',')[3] for k in data]
 
@@ -78,7 +78,7 @@ for i in range(len(transSort)):
 	outTransFile.write(str(transSort[i]) + '\n')
 outTransFile.close()
 
-with open('wtm-TESSTime.csv', 'r') as inputFile:
+with open('wtm-RA_dec_p.csv', 'r') as inputFile:
 	data = inputFile.readlines()[1:]
 	#~ RATess = [k.split(',')[0] for k in data]
 	#~ decTess = [k.split(',')[1] for k in data]
@@ -87,10 +87,10 @@ with open('wtm-TESSTime.csv', 'r') as inputFile:
 	medTime = [k.split(',')[4] for k in data]
 	avgTime = [k.split(',')[5] for k in data]
 	
-#~ with open('RA_dec_p.csv','r') as inputFile: 
-	#~ data = inputFile.readlines()
-	#~ RATess = [k.split(',')[0] for k in data]
-	#~ decTess = [k.split(',')[1] for k in data]
+with open('RA_dec_p.csv','r') as inputFile: 
+	data = inputFile.readlines()
+	RATess = [k.split(',')[0] for k in data]
+	decTess = [k.split(',')[1] for k in data]
 	
 RATess = map(float, RATess)
 decTess = map(float, decTess)
@@ -145,7 +145,7 @@ plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m)
 plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
-plt.scatter(ra_rad, dec_rad, s=7, c = maxTime, cmap = cm.jet )
+#~ plt.scatter(ra_rad, dec_rad, s=7, c = maxTime, cmap = cm.jet )
 textstr = 'Number of observations'
 plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
 plt.savefig('plots/skymap_TESS_numObs.pdf')
@@ -157,10 +157,10 @@ print transitAmplitude.index(np.amax(transitAmplitude))
 print len(ra_rad), len(dec_rad), len(transitAmplitude), len(maxTime)
 for i in range(len(transitAmplitude)):
 	if float(transitAmplitude[i]) < 3000:
-		ra_cut.append(ra_rad[i] * -1)
+		ra_cut.append(ra_rad[i])
 		dec_cut.append(dec_rad[i])
 		amp_cut.append(transitAmplitude[i])
-		timeCut.append(maxTime[i])
+		#~ timeCut.append(maxTime[i])
 		#~ if -40 < dec_rad[i] < 40 and float(transitAmplitude[i]) > 20 and dec_rad[i] != dec_rad[i-1]:
 			#~ countAmp += 1
 			#~ print math.degrees(ra_rad[i]), math.degrees(dec_rad[i]), np.log10(float(transitAmplitude[i]))
@@ -196,7 +196,7 @@ plt.grid(True)
 #~ plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m2)
 plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
-plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
+#~ plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
 textstr = 'TTV amplitude [min]'
 plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
 plt.savefig('plots/skymap_TESS_amp.pdf')
@@ -351,11 +351,7 @@ plt.clf()
 #~ plt.savefig('./plots/multiPrat.pdf')
 #~ plt.clf()
 
-plt.hist(periodFrac, bins=20)
-plt.xlabel('Period ratio')
-plt.ylabel('Number of planets')
-plt.savefig('./plots/PratHisto.pdf')
-plt.clf()
+
 
 with open('AmplPeriodDouble.csv','r') as inputFile: 
 	data = inputFile.readlines()
@@ -366,8 +362,14 @@ with open('AmplPeriodDouble.csv','r') as inputFile:
 periodFracDouble = map(float, periodFracDouble)
 amplDouble = map(float, amplDouble)
 
+plt.hist(periodFracDouble, bins=20)
+plt.xlabel('Period ratio')
+plt.ylabel('Number of planets')
+plt.savefig('./plots/PratHisto.pdf')
+plt.clf()
+
 for i in range(len(amplDouble)):
-	if amplDouble[i] > 0.0001:
+	if amplDouble[i] > 0.0001 and periodFracDouble[i] < 3:
 		amplFilDouble.append(amplDouble[i])
 		periodFracFilDouble.append(periodFracDouble[i])
 		

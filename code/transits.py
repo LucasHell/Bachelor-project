@@ -89,7 +89,7 @@ for i in range(0, int(max(planet))+1):
 	transitTime1Float = np.array(transitTime1Float)
 	if epoch1Float[0] == epoch1Float[1]:
 		epoch1Float[1:] += 1
-
+	print epoch1Float
 	transitTime1Min = transitTime1Float * 1440
 
 	for l in range(len(transitTime1Float)):
@@ -135,7 +135,7 @@ for i in range(0, int(max(planet))+1):
 	#~ print RATess[int(sys.argv[2])]*-1
 	outRAdec = open('RA_dec_p.csv', 'a')
 	if float(decTess[int(sys.argv[2])]) > 0:
-		outRAdec.write(str(float(RATess[int(sys.argv[2])])*-1) + ',' + str(float(decTess[int(sys.argv[2])][:-1])*-1) + '\n')
+		outRAdec.write(str(float(RATess[int(sys.argv[2])])) + ',' + str(float(decTess[int(sys.argv[2])][:-1])) + '\n')
 	else:
 		outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
 	outRAdec.close()
