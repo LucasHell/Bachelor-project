@@ -21,6 +21,7 @@ transitTimesLinFittedProg = []
 planetPeriodDouble = []
 planetAmpDouble = []
 rPlanet = []
+rPlanetFrac = []
 
 with open(sys.argv[1],'r') as timesFile:
 	valueArray = timesFile.readlines()
@@ -31,6 +32,9 @@ with open(sys.argv[1],'r') as timesFile:
 
 with open('CHEOPS_clones/' + sys.argv[1][10:], 'r') as dataFile:
 	periodData = dataFile.readlines()
+
+with open('radius_cheops/' + sys.argv[1][10:-2] + 'txt', 'r') as inputFile: 
+	rPlanet = inputFile.readlines()
 	
 epoch1 = map(int, epoch1)
 transitTime1 = map(float, transitTime1)
@@ -172,6 +176,7 @@ for i in range(0, int(max(planet))+1):
 	
 	planetPeriod.append(float(periodData[3 + 2*i][:9]))
 	planetAmp.append(transitAmplitude)
+	rPlanetFrac.append(rPlanet[i][:-2])
 	
 	if int(max(planet))+1 == 2:
 		planetPeriodDouble.append(float(periodData[3 + 2*i][:9]))
@@ -186,15 +191,28 @@ for i in range(0, int(max(planet))+1):
 	transitCount = 0
 
 	
-	
-#~ outPeriodAmp = open('AmplPeriod.csv', 'a')
-#~ periodFrac = 0
-#~ for l in range(len(planetPeriod)):
+
+outPeriodAmp = open('AmplPeriod.csv', 'a')
+periodFrac = 0
+#~ print planetPeriod
+for l in range(len(planetPeriod)):
+	if str(planetPeriod[l]) == str(planetPeriod[-1]):
+		#~ print "1"
+		outPeriodAmp.write(str(float(planetPeriod[l])/(float(planetPeriod[l-1]))) + ',' + str(rPlanet[l][:-2]) + ',' + str(planetAmp[l]) + ',' + str(errorTiming) + '\n')
+	elif str(planetPeriod[l]) == str(planetPeriod[0]):
+		#~ print "2"
+		outPeriodAmp.write(str(float(planetPeriod[l+1])/(float(planetPeriod[l]))) + ',' + str(rPlanet[l][:-2]) + ',' + str(planetAmp[l]) + ',' + str(errorTiming) + '\n')
+	else:
+		#~ print "3"
+		outPeriodAmp.write(str(float(planetPeriod[l])/(float(planetPeriod[l-1]))) + ',' + str(rPlanet[l][:-2]) + ',' + str(planetAmp[l]) + ',' + str(errorTiming) + '\n')
+		
+		outPeriodAmp.write(str(float(planetPeriod[l+1])/(float(planetPeriod[l]))) + ',' + str(rPlanet[l][:-2]) + ',' + str(planetAmp[l]) + ',' + str(errorTiming) + '\n')
 	#~ if str(planetPeriod[l]) != str(planetPeriod[1]):
 		#~ periodFrac = planetPeriod[l]/planetPeriod[l-1]
 	#~ if planetAmp[l] < 200:
 		#~ outPeriodAmp.write(str(periodFrac) + ',' + repr(planetAmp[l]) + ',' + str(planetCount[l]) + '\n')
-#~ outPeriodAmp.close()
+	
+outPeriodAmp.close()
 
 #~ outPeriodAmp = open('AmplPeriodDouble.csv', 'a')
 #~ periodFrac = 0

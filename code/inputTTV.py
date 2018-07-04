@@ -181,12 +181,12 @@ for i in range(len(rPlanet)):
 #~ print np.amax(rPlanet)	
 pathlib2.Path('./input/').mkdir(parents=True, exist_ok=True)				# create directory input if it does not exist
 
-for i in range(len(dec)):
-	if float(dec[i]) > 0:
-		dec[i] = float(dec[i]) * -1
-		dec[i] = str(dec[i])
-		RA[i] = float(RA[i]) * -1
-		RA[i] = str(RA[i])
+#~ for i in range(len(dec)):
+	#~ if float(dec[i]) > 0:
+		#~ dec[i] = float(dec[i]) * -1
+		#~ dec[i] = str(dec[i])
+		#~ RA[i] = float(RA[i]) * -1
+		#~ RA[i] = str(RA[i])
 
 # open output files to write data for TTVFast
 systemCount = 0	
@@ -196,10 +196,14 @@ outErrorFile = open('timingErrors.csv', 'w')
 outTESSTime = open('TESSTime.csv', 'w')
 outStabSim = open('stabSim.csv', 'w')
 outRAdec = open('RA_dec_sys.csv', 'w')
-outRPlanet = open('rPlanet.csv', 'w')
+outRPlanet = open('radius_P/%s.txt' % systemCount, 'w')
+outRPlanetAll = open('rPlanet.csv', 'w')
 outputFile.write(repr(G) + '\n' + mStar[0] + '\n')
 
-
+#~ for i in range(len(RA)):
+	#~ if float(dec[i]) > 0:
+		#~ dec[i] = str(float(dec[i])*-1)
+		#~ RA[i] = str(float(RA[i])*-1)
 
 
 totalPlanets = 0
@@ -265,6 +269,7 @@ for i in range(len(mPlanet)):
 				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
 				sysPeriod[posMin] = 1000000
 				outRPlanet.write(str(sysRPlanet[posMin]) + '\n')
+				outRPlanetAll.write(str(sysRPlanet[posMin]) + '\n')
 			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
 			
 			rHill = (semiMajorList[0] + semiMajorList[1])/2 * ((sumMass[0] + sumMass[1])/(3*float(mStar[i]))**Fraction('1/3'))
@@ -283,12 +288,14 @@ for i in range(len(mPlanet)):
 		if count == 1:					# if number of planets is one the file is removed
 			os.remove('input/%s.in' % systemCount)
 			outputFile.close()	
-
+			outRPlanet.close()
+			os.remove('radius_P/%s.txt' % systemCount)
 
 			# begin on new file
 			systemCount += 1
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
+			outRPlanet = open('radius_P/%s.txt' %systemCount, 'w')
 			count = 0
 			semiMajorList = []
 			sysmPlanet = []
@@ -315,6 +322,7 @@ for i in range(len(mPlanet)):
 				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
 				sysPeriod[posMin] = 1000000
 				outRPlanet.write(str(sysRPlanet[posMin]) + '\n')
+				outRPlanetAll.write(str(sysRPlanet[posMin]) + '\n')
 			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
 			
 
@@ -343,16 +351,34 @@ for i in range(len(mPlanet)):
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')	
 			outRAdec.write(RA[i] + ',' + dec[i] + '\n')
+			outRPlanet.close()
+			outRPlanet = open('radius_P/%s.txt' %systemCount, 'w')
+
+
 			
 			
 	elif kepID[i] == kepID[i+1] and int(str(name[i])[-2:]) > int(str(name[i+1])[-2:]):
 		if count == 1:					# if number of planets is 1 the file is removed
 			os.remove('input/%s.in' % systemCount)
 			outputFile.close()	
+			outRPlanet.close()
+			os.remove('radius_P/%s.txt' % systemCount)
+
+			# begin on new file
 			systemCount += 1
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')
+			outRPlanet = open('radius_P/%s.txt' %systemCount, 'w')
 			count = 0
+			semiMajorList = []
+			sysmPlanet = []
+			sysPeriod = []
+			sysEccentricty = []
+			sysInclination = []
+			syslNode = []
+			sysArg = []
+			sysMeanAnom = []
+			sysRPlanet = []
 
 			
 			
@@ -371,6 +397,7 @@ for i in range(len(mPlanet)):
 				outputFile.write(str(sysmPlanet[posMin]) + '\n' + str(sysPeriod[posMin]) + ' ' + repr(sysEccentricty[posMin]) + ' ' + repr(sysInclination[posMin]) + ' ' + repr(syslNode[posMin]) + '  ' + repr(sysArg[posMin]) + ' ' + repr(sysMeanAnom[posMin]) + '\n')
 				sysPeriod[posMin] = 1000000
 				outRPlanet.write(str(sysRPlanet[posMin]) + '\n')
+				outRPlanetAll.write(str(sysRPlanet[posMin]) + '\n')
 			semiMajorList = sorted(semiMajorList, key=float, reverse=False)
 
 			rHill = (semiMajorList[0] + semiMajorList[1])/2 * ((sumMass[0] + sumMass[1])/(3*float(mStar[i]))**Fraction('1/3'))
@@ -398,6 +425,8 @@ for i in range(len(mPlanet)):
 			outputFile = open('input/%s.in' % systemCount, 'w')
 			outputFile.write(repr(G) + '\n' + mStar[i+1] + '\n')	
 			outRAdec.write(RA[i] + ',' + dec[i] + '\n')
+			outRPlanet.close()
+			outRPlanet = open('radius_P/%s.txt' %systemCount, 'w')
 			
 print totalPlanets			
 outDif = open('dif_table.csv', 'w')

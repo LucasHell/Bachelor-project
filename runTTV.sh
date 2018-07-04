@@ -12,8 +12,9 @@ rm ./code/numberPlanets.csv
 rm ./code/ampError.txt
 rm ./code/RA_dec_sys.csv
 rm ./code/RA_dec_p.csv
-rm ./code/AmplPeriod.csv
+#~ rm ./code/AmplPeriod.csv
 rm ./code/rPlanet.csv
+rm ./code/AmplPeriodDouble.csv
 
 mkdir ./TTVFast/c_version/input
 
@@ -25,16 +26,16 @@ cd ..
 #Move input data to TTVFast directory
 cp ./code/input/*.in ./TTVFast/c_version/input/
 cp ./code/numberPlanets.csv ./TTVFast/c_version
-cp ./code/wtm-TESSTime.csv ./TTVFast/c_version
+cp ./code/wtm-RA_dec_sys.csv ./TTVFast/c_version
 cp ./code/eccenOmeg.csv ./TTVFast/c_version
 
 cd TTVFast/c_version
 
 #Run TTVFast by creating a setup file for every system and rename the output file to the number of the system
 readarray -t numPlanet < <(cut -d, -f2 numberPlanets.csv)
-awk -F "\"*,\"*" '{$3=$3*27; if(NR>1)print $3}' wtm-TESSTime.csv > maxTime.csv
-awk -F "\"*,\"*" '{$3=$3*27;if(NR>1)print $4}' wtm-TESSTime.csv > minTime.csv
-awk -F "\"*,\"*" '{$3=$3*27;if(NR>1)print $5}' wtm-TESSTime.csv > avgTime.csv
+awk -F "\"*,\"*" '{$3=$3*27; if(NR>1)print $3}' wtm-RA_dec_sys.csv > maxTime.csv
+awk -F "\"*,\"*" '{$3=$3*27;if(NR>1)print $4}' wtm-RA_dec_sys.csv > minTime.csv
+awk -F "\"*,\"*" '{$3=$3*27;if(NR>1)print $5}' wtm-RA_dec_sys.csv > avgTime.csv
 readarray -t maxTime < <(cut -d, -f2 maxTime.csv)
 readarray -t minTime < <(cut -d, -f2 minTime.csv)
 readarray -t avgTime < <(cut -d, -f2 avgTime.csv)
@@ -45,7 +46,7 @@ for file1 in `ls input/*.in | sort --version-sort`;
 do
 	readarray -t data < <(cut -f2 $file1)
 	period=$(echo ${data[3]} | awk '{$1=$1/20; print $1;}')
-	echo -e "$file1\n0\n$period\n365\n${numPlanet[$number]}\n0" > setup_file.txt;  		#${maxTime[$number]}
+	echo -e "$file1\n0\n$period\n${maxTime[$number]}\n${numPlanet[$number]}\n0" > setup_file.txt;  		#${maxTime[$number]}
 	./run_TTVFast setup_file.txt Times RV_file RV_out;
 	mv Times output;
 	mv ./output/Times output/$file1;
@@ -65,6 +66,7 @@ do
 	echo $file2
 	python transits.py $file2 $count
 	count=$((count+1))
+	#~ read -p "Press key to continue.. " -n1 -s
 done
 
 python finalPlots.py

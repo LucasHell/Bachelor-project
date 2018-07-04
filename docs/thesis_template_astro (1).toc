@@ -1,20 +1,24 @@
 \contentsline {chapter}{\numberline {1}Introduction}{3}
-\contentsline {section}{\numberline {1.1}Transits}{3}
+\contentsline {section}{\numberline {1.1}Transits}{4}
 \contentsline {subsection}{\numberline {1.1.1}Variations}{4}
 \contentsline {section}{\numberline {1.2}Kepler}{4}
 \contentsline {section}{\numberline {1.3}TESS}{5}
+\contentsline {section}{\numberline {1.4}CHEOPS}{5}
 \contentsline {chapter}{\numberline {2}Method}{7}
 \contentsline {section}{\numberline {2.1}Simulation of TESS objects}{8}
 \contentsline {section}{\numberline {2.2}TTVFast}{10}
 \contentsline {section}{\numberline {2.3}Simulation of Ofir objects}{11}
 \contentsline {section}{\numberline {2.4}Analyzing results from TTVFast}{11}
-\contentsline {section}{\numberline {2.5}Error estimation}{11}
+\contentsline {section}{\numberline {2.5}Error estimation}{12}
 \contentsline {section}{\numberline {2.6}Stability simulations}{12}
-\contentsline {chapter}{\numberline {3}Results}{13}
-\contentsline {section}{\numberline {3.1}Simulated TESS objects}{13}
-\contentsline {section}{\numberline {3.2}Simulations of Ofir systems}{15}
-\contentsline {section}{\numberline {3.3}TTV signals from TESS objects}{15}
-\contentsline {section}{\numberline {3.4}Error analysis}{17}
-\contentsline {section}{\numberline {3.5}Stability simulations}{18}
-\contentsline {chapter}{\numberline {4}Discussion}{22}
-\contentsline {chapter}{\numberline {5}Conclusions}{24}
+\contentsline {section}{\numberline {2.7}Amplitude dependence on time}{13}
+\contentsline {section}{\numberline {2.8}Objects in CHEOPS observation range}{14}
+\contentsline {chapter}{\numberline {3}Results}{15}
+\contentsline {section}{\numberline {3.1}Simulated TESS objects}{15}
+\contentsline {section}{\numberline {3.2}Simulations of Ofir systems}{17}
+\contentsline {section}{\numberline {3.3}TTV signals from TESS objects}{17}
+\contentsline {section}{\numberline {3.4}Error analysis}{19}
+\contentsline {section}{\numberline {3.5}Stability simulations}{20}
+\contentsline {section}{\numberline {3.6}Amplitude dependence on time}{21}
+\contentsline {chapter}{\numberline {4}Discussion}{24}
+\contentsline {chapter}{\numberline {5}Conclusions}{26}

@@ -4,6 +4,7 @@
 #~ cd code
 rm transAmplCheops.csv
 rm ampErrorCheops.csv
+rm AmplPeriod.csv
 
 python CHEOPSClones.py
 cd ..
@@ -37,8 +38,10 @@ do
 	if (( $counter % 100 == 0 )) 
 	then
 		number=$((number+1));
+		echo $number;
 	fi
 	counter=$((counter+1));
+
 	#~ read -p "Press key to continue.. " -n1 -s
 
 done

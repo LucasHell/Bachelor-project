@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.5)  20 JUN 2018 12:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.5)  4 JUL 2018 16:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -731,8 +731,8 @@ Chapter 2.
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 193.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 193.
+(Font)              <5> on input line 201.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 201.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -751,13 +751,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 227.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 245.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 227.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 245.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -780,24 +780,38 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [12]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[13]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[14]
 Chapter 3.
-<img/R_P-plot_numP1.pdf, id=83, 462.52798pt x 346.89601pt>
+<img/R_P-plot_numP1.pdf, id=90, 462.52798pt x 346.89601pt>
 File: img/R_P-plot_numP1.pdf Graphic file (type pdf)
 
 <use img/R_P-plot_numP1.pdf>
-Package pdftex.def Info: img/R_P-plot_numP1.pdf used on input line 301.
+Package pdftex.def Info: img/R_P-plot_numP1.pdf used on input line 333.
 (pdftex.def)             Requested size: 430.00462pt x 322.51996pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[13
+[15
 
-] <img/skymap_TESS_multi.png, id=88, 803.0pt x 421.575pt>
+] <img/skymap_TESS_multi.png, id=94, 803.0pt x 421.575pt>
 File: img/skymap_TESS_multi.png Graphic file (type png)
 
 <use img/skymap_TESS_multi.png>
-Package pdftex.def Info: img/skymap_TESS_multi.png used on input line 309.
+Package pdftex.def Info: img/skymap_TESS_multi.png used on input line 341.
 (pdftex.def)             Requested size: 430.00462pt x 225.75589pt.
 
 
@@ -809,12 +823,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[14 <./img/R_P-plot_numP1.pdf>]
-<img/ampl_ofir_66.png, id=133, 462.528pt x 346.896pt>
+[16 <./img/R_P-plot_numP1.pdf>]
+<img/ampl_ofir_66.png, id=139, 462.528pt x 346.896pt>
 File: img/ampl_ofir_66.png Graphic file (type png)
 
 <use img/ampl_ofir_66.png>
-Package pdftex.def Info: img/ampl_ofir_66.png used on input line 317.
+Package pdftex.def Info: img/ampl_ofir_66.png used on input line 349.
 (pdftex.def)             Requested size: 430.00462pt x 322.51994pt.
 
 
@@ -823,49 +837,49 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[15 <./img/skymap_TESS_multi.png>]
+[17 <./img/skymap_TESS_multi.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[16 <./img/ampl_ofir_66.png>] <img/6_2.pdf, id=142, 462.52798pt x 346.89601pt>
+[18 <./img/ampl_ofir_66.png>] <img/6_2.pdf, id=148, 462.52798pt x 346.89601pt>
 File: img/6_2.pdf Graphic file (type pdf)
 
 <use img/6_2.pdf>
-Package pdftex.def Info: img/6_2.pdf used on input line 330.
+Package pdftex.def Info: img/6_2.pdf used on input line 362.
 (pdftex.def)             Requested size: 215.0023pt x 161.25204pt.
- <img/237_0.pdf, id=143, 462.52798pt x 346.89601pt>
+ <img/237_0.pdf, id=149, 462.52798pt x 346.89601pt>
 File: img/237_0.pdf Graphic file (type pdf)
 
 <use img/237_0.pdf>
-Package pdftex.def Info: img/237_0.pdf used on input line 336.
+Package pdftex.def Info: img/237_0.pdf used on input line 368.
 (pdftex.def)             Requested size: 215.0023pt x 161.25204pt.
- <img/ampl_tess_400.png, id=144, 462.528pt x 346.896pt>
+ <img/ampl_tess_400.png, id=150, 462.528pt x 346.896pt>
 File: img/ampl_tess_400.png Graphic file (type png)
 
 <use img/ampl_tess_400.png>
-Package pdftex.def Info: img/ampl_tess_400.png used on input line 345.
+Package pdftex.def Info: img/ampl_tess_400.png used on input line 377.
 (pdftex.def)             Requested size: 430.00462pt x 322.51994pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<img/skymap_TESS_amp.png, id=145, 803.0pt x 421.575pt>
+<img/skymap_TESS_amp.png, id=151, 803.0pt x 421.575pt>
 File: img/skymap_TESS_amp.png Graphic file (type png)
 
 <use img/skymap_TESS_amp.png>
-Package pdftex.def Info: img/skymap_TESS_amp.png used on input line 351.
+Package pdftex.def Info: img/skymap_TESS_amp.png used on input line 383.
 (pdftex.def)             Requested size: 430.00462pt x 225.75589pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<img/ampErrorLog.png, id=146, 939.51pt x 939.51pt>
-File: img/ampErrorLog.png Graphic file (type png)
- <use img/ampErrorLog.png>
-Package pdftex.def Info: img/ampErrorLog.png used on input line 359.
+<img/ampErrorLog.pdf, id=152, 939.51pt x 939.51pt>
+File: img/ampErrorLog.pdf Graphic file (type pdf)
+ <use img/ampErrorLog.pdf>
+Package pdftex.def Info: img/ampErrorLog.pdf used on input line 391.
 (pdftex.def)             Requested size: 430.00462pt x 430.00081pt.
 
 
@@ -874,20 +888,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[17 <./img/6_2.pdf> <./img/237_0.pdf
+[19 <./img/6_2.pdf> <./img/237_0.pdf
 
 pdfTeX warning: pdflatex (file ./img/237_0.pdf): PDF inclusion: multiple pdfs w
 ith page group included in a single page
->] <img/180.jpg, id=233, 393.47pt x 365.0pt>
+>] <img/180.jpg, id=240, 393.47pt x 365.0pt>
 File: img/180.jpg Graphic file (type jpg)
  <use img/180.jpg>
-Package pdftex.def Info: img/180.jpg used on input line 370.
+Package pdftex.def Info: img/180.jpg used on input line 402.
 (pdftex.def)             Requested size: 215.0023pt x 199.4418pt.
 
-<img/320.jpg, id=234, 379.6pt x 365.0pt>
+<img/320.jpg, id=241, 379.6pt x 365.0pt>
 File: img/320.jpg Graphic file (type jpg)
  <use img/320.jpg>
-Package pdftex.def Info: img/320.jpg used on input line 376.
+Package pdftex.def Info: img/320.jpg used on input line 408.
 (pdftex.def)             Requested size: 215.0023pt x 206.73221pt.
 
 
@@ -896,30 +910,46 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[18 <./img/ampl_tess_400.png>]
+[20 <./img/ampl_tess_400.png>]
+<img/62_1.pdf, id=246, 462.52798pt x 346.89601pt>
+File: img/62_1.pdf Graphic file (type pdf)
+ <use img/62_1.pdf>
+Package pdftex.def Info: img/62_1.pdf used on input line 423.
+(pdftex.def)             Requested size: 215.0023pt x 161.25204pt.
+
+<img/62_1_amp.pdf, id=247, 462.52798pt x 346.89601pt>
+File: img/62_1_amp.pdf Graphic file (type pdf)
+ <use img/62_1_amp.pdf>
+Package pdftex.def Info: img/62_1_amp.pdf used on input line 429.
+(pdftex.def)             Requested size: 215.0023pt x 161.25204pt.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[19 <./img/skymap_TESS_amp.png>]
+[21 <./img/skymap_TESS_amp.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[20 <./img/ampErrorLog.png>]
+[22 <./img/ampErrorLog.pdf>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[21 <./img/180.jpg> <./img/320.jpg>]
+[23 <./img/180.jpg> <./img/320.jpg> <./img/62_1.pdf> <./img/62_1_amp.pdf
+
+pdfTeX warning: pdflatex (file ./img/62_1_amp.pdf): PDF inclusion: multiple pdf
+s with page group included in a single page
+>]
 Chapter 4.
-[22
+[24
 
 ]
 
@@ -928,20 +958,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[23]
+[25]
 Chapter 5.
-(./thesis_template_astro (1).bbl [24
+(./thesis_template_astro (1).bbl [26
 
 ]) 
 AED: lastpage setting LastPage
-[25
+[27
 
 ] (./thesis_template_astro (1).aux) ) 
 Here is how much of TeX's memory you used:
- 7038 strings out of 493029
- 101850 string characters out of 6136235
+ 7053 strings out of 493029
+ 102126 string characters out of 6136235
  196688 words of memory out of 5000000
- 10430 multiletter control sequences out of 15000+600000
+ 10443 multiletter control sequences out of 15000+600000
  22404 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,12n,43p,1448b,378s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -965,10 +995,10 @@ frm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/sh
 are/texmf/fonts/type1/public/cm-super/sfsl1200.pfb></usr/share/texmf/fonts/type
 1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
 tt1200.pfb>
-Output written on "thesis_template_astro (1).pdf" (31 pages, 999824 bytes).
+Output written on "thesis_template_astro (1).pdf" (33 pages, 995912 bytes).
 PDF statistics:
- 336 PDF objects out of 1000 (max. 8388607)
- 155 compressed objects within 2 object streams
+ 450 PDF objects out of 1000 (max. 8388607)
+ 176 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

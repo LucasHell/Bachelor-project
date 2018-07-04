@@ -3,7 +3,7 @@ import numpy as np
 
 P = 150
 Tobs = 365
-A = 22.96
+A = 48.69
 Ameas = []
 Acorr = []
 t = np.linspace(0,Tobs, 365)
