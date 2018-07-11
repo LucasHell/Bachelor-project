@@ -46,12 +46,17 @@ periodFrac = map(float, periodFrac)
 rPlanet = map(float, rPlanet)
 ampl = map(float, ampl)
 
-
+countAmp = 0
+countNo = 0
 for l in range(len(errorTiming)):
 	if transitAmplitude[l] > 0.0001:
 		amp.append(transitAmplitude[l])
 		err.append(errorTiming[l]*60)
+	if transitAmplitude[l] > errorTiming[l]*60:
+		countAmp += 1
+	countNo += 1
 		
+print countAmp, countNo
 x = np.linspace(0.1, 100)
 y = x	
 plt.scatter(np.log10(amp), np.log10(err))
@@ -103,7 +108,7 @@ s_m.set_array([])
 
 
 for i in range(len(ampl)):
-	if ampl[i] > float(error[i])*60 and rPlanet[i] < 20:
+	if ampl[i] > float(error[i])*60/3 and rPlanet[i] < 20:
 		periodFracHist.append(periodFrac[i])
 		rPlanetHist.append(rPlanet[i])
 	if rPlanet[i] < 20:
@@ -153,7 +158,7 @@ plt.savefig('plots/2dhistAll.png')
 plt.clf()
 
 
-plt.scatter(periodFracCut, amplCut)
+plt.scatter(periodFracCut, amplCut, s=2)
 plt.gca().set_xlim(right = 3)
 plt.savefig('plots/perAml.pdf')
 plt.clf()

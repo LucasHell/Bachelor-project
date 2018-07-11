@@ -146,7 +146,7 @@ for i in range(0, int(max(planet))+1):
 	plt.errorbar(epoch1Float*fitTimes[0]/1440, transitTime1Corrected, yerr = errorTiming, linestyle="None")
 	plt.axhline(y = 0, xmin = 0, xmax = np.amax(epoch1Float*fitTimes[0]/1440), c = 'black')
 	plt.xlabel('Time [Days]')
-	plt.ylabel('O-A [Minutes]')
+	plt.ylabel('O-C [Minutes]')
 	plt.tight_layout()
 	textstr = 'Amplitude=%.2f min\nError=%.2f min\n'%(transitAmplitude, errorTiming)
 	plt.figtext(0.76, 0.5, textstr, fontsize=10)

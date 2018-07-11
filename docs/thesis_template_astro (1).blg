@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis_template_astro (1).aux
 The style file: aa.bst
 Database file #1: references.bib
-You've used 15 entries,
+You've used 21 entries,
             2947 wiz_defined-function locations,
-            755 strings with 9189 characters,
-and the built_in function-call counts, 10926 in all, are:
-= -- 854
-> -- 1227
-< -- 8
-+ -- 408
-- -- 393
-* -- 983
-:= -- 2015
-add.period$ -- 15
-call.type$ -- 15
-change.case$ -- 191
-chr.to.int$ -- 15
-cite$ -- 15
-duplicate$ -- 306
-empty$ -- 412
-format.name$ -- 441
-if$ -- 2154
+            790 strings with 10765 characters,
+and the built_in function-call counts, 14767 in all, are:
+= -- 1158
+> -- 1650
+< -- 10
++ -- 549
+- -- 528
+* -- 1327
+:= -- 2741
+add.period$ -- 21
+call.type$ -- 21
+change.case$ -- 260
+chr.to.int$ -- 21
+cite$ -- 21
+duplicate$ -- 416
+empty$ -- 559
+format.name$ -- 595
+if$ -- 2899
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 13
-newline$ -- 49
-num.names$ -- 60
-pop$ -- 197
+missing$ -- 19
+newline$ -- 67
+num.names$ -- 84
+pop$ -- 265
 preamble$ -- 1
-purify$ -- 191
+purify$ -- 260
 quote$ -- 0
-skip$ -- 274
+skip$ -- 366
 stack$ -- 0
-substring$ -- 311
+substring$ -- 415
 swap$ -- 26
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 135
+type$ -- 189
 warning$ -- 0
-while$ -- 60
+while$ -- 83
 width$ -- 0
-write$ -- 153
+write$ -- 212

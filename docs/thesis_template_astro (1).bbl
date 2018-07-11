@@ -1,4 +1,4 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{21}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Becker} {et~al.}(2015){Becker}, {Vanderburg}, {Adams}, {Rappaport},
@@ -27,8 +27,20 @@
 {Deck}, K.~M., {Agol}, E., {Holman}, M.~J., \& {Nesvorn{\'y}}, D. 2014, \apj,
   787, 132
 
+\bibitem[{{Dressing} \& {Charbonneau}(2015)}]{2015ApJ...807...45D}
+{Dressing}, C.~D. \& {Charbonneau}, D. 2015, \apj, 807, 45
+
+\bibitem[{{Fressin} {et~al.}(2013){Fressin}, {Torres}, {Charbonneau}, {Bryson},
+  {Christiansen}, {Dressing}, {Jenkins}, {Walkowicz}, \&
+  {Batalha}}]{2013ApJ...766...81F}
+{Fressin}, F., {Torres}, G., {Charbonneau}, D., {et~al.} 2013, \apj, 766, 81
+
 \bibitem[{{Holman} \& {Murray}(2005)}]{2005Sci...307.1288H}
 {Holman}, M.~J. \& {Murray}, N.~W. 2005, Science, 307, 1288
+
+\bibitem[{{Lithwick} {et~al.}(2012){Lithwick}, {Xie}, \&
+  {Wu}}]{2012ApJ...761..122L}
+{Lithwick}, Y., {Xie}, J., \& {Wu}, Y. 2012, \apj, 761, 122
 
 \bibitem[{{Nesvorn{\'y}} {et~al.}(2012){Nesvorn{\'y}}, {Kipping}, {Buchhave},
   {Bakos}, {Hartman}, \& {Schmitt}}]{2012Sci...336.1133N}
@@ -76,5 +88,19 @@ Nesvorný, D. \& Morbidelli, A. 2008, The Astrophysical Journal, 688, 636
   {Morton}, {Ricker}, {Vanderspek}, \& {Woods}}]{2015ApJ...809...77S}
 {Sullivan}, P.~W., {Winn}, J.~N., {Berta-Thompson}, Z.~K., {et~al.} 2015, \apj,
   809, 77
+
+\bibitem[{{Van Eylen} {et~al.}(2018){Van Eylen}, {Albrecht}, {Huang},
+  {MacDonald}, {Dawson}, {Cai}, {Foreman-Mackey}, {Lundkvist}, {Silva Aguirre},
+  {Snellen}, \& {Winn}}]{2018arXiv180700549V}
+{Van Eylen}, V., {Albrecht}, S., {Huang}, X., {et~al.} 2018, ArXiv e-prints
+
+\bibitem[{{Weiss} {et~al.}(2013){Weiss}, {Marcy}, {Rowe}, {Howard}, {Isaacson},
+  {Fortney}, {Miller}, {Demory}, {Fischer}, {Adams}, {Dupree}, {Howell},
+  {Kolbl}, {Johnson}, {Horch}, {Everett}, {Fabrycky}, \&
+  {Seager}}]{2013ApJ...768...14W}
+{Weiss}, L.~M., {Marcy}, G.~W., {Rowe}, J.~F., {et~al.} 2013, \apj, 768, 14
+
+\bibitem[{{Wu} \& {Lithwick}(2013)}]{2013ApJ...772...74W}
+{Wu}, Y. \& {Lithwick}, Y. 2013, \apj, 772, 74
 
 \end{thebibliography}

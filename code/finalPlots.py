@@ -9,6 +9,7 @@ from astropy.coordinates import SkyCoord
 from astropy.coordinates import FK5
 import matplotlib.lines as mlines
 import math
+from numpy import median
 
 
 data = []
@@ -165,7 +166,7 @@ c_m = mp.cm.cool
 s_m = mp.cm.ScalarMappable(cmap=cm.jet, norm=norm)
 s_m.set_array([])
 
-print len(ra_radTime), len(dec_radTime), len(maxTime)
+#~ print len(ra_radTime), len(dec_radTime), len(maxTime)
 plt.figure(figsize=(8,4.2))
 plt.subplot(111, projection="aitoff")
 plt.grid(True)
@@ -188,8 +189,8 @@ for i in range(len(transitAmplitude)):
 		ra_cut.append(ra_rad[i])
 		dec_cut.append(dec_rad[i])
 		amp_cut.append(transitAmplitude[i])
-		if -90 < math.degrees(ra_rad[i]) < -60 and 15 < math.degrees(dec_rad[i]) < 45:
-			print i, transitAmplitude[i]
+		#~ if -90 < math.degrees(ra_rad[i]) < -60 and 15 < math.degrees(dec_rad[i]) < 45:
+			#~ print i, transitAmplitude[i]
 		#~ timeCut.append(maxTime[i])
 		#~ if -40 < dec_rad[i] < 40 and float(transitAmplitude[i]) > 20 and dec_rad[i] != dec_rad[i-1]:
 			#~ countAmp += 1
@@ -210,7 +211,7 @@ for l in range(len(amp_cut)):
 
 
 norm = mp.colors.Normalize(
-    vmin=np.min(amp_cut),
+    vmin=np.min(-1),
     vmax=np.max(amp_cut))  
     
    
@@ -304,20 +305,26 @@ plt.clf()
 
 with open('ampError.txt','r') as inputFile:
 	errorTiming = inputFile.readlines()
+	
+	
+
 
 countSys = 0
 #~ print len(errorTiming), len(transitAmplitude)
 for i in range(len(errorTiming)):
 	if transitAmplitude[i] == 'nan\n' or transitAmplitude[i] == '0\n': 
+		#~ countSys += 1
 		continue
-	elif float(transitAmplitude[i]) > 0.001 and float(transitAmplitude[i]) < 200:
+	elif float(transitAmplitude[i]) < 0.001:
+		errorPlot.append(float(errorTiming[i])) 
+		ampPlot.append(np.random.normal(0.2, 0.05))
+	else:
 		errorPlot.append(float(errorTiming[i])) 
 		ampPlot.append(float(transitAmplitude[i])) 
 		
-	if float(transitAmplitude[i]) > float(errorTiming[i]):
-		countSys += 1
-
-	
+		
+		
+#~ print np.log10(median(errorPlot))
 #~ print countSys
 x = np.linspace(np.amin(ampPlot), np.amax(ampPlot))
 y = x
@@ -332,6 +339,17 @@ plt.plot(np.log10(x),np.log10(y), c='black')
 plt.savefig('plots/ampErrorLog.pdf')
 plt.clf()
 
+
+countAmp = 0
+countNo = 0
+for o in range(len(ampPlot)):
+	if ampPlot[o] > errorPlot[o] and 75 < math.degrees(dec_cut[o]) < 90 or -75 < math.degrees(dec_cut[o]) < -90:
+		countAmp += 1
+		countNo += 1
+	elif 75 < math.degrees(dec_cut[o]) < 90 or -75 < math.degrees(dec_cut[o]) < -90:
+		countNo += 1
+print math.degrees(dec_cut[0]), math.degrees(dec_cut[1])
+print "Count: ", countAmp, countNo, len(dec_cut)
 
 plt.scatter(ampPlot, errorPlot, marker='d')
 plt.xlabel('Amplitude [min]')
@@ -428,7 +446,7 @@ for i in range(len(rPlanet)):
 		transAmp2.append(transitAmplitude[i])
 #~ transitAmplitude = [i for i in transitAmplitude if i < 1000]
 
-print np.amax(rPlanet2), np.amax(transAmp2)
+#~ print np.amax(rPlanet2), np.amax(transAmp2)
 plt.scatter(np.log10(rPlanet2), np.log10(transAmp2))
 plt.xlabel('log$_{10}$[Radius (R$_{\oplus}$)]')
 plt.ylabel('log$_{10}$[Amplitude (min)]')
