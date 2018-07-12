@@ -163,6 +163,10 @@ plt.gca().set_xlim(right = 3)
 plt.savefig('plots/perAml.pdf')
 plt.clf()
 
+plt.scatter(rPlanetCut, amplCut, s=3)
+plt.savefig('plots/ampR.pdf')
+plt.clf()
+
 
 
 

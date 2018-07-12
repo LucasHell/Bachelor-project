@@ -347,29 +347,36 @@ This paper will simulate data from the TESS telescope to search for these transi
 	  \label{fig:skymap_TESS}	
 \end{figure}\newpage
 \section{Simulations of Ofir systems}
-	Figure \ref{fig:ampl_ofir} shows the distribution of TTV amplitudes of the objects from the Ofir catalogue. In this histogram, all systems with amplitude below 1 minute are filtered out as they would be undetectable and thus not of interest in this paper. It is clear that many systems show a small TTV signal but there are a significant portion of systems which show a higher amplitude. The error bars for each bin are approximated to be $\epsilon = \sqrt{N}$ where $N$ is the number of planets in the bin.
-
+	Figure \ref{fig:ampl_ofir} shows the distribution of TTV amplitudes of the objects from the Ofir catalogue. In this histogram, all systems with amplitude lower than the error are filtered out as they would be undetectable and thus not of interest in this paper. It is clear that many systems show a small TTV signal but there are a significant portion of systems which show a higher amplitude. The error bars for each bin are approximated to be $\epsilon = \sqrt{N}$ where $N$ is the number of planets in the bin.
+\iffalse
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\linewidth]{img/histo_amp_both2.pdf}		
+  \caption{Histogram of amplitudes obtained from simulating Kepler systems selected by Ofir et al. and the corresponding amplitudes from Ofir et al.}
+   \label{fig:ampl_ofir}
+\end{figure}
+\fi
 \begin{figure}
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=1\linewidth]{img/ampl_ofir_66.png}
+  \includegraphics[width=0.9\linewidth]{img/histo_amp_both2.pdf}
+  
  
 
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=1\linewidth]{img/ampl_tess_400.png}
+  \includegraphics[width=1\linewidth]{img/ampl.pdf}
   
 
 \end{minipage}
-\caption{Left panel: TTV amplitudes of the simulated objects from the Ofir catalogue. Right panel: Distribution of TTV amplitudes from the simulated TESS objects.}
+\caption{Left panel: Histogram of the amplitudes of the simulated Kepler systems selected by Ofir et al. and the amplitudes of these systems from the results of Ofir et al. Right panel: Histogram of the amplitudes of the simulated TESS objects}
 \label{fig:ampl_ofir}
 \end{figure}
 
-
 \section{TTV signals from TESS objects}
-	Figure \ref{fig:TTV1} shows an example of a system observed over a short duration where there is a curvature but due to the short timescale the TTV amplitude is smaller than the error. This system may show a TTV signal if observed for a longer time. The same figure shows a TTV signal for a system at one of the ecliptic poles where the variation is clearly visible. The zero level corresponds to the average transit time in order to see the variations more clearly. The distribution of TTV amplitudes are found in figure \ref{fig:ampl_ofir} where amplitudes below 1 minute are filtered out as otherwise they dominate the histogram. It is easy to see that low or no TTV signals dominate but there are some planets showing substantial TTV signals. The location in the sky of these objects are shown in figure \ref{fig:skymap_amp}. Many planets at the ecliptic poles show some form of TTV signal but few planets outside do. This is due to the short observation period outside the poles. In the range that CHEOPS are able to observe about 4 out of 52 systems contains at least one planet showing a TESS detectable TTV signal. At the ecliptic poles 30 of 105 planets show a TESS detectable TTV signal. Over the whole sky 121 out of 474 planets in 189 systems show a TESS detectable TTV signal. 
+	Figure \ref{fig:TTV1} shows an example of a system observed over a short duration where there is a curvature but due to the short timescale the TTV amplitude is smaller than the error. This system may show a TTV signal if observed for a longer time. The same figure shows a TTV signal for a system at one of the ecliptic poles where the variation is clearly visible. The zero level corresponds to the average transit time in order to see the variations more clearly. The distribution of TTV amplitudes are found in figure \ref{fig:ampl_ofir} where amplitudes below the error are filtered out as they would not be detectable and thus not of interest in the paper. It is easy to see that low or no TTV signals dominate but there are some planets showing substantial TTV signals. The location in the sky of these objects are shown in figure \ref{fig:skymap_amp}. Many planets at the ecliptic poles show some form of TTV signal but few planets outside do. This is due to the short observation period outside the poles. In the range that CHEOPS are able to observe about 4 out of 52 systems contains at least one planet showing a TESS detectable TTV signal. At the ecliptic poles 30 of 105 planets show a TESS detectable TTV signal. Over the whole sky 121 out of 474 planets in 189 systems show a TESS detectable TTV signal. 
 	
 \begin{figure}
 \centering
@@ -474,7 +481,7 @@ This paper will simulate data from the TESS telescope to search for these transi
 \begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{img/2dhist3_new.pdf}
-\caption{2d histogram of TTV probability depending on planet radius and period ratio.}
+\caption{2d histogram of detectable TTV probability depending on planet radius and period ratio.}
 \label{fig:CHEOPS_prob}
 \end{figure}
 
@@ -508,17 +515,16 @@ Id of star & I &  V & Var.? \\
 	
 	The error calculation done in this paper is based on the photometry of TESS. As CHEOPS will have a larger camera than TESS the error will be of a factor 2-3 lower and thus increase the chance of a detectable TTV signal.
 	
-	The TTV amplitudes of objects within the CHEOPS observation range are in general low due to the short observation time of these objects. By considering figure \ref{fig:ampTime} where the amplitude is shown to increase over time and figure \ref{fig:CHEOPS_prob} where high TTV probability can be seen for systems with low period ratio and relativity high radius/mass the long term TTV amplitude may be predicted. A transiting planet with a radius of about 2.5 R$_{\oplus}$ and a period ratio of 2 should, based on the simulations in this paper, have a fairly high probability to show a detectable TTV signal. 
-	
-	Grazing transits
+	The TTV amplitudes of objects within the CHEOPS observation range are in general low due to the short observation time of these objects. By considering figure \ref{fig:ampTime} where the amplitude is shown to increase over time and figure \ref{fig:CHEOPS_prob} where high TTV probability can be seen for systems with low period ratio and relativity high radius/mass the long term TTV amplitude may be predicted. A transiting planet with a radius of about 2.5 R$_{\oplus}$ and a period ratio of 2 should, based on the simulations in this paper, have a fairly high probability to show a detectable TTV signal. On the other hand, for a period fraction greater than 3 the probability to find a detectable TTV signal is very low.
+
 
 	
 	
 \chapter{Conclusions}
 	This paper simulated TESS objects using data from the Kepler dataset and results from the paper by \cite{2015ApJ...809...77S} on a search to predict TTV signals caused by multiple planets in the systems. The results can be seen below:
 	\begin{itemize}
-		\item Most of the systems showing TTV signals are positioned at the ecliptic poles. This comes from the fact that TESS has continuous coverage of the poles during the year which increases the chance to see TTVs.
-		\item In the range where CHEOPS is able to observe about 1/4 of every system will have a planet showing a detectable TTV signal.
+		\item Most of the systems showing TTV signals are positioned at the ecliptic poles. This comes from the fact that TESS has continuous coverage of the poles during the year which increases the chance to see TTVs. The amplitude grows non-linearly with time and thus a system might show very low amplitude on a short timescale but very high if observed for longer.
+		\item In the range where CHEOPS is able to observe only 4 out of 52 systems included a planet with a TTV amplitude greater than the TESS amplitude error when simulated on a short timescale. Upon further analysis, 3291 out of 6800 planets showed a CHEOPS detectable TTV signal when simulated for 1 year. At the ecliptic poles where the JWST continuous viewing zones are located 30 out of 105 planets showed a TESS detectable TTV signal. Over the whole sky 121 planets out of a total 474 showed a TESS detectable TTV signal.
 		\item Based on TESS observations objects around the ecliptic where CHEOPS will observe will show a low TTV signal due to the low observation time. Based on further simulations these objects may show a detectable TTV signal over a longer observation period which may be predicted based on the planetary radius and period fraction of the planets in the system.
 	\end{itemize}
 

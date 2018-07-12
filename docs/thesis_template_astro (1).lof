@@ -4,13 +4,13 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Radius distribution as a function of period for the simulated TESS objects where the colour and shape corresponds to the multiplicity of the system.\relax }}{17}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Position of each observed objects in the ecliptic frame, colour-coded to show the number of times the object is observed by TESS. The green region corresponds to the part of the sky that CHEOPS will be able to observe.\relax }}{18}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Left panel: TTV amplitudes of the simulated objects from the Ofir catalogue. Right panel: Distribution of TTV amplitudes from the simulated TESS objects.\relax }}{19}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Left panel: Histogram of the amplitudes of the simulated Kepler systems selected by Ofir et al. and the amplitudes of these systems from the results of Ofir et al. Right panel: Histogram of the amplitudes of the simulated TESS objects\relax }}{19}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Observed-Calculated transit time as a function of time. The zero level corresponds to average transit time. The left panel shows a system which is observed for a short time which may show a TTV signal if observed over a longer time. The right panel shows a system located at the poles where the TTV signal are clearly seen.\relax }}{20}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Position in the sky in the ecliptic frame and the TTV amplitude.\relax }}{20}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Amplitude of the TTV signal plotted against the error where y=x is marked with a black line.\relax }}{21}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Stability simulations for two systems over $10^6$ years. Left panel: Orbits of the planets in a three planet system. Right panel: Orbits of the planets in a five planet system\relax }}{22}
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Left panel: TTV curve of selected system for amplitude analysis. Right panel: Amplitude curve of selected system where the simulated amplitude are represented by blue dots and the analytical amplitude by the dotted line.\relax }}{23}
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Left panel: Planet radius plotted against period ratio where the amplitude of the TTV signal is color coded. Right panel: Amplitude plotted against period ratio where the median TTV error is represented as a black horizontal line.\relax }}{24}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces 2d histogram of TTV probability depending on planet radius and period ratio.\relax }}{25}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces 2d histogram of detectable TTV probability depending on planet radius and period ratio.\relax }}{25}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

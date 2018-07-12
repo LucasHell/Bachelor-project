@@ -61,15 +61,15 @@ with open('transAmpl.csv', 'r') as inputFile:
 
 transitAmplitude = map(float, transitAmplitude)
 for m in range(len(transitAmplitude)):
-	if transitAmplitude[m] > 5 and transitAmplitude[m] < 300:
-		amplCorr.append(transitAmplitude[m])
+	if transitAmplitude[m] > 3 and transitAmplitude[m] < 66:
+		amplCorr.append(float(transitAmplitude[m]))
 		
 		
 
 y,binEdges = np.histogram(amplCorr,bins=11)
 bincenters = 0.5*(binEdges[1:]+binEdges[:-1])
 menStd     = np.sqrt(y)
-width = 5
+width = 4
 plt.bar(bincenters, y, width=width, yerr=menStd, error_kw=dict(ecolor='black', lw=1, capsize=4, capthick=1))
 #~ plt.title("Histogram of the amplitudes of simulated Ofir data")
 plt.xlabel('Amplitude [min]')
@@ -173,7 +173,7 @@ plt.grid(True)
 plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m)
 plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
-plt.scatter(ra_radTime, dec_radTime, s=7, c = maxTime, cmap = cm.jet )
+#~ plt.scatter(ra_radTime, dec_radTime, s=7, c = maxTime, cmap = cm.jet )
 textstr = 'Number of observations'
 plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
 plt.savefig('plots/skymap_TESS_numObs.pdf')
@@ -227,7 +227,7 @@ plt.grid(True)
 #~ plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m2)
 plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
-plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
+#~ plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
 textstr = 'TTV amplitude [min]'
 plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
 plt.savefig('plots/skymap_TESS_amp.pdf')
@@ -362,15 +362,36 @@ data = pd.read_table('ofir_table.txt', sep=';', skiprows=34, names=('KOI_num', '
 amp_ofir = data['TTV_amp']
 
 for i in range(len(amp_ofir)):
-	if amp_ofir[i] > 1 and amp_ofir[i] < 66:
-		ampOfirCorr.append(amp_ofir[i])
+	if float(amp_ofir[i]) > 1 and float(amp_ofir[i]) < 66:
+		ampOfirCorr.append(float(amp_ofir[i]))
+		#~ print amp_ofir[i]
 
 plt.hist(ampOfirCorr,bins=11, rwidth=0.5)
 #~ plt.title("Histogram of TTV amplitude of objects\nfrom the Ofir catalogue")
 plt.xlabel('Amplitude [min]')
 plt.ylabel('#')
-plt.savefig('./plots/histo/ofir_amp.pdf')
+plt.savefig('./plots/histo/amp_ofir.pdf')
 plt.clf()	
+
+#~ ampOfirCorr[0] = 0
+#~ ampOfirCorr[-1] = 66
+#~ amplCorr[0] = 0
+#~ amplCorr[-1] = 66
+
+menStd = []
+bins = np.linspace(0, 66, 11)
+y1,binEdges1 = np.histogram(amplCorr,bins=11)
+y2,binEdges2 = np.histogram(ampOfirCorr,bins=11)
+bincenters1 = 0.5*(binEdges[1:]+binEdges[:-1])
+menStd.append(np.sqrt(y1))
+menStd.append(np.sqrt(y2))
+
+
+plt.hist([amplCorr, ampOfirCorr], bins, label=['Simulated', 'Ofir catalogue'])
+plt.legend(loc='upper right')
+plt.xlabel('Amplitude [min]', size=24)
+plt.ylabel('Number of planets', size=24)
+plt.savefig('./plots/histo/histo_amp_both2.pdf')
 
 #~ with open('AmplPeriod.csv','r') as inputFile: 
 	#~ data = inputFile.readlines()
