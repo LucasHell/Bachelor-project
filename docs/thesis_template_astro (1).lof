@@ -10,7 +10,7 @@
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Amplitude of the TTV signal plotted against the error where y=x is marked with a black line.\relax }}{21}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Stability simulations for two systems over $10^6$ years. Left panel: Orbits of the planets in a three planet system. Right panel: Orbits of the planets in a five planet system\relax }}{22}
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Left panel: TTV curve of selected system for amplitude analysis. Right panel: Amplitude curve of selected system where the simulated amplitude are represented by blue dots and the analytical amplitude by the dotted line.\relax }}{23}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Left panel: Planet radius plotted against period ratio where the amplitude of the TTV signal is color coded. Right panel: Amplitude plotted against period ratio where the median TTV error is represented as a black horizontal line.\relax }}{24}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces 2d histogram of detectable TTV probability depending on planet radius and period ratio.\relax }}{25}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Left panel: Planet radius plotted against period ratio where the amplitude of the CHEOPS-detected TTV signal is color coded. Right panel: Amplitude of the CHEOPS-detected TTV signal plotted against period ratio where the median TTV amplitude error is represented as a black horizontal line.\relax }}{24}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces 2d histogram of CHEOPS-detectable TTV probability depending on planet radius and period ratio.\relax }}{25}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

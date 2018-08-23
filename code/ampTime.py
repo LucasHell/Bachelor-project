@@ -3,7 +3,7 @@ import numpy as np
 
 P = 150
 Tobs = 365
-A = 48.69
+A = 48.46
 Ameas = []
 Acorr = []
 t = np.linspace(0,Tobs, 365)
@@ -19,7 +19,7 @@ transitAmpEpoch = []
 epochAmp = []
 transitTime1Min = []
 
-with open('times/62.in','r') as timesFile:
+with open('times/247.in','r') as timesFile:
 	valueArray = timesFile.readlines()
 	planet = [k.split(' ')[0] for k in valueArray]
 	epoch1 = [k.split(' ')[1] for k in valueArray]
@@ -29,7 +29,10 @@ epoch1 = map(int, epoch1)
 
 for i in range(0, Tobs):
 	Ameas.append((A/2)*np.sin((2*np.pi*i)/P)-((A/2)*np.sin((2*np.pi*Tobs)/P))*(i/Tobs))
-	Acorr.append((Ameas[i]/Tobs)*i)
+	if i > 200:
+		Acorr.append(Acorr[i-1])
+	else:
+		Acorr.append((Ameas[i]/Tobs)*i)
 	x.append(i)
 
 	if len(Ameas) > 1:
@@ -72,5 +75,14 @@ plt.plot(x[1:], transAmplProg1, color='black', linestyle='--', label='Analytical
 plt.xlabel('Time [days]')
 plt.ylabel('Amplitude [min]')
 plt.legend()
-#~ plt.show()
-plt.savefig('plots/62_1_amp.pdf')
+plt.show()
+plt.savefig('plots/test_amp.pdf')
+plt.clf()
+
+
+
+xmin = np.amin(1)
+xmax = np.amax(365)
+x = np.linspace(xmin, xmax, len(transitTimesLinFittedProg))
+plt.plot(x, transitTimesLinFittedProg)
+plt.show()

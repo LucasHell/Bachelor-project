@@ -227,8 +227,8 @@ plt.grid(True)
 #~ plt.title("Position of observed TESS objects", y=1.08)
 plt.colorbar(s_m2)
 plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
-#~ plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
-textstr = 'TTV amplitude [min]'
+plt.scatter(ra_cut, dec_cut, s=7, c = amp_cut, cmap = cm.jet, alpha = 0.5)
+textstr = 'log$_{10}$[TTV amplitude (min)]'
 plt.figtext(0.88, 0.7, textstr, fontsize=12, rotation=90)
 plt.savefig('plots/skymap_TESS_amp.pdf')
 plt.clf()
@@ -343,10 +343,10 @@ plt.clf()
 countAmp = 0
 countNo = 0
 for o in range(len(ampPlot)):
-	if ampPlot[o] > errorPlot[o] and 75 < math.degrees(dec_cut[o]) < 90 or -75 < math.degrees(dec_cut[o]) < -90:
+	if ampPlot[o] > errorPlot[o] and -40 < math.degrees(dec_cut[o]) < 40:  #75 < math.degrees(dec_cut[o]) < 90 or -75 < math.degrees(dec_cut[o]) < -90
 		countAmp += 1
 		countNo += 1
-	elif 75 < math.degrees(dec_cut[o]) < 90 or -75 < math.degrees(dec_cut[o]) < -90:
+	elif -40 < math.degrees(dec_cut[o]) < 40: #75 < math.degrees(dec_cut[o]) < 90 or -75 < math.degrees(dec_cut[o]) < -90
 		countNo += 1
 print math.degrees(dec_cut[0]), math.degrees(dec_cut[1])
 print "Count: ", countAmp, countNo, len(dec_cut)

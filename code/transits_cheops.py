@@ -40,21 +40,13 @@ epoch1 = map(int, epoch1)
 transitTime1 = map(float, transitTime1)
 countPlanetZero = 0
 
-#~ with open('RA_dec_sys.csv','r') as inputFile: 
-	#~ data = inputFile.readlines()
-	#~ RATess = [k.split(',')[0] for k in data]
-	#~ decTess = [k.split(',')[1] for k in data]	
-	
-#~ with open('rPlanet.csv','r') as inputFile: 
-	#~ data = inputFile.readlines()
-	#~ rPlanet = [k.split(',')[0] for k in data]
+
 	
 
 with open('CHEOPS_numP_P.csv') as inputFile:
 	planetCount = [k.split(' ')[0] for k in inputFile]
 
-#~ for n in range(len(planetCount)):
-	#~ planetCount[n] = int(planetCount[n][:1])
+
 with open('error_cheops.csv','r') as inputFile:
 		data = inputFile.readlines()[0:]
 		errorTiming = float(data[int(sys.argv[2])])
@@ -64,12 +56,6 @@ if os.stat(sys.argv[1]).st_size == 0:
 		outputFile = open('transAmplCheops.csv', 'a')
 		outputFile.write(str(0) + ',' + sys.argv[1][6:-3] + '\n')
 		outputFile.close()
-		#~ outErrorFile = open('ampErrorCheops.csv', 'a')
-		#~ outErrorFile.write(repr(errorTiming) + '\n')
-		#~ outErrorFile.close()
-		#~ outRAdec = open('RA_dec_p.csv', 'a')
-		#~ outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
-		#~ outRAdec.close()
 		print "No value"
 	sys.exit(0)
 		
@@ -89,10 +75,6 @@ for i in range(0, int(max(planet))+1):
 		outputFile.close()
 		outErrorFile = open('ampErrorCheops.csv', 'a')
 		outErrorFile.write(repr(errorTiming) + '\n')
-		#~ outErrorFile.close()
-		#~ outRAdec = open('RA_dec_p.csv', 'a')
-		#~ outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
-		#~ outRAdec.close()
 		print "Amplitude:", '0', "minutes or", '0', "hours"
 		transitCount = 0
 		continue
@@ -108,7 +90,6 @@ for i in range(0, int(max(planet))+1):
 	for l in range(len(transitTime1Float)):
 		transitAmpEpoch.append(transitTime1Min[l])
 		epochAmp.append(epoch1Float[l])
-		#~ print epochAmp, transitAmpEpoch
 		if len(transitAmpEpoch) > 1:
 			fitTimes = np.polyfit(epochAmp, transitAmpEpoch, 1)
 			transitTimesLinFittedProg.append(transitAmpEpoch[l]-fitTimes[0]*epoch1Float[l])
@@ -133,9 +114,6 @@ for i in range(0, int(max(planet))+1):
 
 	print "Amplitude:", transitAmplitude, "minutes or", transitAmplitude/60, "hours"
 
-	#~ if transitMax < 0:
-		#~ transitTime1Corrected = transitTimesLinFitted + abs(transitCorrection)
-	#~ else:
 	transitTime1Corrected = transitTimesLinFitted - abs(transitCorrection)
 
 	
@@ -143,14 +121,6 @@ for i in range(0, int(max(planet))+1):
 	outErrorFile = open('ampErrorCheops.csv', 'a')
 	outErrorFile.write(repr(errorTiming) + '\n')
 	outErrorFile.close()
-	#~ print RATess[int(sys.argv[2])]*-1
-	#~ outRAdec = open('RA_dec_p.csv', 'a')
-	#~ if float(decTess[int(sys.argv[2])]) > 0:
-		#~ outRAdec.write(str(float(RATess[int(sys.argv[2])])) + ',' + str(float(decTess[int(sys.argv[2])][:-1])) + '\n')
-	#~ else:
-		#~ outRAdec.write(str(RATess[int(sys.argv[2])]) + ',' + str(decTess[int(sys.argv[2])]))
-	#~ outRAdec.close()
-	
 	epochAmp = np.array(epochAmp)
 
 	y_line = np.linspace(0, 0 , len(epoch1Float))
@@ -166,12 +136,6 @@ for i in range(0, int(max(planet))+1):
 	plt.savefig('plots/' + sys.argv[1] + '_' + str(i) + '.pdf')
 	plt.clf()
 	
-	#~ plt.scatter(epochAmp[1:]*fitTimes[0]/1440, transAmplProg, label='Transit Time')
-	#~ plt.xlabel('Time [days]')
-	#~ plt.ylabel('Amplitude [min]')
-	#~ plt.subplots_adjust(right=0.9)
-	#~ plt.savefig('plots/ampPlots/' + sys.argv[1] + '_' + str(i) + '.pdf')
-	#~ plt.clf()
 
 	
 	planetPeriod.append(float(periodData[3 + 2*i][:9]))
@@ -197,31 +161,17 @@ periodFrac = 0
 #~ print planetPeriod
 for l in range(len(planetPeriod)):
 	if str(planetPeriod[l]) == str(planetPeriod[-1]):
-		#~ print "1"
 		outPeriodAmp.write(str(float(planetPeriod[l])/(float(planetPeriod[l-1]))) + ',' + str(rPlanet[l][:-2]) + ',' + str(planetAmp[l]) + ',' + str(errorTiming) + '\n')
 	elif str(planetPeriod[l]) == str(planetPeriod[0]):
-		#~ print "2"
 		outPeriodAmp.write(str(float(planetPeriod[l+1])/(float(planetPeriod[l]))) + ',' + str(rPlanet[l][:-2]) + ',' + str(planetAmp[l]) + ',' + str(errorTiming) + '\n')
 	else:
-		#~ print "3"
 		outPeriodAmp.write(str(float(planetPeriod[l])/(float(planetPeriod[l-1]))) + ',' + str(rPlanet[l][:-2]) + ',' + str(planetAmp[l]) + ',' + str(errorTiming) + '\n')
 		
 		outPeriodAmp.write(str(float(planetPeriod[l+1])/(float(planetPeriod[l]))) + ',' + str(rPlanet[l][:-2]) + ',' + str(planetAmp[l]) + ',' + str(errorTiming) + '\n')
-	#~ if str(planetPeriod[l]) != str(planetPeriod[1]):
-		#~ periodFrac = planetPeriod[l]/planetPeriod[l-1]
-	#~ if planetAmp[l] < 200:
-		#~ outPeriodAmp.write(str(periodFrac) + ',' + repr(planetAmp[l]) + ',' + str(planetCount[l]) + '\n')
+	
 	
 outPeriodAmp.close()
 
-#~ outPeriodAmp = open('AmplPeriodDouble.csv', 'a')
-#~ periodFrac = 0
-#~ if len(planetPeriodDouble) > 1:
-	#~ for l in range(len(planetPeriodDouble)):
-		#~ periodFrac = planetPeriodDouble[1]/planetPeriodDouble[0]
-		#~ if planetAmpDouble[l] < 200:
-			#~ outPeriodAmp.write(str(periodFrac) + ',' + repr(planetAmpDouble[l]) + ',' + str(planetCount[l]) + '\n')
-#~ outPeriodAmp.close()
 
 
 

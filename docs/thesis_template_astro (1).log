@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.5)  12 JUL 2018 12:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.9.5)  19 AUG 2018 13:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -434,16 +434,74 @@ Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
 \c@subfigure=\count94
 \c@subtable=\count95
 )
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/03/03 v2.15a AMS math features
+\@mathmargin=\skip45
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen120
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen121
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count96
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count97
+\leftroot@=\count98
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count99
+\DOTSCASE@=\count100
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen122
+LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
+\macc@depth=\count101
+\c@MaxMatrixCols=\count102
+\dotsspace@=\muskip10
+\c@parentequation=\count103
+\dspbrk@lvl=\count104
+\tag@help=\toks19
+\row@=\count105
+\column@=\count106
+\maxfields@=\count107
+\andhelp@=\toks20
+\eqnshift@=\dimen123
+\alignsep@=\dimen124
+\tagshift@=\dimen125
+\tagwidth@=\dimen126
+\totwidth@=\dimen127
+\lineht@=\dimen128
+\@envbody=\toks21
+\multlinegap=\skip46
+\multlinetaggap=\skip47
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2735.
+LaTeX Info: Redefining \] on input line 2736.
+)
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-\fancy@headwidth=\skip45
-\f@ncyO@elh=\skip46
-\f@ncyO@erh=\skip47
-\f@ncyO@olh=\skip48
-\f@ncyO@orh=\skip49
-\f@ncyO@elf=\skip50
-\f@ncyO@erf=\skip51
-\f@ncyO@olf=\skip52
-\f@ncyO@orf=\skip53
+\fancy@headwidth=\skip48
+\f@ncyO@elh=\skip49
+\f@ncyO@erh=\skip50
+\f@ncyO@olh=\skip51
+\f@ncyO@orh=\skip52
+\f@ncyO@elf=\skip53
+\f@ncyO@erf=\skip54
+\f@ncyO@olf=\skip55
+\f@ncyO@orf=\skip56
 )
 (/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
@@ -456,16 +514,16 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count96
-\calc@Bcount=\count97
-\calc@Adimen=\dimen120
-\calc@Bdimen=\dimen121
-\calc@Askip=\skip54
-\calc@Bskip=\skip55
+\calc@Acount=\count108
+\calc@Bcount=\count109
+\calc@Adimen=\dimen129
+\calc@Bdimen=\dimen130
+\calc@Askip=\skip57
+\calc@Bskip=\skip58
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count98
-\calc@Cskip=\skip56
+\calc@Ccount=\count110
+\calc@Cskip=\skip59
 )
 (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
@@ -490,40 +548,40 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 ))
-\AM@pagewidth=\dimen122
-\AM@pageheight=\dimen123
+\AM@pagewidth=\dimen131
+\AM@pageheight=\dimen132
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
 File: pppdftex.def 2015/09/18 v0.5d Pdfpages driver for pdfTeX (AM)
 )
-\AM@pagebox=\box26
-\AM@toc@title=\toks18
-\c@AM@survey=\count99
-\AM@templatesizebox=\box27
+\AM@pagebox=\box28
+\AM@toc@title=\toks23
+\c@AM@survey=\count111
+\AM@templatesizebox=\box29
 )
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip10
+\Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count100
-\lst@gtempboxa=\box28
-\lst@token=\toks19
-\lst@length=\count101
-\lst@currlwidth=\dimen124
-\lst@column=\count102
-\lst@pos=\count103
-\lst@lostspace=\dimen125
-\lst@width=\dimen126
-\lst@newlines=\count104
-\lst@lineno=\count105
-\lst@maxwidth=\dimen127
+\lst@mode=\count112
+\lst@gtempboxa=\box30
+\lst@token=\toks24
+\lst@length=\count113
+\lst@currlwidth=\dimen133
+\lst@column=\count114
+\lst@pos=\count115
+\lst@lostspace=\dimen134
+\lst@width=\dimen135
+\lst@newlines=\count116
+\lst@lineno=\count117
+\lst@maxwidth=\dimen136
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count106
-\lst@skipnumbers=\count107
-\lst@framebox=\box29
+\c@lstnumber=\count118
+\lst@skipnumbers=\count119
+\lst@framebox=\box31
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
@@ -536,32 +594,32 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 (./thesis_template_astro (1).aux)
 \openout1 = `"thesis_template_astro (1).aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count108
-\scratchdimen=\dimen128
-\scratchbox=\box30
-\nofMPsegments=\count109
-\nofMParguments=\count110
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count111
-\MPscratchDim=\dimen129
-\MPnumerator=\count112
-\makeMPintoPDFobject=\count113
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count120
+\scratchdimen=\dimen137
+\scratchbox=\box32
+\nofMPsegments=\count121
+\nofMParguments=\count122
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count123
+\MPscratchDim=\dimen138
+\MPnumerator=\count124
+\makeMPintoPDFobject=\count125
+\everyMPtoPDFconversion=\toks26
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -645,8 +703,8 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 71.
-\AtBeginShipoutBox=\box31
+(lastpage)             ! on input line 72.
+\AtBeginShipoutBox=\box33
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
 
@@ -655,29 +713,10 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
 )
-\c@lstlisting=\count114
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <24.88> on input line 79.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <20.74> on input line 79.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 79.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 79.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 79.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 79.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 79.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 79.
+\c@lstlisting=\count126
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 100.
- [2] [3] [4] [5]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [2] [3] [4] [5]
 (./thesis_template_astro (1).toc)
 \tf@toc=\write3
 \openout3 = `"thesis_template_astro (1).toc"'.
@@ -712,7 +751,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 File: img/tess_observe_time.png Graphic file (type png)
 
 <use img/tess_observe_time.png>
-Package pdftex.def Info: img/tess_observe_time.png used on input line 173.
+Package pdftex.def Info: img/tess_observe_time.png used on input line 174.
 (pdftex.def)             Requested size: 344.005pt x 288.89069pt.
 
 
@@ -736,9 +775,7 @@ Chapter 2.
 [8
 
 ]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 202.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 202.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 203.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -757,13 +794,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [10]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 247.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 248.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 247.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 248.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -805,7 +842,7 @@ Chapter 3.
 File: img/R_P-plot_numP1.pdf Graphic file (type pdf)
 
 <use img/R_P-plot_numP1.pdf>
-Package pdftex.def Info: img/R_P-plot_numP1.pdf used on input line 337.
+Package pdftex.def Info: img/R_P-plot_numP1.pdf used on input line 338.
 (pdftex.def)             Requested size: 430.00462pt x 322.51996pt.
 
 
@@ -817,7 +854,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: img/skymap_TESS_numObs_new.pdf Graphic file (type pdf)
 
 <use img/skymap_TESS_numObs_new.pdf>
-Package pdftex.def Info: img/skymap_TESS_numObs_new.pdf used on input line 345.
+Package pdftex.def Info: img/skymap_TESS_numObs_new.pdf used on input line 346.
 
 (pdftex.def)             Requested size: 430.00462pt x 225.75099pt.
 
@@ -835,13 +872,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 File: img/histo_amp_both2.pdf Graphic file (type pdf)
 
 <use img/histo_amp_both2.pdf>
-Package pdftex.def Info: img/histo_amp_both2.pdf used on input line 363.
+Package pdftex.def Info: img/histo_amp_both2.pdf used on input line 364.
 (pdftex.def)             Requested size: 193.50075pt x 193.48961pt.
 
 <img/ampl.pdf, id=143, 462.52798pt x 346.89601pt>
 File: img/ampl.pdf Graphic file (type pdf)
  <use img/ampl.pdf>
-Package pdftex.def Info: img/ampl.pdf used on input line 370.
+Package pdftex.def Info: img/ampl.pdf used on input line 371.
 (pdftex.def)             Requested size: 215.0023pt x 161.25204pt.
 
 
@@ -854,21 +891,21 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 <img/20_2.pdf, id=159, 462.52798pt x 346.89601pt>
 File: img/20_2.pdf Graphic file (type pdf)
  <use img/20_2.pdf>
-Package pdftex.def Info: img/20_2.pdf used on input line 385.
+Package pdftex.def Info: img/20_2.pdf used on input line 386.
 (pdftex.def)             Requested size: 215.0023pt x 161.25204pt.
 
 <img/247_1.pdf, id=160, 462.52798pt x 346.89601pt>
 File: img/247_1.pdf Graphic file (type pdf)
  <use img/247_1.pdf>
-Package pdftex.def Info: img/247_1.pdf used on input line 391.
+Package pdftex.def Info: img/247_1.pdf used on input line 392.
 (pdftex.def)             Requested size: 215.0023pt x 161.25204pt.
 
-<img/skymap_TESS_amp_-1_new.pdf, id=161, 578.16pt x 303.534pt>
-File: img/skymap_TESS_amp_-1_new.pdf Graphic file (type pdf)
+<img/skymap_TESS_amp_log_new.pdf, id=161, 578.16pt x 303.534pt>
+File: img/skymap_TESS_amp_log_new.pdf Graphic file (type pdf)
 
-<use img/skymap_TESS_amp_-1_new.pdf>
-Package pdftex.def Info: img/skymap_TESS_amp_-1_new.pdf used on input line 401.
-
+<use img/skymap_TESS_amp_log_new.pdf>
+Package pdftex.def Info: img/skymap_TESS_amp_log_new.pdf used on input line 402
+.
 (pdftex.def)             Requested size: 430.00462pt x 225.75099pt.
 
 
@@ -877,7 +914,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <img/ampErrorLog.pdf, id=162, 939.51pt x 939.51pt>
 File: img/ampErrorLog.pdf Graphic file (type pdf)
  <use img/ampErrorLog.pdf>
-Package pdftex.def Info: img/ampErrorLog.pdf used on input line 409.
+Package pdftex.def Info: img/ampErrorLog.pdf used on input line 410.
 (pdftex.def)             Requested size: 430.00462pt x 430.00081pt.
 
 
@@ -900,7 +937,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./img/247_1.pdf): PDF inclusion: multiple pdfs w
 ith page group included in a single page
-> <./img/skymap_TESS_amp_-1_new.pdf>]
+> <./img/skymap_TESS_amp_log_new.pdf>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -911,12 +948,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 File: img/180.jpg Graphic file (type jpg)
 
 <use img/180.jpg>
-Package pdftex.def Info: img/180.jpg used on input line 420.
+Package pdftex.def Info: img/180.jpg used on input line 421.
 (pdftex.def)             Requested size: 215.0023pt x 199.4418pt.
  <img/320.jpg, id=348, 379.6pt x 365.0pt>
 File: img/320.jpg Graphic file (type jpg)
  <use img/320.jpg>
-Package pdftex.def Info: img/320.jpg used on input line 426.
+Package pdftex.def Info: img/320.jpg used on input line 427.
 (pdftex.def)             Requested size: 215.0023pt x 206.73221pt.
 
 
@@ -929,14 +966,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 <img/62_1_new2.pdf, id=352, 462.52798pt x 346.89601pt>
 File: img/62_1_new2.pdf Graphic file (type pdf)
  <use img/62_1_new2.pdf>
-Package pdftex.def Info: img/62_1_new2.pdf used on input line 443.
+Package pdftex.def Info: img/62_1_new2.pdf used on input line 444.
 (pdftex.def)             Requested size: 215.0023pt x 161.25204pt.
 
-<img/62_1_new2_amp.pdf, id=353, 462.52798pt x 346.89601pt>
-File: img/62_1_new2_amp.pdf Graphic file (type pdf)
+<img/62_1_new3_amp.pdf, id=353, 462.52798pt x 346.89601pt>
+File: img/62_1_new3_amp.pdf Graphic file (type pdf)
 
-<use img/62_1_new2_amp.pdf>
-Package pdftex.def Info: img/62_1_new2_amp.pdf used on input line 449.
+<use img/62_1_new3_amp.pdf>
+Package pdftex.def Info: img/62_1_new3_amp.pdf used on input line 450.
 (pdftex.def)             Requested size: 215.0023pt x 161.25204pt.
 
 
@@ -945,29 +982,26 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[23 <./img/62_1_new2.pdf> <./img/62_1_new2_amp.pdf
-
-pdfTeX warning: pdflatex (file ./img/62_1_new2_amp.pdf): PDF inclusion: multipl
-e pdfs with page group included in a single page
->] <img/perFracRad.pdf, id=432, 462.52798pt x 346.89601pt>
+[23 <./img/62_1_new2.pdf> <./img/62_1_new3_amp.pdf>]
+<img/perFracRad.pdf, id=412, 462.52798pt x 346.89601pt>
 File: img/perFracRad.pdf Graphic file (type pdf)
 
 <use img/perFracRad.pdf>
-Package pdftex.def Info: img/perFracRad.pdf used on input line 467.
+Package pdftex.def Info: img/perFracRad.pdf used on input line 468.
 (pdftex.def)             Requested size: 215.0023pt x 161.25204pt.
 
-<img/ampPratDouble_3_line.pdf, id=433, 939.51pt x 939.51pt>
+<img/ampPratDouble_3_line.pdf, id=413, 939.51pt x 939.51pt>
 File: img/ampPratDouble_3_line.pdf Graphic file (type pdf)
 
 <use img/ampPratDouble_3_line.pdf>
-Package pdftex.def Info: img/ampPratDouble_3_line.pdf used on input line 473.
+Package pdftex.def Info: img/ampPratDouble_3_line.pdf used on input line 474.
 (pdftex.def)             Requested size: 215.0023pt x 214.99324pt.
 
-<img/2dhist3_new.pdf, id=434, 462.52798pt x 346.89601pt>
+<img/2dhist3_new.pdf, id=414, 462.52798pt x 346.89601pt>
 File: img/2dhist3_new.pdf Graphic file (type pdf)
 
 <use img/2dhist3_new.pdf>
-Package pdftex.def Info: img/2dhist3_new.pdf used on input line 483.
+Package pdftex.def Info: img/2dhist3_new.pdf used on input line 484.
 (pdftex.def)             Requested size: 301.00192pt x 225.76027pt.
 
 
@@ -1017,13 +1051,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [31] (./thesis_template_astro (1).aux) ) 
 Here is how much of TeX's memory you used:
- 7087 strings out of 493029
- 103089 string characters out of 6136235
- 196688 words of memory out of 5000000
- 10474 multiletter control sequences out of 15000+600000
- 22404 words of font info for 54 fonts, out of 8000000 for 9000
+ 7684 strings out of 493029
+ 109841 string characters out of 6136235
+ 207098 words of memory out of 5000000
+ 11053 multiletter control sequences out of 15000+600000
+ 24652 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,12n,43p,1448b,378s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,43p,1448b,380s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-su
 per/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
@@ -1044,10 +1078,10 @@ r/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr
 /share/texmf/fonts/type1/public/cm-super/sfsl1200.pfb></usr/share/texmf/fonts/t
 ype1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sftt1200.pfb>
-Output written on "thesis_template_astro (1).pdf" (37 pages, 7503044 bytes).
+Output written on "thesis_template_astro (1).pdf" (37 pages, 9534763 bytes).
 PDF statistics:
- 601 PDF objects out of 1000 (max. 8388607)
- 220 compressed objects within 3 object streams
+ 581 PDF objects out of 1000 (max. 8388607)
+ 219 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

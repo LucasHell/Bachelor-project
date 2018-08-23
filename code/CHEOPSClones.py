@@ -52,7 +52,6 @@ with open('TESSData.csv','r') as inputFile:
 	rStar = [k.split(',')[7] for k in data]
 	RA = [k.split(',')[8] for k in data]
 	dec = [k.split(',')[9] for k in data]
-	#~ effTemp = [k.split(',')[10] for k in data]
 	kepMag = [k.split(',')[12] for k in data]
 
 for i in range(len(rPlanet)):
@@ -76,7 +75,7 @@ outRADec = open('CHEOPS_RA_Dec.csv', 'w')
 betaVar = 0
 count1 = 0
 j = 0
-#~ print len(RA), len(rPlanet)	
+
 for i in range(len(RA)): #
 	RA[i] = math.radians(float(RA[i]))
 	dec[i] = math.radians(float(dec[i]))
@@ -98,58 +97,23 @@ for i in range(len(RA)): #
 	rPlanetClones.append(rPlanet[i])
 	rStarClones.append(rStar[i])
 	
-	if i == 0 and kepID[i] != kepID[i+1] and int(str(name[i])[-1:]) >= int(str(name[i+1])[-1:]):	# RA[i] != RA[i+1] and dec[i] != dec[i+1]
-		#~ print 'i =', i, 'count1 = ', count1
+	if i == 0 and kepID[i] != kepID[i+1] and int(str(name[i])[-1:]) >= int(str(name[i+1])[-1:]):	
 		numP.append(count1)
 		count1 = 0
 	if i == len(RA)-1:
-		#~ print 'i =', i, 'count1 = ', count1
+
 		numP.append(count1)
 		break
-	if i > 1 and kepID[i] != kepID[i+1] and int(str(name[i])[-1:]) >= int(str(name[i+1])[-1:]):	#RA[i] != RA[i-1] and dec[i] != dec[i-1]
-		#~ print 'i =', i, 'count1 = ', count1
+	if i > 1 and kepID[i] != kepID[i+1] and int(str(name[i])[-1:]) >= int(str(name[i+1])[-1:]):	
+
 		numP.append(count1)
 		count1 = 0
-	elif i > 1 and kepID[i] == kepID[i+1] and int(str(name[i])[-1:]) >= int(str(name[i+1])[-1:]):	#RA[i] != RA[i-1] and dec[i] != dec[i-1]
-		#~ print 'i =', i, 'count1 = ', count1
+	elif i > 1 and kepID[i] == kepID[i+1] and int(str(name[i])[-1:]) >= int(str(name[i+1])[-1:]):	
+
 		numP.append(count1)
 		count1 = 0
 
-	#~ if -40 < math.degrees(betaVar) < 40:
-		#~ k = i
-		
-		#~ print i, lamb[-1], math.degrees(betaVar)
-		#~ mPClones.append(mPlanet[k])
-		#~ perClones.append(period[k])
-		#~ mStarClones.append(mStar[k])
-		#~ numEpochClones.append(numEpoch[k])
-		#~ kepMagClones.append(kepMag[k])
-		#~ transDurClones.append(transitDur[k])
-		#~ rPlanetClones.append(rPlanet[k])
-		#~ rStarClones.append(rStar[k])
-		#~ numbP = 0
-		#~ count1 += 1
-		#~ print i	
-		#~ numbP += 1
-		#~ k += 1
-		#~ if kepID[k] == kepID[-1]:
-				#~ break
-		#~ while kepID[k] == kepID[k+1]:
-			
-			#~ if kepID[k] == kepID[-1]:
-				#~ break
-			#~ numbP += 1
-			#~ k += 1
-			
-				
-		#~ numP.append(numbP+1)
-		#~ if float(dec[i]) > 0:
-			#~ outRADec.write(str(math.degrees(RA[i])) + ',' + str(math.degrees(dec[i])*-1) + '\n')
-		#~ else:
-			#~ outRADec.write(str(math.degrees(RA[i])) + ',' + str(math.degrees(dec[i])) + '\n')
-		#~ if numbP+1 > 1:
-			#~ outNumP.write(str(numbP+1) + '\n')
-			
+
 
 		
 
@@ -181,14 +145,13 @@ countP = 0
 
 for l in range(len(numPCHE)):		#
 	if numPCHE[l] == 1:
-		#~ print count
 		count += 1
 		u += 1
-		#~ print "skip"
+
 	if numPCHE[l] != 1:
 		S = 3.958 * 10**11 * 10**(-0.4*float(kepMagClonesCHE[l]))			
 		errorTiming = ((S * float(transDurClonesCHE[l]))**Fraction('-1/2') * ((float(rPlanetClonesCHE[l])*0.009158)/float(rStarClonesCHE[l]))**Fraction('-3/2') * float(transDurClonesCHE[l]))
-		#~ print numPCHE[l]
+
 		for k in range(0,100):
 			outputFile = open('CHEOPS_clones/%s' % systemCount + '_' + str(k) + '.in', 'w')
 			outRPlanet = open('radius_cheops/%s' % systemCount + '_' + str(k) + '.txt', 'w')
@@ -206,27 +169,27 @@ for l in range(len(numPCHE)):		#
 					meanAnom = meanAnom + 360
 					if meanAnom == 360:
 						meanAnom = 0
-				#~ print u+j, l
+
 				mPC_sys.append(mPClonesCHE[u+j])
 				pC_sys.append(perClonesCHE[u+j])
 				eccen_sys.append(np.random.rayleigh(0.03))
 				arg_sys.append(argument)
 				meanAnom_sys.append(meanAnom)
 				rPlanet_sys.append(rPlanetClonesCHE[u+j])
-				#~ print rPlanetClonesCHE[u+j]
+
 
 				outNumPP.write(str(numPCHE[l]) + '\n')
 				outErrorTiming.write(str(errorTiming) +'\n')
 				pC_sys = map(float, pC_sys)
 			
-			#~ print u
+
 			for k in range(len(mPC_sys)):
 				posMin = pC_sys.index(np.amin(pC_sys))
 
 				
 				outputFile.write(str(mPC_sys[posMin]) + '\n' + str(pC_sys[posMin]) + ' ' + str(eccen_sys[posMin]) + ' ' + str(90) + ' ' + str(0) + ' ' + str(arg_sys[posMin]) + ' ' + str(meanAnom_sys[posMin]) + '\n')
 				outRPlanet.write(str(rPlanet_sys[posMin]) + '\n')
-				#~ print rPlanet_sys[posMin], mPC_sys[posMin]
+
 				pC_sys[posMin] = 1000000
 			outputFile.close()
 			mPC_sys = []
@@ -241,19 +204,6 @@ for l in range(len(numPCHE)):		#
 		countP += numPCHE[l]
 	
 outNumP.close()		
-#~ print countP		
+	
 		
 		
-
-#~ c = SkyCoord(lon=lamb*u.deg, lat=beta*u.deg, frame='heliocentrictrueecliptic')
-#~ ra_rad = c.lon.wrap_at(180 * u.deg).rad			
-#~ dec_rad = c.lat.rad
-
-
-#~ plt.figure(figsize=(8,4.2))
-#~ plt.subplot(111, projection="aitoff")
-#~ plt.grid(True)
-#~ plt.title("Position of observed TESS objects", y=1.08)
-#~ plt.axhspan(math.radians(-40), math.radians(40), facecolor='g', alpha=0.1)
-#~ plt.scatter(ra_rad, dec_rad, s=7)
-#~ plt.show()

@@ -52,7 +52,8 @@ for l in range(len(errorTiming)):
 	if transitAmplitude[l] > 0.0001:
 		amp.append(transitAmplitude[l])
 		err.append(errorTiming[l]*60)
-	if transitAmplitude[l] > errorTiming[l]*60:
+	if transitAmplitude[l] > errorTiming[l]*60:		
+		print transitAmplitude[l]
 		countAmp += 1
 	countNo += 1
 		
